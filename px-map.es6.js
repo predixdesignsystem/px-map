@@ -228,6 +228,6 @@
 
   }
 
-  /* Register this element with the Polymer constructor. */
+  /* Register this element with the Polymer constructor */
   Polymer(PxMap);
 })()

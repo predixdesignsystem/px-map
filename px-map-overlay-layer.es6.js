@@ -27,9 +27,9 @@
         },
 
         /**
-         * The layer instance attached to the active map. Used to collect
-         * different UI components (e.g. markers, polygons) into a group
-         * to manipulate them together.
+         * The layer instance created by this component and attached to the active
+         * map. Used to collect different UI components (e.g. markers, polygons)
+         * into a group to manipulate them together.
          *
          * @type {Object}
          */
