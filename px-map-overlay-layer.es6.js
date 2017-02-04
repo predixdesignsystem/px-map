@@ -52,7 +52,7 @@
       }
     }
 
-    ready() {
+    attached() {
       window.requestAnimationFrame(this._drawLayer.bind(this));
     }
 

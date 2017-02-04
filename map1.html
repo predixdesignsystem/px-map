@@ -11,13 +11,18 @@
   <link rel="import" href="px-map.html" />
   <link rel="import" href="px-map-overlay-layer.html" />
   <link rel="import" href="px-map-static-marker.html" />
+  <link rel="import" href="px-map-info-popup.html" />
 </head>
 <body>
   <p>Maps.</p>
   <div style="display:flex; width:600px; height:400px;">
-    <px-map zoom="15" flex-to-size fit-to-markers>
+    <px-map zoom="15" flex-to-size>
       <px-map-overlay-layer name="Buildings">
-        <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="info" show-badge></px-map-static-marker>
+
+        <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="info" show-badge>
+          <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+        </px-map-static-marker>
+
         <px-map-static-marker lat="37.79" lon="-121.90" type="info" show-badge></px-map-static-marker>
         <!-- <px-map-static-marker lat="" lon="" type="info" show-badge></px-map-static-marker> -->
         <!-- <px-map-icon-marker lat="" lon="" type="impo" show-badge></px-map-icon-marker> -->

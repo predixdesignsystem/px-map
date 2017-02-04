@@ -1,0 +1,44 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!--
+Creates a simple popup that displays information about a marker or other interactive
+UI layer. Send static or data-bound text in and configure when the popup should
+be shown (e.g. on click, on hover).
+
+Use this component inside on of the `px-map-*-marker` elements or inside of
+another interactive UI component.
+
+##### Usage
+
+    <px-map>
+      <px-map-overlay-layer>
+        <px-map-static-marker>
+          <px-map-info-popup title="Asset #1" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+          </px-map-info-popup>
+        </px-map-static-marker>
+      </px-map-overlay-layer>
+    </px-map>
+
+@element px-map-info-popup
+@blurb Creates a simple popup that displays information about an interactive UI layer
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map-info-popup">
+  <style>
+  :host {
+    display: none;
+  }
+  </style>
+  <template>
+    <p>{{title}}</p>
+    <p>{{description}}</p>
+  </template>
+</dom-module>
+<script src="px-map-info-popup.es6.js"></script>

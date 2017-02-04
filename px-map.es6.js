@@ -171,12 +171,10 @@
         }
       }
     }
-
-    ready() {
-      window.requestAnimationFrame(this._drawMap.bind(this));
-    }
-
+    
     attached() {
+      window.requestAnimationFrame(this._drawMap.bind(this));
+
       if (this.fitToMarkers) {
         this.listen(this, 'px-map-marker-add', '_fitMapToMakers');
       }

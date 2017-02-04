@@ -8,6 +8,9 @@
     /* Behaviors to import for this component */
     get behaviors() { return [window.PxMapBehaviors.DistributeProperties]; }
 
+    /* Properties to attach to distributed light DOM children */
+    get distributions() { return ['markerInstance']; }
+
     /* Properties for this component */
     get properties() {
       return {
@@ -72,7 +75,7 @@
       }
     }
 
-    ready() {
+    attached() {
       window.requestAnimationFrame(this._drawMarker.bind(this));
     }
 
@@ -114,7 +117,7 @@
       // Attach event handlers to the marker
       this._captureMarkerEvents(marker);
 
-      // Return the result
+      // Return the marker instance to be attached
       return marker;
     }
 
@@ -133,6 +136,9 @@
       <i class="static-map-icon__body style-scope px-map"></i>
       <i class="static-map-icon__marker style-scope px-map"></i>
       <i class="static-map-icon__descender style-scope px-map"></i>`
+
+      // Anchor the popup open position
+      options.popupAnchor = L.point(1,-38);
 
       return L.divIcon(options);
     }
