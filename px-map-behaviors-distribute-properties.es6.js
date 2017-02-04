@@ -61,9 +61,15 @@
    * @polymerBehavior PxMapBehaviors.DistributeProperties
    */
   const DistributeProperties = {
-    created() {
+    attached() {
       if (this.distributions && this.distributions.length) {
-        this._setupDistributionObservers(this.distributions);
+        this._addDistributionObservers(this.distributions);
+      }
+    },
+
+    detached() {
+      if (this.distributions && this.distributions.length) {
+        this._removeDistributionObservers();
       }
     },
 
@@ -74,11 +80,30 @@
      *
      * @param {Array} properties - A list of property names to attach to children
      */
-    _setupDistributionObservers(properties) {
+    _addDistributionObservers(properties) {
       for (let propertyName of properties) {
         this._distributeOnNewChildren(propertyName);
         this._distributeOnPropertyChange(propertyName);
       }
+    },
+
+    /**
+     * Removes all distribution observers when the host is detached.
+     */
+    _removeDistributionObservers(properties) {
+      // Remove parent -> child light DOM distribution observers
+      const newChildDistributors = this.__newChildDistributors;
+      if (newChildDistributors && newChildDistributors.length) {
+        const distributeFns = newChildDistributors.values();
+        for (let fn of distributeFns) {
+          Polymer.dom(this).unobserveNodes(fn);
+        }
+      }
+
+      // For now, it seems like Polymer.Bind automatically cleans up all the
+      // dynamic property change effects, so we'll end here.
+      // If performance becomes an issue, we may need to look into manually
+      // removing the effects created `Polymer.Bind.addPropertyEffect`.
     },
 
     /**
