@@ -146,7 +146,7 @@
     _captureMarkerEvents(marker) {
       marker.on('add', (evt) => {
         this.fire(`px-map-marker-${evt.type}`, evt);
-      })
+      }, this);
     }
 
   }
