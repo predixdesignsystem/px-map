@@ -106,7 +106,22 @@
      * the new instance.
      */
     _createMarker() {
+      // Create the marker instance
       const geometry = [this.lat, this.lon];
+      const icon = this._createStaticMarkerIcon();
+      const marker = L.marker(geometry, { icon: icon });
+
+      // Attach event handlers to the marker
+      this._captureMarkerEvents(marker);
+
+      // Return the result
+      return marker;
+    }
+
+    /**
+     * Creates and configures a styled icon that can be attached to a marker.
+     */
+    _createStaticMarkerIcon() {
       const options = {};
 
       // To get shady DOM CSS styling, we need to hack `style-scope px-map`
@@ -119,9 +134,19 @@
       <i class="static-map-icon__marker style-scope px-map"></i>
       <i class="static-map-icon__descender style-scope px-map"></i>`
 
-      // Create the icon instance, assign it to a marker, and return
-      const icon = L.divIcon(options);
-      return L.marker(geometry, { icon: icon });
+      return L.divIcon(options);
+    }
+
+    /**
+     * Configures handler functions to capture, react to, or forward events
+     * from a marker instance.
+     *
+     * @param {Object} marker
+     */
+    _captureMarkerEvents(marker) {
+      marker.on('add', (evt) => {
+        this.fire(`px-map-marker-${evt.type}`, evt);
+      })
     }
 
   }

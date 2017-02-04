@@ -141,7 +141,17 @@
         // ENABLES FEATURES THAT CHANGE THE MAP BEHAVIOR
         // ---------------------------------------------------------------------
 
-        // ...
+        /**
+         * Automatically changes the visible bounds of the map to fit all
+         * markers placed on it.
+         *
+         * @type {Object}
+         */
+        fitToMarkers: {
+          type: Boolean,
+          value: false,
+          observer: '_fitMapToMakers'
+        },
 
         // ---------------------------------------------------------------------
         // TELL THE MAP HOW TO RESIZE
@@ -164,6 +174,60 @@
 
     ready() {
       window.requestAnimationFrame(this._drawMap.bind(this));
+    }
+
+    attached() {
+      if (this.fitToMarkers) {
+        this.listen(this, 'px-map-marker-add', '_fitMapToMakers');
+      }
+    }
+
+    detached() {
+      if (this.fitToMarkers) {
+        this.unlisten(this, 'px-map-marker-add', '_fitMapToMakers');
+      }
+    }
+
+    /**
+     * If the map is configured to fit itself to markers, iterates over all
+     * layers to find marker and ensures they fit in the view.
+     *
+     * This functio will be called when:
+     * 1. The `fitToMarkers` property is defined
+     * 2. Any marker fires a 'px-map-marker-add' event that bubbles up to the map
+     * 3. The map is first drawn
+     */
+    _fitMapToMakers() {
+      if (this.mapInstance && this.fitToMarkers) {
+
+        const fitFn = () => {
+          const bounds = this._getAllMarkerGeoms();
+          if (bounds.length) this.mapInstance.fitBounds(bounds);
+        };
+
+        this.debounce('fit-map-to-markers', fitFn, 1);
+      }
+    }
+
+    /**
+     * Iterates over all markers attached to the map and returns an array of
+     * <L.LatLng> instances with the geometry.
+     *
+     * @return {Array}
+     */
+    _getAllMarkerGeoms() {
+      const bounds = [];
+
+      // Loop over the layers
+      this.mapInstance.eachLayer((layer) => {
+        // Markers have a `layer.options.icon` set
+        if (layer.options && layer.options.icon) {
+          let markerGeom = layer.getLatLng();
+          if (bounds.indexOf(markerGeom) === -1) bounds.push(markerGeom);
+        }
+      });
+
+      return bounds;
     }
 
     /**
@@ -208,11 +272,8 @@
       // Set the view from current defaults
       this._updateMapView();
 
-      // Temporary
-      // L.marker([this.lat, this.lon]).addTo(this.mapInstance);
-      // let getStyles = Polymer.dom(this.root).appendChild(/*div*/).classList
-      // let staticMarkerDivIcon = L.divIcon({className: 'static-map-icon style-scope px-map', html: '<i class="static-map-icon__body style-scope px-map"></i><i class="static-map-icon__marker style-scope px-map"></i><i class="static-map-icon__descender style-scope px-map"></i>'});
-      // let newMarker = L.marker([this.lat, this.lon], {icon:staticMarkerDivIcon}).addTo(this.mapInstance);
+      // Try to fit to map markers if the `fitToMarkers` attribute was set
+      this._fitMapToMakers();
     }
 
     /**
