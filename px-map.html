@@ -1,0 +1,44 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!-- Local dependencies -->
+<link rel="import" href="px-map-import-leaflet.html">
+<link rel="import" href="px-map-behaviors-distribute-properties.html">
+<link rel="import" href="css/px-map-styles.html">
+
+<!--
+Creates a map that can be configured by the developer or the user.
+
+##### Usage
+
+    <px-map></px-map>
+
+@element px-map
+@blurb Creates a map that can be configured by the developer or the user.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map">
+  <template>
+    <style include="px-map-styles"></style>
+    <link rel="stylesheet" href="../leaflet/dist/leaflet.css" />
+    <style>
+      /* Use flex to resize */
+      :host([flex-to-size]) {
+        display: flex;
+        flex: 1;
+      }
+      :host([flex-to-size]) #map {
+        flex: 1;
+      }
+    </style>
+    <div id="map"></div>
+    <content select="*"></content>
+  </template>
+</dom-module>
+<script src="px-map.es6.js"></script>

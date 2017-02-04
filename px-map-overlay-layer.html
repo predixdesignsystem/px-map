@@ -1,0 +1,38 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<!-- Local dependencies -->
+<link rel="import" href="px-map-behaviors-distribute-properties.html">
+
+<!--
+Creates an interactive overlay layer that can show data on the active map.
+Place markers, polygons, or other geospatial reference data into this
+component's light DOM to display grouped data on the map.
+
+To allow the user to show and hide an overlay layer, give the layer a name
+and configure the map's controls to include a layer picker.
+
+Use this component inside of a `px-map` element.
+
+##### Usage
+
+    <px-map>
+      <px-map-overlay-layer>
+        ...
+      </px-map-overlay-layer>
+    </px-map>
+
+@element px-map-overlay-layer
+@blurb Creates an interactive overlay on the map to show geospatial data
+-->
+
+<dom-module id="px-map-overlay-layer">
+  <template>
+    <content select="*"></content>
+  </template>
+</dom-module>
+<script src="px-map-overlay-layer.es6.js"></script>

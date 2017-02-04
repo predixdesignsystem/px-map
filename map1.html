@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map 1 Demo -- Simple Map</title>
+
+  <link rel="import" href="../webcomponentsjs/webcomponents-lite.min.js">
+  <link rel="import" href="../polymer/polymer.html" />
+  <link rel="import" href="px-map.html" />
+  <link rel="import" href="px-map-overlay-layer.html" />
+</head>
+<body>
+  <p>Maps.</p>
+  <div style="display:flex; width:600px; height:400px;">
+    <px-map zoom="15" flex-to-size>
+      <px-map-overlay-layer name="Buildings">
+        <px-map-static-marker lat="" lon="" type="info" show-badge></px-map-static-marker>
+        <px-map-static-marker lat="" lon="" type="info" show-badge></px-map-static-marker>
+        <px-map-icon-marker lat="" lon="" type="impo" show-badge></px-map-icon-marker>
+        <px-map-moving-marker lat="" lon="" type="" show-badge></px-map-moving-marker>
+      </px-map-overlay-layer>
+    </px-map>
+  </div>
+</body>
+</html>

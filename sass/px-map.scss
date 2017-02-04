@@ -1,0 +1,117 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the for the px-map component
+//
+// @author
+//
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Tools
+// ...
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+
+// Meta
+@import "px-meta-buttons-design/_meta.buttons.scss";
+
+// Objects
+// ...
+
+// Component
+
+/*******************************************************************************
+ * MARKERS
+ ******************************************************************************/
+
+/* Static Marker */
+.static-map-icon {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+// .static-map-icon:before {
+//   width: 20px;
+//   height: 20px;
+//   background-color: $primary-blue;
+//   border-radius: 100%;
+//   content: '';
+//   display: block;
+//   position: relative;
+//   left: -3px;
+//   top: -31px;
+// }
+// .static-map-icon:after {
+//   content: '';
+//   display: block;
+//   width: 0;
+//   height: 0;
+//   border-style: solid;
+//   border-width: 20px 5px 0 5px;
+//   border-color: $primary-blue transparent transparent transparent;
+//   position: relative;
+//   left: 2px;
+//   top: -33px;
+// }
+.static-map-icon__body {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: $primary-blue;
+  border-radius: 100%;
+  position: relative;
+  left: -3px;
+  top: -31px;
+  border: 2px solid var(--px-map-static-icon-border-color, white);
+}
+.static-map-icon__marker {
+
+}
+.static-map-icon__descender {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 5px 0 5px;
+  border-color: $primary-blue transparent transparent transparent;
+  position: relative;
+  left: 2px;
+  top: -35px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 22px 7px 10px;
+    border-color: var(--px-map-static-icon-border-color, white) transparent transparent;
+    position: absolute;
+    z-index: -1;
+    left: -7px;
+    top: -19px;
+    transform: scaleY(1.1);
+  }
+}
+
+// Trumps
+@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
