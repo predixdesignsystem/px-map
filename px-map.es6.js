@@ -171,7 +171,7 @@
         }
       }
     }
-    
+
     attached() {
       window.requestAnimationFrame(this._drawMap.bind(this));
 

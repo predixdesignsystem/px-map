@@ -11,6 +11,11 @@ const gulpif = require('gulp-if');
 const combiner = require('stream-combiner2');
 const bump = require('gulp-bump');
 const argv = require('yargs').argv;
+/* Used to transpile JavaScript */
+const babel = require('gulp-babel');
+const rename = require('gulp-rename');
+const sourcemaps = require('gulp-sourcemaps');
+const cache = require('gulp-cached');
 
 const sassOptions = {
   importer: importOnce,
@@ -44,6 +49,7 @@ function buildCSS(){
 
 gulp.task('sass', function() {
   return gulp.src(['./sass/*.scss'])
+    .pipe(cache('sassing'))
     .pipe(buildCSS())
     .pipe(stylemod({
       moduleId: function(file) {
@@ -52,6 +58,22 @@ gulp.task('sass', function() {
     }))
     .pipe(gulp.dest('css'))
     .pipe(browserSync.stream({match: 'css/*.html'}));
+});
+
+const ES6_SRC = './*.es6.js';
+const ES6_DEST = 'dist';
+
+gulp.task('transpile', function() {
+  return gulp.src(ES6_SRC)
+    .pipe(cache('transpiling'))
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(rename(path => {
+      path.basename = path.basename.replace('.es6', '');
+      console.log(`Transpiling ${path.basename}.es6.js -> dist/${path.basename}.js`)
+    }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(ES6_DEST));
 });
 
 gulp.task('watch', function() {
@@ -68,9 +90,9 @@ gulp.task('serve', function() {
     server: ['./', 'bower_components'],
   });
 
-  gulp.watch(['css/*-styles.html', '*.html', '*.js', 'demo/*.html']).on('change', browserSync.reload);
+  gulp.watch(ES6_SRC, ['transpile']);
   gulp.watch(['sass/*.scss'], ['sass']);
-
+  gulp.watch(['css/*-styles.html', '*.html', 'dist/*.js', 'demo/*.html']).on('change', browserSync.reload);
 });
 
 gulp.task('bump:patch', function(){
