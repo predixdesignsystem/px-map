@@ -122,7 +122,7 @@
         // const boundObserverFn = this[observeFnName].bind(this);
         // this[observerWrapper] = new MutationObserver(boundObserverFn);
         // this[observerWrapper].observe(this, {childList:true});
-        let distributeFn = () => this._distrubutePropertyToChildren(propertyName);
+        let distributeFn = () => this._distributePropertyToChildren(propertyName);
         let distributorInstance = Polymer.dom(this).observeNodes(distributeFn);
         distributors.set(propertyName, distributorInstance);
       }
@@ -141,7 +141,7 @@
         // `Polymer.Bind.addPropertyEffect` API. In the future, we should use
         // the hooks Polymer 2.0 will provide into the observer API vs. calling
         // this internal watcher.
-        let distributeFn = () => this._distrubutePropertyToChildren(propertyName);
+        let distributeFn = () => this._distributePropertyToChildren(propertyName);
         Polymer.Bind.addPropertyEffect(this, propertyName, 'function', distributeFn);
         Polymer.Bind.addPropertyEffect(this, `${propertyName}.*`, 'function', distributeFn);
         distributors.set(propertyName, true);
@@ -156,7 +156,7 @@
      *
      * @param {String} propertyName - The name of the property to distribute to light DOM children
      */
-    _distrubutePropertyToChildren(propertyName) {
+    _distributePropertyToChildren(propertyName) {
       if (!propertyName || !this[propertyName] || typeof this[propertyName] === 'undefined') return;
 
       const applyPropertyFn = () => {
