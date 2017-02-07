@@ -6,7 +6,7 @@
     get is() { return 'px-map-overlay-layer'; }
 
     /* Behaviors to import for this component */
-    get behaviors() { return [window.PxMapBehaviors.DistributeProperties]; }
+    get behaviors() { return [window.PxMapBehavior.DistributeProperties]; }
 
     /* Properties to attach to distributed light DOM children */
     get distributions() { return ['mapInstance', 'layerInstance']; }

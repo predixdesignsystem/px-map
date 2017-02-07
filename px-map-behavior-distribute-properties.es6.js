@@ -58,7 +58,7 @@
    * </script>
    * ```
    *
-   * @polymerBehavior PxMapBehaviors.DistributeProperties
+   * @polymerBehavior PxMapBehavior.DistributeProperties
    */
   const DistributeProperties = {
     attached() {
@@ -172,6 +172,6 @@
     },
   };
 
-  const namespace = (window.PxMapBehaviors = window.PxMapBehaviors || {});
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
   namespace.DistributeProperties = DistributeProperties;
 })()
