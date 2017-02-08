@@ -37,8 +37,20 @@ another interactive UI component.
   }
   </style>
   <template>
-    <p>{{title}}</p>
-    <p>{{description}}</p>
+    <template is="dom-if" if="{{imgSrc}}">
+      <div class="px-map-info-popup__image">
+        <img src$="{{imgSrc}}" alt$="{{title}}">
+      </div>
+    </template>
+
+    <div class="px-map-info-popup__content">
+      <template is="dom-if" if="{{title}}">
+        <p class="px-map-info-popup__title">{{title}}</p>
+      </template>
+      <template is="dom-if" if="{{description}}">
+        <p class="px-map-info-popup__description">{{description}}</p>
+      </template>
+    </div>
   </template>
 </dom-module>
 <script src="dist/px-map-info-popup.js"></script>

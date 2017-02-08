@@ -17,6 +17,7 @@
   <link rel="import" href="px-map-overlay-layer.html" />
   <link rel="import" href="px-map-static-marker.html" />
   <link rel="import" href="px-map-info-popup.html" />
+  <link rel="import" href="../iron-ajax/iron-ajax.html" />
 </head>
 <!-- Set up styles for this page -->
 <style include="px-map-styles" is="custom-style"></style>
@@ -31,50 +32,101 @@
 
 </style>
 <body>
-  <section class="container">
-  <h1>Maps Framework - Examples</h1>
+  <template is="dom-bind" id="bound">
+    <section class="container">
+    <h1>Maps Framework - Examples</h1>
 
-  <!-- Example #1 -->
-  <hr>
-  <h3>#1 - Basic Map</h3>
-  <ul>
-    <li>Just a basic map tag (px-map)</li>
-    <li>No tile layer specified, uses default from OSM</li>
-    <li>Flexes to fill parent container</li>
-    <li>Set attributes `lat` and `lon` and `zoom` to set the center on first draw.</li>
-  </ul>
+    <!-- Example #1 -->
+    <hr>
+    <h3>#1 - Basic Map</h3>
+    <ul>
+      <li>Just a basic map tag (px-map)</li>
+      <li>No tile layer specified, uses default from OSM</li>
+      <li>Flexes to fill parent container</li>
+      <li>Set attributes `lat` and `lon` and `zoom` to set the center on first draw.</li>
+    </ul>
 
-  <div style="display:flex; width:100%; height:400px;">
-    <px-map lat="37.7672375" lon="-121.9584131" zoom="15" flex-to-size>
-    </px-map>
-  </div>
+    <div style="display:flex; width:100%; height:400px;">
+      <!-- <px-map lat="37.7672375" lon="-121.9584131" zoom="15" flex-to-size>
+      </px-map> -->
+    </div>
 
-  <!-- Example #2 -->
-  <hr>
-  <h3>#2 - Overlay with markers</h3>
-  <ul>
-    <li>Sets the `fit-to-markers` attribute on the px-map instance. When the map loads, it automatically sets its bounds and zoom level to fit all markers. Note that this is a lazy, long-lived effect: any markers added later will also trigger a new resize.</li>
-    <li>Adds an overlay layer (px-map-overlay-layer) to hold a group of related data drawn on the map. In this case, a group of markers named "Buildings". This is a tag placed directly into the px-map light DOM.</li>
-    <li>Adds two markers of type px-map-static-marker (there can be many kinds of markers with different visual meanings). These markers are configured with a `lat` and `lon` and other settings that describe how to style themselves. The tags are placed directly in the px-map-overlay-layer light DOM.</li>
-    <li>Passes a popup (px-map-info-popup) into each marker. This is an informative popup that accepts text through attributes to draw itself. It is passed directly in the px-map-static-marker light DOM.</li>
-  </ul>
+    <!-- Example #2 -->
+    <hr>
+    <h3>#2 - Overlay with markers</h3>
+    <ul>
+      <li>Sets the `fit-to-markers` attribute on the px-map instance. When the map loads, it automatically sets its bounds and zoom level to fit all markers. Note that this is a lazy, long-lived effect: any markers added later will also trigger a new resize.</li>
+      <li>Adds an overlay layer (px-map-overlay-layer) to hold a group of related data drawn on the map. In this case, a group of markers named "Buildings". This is a tag placed directly into the px-map light DOM.</li>
+      <li>Adds two markers of type px-map-static-marker (there can be many kinds of markers with different visual meanings). These markers are configured with a `lat` and `lon` and other settings that describe how to style themselves. The tags are placed directly in the px-map-overlay-layer light DOM.</li>
+      <li>Passes a popup (px-map-info-popup) into each marker. This is an informative popup that accepts text through attributes to draw itself. It is passed directly in the px-map-static-marker light DOM.</li>
+    </ul>
 
-  <div style="display:flex; width:100%; height:400px;">
-    <px-map zoom="15" flex-to-size fit-to-markers>
-      <px-map-overlay-layer name="Buildings">
-        <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="info" show-badge>
-          <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
-        </px-map-static-marker>
-        <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info" show-badge>
-          <px-map-info-popup title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
-        </px-map-static-marker>
-        <!-- <px-map-static-marker lat="" lon="" type="info" show-badge></px-map-static-marker> -->
-        <!-- <px-map-icon-marker lat="" lon="" type="impo" show-badge></px-map-icon-marker> -->
-        <!-- <px-map-moving-marker lat="" lon="" type="" show-badge></px-map-moving-marker> -->
-      </px-map-overlay-layer>
-    </px-map>
-  </div>
+    <div style="display:flex; width:100%; height:400px;">
+      <px-map zoom="10" fit-to-markers flex-to-size>
+        <px-map-overlay-layer name="Buildings">
+          <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="unknown" show-badge>
+            <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo." img-src="http://placehold.it/75x75"></px-map-info-popup>
+          </px-map-static-marker>
+          <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info" show-badge>
+            <px-map-info-popup title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+          </px-map-static-marker>
+        </px-map-overlay-layer>
+      </px-map>
+    </div>
 
-  </section>
+    <!-- Example #3 -->
+    <hr>
+    <h3>#3 - A bunch of markers without clustering</h3>
+    <ul>
+      <li>Click the button below to add 100 markers. Keep clicking to add more. Performance degrades around 2,000 markers.</li>
+      <li>Number of active markers: {{numberOfMarkers}}</li>
+      <li><button id="addMarkersBtn" on-tap="_handleAddMarkersBtn">Add Markers</button></li>
+    </ul>
+
+
+
+    <iron-ajax
+      id="getData"
+      url="https://dl.dropboxusercontent.com/u/21695507/openplaques/open-plaques-london-2016-10-26.json"
+      auto>
+    </iron-ajax>
+
+    <div style="display:flex; width:100%; height:400px;">
+      <!-- <px-map lat="51.528308" lon="-0.3817765" zoom="10" fit-to-markers flex-to-size>
+        <px-map-overlay-layer name="Plaques of London" id="targetLayer">
+        </px-map-overlay-layer>
+      </px-map> -->
+    </div>
+
+    <script>
+      var tmpl = document.querySelector('#bound');
+      tmpl.allData = [];
+      tmpl.numberOfMarkers = 0;
+      tmpl._handleAddMarkersBtn = function () {
+        // Ensure we have data to add to the map
+        var ajaxGetter = document.querySelector('#getData');
+        var data = ajaxGetter.get('lastResponse');
+        if (!tmpl.allData.length && data) {
+          this.allData = data;
+        }
+        var dataToAdd = this.allData.splice(0,100);
+        var target = document.querySelector('px-map-overlay-layer');
+        addMarkersToLayer(dataToAdd, target);
+        this.set('numberOfMarkers', this.numberOfMarkers + 100);
+      }
+
+      function addMarkersToLayer(places, target) {
+        places.forEach((place) => {
+          var newMarker = document.createElement('px-map-static-marker');
+          if (!place.latitude || !place.longitude) return;
+          newMarker.setAttribute('lat', place.latitude);
+          newMarker.setAttribute('lon', place.longitude);
+          Polymer.dom(target).appendChild(newMarker);
+        });
+      }
+    </script>
+
+    </section>
+  </template>
 </body>
 </html>

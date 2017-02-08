@@ -38,52 +38,35 @@
 
 // Component
 
+/*
+ * Override Leaflet's styles
+ */
+.leaflet-container {
+  font-family: $predix-font-family;
+  font-size: $inuit-base-font-size;
+  line-height: $inuit-base-line-height;
+}
+
 /*******************************************************************************
  * MARKERS
  ******************************************************************************/
 
-/* Static Marker */
+/* MARKER: px-map-static-marker */
+
 .static-map-icon {
   width: 50px;
   height: 50px;
-  position: relative;
+  display: block;
+  position: absolute;
 }
-// .static-map-icon:before {
-//   width: 20px;
-//   height: 20px;
-//   background-color: $primary-blue;
-//   border-radius: 100%;
-//   content: '';
-//   display: block;
-//   position: relative;
-//   left: -3px;
-//   top: -31px;
-// }
-// .static-map-icon:after {
-//   content: '';
-//   display: block;
-//   width: 0;
-//   height: 0;
-//   border-style: solid;
-//   border-width: 20px 5px 0 5px;
-//   border-color: $primary-blue transparent transparent transparent;
-//   position: relative;
-//   left: 2px;
-//   top: -33px;
-// }
 .static-map-icon__body {
   display: block;
   width: 20px;
   height: 20px;
   background-color: $primary-blue;
   border-radius: 100%;
-  position: relative;
-  left: -3px;
-  top: -31px;
+  position: absolute;
   border: 2px solid var(--px-map-static-icon-border-color, white);
-}
-.static-map-icon__marker {
-
 }
 .static-map-icon__descender {
   display: block;
@@ -92,9 +75,9 @@
   border-style: solid;
   border-width: 20px 5px 0 5px;
   border-color: $primary-blue transparent transparent transparent;
-  position: relative;
-  left: 2px;
-  top: -35px;
+  position: absolute;
+  left: 5px;
+  top: 16px;
 
   &:after {
     content: '';
@@ -111,6 +94,115 @@
     transform: scaleY(1.1);
   }
 }
+// Set 'info' type icon color
+.static-map-icon--info {
+  .static-map-icon__body {
+    background-color: var(--px-map-static-icon-info-color, $primary-blue);
+  }
+  .static-map-icon__descender {
+    border-top-color: var(--px-map-static-icon-info-color, $primary-blue);
+  }
+}
+// Set 'important' type icon color
+.static-map-icon--important {
+  .static-map-icon__body {
+    background-color: var(--px-map-static-icon-important-color, $alert-red);
+  }
+  .static-map-icon__descender {
+    border-top-color: var(--px-map-static-icon-important-color, $alert-red);
+  }
+}
+// Set 'warning' type icon color
+.static-map-icon--warning {
+  .static-map-icon__body {
+    background-color: var(--px-map-static-icon-warning-color, $alert-orange);
+  }
+  .static-map-icon__descender {
+    border-top-color: var(--px-map-static-icon-warning-color, $alert-orange);
+  }
+}
+// Set 'unknown' type icon color
+.static-map-icon--unknown {
+  .static-map-icon__body {
+    background-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
+  }
+  .static-map-icon__descender {
+    border-top-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
+  }
+}
+
+/*******************************************************************************
+ * POPUPS
+ ******************************************************************************/
+
+/* POPUP: Base styles for a popup */
+
+%px-map-popup {
+  // The wrapper container around the popup content. Expands to the maximum
+  // allowable size set on the attribute (not configured in CSS).
+  .leaflet-popup-content-wrapper {
+    border: 1px solid $gray5;
+    border-radius: 0;
+  }
+  // To set a border color on the content wrapper, we need to position a psuedo
+  // after element that is the same color as the popup background to make it look
+  // like the border doesn't overlap the popup 'tip' pointer
+  .leaflet-popup-content-wrapper:after {
+    content: '';
+    position: absolute;
+    background-color: white;
+    height: 4px;
+    width: 19px;
+    left: 50%;
+    margin-left: -9px;
+    border-radius: 5px;
+  }
+  // Add the border to the 'tip' pointer
+  .leaflet-popup-tip {
+    border: 1px solid $gray5;
+  }
+  // The inner container holding the popup content
+  .leaflet-popup-content {
+    margin: $inuit-base-spacing-unit;
+  }
+  // Hide the close button
+  .leaflet-popup-close-button {
+    display: none;
+  }
+}
+
+/* POPUP: px-map-info-popup */
+
+.px-map-info-popup {
+  @extend %px-map-popup;
+}
+// Style for the title, which is a text tag
+.px-map-info-popup__title {
+  font-weight: 600;
+  margin: 0 0 $inuit-base-spacing-unit--tiny;
+}
+// Style for the description, which is a text tag
+.px-map-info-popup__description {
+  margin: 0;
+}
+// Style for the optional image, which is set to the left of the content
+.px-map-info-popup__image {
+  display: block;
+  float: left;
+  max-width: 75px;
+  margin-right: $inuit-base-spacing-unit--small;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+// We need the content container to be a block with overflow hidden to
+// inset the picture to the left without text wrapping.
+.px-map-info-popup__content {
+  display: block;
+  overflow: hidden;
+}
+
 
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";

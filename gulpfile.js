@@ -70,6 +70,10 @@ gulp.task('transpile', function() {
     .pipe(cache('transpiling'))
     .pipe(sourcemaps.init())
     .pipe(babel())
+    .on('error', function(err) {
+      console.error(err);
+      this.emit('end');
+    })
     .pipe(rename(path => {
       path.basename = path.basename.replace('.es6', '');
       console.log(`Transpiling ${path.basename}.es6.js -> dist/${path.basename}.js`)

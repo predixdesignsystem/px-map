@@ -9,7 +9,7 @@
     get behaviors() { return [window.PxMapBehavior.DistributeProperties]; }
 
     /* Properties to attach to distributed light DOM children */
-    get distributions() { return ['mapInstance']; }
+    get distributions() { return ['mapInstance as parentInstance']; }
 
     /* Properties for this component */
     get properties() {
@@ -255,7 +255,8 @@
         // classes needed to style it or its children. That's bad. When the
         // polyfill is updated or support is cut for browsers without shadow
         // DOM, this should be removed.
-        Polymer.dom(this.root).appendChild(mapDrawEl);
+        // Polymer.dom(this.root).appendChild(mapDrawEl);
+        this.scopeSubtree(this.$.map, true);
 
         // Attach to the read-only `mapInstance`
         this._setMapInstance(map);
@@ -272,6 +273,9 @@
 
       // Try to fit to map markers if the `fitToMarkers` attribute was set
       this._fitMapToMakers();
+
+      // TEMPORARY MARKER TEST
+      // var newMarker = L.marker([this.lat, this.lon]).addTo(this.mapInstance);
     }
 
     /**

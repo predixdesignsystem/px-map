@@ -81,16 +81,23 @@
      * @param {Array} properties - A list of property names to attach to children
      */
     _addDistributionObservers(properties) {
-      for (let propertyName of properties) {
-        this._distributeOnNewChildren(propertyName);
-        this._distributeOnPropertyChange(propertyName);
+      for (let property of properties) {
+        // If the string is formatted like 'property as newProperty', distribute
+        // the parent.property on the children as child.newProperty
+        const findPropAsProp = /^([\w]+)\b as \b([\w]+)$/g;
+        const foundStrings = findPropAsProp.exec(property);
+        const propertyName = (foundStrings||[]).length ? foundStrings[1] : property;
+        const childPropertyName = (foundStrings||[]).length ? foundStrings[2] : property;
+
+        this._distributeOnNewChildren(propertyName, childPropertyName);
+        this._distributeOnPropertyChange(propertyName, childPropertyName);
       }
     },
 
     /**
      * Removes all distribution observers when the host is detached.
      */
-    _removeDistributionObservers(properties) {
+    _removeDistributionObservers() {
       // Remove parent -> child light DOM distribution observers
       const newChildDistributors = this.__newChildDistributors;
       if (newChildDistributors && newChildDistributors.length) {
@@ -112,8 +119,9 @@
      * parent will be applied to the children automatically.
      *
      * @param {String} propertyName - The name of the property to distribute to light DOM children
+     * @param {String} childPropertyName - The name the property will be given on the children (can be the same as `propertyName`)
      */
-    _distributeOnNewChildren(propertyName) {
+    _distributeOnNewChildren(propertyName, childPropertyName) {
       const distributors = this.__newChildDistributors || new Map();
       if (!distributors.has(propertyName)) {
         // @TODO: This would be the way to observe without Polymer.dom, but due
@@ -122,7 +130,7 @@
         // const boundObserverFn = this[observeFnName].bind(this);
         // this[observerWrapper] = new MutationObserver(boundObserverFn);
         // this[observerWrapper].observe(this, {childList:true});
-        let distributeFn = () => this._distributePropertyToChildren(propertyName);
+        let distributeFn = () => this._distributePropertyToChildren(propertyName, childPropertyName);
         let distributorInstance = Polymer.dom(this).observeNodes(distributeFn);
         distributors.set(propertyName, distributorInstance);
       }
@@ -133,15 +141,16 @@
      * to the value of `propertyName` and syncs the new value to children.
      *
      * @param {String} propertyName - The name of the property to watch for changes
+     * @param {String} childPropertyName - The name the property will be given on the children (can be the same as `propertyName`)
      */
-    _distributeOnPropertyChange(propertyName) {
+    _distributeOnPropertyChange(propertyName, childPropertyName) {
       const distributors = this.__propertyChangeDistributors || new Map();
       if (!distributors.has(propertyName)) {
         // @TODO: This is Polymer 1.X-flavored code that relies on the internal
         // `Polymer.Bind.addPropertyEffect` API. In the future, we should use
         // the hooks Polymer 2.0 will provide into the observer API vs. calling
         // this internal watcher.
-        let distributeFn = () => this._distributePropertyToChildren(propertyName);
+        let distributeFn = () => this._distributePropertyToChildren(propertyName, childPropertyName);
         Polymer.Bind.addPropertyEffect(this, propertyName, 'function', distributeFn);
         Polymer.Bind.addPropertyEffect(this, `${propertyName}.*`, 'function', distributeFn);
         distributors.set(propertyName, true);
@@ -150,20 +159,21 @@
 
     /**
      * Distribute the parent property `propertyName` to all child elements as
-     * with value `propertyValue`. Loops through distributed light DOM children
-     * (found with `getEffectiveChildren`) and update the child's property `propertyName`
-     * if it doesn't already match `propertyValue`.
+     * `childPropertyName` with value `propertyValue`. Loops through distributed
+     * light DOM children (found with `getEffectiveChildren`) and update the
+     * child's property `childPropertyName` if it is out-of-sync with the parent's.
      *
      * @param {String} propertyName - The name of the property to distribute to light DOM children
+     * @param {String} childPropertyName - The name the property will be given on the children (can be the same as `propertyName`)
      */
-    _distributePropertyToChildren(propertyName) {
-      if (!propertyName || !this[propertyName] || typeof this[propertyName] === 'undefined') return;
+    _distributePropertyToChildren(propertyName, childPropertyName) {
+      if (!propertyName || !childPropertyName || !this[propertyName] || typeof this[propertyName] === 'undefined') return;
 
       const applyPropertyFn = () => {
         const children = this.getEffectiveChildren();
         for (let child of children) {
-          if (!child[propertyName] || child[propertyName] !== this[propertyName]) {
-            child[propertyName] = this[propertyName];
+          if (!child[childPropertyName] || child[childPropertyName] !== this[propertyName]) {
+            child[childPropertyName] = this[propertyName];
           }
         }
       }
