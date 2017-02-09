@@ -8,9 +8,9 @@
   const LayerGroupInstance = {
     properties: {
       /**
-       * A human-readable name for this layer group. If the map is configured
-       * with controls that allow the user to show and hide layers, this name
-       * will be offered as a choice for the user to show or hide.
+       * A human-readable name for this layer group. If the map has a layer
+       * control panel, the user will click this name to show, hide, or
+       * manipulate this layer.
        *
        * @type {String}
        */
