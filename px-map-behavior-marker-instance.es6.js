@@ -16,7 +16,8 @@
        */
       lat: {
         type: Number,
-        notify: true
+        notify: true,
+        observer: '_updateMarkerLatLon'
       },
 
       /**
@@ -28,21 +29,8 @@
        */
       lon: {
         type: Number,
-        notify: true
-      },
-
-      /**
-       * Allows the user to pick up and drag the marker around the map. Events
-       * will be emitted during the drag, and the marker's `lat` and `lon`
-       * attributes will be updated and notified if the marker is dropped
-       * in a new position.
-       *
-       * @type {Boolean}
-       */
-      draggable: {
-        type: Boolean,
         notify: true,
-        value: false
+        observer: '_updateMarkerLatLon'
       },
 
       /**

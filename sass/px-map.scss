@@ -94,6 +94,48 @@
     transform: scaleY(1.1);
   }
 }
+
+.static-map-icon__badge {
+  display: block;
+}
+%static-map-icon__badge--square {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-color: $primary-blue;
+  border: 2px solid var(--px-map-static-icon-border-color, white);
+  transform: rotate(45deg);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+%static-map-icon__badge--triangle {
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 16px 8px;
+  border-color: transparent transparent var(--px-map-static-icon-border-color, white) transparent;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent $primary-blue transparent;
+    z-index: 0;
+    position: absolute;
+    left: -5px;
+    top: 4px;
+  }
+}
+
+// TYPE: INFO
 // Set 'info' type icon color
 .static-map-icon--info {
   .static-map-icon__body {
@@ -103,6 +145,8 @@
     border-top-color: var(--px-map-static-icon-info-color, $primary-blue);
   }
 }
+
+// TYPE: IMPORTANT
 // Set 'important' type icon color
 .static-map-icon--important {
   .static-map-icon__body {
@@ -112,6 +156,16 @@
     border-top-color: var(--px-map-static-icon-important-color, $alert-red);
   }
 }
+
+// 'important' and 'with-badge' to show alert badge
+.static-map-icon--important.static-map-icon--with-badge {
+  .static-map-icon__badge {
+    @extend %static-map-icon__badge--triangle;
+    &:after { border-color: transparent transparent var(--px-map-static-icon-warning-color, $alert-red) transparent; }
+  }
+}
+
+// TYPE: WARNING
 // Set 'warning' type icon color
 .static-map-icon--warning {
   .static-map-icon__body {
@@ -121,6 +175,15 @@
     border-top-color: var(--px-map-static-icon-warning-color, $alert-orange);
   }
 }
+// 'important' and 'with-badge' to show alert badge
+.static-map-icon--warning.static-map-icon--with-badge {
+  .static-map-icon__badge {
+    @extend %static-map-icon__badge--triangle;
+    &:after { border-color: transparent transparent var(--px-map-static-icon-warning-color, $alert-orange) transparent; }
+  }
+}
+
+// TYPE: UNKNOWN
 // Set 'unknown' type icon color
 .static-map-icon--unknown {
   .static-map-icon__body {
