@@ -43,7 +43,8 @@
        */
       name: {
         type: String,
-        notify: true
+        notify: true,
+        observer: '_updateMarkerName'
       }
     },
 
@@ -53,23 +54,39 @@
     },
 
     _createMarkerInstance() {
-      const geometry = this._getLatLon();
+      const geometry = this._getMarkerLatLon();
       // `_createMarkerIcon` is supplied by the component
       const icon = this._createMarkerIcon();
-      const options = this._getOptions({ icon: icon });
+      const options = this._getMarkerOptions({ icon: icon });
       const marker = L.marker(geometry, options);
       return marker;
     },
 
-    _getLatLon() {
+    _getMarkerLatLon() {
       return [this.lat, this.lon];
     },
 
-    _getOptions(defaults={}) {
+    _getMarkerOptions(defaults={}) {
       const options = defaults;
-      options.draggable = this.draggable;
-      options.title = (this.title && this.title.length) ? this.title : '';
+      options.title = (this.name && this.name.length) ? this.name : '';
       return options;
+    },
+
+    _updateMarkerLatLon() {
+      if (!this.elementInstance || !this.lat || !this.lon) return;
+
+      const latLonAreDifferent = (latLng) =>
+        latLng.lat !== this.lat || latLng.lng !== this.lon;
+      const updateLatLon = () =>
+        this.elementInstance.setLatLng([this.lat, this.lon]);
+
+      if (latLonAreDifferent(this.elementInstance.getLatLng())) {
+        this.debounce('set-lat-lon', updateLatLon, 1);
+      }
+    },
+
+    _updateMarkerName() {
+      // @TODO: Implement this
     }
   };
 
