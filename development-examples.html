@@ -18,6 +18,7 @@
   <link rel="import" href="px-map-layer-group.html" />
   <link rel="import" href="px-map-static-marker.html" />
   <link rel="import" href="px-map-info-popup.html" />
+  <link rel="import" href="px-map-info-control.html" />
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
 </head>
 <!-- Set up styles for this page -->
@@ -63,9 +64,13 @@
 
     <div style="display:flex; width:100%; height:400px;">
       <px-map zoom="10" fit-to-markers flex-to-size>
+        <px-map-info-control name="Data Box" position="top-right" max-width="100">
+        </px-map-info-control>
+
         <px-map-layer-group name="Buildings">
           <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
-            <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo." img-src="http://placehold.it/75x75"></px-map-info-popup>
+            <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo." img-src="http://placehold.it/75x75" bind-to-control="Data Box"></px-map-info-popup>
+            <px-map-data-box-source title="Dispatch Hub: San Ramon" data-fields='[{"desc":"Description"},{"mps":"Milepost"}]' data='{ "desc":"NS 177 Road", "mps":"50" }'></px-map-data-box-source>
           </px-map-static-marker>
           <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info" show-badge>
             <px-map-info-popup title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>

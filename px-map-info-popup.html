@@ -5,6 +5,10 @@
 -->
 <link rel="import" href="../polymer/polymer.html"/>
 
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-element-instance.html">
+<link rel="import" href="px-map-behavior-popup-instance.html">
+
 <!--
 Creates a simple popup that displays information about a marker or other interactive
 UI layer. Send static or data-bound text in and configure when the popup should
@@ -37,20 +41,22 @@ another interactive UI component.
   }
   </style>
   <template>
-    <template is="dom-if" if="{{imgSrc}}">
-      <div class="px-map-info-popup__image">
-        <img src$="{{imgSrc}}" alt$="{{title}}">
-      </div>
-    </template>
+    <section class="map-info-box">
+      <template is="dom-if" if="{{imgSrc}}">
+        <div class="map-info-box__image">
+          <img src$="{{imgSrc}}" alt$="{{title}}">
+        </div>
+      </template>
 
-    <div class="px-map-info-popup__content">
-      <template is="dom-if" if="{{title}}">
-        <p class="px-map-info-popup__title">{{title}}</p>
-      </template>
-      <template is="dom-if" if="{{description}}">
-        <p class="px-map-info-popup__description">{{description}}</p>
-      </template>
-    </div>
+      <div class="map-info-box__content">
+        <template is="dom-if" if="{{title}}">
+          <p class="map-info-box__title">{{title}}</p>
+        </template>
+        <template is="dom-if" if="{{description}}">
+          <p class="map-info-box__description">{{description}}</p>
+        </template>
+      </div>
+    </section>
   </template>
 </dom-module>
 <script src="dist/px-map-info-popup.js"></script>

@@ -73,7 +73,7 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 20px 5px 0 5px;
+  border-width: 15px 5px 0 5px;
   border-color: $primary-blue transparent transparent transparent;
   position: absolute;
   left: 5px;
@@ -200,7 +200,7 @@
 
 /* POPUP: Base styles for a popup */
 
-%px-map-popup {
+%map-popup {
   // The wrapper container around the popup content. Expands to the maximum
   // allowable size set on the attribute (not configured in CSS).
   .leaflet-popup-content-wrapper {
@@ -226,7 +226,7 @@
   }
   // The inner container holding the popup content
   .leaflet-popup-content {
-    margin: $inuit-base-spacing-unit;
+    margin: 0;
   }
   // Hide the close button
   .leaflet-popup-close-button {
@@ -236,20 +236,46 @@
 
 /* POPUP: px-map-info-popup */
 
-.px-map-info-popup {
-  @extend %px-map-popup;
+.map-info-popup {
+  @extend %map-popup;
 }
+.map-info-popup .map-info-box {
+  margin: $inuit-base-spacing-unit;
+}
+
+/*******************************************************************************
+ * CONTROLS
+ ******************************************************************************/
+
+/* CONTROL: px-map-info-control */
+.map-info-control {
+  background-color: white;
+  max-width: 250px;
+}
+.map-info-control .map-info-box {
+  margin: $inuit-base-spacing-unit;
+}
+
+/*******************************************************************************
+ * GENERIC BOXES
+ *
+ * A `box` is a collection of information that can be placed into multiple
+ * containers, like a `popup` or a `control`.
+ ******************************************************************************/
+
+ /* GENERIC: Info box generic styles, can be placed in multiple containers */
+
 // Style for the title, which is a text tag
-.px-map-info-popup__title {
+.map-info-box__title {
   font-weight: 600;
   margin: 0 0 $inuit-base-spacing-unit--tiny;
 }
 // Style for the description, which is a text tag
-.px-map-info-popup__description {
+.map-info-box__description {
   margin: 0;
 }
 // Style for the optional image, which is set to the left of the content
-.px-map-info-popup__image {
+.map-info-box__image {
   display: block;
   float: left;
   max-width: 75px;
@@ -261,9 +287,42 @@
 }
 // We need the content container to be a block with overflow hidden to
 // inset the picture to the left without text wrapping.
-.px-map-info-popup__content {
+.map-info-box__content {
   display: block;
   overflow: hidden;
+}
+
+/* GENERIC: Data box generic styles, can be placed in multiple containers */
+
+.map-data-box {
+  border: 1px solid $gray4;
+}
+.map-data-box__header {
+  padding: calculateRem(10px);
+}
+.map-data-box__header__text {
+  text-transform: uppercase;
+  font-size: calculateRem(12px);
+  line-height: calculateRem(14px);
+  margin: 0;
+}
+.map-data-box__table {
+  display: flex;
+  flex-wrap: wrap;
+}
+.map-data-box__table__cell {
+  flex-grow: 1;
+  overflow: hidden;
+  width: 50%;
+
+  border-top: 1px solid $gray4;
+  &:nth-child(2n) { border-left: 1px solid $gray4; }
+
+  padding: calculateRem(10px);
+  text-transform: uppercase;
+  font-size: calculateRem(12px);
+  line-height: calculateRem(14px);
+  p { margin: 0; }
 }
 
 

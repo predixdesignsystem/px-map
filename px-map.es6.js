@@ -263,10 +263,10 @@
       }
 
       // Ensure a tile layer is applied to the map
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18
-      }).addTo(this.mapInstance);
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+      //   maxZoom: 18
+      // }).addTo(this.mapInstance);
 
       // Set the view from current defaults
       this._updateMapView();
@@ -276,6 +276,36 @@
 
       // TEMPORARY MARKER TEST
       // var newMarker = L.marker([this.lat, this.lon]).addTo(this.mapInstance);
+
+
+      // TEMPORARY CONTROLBOX TEST
+      // let controlHTML =
+      // `
+      // <div class="px-map-data-box-control">
+      //   <div class="data-box">
+      //     <div class="data-box__header">
+      //       <h3 class="data-box__header__text">Dispatch Hub: San Ramon</h3>
+      //     </div>
+      //     <div class="data-box__table">
+      //       <div class="data-box__table__cell"><p>Description</p></div>
+      //       <div class="data-box__table__cell"><p>NSS 177 ROAD</p></div>
+      //
+      //       <div class="data-box__table__cell"><p>Milepost</p></div>
+      //       <div class="data-box__table__cell"><p>50</p></div>
+      //
+      //       <div class="data-box__table__cell"><p>DIV/SUB</p></div>
+      //       <div class="data-box__table__cell"><p>Bakersfield, CA</p></div>
+      //
+      //       <div class="data-box__table__cell"><p>Next Test</p></div>
+      //       <div class="data-box__table__cell"><p>9/12/16</p></div>
+      //     </div>
+      //   </div>
+      // </div>
+      // `;
+      // var controlBox = L.Control.controlBox({ position: 'topright', content: controlHTML });
+      // controlBox.addTo(this.mapInstance);
+      // this.controlBox = controlBox;
+      //
     }
 
     /**
