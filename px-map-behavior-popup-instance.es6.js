@@ -85,7 +85,7 @@
       if (this.elementInstance && this.active) {
         const newContent = this._getPopupContent();
         const existingContent = this.elementInstance.getContent();
-        if (newContent !== existingContent)
+        if (newContent !== existingContent) {
           this.elementInstance.setContent(newContent);
           this.fire('px-map-popup-content-changed', {
             popup: this.elementInstance,
@@ -120,7 +120,7 @@
       this._unbindPopupInstanceEvents();
 
       if (this.parentInstance.getPopup() === this.elementInstance) {
-        this.parentInstance.removeLayer(this.elementInstance);
+        this.parentInstance.unbindPopup(this.elementInstance);
       }
     },
 
