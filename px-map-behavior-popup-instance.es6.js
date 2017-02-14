@@ -34,6 +34,15 @@
        */
       bindToControl: {
         type: String
+      },
+
+      /**
+       * When the popup is activated and becomes visible, set to `true`.
+       */
+      active: {
+        type: Boolean,
+        value: false,
+        readOnly: true
       }
     },
 
@@ -56,14 +65,34 @@
     },
 
     _createElementInstance() {
-      const popup = this._createPopupInstance();
+      const popup = this._createPopup();
       return popup;
     },
 
     // Overwrite this method in the component/behavior that extends this behavior
     // Just creates a default thing
-    _createPopupInstance() {
+    _createPopup() {
       return L.popup();
+    },
+
+
+    /**
+     * When the popup's DOM is updated, ensure those changes are synced to the
+     * popup instance (which does not directly share this DOM, but just
+     * implements its HTML.)
+     */
+    _updatePopupContent() {
+      if (this.elementInstance && this.active) {
+        const newContent = this._getPopupContent();
+        const existingContent = this.elementInstance.getContent();
+        if (newContent !== existingContent)
+          this.elementInstance.setContent(newContent);
+          this.fire('px-map-popup-content-changed', {
+            popup: this.elementInstance,
+            content: newContent
+          });
+        }
+      }
     },
 
     _attachToParentInstance() {
@@ -131,25 +160,37 @@
         this._boundPopupMapEvents = { click: this._handlePopupMapClick.bind(this) };
         this._map.on(this._boundPopupMapEvents);
 
+        evt.target.fire('popupopen', { popup: this.elementInstance }, true);
+
         this.fire('px-map-info-control-bind', {
           content: this.elementInstance.getContent(),
           control: this.bindToControl,
-          popup: this.elementInstance
+          popup: this
         });
 
-        evt.stopPropagation();
+        L.DomEvent.stop(evt);
       }
     },
 
     _handlePopupMapClick(evt) {
       if (this.bindToControl && this.bindToControl.length) {
         this.fire('px-map-info-control-unbind', {
-          content: '',
-          control: this.bindToControl
+          control: this.bindToControl,
+          source: this
         });
       }
 
+      this.parentElement.fire('popupclose', { popup: this });
       this._map.off(this._boundPopupMapEvents);
+    },
+
+    _handlePopupOpen() {
+      this._setActive(true);
+      this._updatePopupContent();
+    },
+
+    _handlePopupClose() {
+      this._setActive(false);
     }
   };
 

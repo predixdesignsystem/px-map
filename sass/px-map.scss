@@ -236,12 +236,16 @@
 
 /* POPUP: px-map-info-popup */
 
-.map-info-popup {
+.map-info-popup, .map-data-popup {
   @extend %map-popup;
 }
 .map-info-popup .map-info-box {
   margin: $inuit-base-spacing-unit;
 }
+.map-data-popup .map-data-box {
+  margin: $inuit-base-spacing-unit;
+}
+
 
 /*******************************************************************************
  * CONTROLS
@@ -254,6 +258,9 @@
 }
 .map-info-control .map-info-box {
   margin: $inuit-base-spacing-unit;
+}
+.map-info-control .map-data-box {
+  border: 1px solid $gray4;
 }
 
 /*******************************************************************************
@@ -295,7 +302,6 @@
 /* GENERIC: Data box generic styles, can be placed in multiple containers */
 
 .map-data-box {
-  border: 1px solid $gray4;
 }
 .map-data-box__header {
   padding: calculateRem(10px);

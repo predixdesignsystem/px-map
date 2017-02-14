@@ -16,7 +16,7 @@
     get parentListeners() {
       return {
         'px-map-info-control-bind' : '_handleInfoControlBind',
-        'px-map-info-control-unbind' : '_handleInfoControlBind'
+        'px-map-info-control-unbind' : '_handleInfoControlUnbind'
       }
     }
 
@@ -156,6 +156,24 @@
 
     _handleInfoControlBind(evt) {
       if (evt.detail && evt.detail.control === this.name) {
+        evt.stopPropagation();
+
+        this.set('content', evt.detail.content || '');
+        if (evt.detail.popup) this.listen(evt.detail.popup, 'px-map-popup-content-changed', '_handlePopupChanged');
+      }
+    }
+
+    _handleInfoControlUnbind(evt) {
+      if (evt.detail && evt.detail.control === this.name) {
+        evt.stopPropagation();
+
+        this.set('content', evt.detail.content || '');
+        if (evt.detail.popup) this.unlisten(evt.detail.popup, 'px-map-popup-content-changed', '_handlePopupChanged');
+      }
+    }
+
+    _handlePopupChanged(evt) {
+      if (evt.detail && evt.detail.content) {
         evt.stopPropagation();
 
         this.set('content', evt.detail.content || '');

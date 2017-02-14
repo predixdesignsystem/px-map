@@ -1,10 +1,10 @@
 (function(){
   'use strict';
 
-  class PxMapInfoPopup {
+  class PxMapDataPopup {
     /* Name for the component */
     get is() {
-      return 'px-map-info-popup';
+      return 'px-map-data-popup';
     }
 
     /* Behaviors to import for this component */
@@ -23,8 +23,6 @@
          * Title text to display in bold at the top of the popup. Should be kept
          * relatively short (25 characters or less) to keep the popup from
          * growing too large.
-         *
-         * @type {String}
          */
         title: {
           type: String,
@@ -32,36 +30,45 @@
         },
 
         /**
-         * Description text to place in the body of the popup. Try to keep the
-         * description to a reasonable size to keep the popup from growing
-         * too large.
+         * A list of key/valye pairs to display in a data table. Can be in the
+         * format of an array of arrays, or an object.
          *
-         * To display more information, bind to the popup's
-         * `active` property for notifications on when this popup is shown
-         * and display additional information in the UI of your app.
+         * Arrays: An array of arrays, each containing two values. For example,
+         * to show the name and location of a place, set this attribute to:
+         * '[ ["Name" : "Tokyo"], ["Location" : "Japan"] ]'
          *
-         * @type {String}
+         * Object: An object with human-readable keys and associated values. For
+         * example, to show the name and location of a place, set this attribute to:
+         * '{ "Name" : "Tokyo", "Location" : "Japan" }'
+         *
+         * @type {Array|Object}
          */
-        description: {
-          type: String,
-          observer: '_updatePopupContent'
+        data: {
+          type: Object
         },
 
-        /**
-         * The URL for an image to place inside the popup. Use a small, square
-         * thumbnail-style image (e.g. 75px by 75px).
-         *
-         * @type {String}
-         */
-        imgSrc: {
-          type: String,
+        _dataAsList: {
+          type: Array,
+          computed: '_computeDataList(data)',
           observer: '_updatePopupContent'
         }
       }
     }
 
+    _computeDataList() {
+      if (!this.data || (typeof this.data !== 'object')) return;
+      // No transformation needed, already an array
+      if (Array.isArray(this.data)) return this.data;
+      // Otherwise, return mapped keys/values as array
+      let data = [];
+      for (let key in data) {
+        data.push(key, data[key]);
+      }
+      return data;
+    }
+
     _createPopup() {
-      const options = this._getPopupOptions({ className: 'map-info-popup' });
+      const options = this._getPopupOptions({ className: 'map-data-popup', maxWidth: 400, minWidth: 300 });
       const content = this._getPopupContent();
       return L.popup(options).setContent(content);
     }
@@ -83,5 +90,5 @@
   }
 
   /* Register this component with the Polymer constructor. */
-  Polymer(PxMapInfoPopup);
+  Polymer(PxMapDataPopup);
 })();

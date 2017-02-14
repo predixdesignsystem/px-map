@@ -173,7 +173,7 @@
     }
 
     attached() {
-      window.requestAnimationFrame(this._drawMap.bind(this));
+      window.requestAnimationFrame(this._drawMap.bind(this,0,10));
 
       if (this.fitToMarkers) {
         this.listen(this, 'px-map-marker-add', '_fitMapToMakers');
@@ -233,12 +233,15 @@
      * has no height, throws it back into the stack to draw on the next
      * animation frame.
      */
-    _drawMap() {
+    _drawMap(retries=0, maxRetries=10) {
       const x = this._drawX = this.parentElement.clientWidth;
       const y = this._drawY = this.parentElement.clientHeight;
 
       if (!x || !y) {
-        window.requestAnimationFrame(this._drawMap.bind(this));
+        // Try again, if there are any retries left
+        if (retries < maxRetries) {
+          window.requestAnimationFrame(this._drawMap.bind(this, (retries+1), maxRetries));
+        }
         return;
       }
 
@@ -263,10 +266,10 @@
       }
 
       // Ensure a tile layer is applied to the map
-      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-      //   maxZoom: 18
-      // }).addTo(this.mapInstance);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18
+      }).addTo(this.mapInstance);
 
       // Set the view from current defaults
       this._updateMapView();
