@@ -86,6 +86,11 @@
       return position.replace(/\-/, '');
     },
 
+    _getControlPosition() {
+      if (!this.position) return undefined;
+      return this._formatPosition(this.position);
+    },
+
     /**
      * Bind listeners to the `parentElement`, which is the root `px-map`
      * map element. Messages fired from children to controls can be

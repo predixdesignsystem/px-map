@@ -51,7 +51,7 @@
  * MARKERS
  ******************************************************************************/
 
-/* MARKER: px-map-static-marker */
+/* MARKER: static-marker */
 
 .static-map-icon {
   width: 50px;
@@ -234,7 +234,8 @@
   }
 }
 
-/* POPUP: px-map-info-popup */
+/* POPUP: info-popup */
+/* POPUP: data-popup */
 
 .map-info-popup, .map-data-popup {
   @extend %map-popup;
@@ -251,7 +252,8 @@
  * CONTROLS
  ******************************************************************************/
 
-/* CONTROL: px-map-info-control */
+/* CONTROL: Info control */
+
 .map-info-control {
   background-color: white;
   max-width: 250px;
@@ -261,6 +263,42 @@
 }
 .map-info-control .map-data-box {
   border: 1px solid $gray4;
+}
+
+/* CONTROL: Zoom control */
+
+%map-control-button {
+  width: calculateRem(40px);
+  height: calculateRem(40px);
+  background-color: var(--px-map-control-button-background-color, $white);
+  color: var(--px-map-control-button-text-color, $primary-blue);
+  border-style: solid;
+  border-width: var(--pax-map-control-button-border-width, 3px);
+  border-color: var(--pax-map-control-button-border-color, rgba(0,0,0,.3));
+
+  border-radius: 15%;
+  line-height: calculateRem(36px);
+  font-size: calculateRem(20px);
+  font-weight: 400;
+}
+%map-control-button--zoom {
+  border-radius: 100%;
+}
+
+.leaflet-bar {
+  border: none;
+  border-radius: 0;
+}
+.leaflet-bar a {
+  @extend %map-control-button;
+}
+.leaflet-bar a + a {
+  margin-top: .25rem;
+}
+
+.leaflet-control-zoom a.leaflet-control-zoom-in,
+.leaflet-control-zoom a.leaflet-control-zoom-out {
+  @extend %map-control-button--zoom;
 }
 
 /*******************************************************************************
