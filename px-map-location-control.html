@@ -6,8 +6,7 @@
 <link rel="import" href="../polymer/polymer.html"/>
 
 <!-- Local dependencies -->
-<link rel="import" href="px-map-behavior-element-instance.html">
-<link rel="import" href="px-map-behavior-control-instance.html">
+<link rel="import" href="px-map-zoom-control.html">
 
 <!--
 ...
@@ -25,6 +24,21 @@
 -->
 
 <dom-module id="px-map-location-control">
-  <template></template>
+  <template>
+    <!-- Geolocate Control -->
+    <!-- <template is="dom-if" if="{{geolocate}}">
+      <px-map-zoom-control parent-instance="[[parentInstance]]" position="[[position]]"></px-map-zoom-control>
+    </template> -->
+
+    <!-- Zoom Control -->
+    <template is="dom-if" if="{{zoom}}">
+      <px-map-zoom-control parent-instance="[[parentInstance]]" position="[[position]]"></px-map-zoom-control>
+    </template>
+
+    <!-- Scale Control -->
+    <template is="dom-if" if="{{scale}}">
+      <px-map-scale-control parent-instance="[[parentInstance]]" position="[[position]]"></px-map-scale-control>
+    </template>
+  </template>
 </dom-module>
 <script src="dist/px-map-location-control.js"></script>

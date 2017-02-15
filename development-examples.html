@@ -66,10 +66,13 @@
 
     <div style="display:flex; width:100%; height:400px;">
       <px-map zoom="10" fit-to-markers flex-to-size>
-        <px-map-location-control position="bottom-right" geolocate scale="light">
+        <!-- MAYBE THIS IS A USELESS ABSTRACTION... wraps up related controls
+        <px-map-location-control position="bottom-right" zoom geolocate scale>
         </px-map-location-control>
-        <px-map-info-control name="Data Box" position="top-right" max-width="100">
-        </px-map-info-control>
+        -->
+        <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
+        <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
+        <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
 
         <px-map-layer-group name="Buildings">
           <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
