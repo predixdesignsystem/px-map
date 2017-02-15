@@ -270,7 +270,7 @@
 %map-control-button {
   width: calculateRem(40px);
   height: calculateRem(40px);
-  background-color: var(--px-map-control-button-background-color, $white);
+  background-color: var(--px-map-control-button-background, $white);
   color: var(--px-map-control-button-text-color, $primary-blue);
   border-style: solid;
   border-width: var(--pax-map-control-button-border-width, 3px);
@@ -280,6 +280,10 @@
   line-height: calculateRem(36px);
   font-size: calculateRem(20px);
   font-weight: 400;
+
+  &:hover {
+    background-color: var(--px-map-control-button-background, $gray3);
+  }
 }
 %map-control-button--zoom {
   border-radius: 100%;
