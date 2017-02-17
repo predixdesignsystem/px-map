@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Map 1 Demo -- Simple Map</title>
+
+  <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../polymer/polymer.html" />
+
+  <!-- Only importing to get the styles on this page ... -->
+  <link rel="import" href="css/px-map-styles.html">
+
+  <!-- Imports to help with demos -->
+  <link rel="import" href="../px-code-editor/px-code-editor.html">
+
+  <!-- Map imports -->
+  <link rel="import" href="px-map.html" />
+  <link rel="import" href="px-map-overlay-layer.html" />
+  <link rel="import" href="px-map-layer-group.html" />
+  <link rel="import" href="px-map-static-marker.html" />
+  <link rel="import" href="px-map-info-popup.html" />
+  <link rel="import" href="px-map-data-popup.html" />
+  <link rel="import" href="px-map-info-control.html" />
+  <link rel="import" href="px-map-location-control.html" />
+  <link rel="import" href="../iron-ajax/iron-ajax.html" />
+</head>
+<!-- Set up styles for this page -->
+<style include="px-map-styles" is="custom-style"></style>
+<style>
+  .container {
+    max-width: 800px;
+    margin: 2rem auto;
+  }
+  .flex-block {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    margin-top: 1rem;
+  }
+  .flex-block--small {
+    height: 200px;
+  }
+  hr { margin-top: 4rem; }
+  ul { padding-left: 0; }
+  li { margin-top: .5rem; }
+</style>
+<body>
+  <template is="dom-bind" id="bound">
+    <section class="container">
+    <h1>Maps Framework - Examples</h1>
+
+    <!-- Example #1 -->
+    <hr>
+    <h3>#1 - Basic Map</h3>
+    <ul>
+      <li>Just a basic map tag (px-map)</li>
+      <li>No tile layer specified, uses default from OSM</li>
+      <li>Set attributes `lat` and `lon` and `zoom` to set the center on first draw.</li>
+      <li>Flexes to fill parent container</li>
+      <li><button class="btn" on-tap="_toggle" num="1">Show/Hide Map</button></li>
+    </ul>
+
+    <div class="flex-block">
+      <template is="dom-if" if="{{show1}}">
+        <px-map lat="37.7672375" lon="-121.9584131" zoom="15" flex-to-size>
+        </px-map>
+      </template>
+    </div>
+
+    <!-- Example #2 -->
+    <hr>
+    <h3>#2 - Markers and popups</h3>
+    <ul>
+      <li>Sets the `fit-to-markers` attribute on the px-map instance. When the map loads, it automatically sets its bounds and zoom level to fit all markers. Note that this is a lazy, long-lived effect: any markers added later will also trigger a new resize.</li>
+      <li>Adds a layer group px-map-layer-group, which is used to organize overlays on the map. The layer is given a human-readable name that can be used by a control to show/hide/manipulate the overlays in that layer.</li>
+      <li>Adds two markers of type px-map-static-marker (there can be many kinds of markers with different visual meanings).</li>
+      <li>Passes a popup (px-map-info-popup) into each marker. This is an informative popup that accepts text through attributes to draw itself. It is passed directly in the px-map-static-marker light DOM.</li>
+      <li><button class="btn" on-tap="_toggle" num="2">Show/Hide Map</button></li>
+    </ul>
+
+    <div style="display:flex; width:100%; height:400px;">
+      <template is="dom-if" if="{{show2}}">
+
+        <px-map zoom="12" fit-to-markers flex-to-size>
+          <px-map-layer-group name="Buildings">
+            <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
+              <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+            </px-map-static-marker>
+            <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info">
+              <px-map-info-popup title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+            </px-map-static-marker>
+          </px-map-layer-group>
+        </px-map>
+
+
+      </template>
+    </div>
+
+    <!-- Example #3 -->
+    <hr>
+    <h3>#3 - Zoom control and bound control</h3>
+    <ul>
+      <li>Adds a zoom control (px-map-zoom-control) with a position. The zoom control automatically binds to the map, like other controls.</li>
+      <li>Binds each marker to a control, in this case px-map-info-control, which accepts data from the marker and displays it.</li>
+      <li><button class="btn" on-tap="_toggle" num="3">Show/Hide Map</button></li>
+    </ul>
+
+    <div style="display:flex; width:100%; height:400px;">
+      <template is="dom-if" if="{{show3}}">
+
+        <px-map zoom="12" fit-to-markers flex-to-size>
+          <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
+          <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
+
+          <px-map-layer-group name="Buildings">
+            <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
+              <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
+            </px-map-static-marker>
+            <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info" show-badge>
+              <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
+            </px-map-static-marker>
+          </px-map-layer-group>
+        </px-map>
+
+      </template>
+    </div>
+
+    <!-- Example #4 -->
+    <hr>
+    <h3>#4 - A bunch of markers without clustering</h3>
+    <ul>
+      <li>Click the button below to add 100 markers. Keep clicking to add more. Performance degrades around 2,000 markers.</li>
+      <li>Number of active markers: {{numberOfMarkers}}</li>
+      <li><button class="btn" on-tap="_toggle" num="4">Show/Hide Map</button> <button class="btn" id="addMarkersBtn" on-tap="_handleAddMarkersBtn">Add Markers</button></li>
+    </ul>
+
+    <div style="display:flex; width:100%; height:400px;">
+      <template is="dom-if" if="{{show4}}">
+        <iron-ajax url="https://dl.dropboxusercontent.com/u/21695507/openplaques/open-plaques-london-2016-10-26.json"
+          id="getData" auto>
+        </iron-ajax>
+        <px-map lat="51.528308" lon="-0.3817765" zoom="10" fit-to-markers flex-to-size>
+          <px-map-layer-group name="Plaques of London" id="targetLayer">
+          </px-map-layer-group>
+        </px-map>
+      </template>
+    </div>
+
+    <script>
+      var tmpl = document.querySelector('#bound');
+
+      tmpl.show1 = false;
+      tmpl.show2 = false;
+      tmpl.show3 = false;
+      tmpl.show4 = true;
+
+      tmpl._toggle = function(evt) {
+        var ref = 'show' + evt.target.getAttribute('num');
+        this[ref] = !this[ref];
+      }
+
+      tmpl.allData = [];
+      tmpl.numberOfMarkers = 0;
+
+      tmpl._handleAddMarkersBtn = function () {
+        // Ensure we have data to add to the map
+        var ajaxGetter = document.querySelector('#getData');
+        var data = ajaxGetter.get('lastResponse');
+        if (!tmpl.allData.length && data) {
+          this.allData = data;
+        }
+        var dataToAdd = this.allData.splice(0,100);
+        var target = document.querySelector('#targetLayer');
+        addMarkersToLayer(dataToAdd, target);
+        this.set('numberOfMarkers', this.numberOfMarkers + 100);
+      }
+
+      function addMarkersToLayer(places, target) {
+        places.forEach((place) => {
+          if (!place.latitude || !place.longitude) return;
+          var newMarker = document.createElement('px-map-static-marker');
+          newMarker.lat = place.latitude;
+          newMarker.lon = place.longitude;
+          // newMarker.setAttribute('lat', place.latitude);
+          // newMarker.setAttribute('lon', place.longitude);
+          // target.appendChild(newMarker);
+          Polymer.dom(target).appendChild(newMarker);
+        });
+      }
+    </script>
+
+    </section>
+  </template>
+</body>
+</html>

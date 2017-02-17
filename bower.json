@@ -33,8 +33,9 @@
     "px-meta-buttons-design": "^0.6.2",
     "px-layout-design": "^0.4.3",
     "px-starter-kit-design": "^0.7.3",
-    "px-demo": "^1.3.2",
+    "px-demo": "^1.4.5",
     "px-typography-design": "^1.2.3",
-    "iron-ajax": "^1.4.3"
+    "iron-ajax": "^1.4.3",
+    "px-code-editor": "^1.1.1"
   }
 }
