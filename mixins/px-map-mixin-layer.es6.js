@@ -35,8 +35,6 @@
       const options = this.__initialOptions = this.getOptions();
       this.elementInst = this.createInst(options);
 
-      this.fire('px-map-layer-instance-created');
-
       // @TODO: Bind events
     }
 
@@ -73,39 +71,39 @@
       this.__lastOptions = nextOptions;
     }
 
-    // When this element is attached to the DOM, fire an event to notify
-    // a parent that it is ready
+    // // When this element is attached to the DOM, fire an event to notify
+    // // a parent that it is ready
+    //
+    // created() {
+    //   this.__elAttached = false;
+    // }
+    //
+    // attached() {
+    //   this.__elAttached = true;
+    //   this.notifyInstReady(this.canAddInst());
+    // }
+    //
+    // // When this element is detached from the DOM, its elementInst should be
+    // // removed from the parent
+    //
+    // detached() {
+    //   this.willRemoveInst();
+    //   this.removeInst();
+    //   this.__elAttached = false;
+    // }
 
-    created() {
-      this.__elAttached = false;
-    }
-
-    attached() {
-      this.__elAttached = true;
-      this.notifyInstReady(this.canAddInst());
-    }
-
-    // When this element is detached from the DOM, its elementInst should be
-    // removed from the parent
-
-    detached() {
-      this.willRemoveInst();
-      this.removeInst();
-      this.__elAttached = false;
-    }
-
-    /**
-     * If this element's instance is ready to create and add to its parent,
-     * fires an event the parent will catch.
-     *
-     * @param {Boolean} isReady - If `true` instance parent will be notified
-     * @return {Boolean} - If `true` the parent was notified
-     */
-    notifyInstReady(isReady) {
-      if (!isReady) return false;
-      this.fire('px-map-layer-ready-to-add');
-      return true;
-    }
+    // /**
+    //  * If this element's instance is ready to create and add to its parent,
+    //  * fires an event the parent will catch.
+    //  *
+    //  * @param {Boolean} isReady - If `true` instance parent will be notified
+    //  * @return {Boolean} - If `true` the parent was notified
+    //  */
+    // notifyInstReady(isReady) {
+    //   if (!isReady) return false;
+    //   this.fire('px-map-layer-ready-to-add');
+    //   return true;
+    // }
 
     // Should be implemented by behaviors/components that extend LayerBase
 
