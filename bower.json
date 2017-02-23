@@ -27,7 +27,8 @@
     "polymer": "^1.7.1",
     "px-theme": "^2.0.3",
     "leaflet": "^1.0.3",
-    "es6-promise": "^3.3.1"
+    "es6-promise": "^3.3.1",
+    "PruneCluster": "^1.1.0"
   },
   "devDependencies": {
     "px-meta-buttons-design": "^0.6.2",

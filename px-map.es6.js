@@ -80,7 +80,7 @@
          *
          * @type {Number}
          */
-        lon: {
+        lng: {
           type: Number,
           value: -121.9584131,
           notify: true
@@ -197,7 +197,8 @@
 
         const fitFn = () => {
           const bounds = this._getAllMarkerGeoms();
-          if (bounds.length) this.elementInst.fitBounds(bounds);
+          if (!bounds.isValid || !bounds.isValid()) return;
+          this.elementInst.fitBounds(bounds);
         };
 
         this.debounce('fit-map-to-markers', fitFn, 1);
@@ -211,14 +212,23 @@
      * @return {Array}
      */
     _getAllMarkerGeoms() {
-      const bounds = [];
+      // Create a new bounds and extend with the map center point
+      let bounds = new L.LatLngBounds();
+      // bounds.extend(L.latLng([this.lat, this.lng]));
 
       // Loop over the layers
       this.elementInst.eachLayer((layer) => {
         // Markers have a `layer.options.icon` set
         if (layer.options && layer.options.icon) {
           let markerGeom = layer.getLatLng();
-          if (bounds.indexOf(markerGeom) === -1) bounds.push(markerGeom);
+          bounds.extend(markerGeom);
+        }
+        // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
+        if (layer.Cluster && layer.Cluster.ComputeGlobalBounds) {
+          let clusterBounds = layer.Cluster.ComputeGlobalBounds();
+          // A raw object is returned that must be turned into a `L.LatLngBounds` instance
+          let composedBounds = L.latLngBounds([clusterBounds.minLat, clusterBounds.maxLng],[clusterBounds.maxLat, clusterBounds.minLng]);
+          bounds.extend(composedBounds);
         }
       });
 
@@ -277,7 +287,7 @@
       this._fitMapToMakers();
 
       // TEMPORARY MARKER TEST
-      // var newMarker = L.marker([this.lat, this.lon]).addTo(this.elementInst);
+      // var newMarker = L.marker([this.lat, this.lng]).addTo(this.elementInst);
 
 
       // TEMPORARY CONTROLBOX TEST
@@ -311,12 +321,12 @@
     }
 
     /**
-     * Called when the `lat`, `lon`, or `zoom` is set or updated. Sets the active
+     * Called when the `lat`, `lng`, or `zoom` is set or updated. Sets the active
      * map center to the new values.
      */
     _updateMapView() {
       if (this.elementInst) {
-        let updateFn = () => { this.elementInst.setView([this.lat, this.lon], this.zoom) };
+        let updateFn = () => { this.elementInst.setView([this.lat, this.lng], this.zoom) };
         this.debounce('update-map-view', updateFn, 1);
       }
     }

@@ -20,8 +20,9 @@
   <link rel="import" href="px-map-data-popup.html" />
   <link rel="import" href="px-map-info-control.html" />
   <link rel="import" href="px-map-location-control.html" />
+  <link rel="import" href="px-map-marker-group.html" />
 
-  <link rel="import" href="mixins/px-map-mixins.html" />
+  <!-- <link rel="import" href="mixins/px-map-mixins.html" /> -->
 </head>
 
 <style is="custom-style">
@@ -36,35 +37,93 @@
   }
 </style>
 <body>
-  <!-- <template is="dom-bind" id="bound"> -->
-    <section class="wrap">
+  <section class="wrap">
+
+    <px-map zoom="10" fit-to-markers flex-to-size>
+
+      <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
+      <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
+
+      <px-map-layer-group name="Buildings">
+        <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
+          <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
+        </px-map-marker-static>
+        <px-map-marker-static lat="37.9055234" lng="-122.0675267" type="info" show-badge>
+          <px-map-info-popup bind-to-control="Data Box" title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+        </px-map-marker-static>
+      </px-map-layer-group>
+
+      <px-map-marker-group id="cluster" name="Plaques" data=""></px-map-marker-group>
+    </px-map>
 
 
-      <px-map zoom="10" fit-to-markers flex-to-size>
-        <!-- MAYBE THIS IS A USELESS ABSTRACTION... wraps up related controls
-        <px-map-location-control position="bottom-right" zoom geolocate scale>
-        </px-map-location-control>
-        -->
-        <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
-        <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
+  </section>
+  <script>
+  var geoJSON = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.14572,
+            51.46206
+          ]
+        },
+        "properties": {
+          "title": "Charles Barry blue plaque",
+          "marker-icon": {
+            "icon-base": "map-static-icon",
+            "icon-status": "info",
+            "icon-with-badge": true
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.02088,
+            51.50484
+          ]
+        },
+        "properties": {
+          "title": "Grey plaque № 8942",
+          "marker-icon": {
+            "icon-base": "map-static-icon",
+            "icon-status": "important",
+            "icon-with-badge": true
+          }
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.29018,
+            51.489
+          ]
+        },
+        "properties": {
+          "title": "Grey plaque № 9850",
+          "marker-icon": {
+            "icon-base": "map-static-icon",
+            "icon-status": "info",
+            "icon-with-badge": true
+          }
+        }
+      }
+    ]
+  };
 
-        <px-map-layer-group name="Buildings">
-          <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
-            <!-- <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo." img-src="http://placehold.it/75x75" bind-to-control="Data Box"></px-map-info-popup> -->
-            <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
-          </px-map-marker-static>
-          <px-map-marker-static lat="37.9055234" lng="-122.0675267" type="info" show-badge>
-            <px-map-info-popup bind-to-control="Data Box" title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
-          </px-map-marker-static>
-        </px-map-layer-group>
-      </px-map>
-
-
-    </section>
-  <!-- </template> -->
-
-  <!-- <script>
-    var tmpl = document.querySelector('#bound');
-  </script> -->
+  window.addEventListener('WebComponentsReady', function(e) {
+    // imports are loaded and elements have been registered
+    var cluster = document.querySelector('#cluster');
+    cluster.set('data', geoJSON);
+  });
+  </script>
 </body>
 </html>
