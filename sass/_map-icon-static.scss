@@ -1,0 +1,146 @@
+// ICON CONTAINER
+
+.map-icon-static {
+  @extend %map-icon !optional;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+}
+
+// ICON BODY
+
+.map-icon-static__body {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: $primary-blue;
+  border-radius: 100%;
+  position: absolute;
+  border: 2px solid var(--px-map-static-icon-border-color, white);
+}
+
+// ICON DESCENDER
+
+.map-icon-static__descender {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 5px 0 5px;
+  border-color: $primary-blue transparent transparent transparent;
+  position: absolute;
+  left: 5px;
+  top: 16px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 22px 7px 10px;
+    border-color: var(--px-map-static-icon-border-color, white) transparent transparent;
+    position: absolute;
+    z-index: -1;
+    left: -7px;
+    top: -19px;
+    transform: scaleY(1.1);
+  }
+}
+
+// ICON MODIFIERS
+// Use a modifier to change the color and appearance of an icon.
+
+// 'info' modifier - sets the info-icon-color (defaults to $primary-blue)
+.map-icon-static--info .map-icon-static__body {
+  background-color: var(--px-map-static-icon-info-color, $primary-blue);
+}
+.map-icon-static--info .map-icon-static__descender {
+  border-top-color: var(--px-map-static-icon-info-color, $primary-blue);
+}
+
+// 'important' modifier - sets icon-important-color (defaults to $alert-red)
+.map-icon-static--important .map-icon-static__body {
+  background-color: var(--px-map-static-icon-important-color, $alert-red);
+}
+.map-icon-static--important .map-icon-static__descender {
+  border-top-color: var(--px-map-static-icon-important-color, $alert-red);
+}
+
+// 'warning' modifier - sets icon-warning-color (defaults to $alert-orange)
+.map-icon-static--warning .map-icon-static__body {
+  background-color: var(--px-map-static-icon-warning-color, $alert-orange);
+}
+.map-icon-static--warning .map-icon-static__descender {
+  border-top-color: var(--px-map-static-icon-warning-color, $alert-orange);
+}
+
+// 'unknown' modifier - sets icon-unknown-color (defaults to $dv-light-gray)
+.map-icon-static--unknown .map-icon-static__body {
+  background-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
+}
+.map-icon-static--unknown .map-icon-static__descender {
+  border-top-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
+}
+
+// ICON BADGE
+// Only visible if applied with a modifier
+
+.map-icon-static__badge {
+  display: block;
+}
+
+%map-icon-static__badge--diamond {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background-color: $primary-blue;
+  border: 2px solid var(--px-map-static-icon-border-color, white);
+  transform: rotate(45deg);
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+
+%map-icon-static__badge--triangle {
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 16px 8px;
+  border-color: transparent transparent var(--px-map-static-icon-border-color, white) transparent;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent $primary-blue transparent;
+    z-index: 0;
+    position: absolute;
+    left: -5px;
+    top: 4px;
+  }
+}
+
+// ICON BADGE MODIFIERS
+// Use to add a badge (small alert symbol) to the icon. These modifiers should
+// be extended inside one of the map icon type modifiers
+
+// 'important' and 'with-badge' modifier - adds the triangle icon
+.map-icon-static--important.map-icon-static--with-badge .map-icon-static__badge {
+  @extend %map-icon-static__badge--triangle;
+  &:after { border-color: transparent transparent var(--px-map-static-icon-important-color, $alert-red) transparent; }
+}
+
+// 'warning' and 'with-badge' modifier - adds the triangle icon
+.map-icon-static--warning.map-icon-static--with-badge .map-icon-static__badge {
+  @extend %map-icon-static__badge--diamond;
+  &:after { border-color: transparent transparent var(--px-map-static-icon-warning-color, $alert-orange) transparent; }
+}

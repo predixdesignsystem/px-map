@@ -6,10 +6,7 @@
     get is() { return 'px-map'; }
 
     /* Behaviors to import for this component */
-    get behaviors() { return [window.PxMapBehavior.DistributeProperties]; }
-
-    /* Properties to attach to distributed light DOM children */
-    get distributions() { return ['mapInstance as parentInstance']; }
+    get behaviors() { return [window.PxMapBehavior.Common.LayerParent]; }
 
     /* Properties for this component */
     get properties() {
@@ -41,7 +38,7 @@
          *
          * @type {Object}
          */
-        mapInstance: {
+        elementInst: {
           type: Object,
           notify: true,
           readOnly: true
@@ -196,11 +193,11 @@
      * 3. The map is first drawn
      */
     _fitMapToMakers() {
-      if (this.mapInstance && this.fitToMarkers) {
+      if (this.elementInst && this.fitToMarkers) {
 
         const fitFn = () => {
           const bounds = this._getAllMarkerGeoms();
-          if (bounds.length) this.mapInstance.fitBounds(bounds);
+          if (bounds.length) this.elementInst.fitBounds(bounds);
         };
 
         this.debounce('fit-map-to-markers', fitFn, 1);
@@ -217,7 +214,7 @@
       const bounds = [];
 
       // Loop over the layers
-      this.mapInstance.eachLayer((layer) => {
+      this.elementInst.eachLayer((layer) => {
         // Markers have a `layer.options.icon` set
         if (layer.options && layer.options.icon) {
           let markerGeom = layer.getLatLng();
@@ -246,7 +243,7 @@
       }
 
       // Try to find an initialized map instance. If there is none, create it.
-      if (!this.mapInstance) {
+      if (!this.elementInst) {
         const mapDrawEl = Polymer.dom(this.root).querySelector('#map');
         let map = L.map(mapDrawEl, {
           minZoom: this.minZoom,
@@ -262,15 +259,16 @@
         // Polymer.dom(this.root).appendChild(mapDrawEl);
         this.scopeSubtree(this.$.map, true);
 
-        // Attach to the read-only `mapInstance`
-        this._setMapInstance(map);
+        // Attach to the read-only `elementInst`
+        this._setElementInst(map);
+        this.fire('px-map-layer-instance-created');
       }
 
       // Ensure a tile layer is applied to the map
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18
-      }).addTo(this.mapInstance);
+      }).addTo(this.elementInst);
 
       // Set the view from current defaults
       this._updateMapView();
@@ -279,7 +277,7 @@
       this._fitMapToMakers();
 
       // TEMPORARY MARKER TEST
-      // var newMarker = L.marker([this.lat, this.lon]).addTo(this.mapInstance);
+      // var newMarker = L.marker([this.lat, this.lon]).addTo(this.elementInst);
 
 
       // TEMPORARY CONTROLBOX TEST
@@ -307,7 +305,7 @@
       // </div>
       // `;
       // var controlBox = L.Control.controlBox({ position: 'topright', content: controlHTML });
-      // controlBox.addTo(this.mapInstance);
+      // controlBox.addTo(this.elementInst);
       // this.controlBox = controlBox;
       //
     }
@@ -317,8 +315,8 @@
      * map center to the new values.
      */
     _updateMapView() {
-      if (this.mapInstance) {
-        let updateFn = () => { this.mapInstance.setView([this.lat, this.lon], this.zoom) };
+      if (this.elementInst) {
+        let updateFn = () => { this.elementInst.setView([this.lat, this.lon], this.zoom) };
         this.debounce('update-map-view', updateFn, 1);
       }
     }

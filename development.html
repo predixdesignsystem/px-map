@@ -14,11 +14,14 @@
   <link rel="import" href="px-map.html" />
   <link rel="import" href="px-map-overlay-layer.html" />
   <link rel="import" href="px-map-layer-group.html" />
-  <link rel="import" href="px-map-static-marker.html" />
+  <!-- <link rel="import" href="px-map-marker-static.html" /> -->
+  <link rel="import" href="px-map-marker-static.html" />
   <link rel="import" href="px-map-info-popup.html" />
   <link rel="import" href="px-map-data-popup.html" />
   <link rel="import" href="px-map-info-control.html" />
   <link rel="import" href="px-map-location-control.html" />
+
+  <link rel="import" href="mixins/px-map-mixins.html" />
 </head>
 
 <style is="custom-style">
@@ -33,7 +36,7 @@
   }
 </style>
 <body>
-  <template is="dom-bind" id="bound">
+  <!-- <template is="dom-bind" id="bound"> -->
     <section class="wrap">
 
 
@@ -46,22 +49,22 @@
         <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
 
         <px-map-layer-group name="Buildings">
-          <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
+          <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
             <!-- <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo." img-src="http://placehold.it/75x75" bind-to-control="Data Box"></px-map-info-popup> -->
             <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
-          </px-map-static-marker>
-          <px-map-static-marker lat="37.9055234" lon="-122.0675267" type="info" show-badge>
+          </px-map-marker-static>
+          <px-map-marker-static lat="37.9055234" lng="-122.0675267" type="info" show-badge>
             <px-map-info-popup bind-to-control="Data Box" title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
-          </px-map-static-marker>
+          </px-map-marker-static>
         </px-map-layer-group>
       </px-map>
 
 
     </section>
-  </template>
+  <!-- </template> -->
 
-  <script>
+  <!-- <script>
     var tmpl = document.querySelector('#bound');
-  </script>
+  </script> -->
 </body>
 </html>

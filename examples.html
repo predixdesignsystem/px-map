@@ -19,7 +19,8 @@
   <link rel="import" href="px-map.html" />
   <link rel="import" href="px-map-overlay-layer.html" />
   <link rel="import" href="px-map-layer-group.html" />
-  <link rel="import" href="px-map-static-marker.html" />
+  <!-- <link rel="import" href="px-map-static-marker.html" /> -->
+  <link rel="import" href="px-map-marker-static.html" />
   <link rel="import" href="px-map-info-popup.html" />
   <link rel="import" href="px-map-data-popup.html" />
   <link rel="import" href="px-map-info-control.html" />
@@ -174,19 +175,19 @@
         var dataToAdd = this.allData.splice(0,100);
         var target = document.querySelector('#targetLayer');
         addMarkersToLayer(dataToAdd, target);
-        this.set('numberOfMarkers', this.numberOfMarkers + 100);
       }
 
       function addMarkersToLayer(places, target) {
         places.forEach((place) => {
           if (!place.latitude || !place.longitude) return;
-          var newMarker = document.createElement('px-map-static-marker');
+          var newMarker = document.createElement('px-map-marker-static');
           newMarker.lat = place.latitude;
-          newMarker.lon = place.longitude;
+          newMarker.lng = place.longitude;
           // newMarker.setAttribute('lat', place.latitude);
           // newMarker.setAttribute('lon', place.longitude);
           // target.appendChild(newMarker);
           Polymer.dom(target).appendChild(newMarker);
+          tmpl.numberOfMarkers++;
         });
       }
     </script>

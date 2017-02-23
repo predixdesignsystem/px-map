@@ -62,6 +62,8 @@ gulp.task('sass', function() {
 
 // Globbing pattern to find ES6 source files that need to be transpiled
 const ES6_SRC = './*.es6.js';
+// const ES6_SRC = ['./**/**.es6.js', '!./{node_modules,node_modules/**}', '!./{bower_components,bower_components/**}'];
+
 // Output directory for transpiled files
 const ES5_DEST = './dist';
 
