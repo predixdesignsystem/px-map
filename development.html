@@ -21,6 +21,7 @@
   <link rel="import" href="px-map-info-control.html" />
   <link rel="import" href="px-map-location-control.html" />
   <link rel="import" href="px-map-marker-group.html" />
+  <link rel="import" href="px-map-tile-layer.html" />
 
   <!-- <link rel="import" href="mixins/px-map-mixins.html" /> -->
 </head>
@@ -41,8 +42,11 @@
 
     <px-map zoom="10" fit-to-markers flex-to-size>
 
-      <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
-      <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
+      <!-- <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer> -->
+      <px-map-tile-layer url="http://api.tiles.mapbox.com/v3/aj.map-b0cn5uze/{z}/{x}/{y}.png"></px-map-tile-layer>
+
+      <!-- <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
+      <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control> -->
 
       <px-map-layer-group name="Buildings">
         <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
