@@ -87,7 +87,7 @@
       this._attachedChildren.delete(childEl);
 
       this.async(() => { childEl.willRemoveInst(); });
-      this.async(() => { childEl.removeInst(); });
+      this.async(() => { childEl.removeInst(this.elementInst); });
     }
   };
 
