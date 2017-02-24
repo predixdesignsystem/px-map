@@ -25,6 +25,7 @@
   <link rel="import" href="px-map-data-popup.html" />
   <link rel="import" href="px-map-info-control.html" />
   <link rel="import" href="px-map-location-control.html" />
+  <link rel="import" href="px-map-tile-layer.html" />
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
 </head>
 <!-- Set up styles for this page -->
@@ -85,6 +86,7 @@
       <template is="dom-if" if="{{show2}}">
 
         <px-map zoom="12" fit-to-markers flex-to-size>
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-layer-group name="Buildings">
             <px-map-static-marker lat="37.7672375" lon="-121.9584131" type="important" show-badge>
               <px-map-info-popup title="GE Digital" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
@@ -112,6 +114,7 @@
       <template is="dom-if" if="{{show3}}">
 
         <px-map zoom="12" fit-to-markers flex-to-size>
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
           <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control>
 
@@ -143,6 +146,7 @@
           id="getData" auto>
         </iron-ajax>
         <px-map lat="51.528308" lon="-0.3817765" zoom="10" fit-to-markers flex-to-size>
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-layer-group name="Plaques of London" id="targetLayer">
           </px-map-layer-group>
         </px-map>
