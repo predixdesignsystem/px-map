@@ -12,16 +12,17 @@
 
   <!-- Importing px-map subcomponents... -->
   <link rel="import" href="px-map.html" />
-  <link rel="import" href="px-map-overlay-layer.html" />
-  <link rel="import" href="px-map-layer-group.html" />
-  <!-- <link rel="import" href="px-map-marker-static.html" /> -->
+  <!-- <link rel="import" href="px-map-overlay-layer.html" /> -->
+  <link rel="import" href="px-map-group-layers.html" />
   <link rel="import" href="px-map-marker-static.html" />
-  <link rel="import" href="px-map-info-popup.html" />
-  <link rel="import" href="px-map-data-popup.html" />
-  <link rel="import" href="px-map-info-control.html" />
-  <link rel="import" href="px-map-location-control.html" />
-  <link rel="import" href="px-map-marker-group.html" />
-  <link rel="import" href="px-map-tile-layer.html" />
+  <link rel="import" href="px-map-popup-info.html" />
+  <link rel="import" href="px-map-popup-data.html" />
+  <!-- <link rel="import" href="px-map-info-popup.html" /> -->
+  <!-- <link rel="import" href="px-map-data-popup.html" /> -->
+  <!-- <link rel="import" href="px-map-info-control.html" /> -->
+  <!-- <link rel="import" href="px-map-location-control.html" /> -->
+  <!-- <link rel="import" href="px-map-marker-group.html" /> -->
+  <!-- <link rel="import" href="px-map-tile-layer.html" /> -->
 
   <!-- <link rel="import" href="mixins/px-map-mixins.html" /> -->
 </head>
@@ -43,21 +44,21 @@
     <px-map zoom="10" fit-to-markers flex-to-size>
 
       <!-- <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer> -->
-      <px-map-tile-layer url="http://api.tiles.mapbox.com/v3/aj.map-b0cn5uze/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <!-- <px-map-tile-layer url="http://api.tiles.mapbox.com/v3/aj.map-b0cn5uze/{z}/{x}/{y}.png"></px-map-tile-layer> -->
 
       <!-- <px-map-zoom-control position="bottom-right"></px-map-zoom-control>
       <px-map-info-control position="top-right" name="Data Box" max-width="100"></px-map-info-control> -->
 
-      <px-map-layer-group name="Buildings">
+      <px-map-group-layers name="Buildings">
         <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
-          <px-map-data-popup bind-to-control="Data Box" title="Dispatch Hub: San Ramon" data='[ ["Description","NSS 177 ROAD"], ["Milepost","50"], ["DIV/SUB","Bakersfield, CA"], ["Next Test","9/12/16"] ]'></px-map-data-popup>
+          <px-map-popup-data title="Dispatch Hub: San Ramon" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-data-popup>
         </px-map-marker-static>
         <px-map-marker-static lat="37.9055234" lng="-122.0675267" type="info" show-badge>
-          <px-map-info-popup bind-to-control="Data Box" title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-info-popup>
+          <px-map-popup-info title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-popup-info>
         </px-map-marker-static>
-      </px-map-layer-group>
+      </px-map-group-layers>
 
-      <px-map-marker-group id="cluster" name="Plaques" data=""></px-map-marker-group>
+      <!-- <px-map-marker-group id="cluster" name="Plaques" data=""></px-map-marker-group> -->
     </px-map>
 
 
@@ -125,8 +126,8 @@
 
   window.addEventListener('WebComponentsReady', function(e) {
     // imports are loaded and elements have been registered
-    var cluster = document.querySelector('#cluster');
-    cluster.set('data', geoJSON);
+    // var cluster = document.querySelector('#cluster');
+    // cluster.set('data', geoJSON);
   });
   </script>
 </body>

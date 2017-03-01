@@ -4,9 +4,40 @@
   /**
    *
    *
-   * @mixin MapLayerMixin
+   * @mixin MapLayerBase
    */
-  let MapLayerMixin = (superclass) => class extends superclass {
+  let MapLayerBaseMixin = (superclass) => class extends superclass {
+    // When this element is attached to the DOM, fire an event to notify
+    // a parent that it is ready
+
+    created() {
+      this.__elAttached = false;
+    }
+
+    attached() {
+      this.__elAttached = true;
+      this.notifyInstReady(this.canAddInst());
+    }
+
+    // When this element is detached from the DOM, its elementInst should be
+    // removed from the parent
+
+    detached() {
+      this.willRemoveInst();
+      this.removeInst();
+      this.__elAttached = false;
+    }
+
+    // Methods to bind to/unbind from parent
+
+    bindInst(parent) {
+      parent.addLayer(this.elementInst);
+    }
+
+    unbindInst(parent) {
+      this.elementInst.remove();
+    }
+
     /**
      * Some element instances may require a minimum number of defined options
      * to be able to attach to their parent. If those options are defined via.
@@ -27,109 +58,110 @@
       return true;
     }
 
-    // Lifecycle hooks for LayerBase, will be called by a LayerParent
+    /**
+     * If this element's instance is ready to create and add to its parent,
+     * fires an event the parent will catch.
+     *
+     * @param {Boolean} isReady - If `true` instance parent will be notified
+     * @return {Boolean} - If `true` the parent was notified
+     */
+    notifyInstReady(isReady) {
+      if (!isReady) return false;
+      this.fire('px-map-layer-ready-to-add');
+      return true;
+    }
+  };
 
-    willAddInst() {
-      if (this.elementInst) return;
-
-      const options = this.__initialOptions = this.getOptions();
-      this.elementInst = this.createInst(options);
-
-      // @TODO: Bind events
+  /**
+   *
+   *
+   * @mixin MapLayerParent
+   */
+  let MapLayerParentMixin = (superclass) => class extends superclass {
+    created() {
+      // Use a WeakMap to keep track of our attached children
+      this._attachedChildren = this._attachedChildren || new WeakMap();
     }
 
-    willRemoveInst() {
-      // @TODO: Unbind events
+    attached() {
+      this.listen(this, 'px-map-layer-instance-created', this._tryToAddAllChildren.bind(this));
+      this.listen(this, 'px-map-layer-ready-to-add', this._tryToAddOneChild.bind(this));
     }
 
-    addInst(parent) {
-      if (!parent || parent.hasLayer(this.elementInst)) return;
-      parent.addLayer(this.elementInst);
+    detached() {
+      this._detachLayerChildren();
     }
 
-    removeInst() {
+    // Handles attaching children throughout this element's lifecycle
+
+    _tryToAddAllChildren(evt) {
+      // If this element's elementInst isn't ready, halt and wait until later
+      // If this event isn't coming from this element, do not handle
+      if (!this.elementInst || evt.srcElement !== this) return;
+
+      // If my own elementInst was just created, loop over children and try to attach them
+      this._attachLayerChildren();
+    }
+
+    _tryToAddOneChild(evt) {
+      // If the added-to-dom event belongs to this element, just return and let it bubble
+      if (evt.srcElement === this) return;
+
+      // This element is the parent, so stop this event from bubbling
+      evt.stopPropagation();
+
+      // If I have no elementInst, halt and wait until later
       if (!this.elementInst) return;
-      this.elementInst.remove();
+
+      this._attachLayerChild(evt.srcElement);
     }
 
-    // Simple observer trigger for dynamic properties that should be synced
-    // to the instance
+    _attachLayerChildren() {
+      const children = this.getEffectiveChildren();
+      if (!children || !children.length) return;
 
-    shouldUpdateInst() {
-      if (!this.elementInst && this.__elAttached && this.canAddInst()) {
-        this.notifyInstReady(this.canAddInst());
+      for (let child of children) {
+        this._attachLayerChild(child);
       }
-      if (!this.elementInst) return;
-
-      const lastOptions = this.__lastOptions || this.__initialOptions;
-      const nextOptions = this.getOptions();
-
-      this.updateInst(lastOptions, nextOptions);
-
-      // Set `lastOptions` to `nextOptions` so the next time this method is called
-      // it will have access to the last options
-      this.__lastOptions = nextOptions;
     }
 
-    // // When this element is attached to the DOM, fire an event to notify
-    // // a parent that it is ready
-    //
-    // created() {
-    //   this.__elAttached = false;
-    // }
-    //
-    // attached() {
-    //   this.__elAttached = true;
-    //   this.notifyInstReady(this.canAddInst());
-    // }
-    //
-    // // When this element is detached from the DOM, its elementInst should be
-    // // removed from the parent
-    //
-    // detached() {
-    //   this.willRemoveInst();
-    //   this.removeInst();
-    //   this.__elAttached = false;
-    // }
+    _attachLayerChild(childEl) {
+      if (this._attachedChildren.has(childEl) || !childEl.willAddInst || !childEl.addInst || !childEl.canAddInst || !childEl.canAddInst()) return;
+      this._attachedChildren.set(childEl, true);
 
-    // /**
-    //  * If this element's instance is ready to create and add to its parent,
-    //  * fires an event the parent will catch.
-    //  *
-    //  * @param {Boolean} isReady - If `true` instance parent will be notified
-    //  * @return {Boolean} - If `true` the parent was notified
-    //  */
-    // notifyInstReady(isReady) {
-    //   if (!isReady) return false;
-    //   this.fire('px-map-layer-ready-to-add');
-    //   return true;
-    // }
-
-    // Should be implemented by behaviors/components that extend LayerBase
-
-    createInst() {
-      throw new Error('The `createInst` method must be implemented.')
+      this.async(() => { childEl.willAddInst(); });
+      this.async(() => { childEl.addInst(this.elementInst); });
     }
 
-    updateInst() {
-      throw new Error('The `updateInst` method must be implemented.')
+    // Handles detaching children throughout this element's lifecycle
+
+    _detachLayerChildren() {
+      const children = this.getEffectiveChildren();
+      if (!children || !children.length) return;
+
+      for (let child of children) {
+        this._detachLayerChild(child);
+      }
     }
 
-    getOptions() {
-      throw new Error('The `getOptions` method must be implemented.')
+    _detachLayerChild(childEl) {
+      if (!this._attachedChildren.has(childEl) || !childEl.willRemoveInst || !childEl.removeInst) return;
+      this._attachedChildren.delete(childEl);
+
+      this.async(() => { childEl.willRemoveInst(); });
+      this.async(() => { childEl.removeInst(this.elementInst); });
     }
   };
 
   const mixins = (window.PxMapMixin = window.PxMapMixin || {});
-  mixins.MapLayer = MapLayerMixin;
+  mixins.MapLayerBase = MapLayerBaseMixin;
+  mixins.MapLayerParent = MapLayerParentMixin;
 
-  // class MapLayer extends mixwith.mix().with(PxMapMixin.MapElement, PxMapMixin.MapLayer) {
-  //   constructor() {
-  //     super(...arguments);
-  //     this.initialize();
-  //   }
-  // }
-  //
-  // const klasses = (window.PxMap = window.PxMap || {});
-  // klasses.MapLayer = MapLayer;
+  class MapLayer extends mixwith.mix(PxMap.MapElement).with(
+    PxMapMixin.MapLayerBase,
+    PxMapMixin.MapLayerParent
+  ) {};
+
+  const klasses = (window.PxMap = window.PxMap || {});
+  klasses.MapLayer = MapLayer;
 })();

@@ -1,0 +1,33 @@
+%map-popup {
+  // The wrapper container around the popup content. Expands to the maximum
+  // allowable size set on the attribute (not configured in CSS).
+  .leaflet-popup-content-wrapper {
+    border: 1px solid $gray5;
+    border-radius: 0;
+  }
+  // To set a border color on the content wrapper, we need to position a psuedo
+  // after element that is the same color as the popup background to make it look
+  // like the border doesn't overlap the popup 'tip' pointer
+  .leaflet-popup-content-wrapper:after {
+    content: '';
+    position: absolute;
+    background-color: white;
+    height: 4px;
+    width: 19px;
+    left: 50%;
+    margin-left: -9px;
+    border-radius: 5px;
+  }
+  // Add the border to the 'tip' pointer
+  .leaflet-popup-tip {
+    border: 1px solid $gray5;
+  }
+  // The inner container holding the popup content
+  .leaflet-popup-content {
+    margin: 0;
+  }
+  // Hide the close button
+  .leaflet-popup-close-button {
+    display: none;
+  }
+}

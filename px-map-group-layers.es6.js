@@ -1,14 +1,14 @@
 (function(){
   'use strict';
 
-  class PxMapLayerGroup {
+  class PxMapGroupLayers {
     beforeRegister() {
-      this.is = 'px-map-layer-group';
+      this.is = 'px-map-group-layers';
       this.properties = {};
     }
 
     get behaviors() {
-      return this._behaviors || (this._behaviors = [window.PxMapBehavior.LayerGroup]);
+      return this._behaviors || (this._behaviors = [PxMapBehavior.MapGroupLayers]);
     }
 
     set behaviors(value) {
@@ -17,5 +17,5 @@
   }
 
   /* Register this component with the Polymer constructor. */
-  Polymer(PxMapLayerGroup);
+  Polymer(PxMapGroupLayers);
 })();

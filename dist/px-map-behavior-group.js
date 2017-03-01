@@ -1,0 +1,2 @@
+'use strict';(function(){'use strict';var MapGroupLayersBase={properties:{name:{type:String,notify:true}},createInst:function createInst(){return L.layerGroup()},updateInst:function updateInst(){return undefined},getInstOptions:function getInstOptions(){return{}}};var namespace=window.PxMapBehavior=window.PxMapBehavior||{};namespace.MapGroupLayersBase=MapGroupLayersBase;namespace.MapGroupLayers=[namespace.MapLayerParent,namespace.MapGroupLayersBase]})();
+//# sourceMappingURL=px-map-behavior-group.js.map

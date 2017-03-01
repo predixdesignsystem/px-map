@@ -68,7 +68,7 @@
     }
 
     _createPopup() {
-      const options = this._getPopupOptions({ className: 'map-data-popup', maxWidth: 400, minWidth: 300 });
+      const options = this._getPopupOptions({ className: 'map-data-popup',  });
       const content = this._getPopupContent();
       return L.popup(options).setContent(content);
     }

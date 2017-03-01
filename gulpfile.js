@@ -96,6 +96,7 @@ gulp.task('serve', function() {
     logPrefix: `${pkg.name}`,
     https: false,
     server: ['./', 'bower_components'],
+    reloadDebounce: 1000
   });
 
   gulp.watch(ES6_SRC, ['transpile']);

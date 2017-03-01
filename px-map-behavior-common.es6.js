@@ -64,10 +64,9 @@
     },
 
     _attachLayerChild(childEl) {
-      if (this._attachedChildren.has(childEl) || !childEl.willAddInst || !childEl.addInst || !childEl.canAddInst || !childEl.canAddInst()) return;
+      if (this._attachedChildren.has(childEl) || !childEl.addInst || !childEl.canAddInst || !childEl.canAddInst()) return;
       this._attachedChildren.set(childEl, true);
 
-      this.async(() => { childEl.willAddInst(); });
       this.async(() => { childEl.addInst(this.elementInst); });
     },
 
@@ -83,10 +82,9 @@
     },
 
     _detachLayerChild(childEl) {
-      if (!this._attachedChildren.has(childEl) || !childEl.willRemoveInst || !childEl.removeInst) return;
+      if (!this._attachedChildren.has(childEl) || !childEl.removeInst) return;
       this._attachedChildren.delete(childEl);
 
-      this.async(() => { childEl.willRemoveInst(); });
       this.async(() => { childEl.removeInst(this.elementInst); });
     }
   };

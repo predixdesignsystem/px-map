@@ -4,20 +4,60 @@
   /**
    *
    *
-   * @mixin MapMarkerMixin
+   * @mixin MapMarkerBase
    */
-  let MapMarkerMixin = (superclass) => class extends superclass {
-    initialize(options={}) {
-      if (super.initialize) super.initialize(options);
+  let MapMarkerBaseMixin = (superclass) => class extends superclass {
+    // INITIALIZE ANY PROPERTIES, DO SETUP, ADD STATIC VALUES...
 
-      this.lat = options.lat || undefined;
-      this.lng = options.lng || undefined;
-      this.name = options.name || undefined;
+    initialize() {
+      if (super.initialize) super.initialize();
+
+      const properties = {
+        /**
+         * The latitude of the marker. Set a value to draw the maker at a coordinate
+         * when the map is loaded. Listen for updates to track the marker's location
+         * if the marker is draggable or created dynamically by the user.
+         *
+         * @type {Number}
+         */
+        lat: {
+          type: Number,
+          notify: true,
+          observer: 'shouldUpdateInst'
+        },
+
+        /**
+         * The longitude of the marker. Set a value to draw the maker at a coordinate
+         * when the map is loaded. Listen for updates to track the marker's location
+         * if the marker is draggable or created dynamically by the user.
+         *
+         * @type {Number}
+         */
+        lng: {
+          type: Number,
+          notify: true,
+          observer: 'shouldUpdateInst'
+        },
+
+        /**
+         * A human-readable name for this layer group. If a tooltip is attached,
+         * this name will be shown on hover over the marker. If the map has a layer
+         * control panel, the user will click this name to show, hide, or
+         * manipulate this layer.
+         *
+         * @type {String}
+         */
+        name: {
+          type: String,
+          notify: true,
+          observer: 'shouldUpdateInst'
+        }
+      };
+
+      this.addProperties(properties);
     }
 
-    canAddInst() {
-      return (typeof this.lat === 'number') && (typeof this.lng === 'number');
-    }
+    // DEFAULT METHODS FOR EVERY BASE ELEMENT...
 
     createInst(options) {
       return L.marker(options.geometry, options.config);
@@ -32,36 +72,57 @@
       }
     }
 
-    getOptions() {
-      const geometry = this.getLatLng();
+    getInstOptions(defaults={}) {
+      const geometry = this._getLatLng();
+      if (defaults.geometry) this.extend(geometry, defaults.geometry);
 
       const config = {};
       config.title = (this.name || '');
-      config.icon = this.getIcon();
+      config.icon = this._getIcon();
+      if (defaults.config) this.extend(config, defaults.config);
 
       return { geometry, config };
     }
 
-    getLatLng() {
+    canAddInst(...args) {
+      super.canAddInst(...args);
+    }
+
+    bindInst(...args) {
+      super.bindInst(...args);
+    }
+
+    unbindInst(...args) {
+      super.unbindInst(...args);
+    }
+
+    // CUSTOM METHODS FOR MARKERS...
+
+    _getLatLng() {
       if (!this.lat || !this.lng) return [];
       return L.latLng(this.lat, this.lng);
     }
 
-    // Should be implemented by behaviors that extend MarkerBase
-
-    getIcon() {
+    _getIcon() {
       throw new Error('The `getIcon` method must be implemented.');
     }
   };
 
   const mixins = (window.PxMapMixin = window.PxMapMixin || {});
-  mixins.MapMarker = MapMarkerMixin;
+  mixins.MapMarkerBase = MapMarkerBaseMixin;
 
-  class MapMarker extends mixwith.mix(PxMap.Base).with(PxMapMixin.MapElement, PxMapMixin.MapLayer, PxMapMixin.MapMarker) {
+  class MapMarker extends mixwith.mix(PxMap.MapLayer).with(PxMapMixin.MapMarkerBase) {
     constructor() {
       super(...arguments);
       this.initialize();
     }
+
+    // initialize() {
+    //   if (super.initialize) super.initialize();
+    //   console.log('marker klass');
+    //   const properties = {};
+    //   this.addProperties(properties);
+    // }
   }
 
   const klasses = (window.PxMap = window.PxMap || {});

@@ -61,55 +61,26 @@
  * POPUPS
  ******************************************************************************/
 
-/* POPUP: Base styles for a popup */
+// MAP POPUP: BASE
+@import "_map-popup.scss";
 
-%map-popup {
-  // The wrapper container around the popup content. Expands to the maximum
-  // allowable size set on the attribute (not configured in CSS).
-  .leaflet-popup-content-wrapper {
-    border: 1px solid $gray5;
-    border-radius: 0;
-  }
-  // To set a border color on the content wrapper, we need to position a psuedo
-  // after element that is the same color as the popup background to make it look
-  // like the border doesn't overlap the popup 'tip' pointer
-  .leaflet-popup-content-wrapper:after {
-    content: '';
-    position: absolute;
-    background-color: white;
-    height: 4px;
-    width: 19px;
-    left: 50%;
-    margin-left: -9px;
-    border-radius: 5px;
-  }
-  // Add the border to the 'tip' pointer
-  .leaflet-popup-tip {
-    border: 1px solid $gray5;
-  }
-  // The inner container holding the popup content
-  .leaflet-popup-content {
-    margin: 0;
-  }
-  // Hide the close button
-  .leaflet-popup-close-button {
-    display: none;
-  }
-}
-
-/* POPUP: info-popup */
-/* POPUP: data-popup */
-
-.map-info-popup, .map-data-popup {
+// MAP POPUP: INFO
+.map-popup-info {
   @extend %map-popup;
-}
-.map-info-popup .map-info-box {
-  margin: $inuit-base-spacing-unit;
-}
-.map-data-popup .map-data-box {
-  margin: $inuit-base-spacing-unit;
+
+  .map-box-info {
+    margin: $inuit-base-spacing-unit;
+  }
 }
 
+// MAP POPUP: DATA
+.map-popup-data {
+  @extend %map-popup;
+
+  .map-popup-data .map-box-data {
+    margin: $inuit-base-spacing-unit;
+  }
+}
 
 /*******************************************************************************
  * CONTROLS
@@ -121,7 +92,7 @@
   background-color: white;
   max-width: 250px;
 }
-.map-info-control .map-info-box {
+.map-info-control .map-box-info {
   margin: $inuit-base-spacing-unit;
 }
 .map-info-control .map-data-box {
@@ -178,16 +149,16 @@
  /* GENERIC: Info box generic styles, can be placed in multiple containers */
 
 // Style for the title, which is a text tag
-.map-info-box__title {
+.map-box-info__title {
   font-weight: 600;
   margin: 0 0 $inuit-base-spacing-unit--tiny;
 }
 // Style for the description, which is a text tag
-.map-info-box__description {
+.map-box-info__description {
   margin: 0;
 }
 // Style for the optional image, which is set to the left of the content
-.map-info-box__image {
+.map-box-info__image {
   display: block;
   float: left;
   max-width: 75px;
@@ -199,7 +170,7 @@
 }
 // We need the content container to be a block with overflow hidden to
 // inset the picture to the left without text wrapping.
-.map-info-box__content {
+.map-box-info__content {
   display: block;
   overflow: hidden;
 }

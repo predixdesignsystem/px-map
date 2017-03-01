@@ -6,27 +6,25 @@
 <link rel="import" href="../polymer/polymer.html"/>
 
 <!-- Load required PxMapBehaviors -->
-<link rel="import" href="px-map-behavior-layer-group.html">
+<link rel="import" href="px-map-behavior-popup.html">
 
 <!--
 ...
 
-##### Usage
-
-    ...
-
-@element px-map-layer-group
-@blurb ...
+@element px-map-popup-data
+@blurb Creates a static marker that can be attached to the map.
 @homepage index.html
 @demo index.html
 -->
 
-<dom-module id="px-map-layer-group">
+<dom-module id="px-map-popup-data">
   <style>
-    :host { display: none }
+    :host {
+      display: none;
+    }
   </style>
   <template>
     <content select="*"></content>
   </template>
 </dom-module>
-<script src="dist/px-map-layer-group.js"></script>
+<script src="dist/px-map-popup-data.js"></script>

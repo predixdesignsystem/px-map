@@ -6,7 +6,7 @@
     get is() { return 'px-map'; }
 
     /* Behaviors to import for this component */
-    get behaviors() { return [window.PxMapBehavior.Common.LayerParent]; }
+    get behaviors() { return [PxMapBehavior.MapLayerParentBase]; }
 
     /* Properties for this component */
     get properties() {
