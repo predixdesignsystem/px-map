@@ -1,11 +1,18 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * BEHAVIORS
+   ****************************************************************************/
+
+  /* Ensures the behavior namespace is created */
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapMarkerBase
+   * @polymerBehavior PxMapBehavior.Marker
    */
-  const MapMarkerBase = {
+  const MarkerImpl = {
     properties: {
       /**
        * The latitude of the marker. Set a value to draw the maker at a coordinate
@@ -92,12 +99,18 @@
       throw new Error('The `getMarkerIcon` method must be implemented.');
     }
   };
+  /* Bind Marker behavior */
+  namespace.Marker = [
+    namespace.Layer,
+    namespace.ParentLayer,
+    MarkerImpl
+  ];
 
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapMarkerStaticBase
+   * @polymerBehavior PxMapBehavior.StaticMarker
    */
-  const MapMarkerStaticBase = {
+  const StaticMarkerImpl = {
     properties: {
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
@@ -147,22 +160,10 @@
       return { type: this.type || '', badge: this.showBadge || false };
     }
   };
-
-  /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
-
-  /* Bind MapMaker base and chained behaviors */
-  namespace.MapMarkerBase = MapMarkerBase;
-  namespace.MapMarker = [
-    namespace.MapLayerParent,
-    namespace.MapMarkerBase
-  ];
-
-  /* Bind MapMarkerStatic base and chained behaviors */
-  namespace.MapMarkerStaticBase = MapMarkerStaticBase;
-  namespace.MapMarkerStatic = [
-    namespace.MapMarker,
-    namespace.MapMarkerStaticBase
+  /* Bind StaticMarker behavior */
+  namespace.StaticMarker = [
+    namespace.Marker,
+    StaticMarkerImpl
   ];
 
 })()

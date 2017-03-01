@@ -10,9 +10,9 @@
 
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapPopup
+   * @polymerBehavior PxMapBehavior.Popup
    */
-  const MapPopupImpl = {
+  const PopupImpl = {
     properties: {
       /**
        * Will be `true` when the popup becomes visible, and `false` when the
@@ -48,17 +48,17 @@
       }
     }
   };
-  /* Bind MapPopup behavior */
-  namespace.MapPopup = [
-    namespace.MapLayer,
-    MapPopupImpl
+  /* Bind Popup behavior */
+  namespace.Popup = [
+    namespace.Layer,
+    PopupImpl
   ];
 
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapPopupInfo
+   * @polymerBehavior PxMapBehavior.InfoPopup
    */
-  const MapPopupInfoImpl = {
+  const InfoPopupImpl = {
     properties: {
       /**
        * Title text to display in bold at the top of the popup. Should be kept
@@ -130,17 +130,17 @@
       };
     }
   };
-  /* Bind MapPopupInfo behavior */
-  namespace.MapPopupInfo = [
-    namespace.MapPopup,
-    MapPopupInfoImpl
+  /* Bind InfoPopup behavior */
+  namespace.InfoPopup = [
+    namespace.Popup,
+    InfoPopupImpl
   ];
 
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapPopupData
+   * @polymerBehavior PxMapBehavior.DataPopup
    */
-  const MapPopupDataImpl = {
+  const DataPopupImpl = {
     properties: {
       /**
        * Title text to display in bold at the top of the popup. Should be kept
@@ -195,10 +195,10 @@
       };
     }
   };
-  /* Bind MapPopupData behavior */
-  namespace.MapPopupData = [
-    namespace.MapPopup,
-    MapPopupDataImpl
+  /* Bind DataPopup behavior */
+  namespace.DataPopup = [
+    namespace.Popup,
+    DataPopupImpl
   ];
 
   /****************************************************************************
@@ -349,4 +349,4 @@
   /* Bind DataPopup klass */
   klass.DataPopup = DataPopup;
 
-})()
+})();

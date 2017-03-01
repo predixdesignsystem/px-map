@@ -1,12 +1,19 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * BEHAVIORS
+   ****************************************************************************/
+
+  /* Ensures the behavior namespace is created */
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+
   /**
    *
    *
-   * @polymerBehavior PxMapBehavior.MapLayerBase
+   * @polymerBehavior PxMapBehavior.Layer
    */
-  const MapLayerBase = {
+  const LayerImpl = {
     // When this element is attached to the DOM, fire an event to notify
     // a parent that it is ready
 
@@ -66,13 +73,18 @@
       return true;
     }
   };
+  /* Bind Layer behavior */
+  namespace.Layer = [
+    namespace.Element,
+    LayerImpl
+  ];
 
   /**
    *
    *
-   * @polymerBehavior PxMapBehavior.MapLayerParentBase
+   * @polymerBehavior PxMapBehavior.ParentLayer
    */
-  const MapLayerParentBase = {
+  const ParentLayerImpl = {
     listeners: {
       'px-map-layer-instance-created' : '_tryToAddAllChildren',
       'px-map-layer-ready-to-add' : '_tryToAddOneChild'
@@ -145,22 +157,7 @@
       this.async(() => { childEl.shouldRemoveInst(this.elementInst); });
     }
   };
+  /* Bind ParentLayer behavior */
+  namespace.ParentLayer = [ParentLayerImpl];
 
-  /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
-
-  /* Bind MapLayer base and chained behaviors */
-  namespace.MapLayerBase = MapLayerBase;
-  namespace.MapLayer = [
-    namespace.MapElement,
-    namespace.MapLayerBase
-  ];
-
-  /* Bind MapLayerParent base and chained behaviors */
-  namespace.MapLayerParentBase = MapLayerParentBase;
-  namespace.MapLayerParent = [
-    namespace.MapLayer,
-    namespace.MapLayerParentBase
-  ];
-
-})()
+})();

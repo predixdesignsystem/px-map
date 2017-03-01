@@ -1,11 +1,18 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * BEHAVIORS
+   ****************************************************************************/
+
+  /* Ensures the behavior namespace is created */
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapGroupLayersBase
+   * @polymerBehavior PxMapBehavior.LayerGroup
    */
-  const MapGroupLayersBase = {
+  const LayerGroupImpl = {
     properties: {
       /**
        * A human-readable name for this layer group. If the map has a layer
@@ -32,15 +39,11 @@
       return {};
     }
   };
-
-  /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
-
-  /* Bind MapGroupLayers base and chained behaviors */
-  namespace.MapGroupLayersBase = MapGroupLayersBase;
-  namespace.MapGroupLayers = [
-    namespace.MapLayerParent,
-    namespace.MapGroupLayersBase
+  /* Bind LayerGroup behavior */
+  namespace.LayerGroup = [
+    namespace.Layer,
+    namespace.ParentLayer,
+    LayerGroupImpl
   ];
 
-})()
+})();

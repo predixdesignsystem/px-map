@@ -1,11 +1,18 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * BEHAVIORS
+   ****************************************************************************/
+
+  /* Ensures the behavior namespace is created */
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+
   /**
    *
-   * @polymerBehavior PxMapBehavior.MapElementBase
+   * @polymerBehavior PxMapBehavior.Element
    */
-  const MapElementBase = {
+  const ElementImpl = {
     beforeRegister() {
       /**
        * A reference to this element's instance. The instance can be configured and
@@ -102,11 +109,7 @@
       return this.properties;
     }
   };
+  /* Bind Element behavior */
+  namespace.Element = [ElementImpl];
 
-  /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
-
-  /* Bind MapElement base and chained behaviors */
-  namespace.MapElementBase = MapElementBase;
-  namespace.MapElement = [namespace.MapElementBase];
-})()
+})();

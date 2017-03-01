@@ -1,16 +1,10 @@
 (function() {
   'use strict';
 
-  class PxMap {
-    /* Name for the component */
-    get is() { return 'px-map'; }
-
-    /* Behaviors to import for this component */
-    get behaviors() { return [PxMapBehavior.MapLayerParentBase]; }
-
-    /* Properties for this component */
-    get properties() {
-      return {
+  class PxMapRootComponent {
+    beforeRegister() {
+      this.is = 'px-map';
+      this.properties = {
         /**
          * The active map instance. Currently, the only mapping base library offered
          * is Leaflet, so this will be a reference to the `L.map` that is displaying
@@ -166,7 +160,16 @@
           reflectToAttribute: true,
           value: false
         }
-      }
+      };
+    }
+
+    /* Behaviors to import for this component */
+    get behaviors() {
+      return this._behaviors || (this._behaviors = [PxMapBehavior.Layer, PxMapBehavior.ParentLayer]);
+    }
+
+    set behaviors(value) {
+      this._behaviors = value;
     }
 
     attached() {
@@ -334,5 +337,5 @@
   }
 
   /* Register this element with the Polymer constructor */
-  Polymer(PxMap);
+  Polymer(PxMapRootComponent);
 })()

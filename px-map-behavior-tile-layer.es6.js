@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * BEHAVIORS
+   ****************************************************************************/
+
+  /* Ensures the behavior namespace is created */
+  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+
   /**
    *
    * @polymerBehavior PxMapBehavior.TileLayer
@@ -31,16 +38,16 @@
       }
     },
 
-    getOptions() {
+    getInstOptions() {
       return {
-        url: this.url || ''
+        url: this.url
       };
     }
   };
-
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  /* Bind TileLayer behavior */
   namespace.TileLayer = [
-    namespace.LayerBase,
+    namespace.Layer,
     TileLayerImpl
   ];
-})()
+
+})();

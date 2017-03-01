@@ -1,14 +1,14 @@
 (function(){
   'use strict';
 
-  class PxMapPopupInfo {
+  class PxMapInfoPopupComponent {
     beforeRegister() {
       this.is = 'px-map-popup-info';
       this.properties = this.properties || {};
     }
 
     get behaviors() {
-      return this._behaviors || (this._behaviors = [PxMapBehavior.MapPopupInfo]);
+      return this._behaviors || (this._behaviors = [PxMapBehavior.InfoPopup]);
     }
 
     set behaviors(value) {
@@ -17,5 +17,5 @@
   }
 
   /* Register this component with the Polymer constructor. */
-  Polymer(PxMapPopupInfo);
+  Polymer(PxMapInfoPopupComponent);
 })();
