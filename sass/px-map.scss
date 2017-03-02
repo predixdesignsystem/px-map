@@ -86,24 +86,10 @@
  * CONTROLS
  ******************************************************************************/
 
-/* CONTROL: Info control */
+// MAP CONTROL: BASE
 
-.map-info-control {
-  background-color: white;
-  max-width: 250px;
-}
-.map-info-control .map-box-info {
-  margin: $inuit-base-spacing-unit;
-}
-.map-info-control .map-data-box {
-  border: 1px solid $gray4;
-}
-
-/* CONTROL: Zoom control */
-
+// Generic styles for a round button
 %map-control-button {
-  width: calculateRem(40px);
-  height: calculateRem(40px);
   background-color: var(--px-map-control-button-background, $white);
   color: var(--px-map-control-button-text-color, $primary-blue);
   border-style: solid;
@@ -119,25 +105,52 @@
     background-color: var(--px-map-control-button-background, $gray3);
   }
 }
-%map-control-button--zoom {
+
+// Extends generic button to be round
+%map-control-button--round {
+  width: calculateRem(40px);
+  height: calculateRem(40px);
+  position: relative;
   border-radius: 100%;
 }
 
-.leaflet-bar {
+// MAP CONTROL: ZOOM
+
+// Directly overwrite leaflet classes
+.leaflet-control-zoom {
   border: none;
   border-radius: 0;
 }
-.leaflet-bar a {
+a.leaflet-control-zoom-in,
+a.leaflet-control-zoom-out {
   @extend %map-control-button;
+  @extend %map-control-button--round;
+  position: relative;
+  border-radius: 100%;
 }
-.leaflet-bar a + a {
+a.leaflet-control-zoom-out {
   margin-top: .25rem;
 }
-
-.leaflet-control-zoom a.leaflet-control-zoom-in,
-.leaflet-control-zoom a.leaflet-control-zoom-out {
-  @extend %map-control-button--zoom;
+a.leaflet-control-zoom-in i,
+a.leaflet-control-zoom-out i {
+  position: relative;
+  left: -0.03rem;
 }
+
+/* CONTROL: Info control */
+
+.map-info-control {
+  background-color: white;
+  max-width: 250px;
+}
+.map-info-control .map-box-info {
+  margin: $inuit-base-spacing-unit;
+}
+.map-info-control .map-data-box {
+  border: 1px solid $gray4;
+}
+
+
 
 /*******************************************************************************
  * GENERIC BOXES

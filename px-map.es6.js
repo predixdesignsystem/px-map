@@ -234,7 +234,6 @@
           bounds.extend(composedBounds);
         }
       });
-
       return bounds;
     }
 

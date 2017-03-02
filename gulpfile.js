@@ -26,7 +26,7 @@ const sassOptions = {
 };
 
 gulp.task('clean', function() {
-  return gulp.src(['.tmp', 'css'], {
+  return gulp.src(['.tmp', 'css', 'dist'], {
     read: false
   }).pipe($.clean());
 });
