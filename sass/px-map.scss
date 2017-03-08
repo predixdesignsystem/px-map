@@ -39,6 +39,21 @@
 // Component
 
 /*
+ * Style variables shared across sub-components
+ */
+:host {
+  --px-map-marker-group-unknown-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
+  --px-map-marker-group-info-color: var(--px-map-static-icon-info-color, $primary-blue);
+  --px-map-marker-group-warning-color: var(--px-map-static-icon-warning-color, $alert-orange);
+  --px-map-marker-group-important-color: var(--px-map-static-icon-important-color, $alert-red);
+
+  --px-map-marker-group-cluster-path-size: 10px;
+  --px-map-marker-group-cluster-border-size: 5px;
+
+  --px-map-marker-group-cluster-font-size: 15px;
+}
+
+/*
  * Override Leaflet's styles
  */
 .leaflet-container {
@@ -56,6 +71,42 @@
 
 // MAP ICON: STATIC
 @import "_map-icon-static.scss";
+
+// MAP ICON: CLUSTER
+.map-icon-cluster {
+  @extend %map-icon !optional;
+  display: block;
+  position: absolute;
+}
+
+.map-icon-cluster__container {
+  border-radius: 100%;
+  background: var(--px-map-marker-group-cluster-background, white);
+  display: block;
+  position: relative;
+}
+.map-icon-cluster__svg {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: var(--px-map-marker-group-cluster-border-size, 0);
+  border-color: var(--px-map-marker-group-cluster-border-color, rgba(0,0,0,0.3));
+}
+.map-icon-cluster__body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--px-map-marker-group-cluster-font-color, inherit);
+  font-size: var(--px-map-marker-group-cluster-font-size, inherit);
+  font-weight: var(--px-map-marker-group-cluster-font-weight, inherit);
+  line-height: var(--px-map-marker-group-cluster-line-height, inherit);
+}
 
 /*******************************************************************************
  * POPUPS
@@ -101,6 +152,8 @@
   font-size: calculateRem(20px);
   font-weight: 400;
 
+  margin-bottom: $inuit-base-spacing-unit--tiny;
+
   &:hover {
     background-color: var(--px-map-control-button-background, $gray3);
   }
@@ -117,24 +170,30 @@
 // MAP CONTROL: ZOOM
 
 // Directly overwrite leaflet classes
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar,
 .leaflet-control-zoom {
   border: none;
   border-radius: 0;
 }
-a.leaflet-control-zoom-in,
-a.leaflet-control-zoom-out {
-  @extend %map-control-button;
-  @extend %map-control-button--round;
-  position: relative;
-  border-radius: 100%;
-}
-a.leaflet-control-zoom-out {
-  margin-top: .25rem;
-}
-a.leaflet-control-zoom-in i,
-a.leaflet-control-zoom-out i {
-  position: relative;
-  left: -0.03rem;
+.leaflet-touch .leaflet-bar {
+  a.leaflet-control-zoom-in,
+  a.leaflet-control-zoom-out {
+    @extend %map-control-button;
+    @extend %map-control-button--round;
+    position: relative;
+    border-radius: 100%;
+  }
+  a.leaflet-control-zoom-in i,
+  a.leaflet-control-zoom-out i {
+    position: relative;
+    left: -0.03rem;
+    top: .55rem;
+  }
+  // Push the minus icon down a bit
+  a.leaflet-control-zoom-out i {
+    top: .59rem;
+  }
 }
 
 /* CONTROL: Info control */

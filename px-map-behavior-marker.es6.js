@@ -74,14 +74,11 @@
       }
     },
 
-    getInstOptions(defaults={}) {
+    getInstOptions() {
       const geometry = this.getMarkerLatLng();
-      if (defaults.geometry) this.extend(geometry, defaults.geometry);
-
       const config = {};
       config.title = (this.name || '');
       config.icon = this.getMarkerIcon();
-      if (defaults.config) this.extend(config, defaults.config);
 
       return { geometry, config };
     },
@@ -142,7 +139,7 @@
     getMarkerIcon() {
       if (!this.markerIcon) {
         const options = this._getMarkerIconOptions();
-        this.markerIcon = new PxMap.IconStatic(options);
+        this.markerIcon = new PxMap.StaticIcon(options);
       }
       return this.markerIcon;
     },
@@ -151,13 +148,16 @@
       if (!this.markerIcon) return;
 
       const options = this._getMarkerIconOptions();
-      this.markerIcon = new PxMap.IconStatic(options);
+      this.markerIcon = new PxMap.StaticIcon(options);
 
       this.shouldUpdateInst();
     },
 
     _getMarkerIconOptions() {
-      return { type: this.type || '', badge: this.showBadge || false };
+      return {
+        type: this.type || '',
+        badge: this.showBadge || false
+      };
     }
   };
   /* Bind StaticMarker behavior */

@@ -1,10 +1,10 @@
 (function(){
   'use strict';
 
-  class PxMapMarkerGroup {
+  class PxMapMarkerGroupComponent {
     beforeRegister() {
       this.is = 'px-map-marker-group';
-      this.properties = {};
+      this.properties = this.properties || {};
     }
 
     get behaviors() {
@@ -17,5 +17,5 @@
   }
 
   /* Register this component with the Polymer constructor. */
-  Polymer(PxMapMarkerGroup);
+  Polymer(PxMapMarkerGroupComponent);
 })();

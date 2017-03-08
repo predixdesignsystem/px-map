@@ -11,13 +11,14 @@
         ]
       },
       "properties": {
-        "title": "Charles Barry blue plaque",
+        "title": "Something ele",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC1"
     },
     {
       "type": "Feature",
@@ -31,11 +32,12 @@
       "properties": {
         "title": "Grey plaque № 8942",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC2"
     },
     {
       "type": "Feature",
@@ -49,11 +51,12 @@
       "properties": {
         "title": "Grey plaque № 9850",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC3"
     },
     {
       "type": "Feature",
@@ -67,11 +70,12 @@
       "properties": {
         "title": "British Ballet Organisation blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC4"
     },
     {
       "type": "Feature",
@@ -85,11 +89,12 @@
       "properties": {
         "title": "Fred Perry green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC5"
     },
     {
       "type": "Feature",
@@ -103,11 +108,12 @@
       "properties": {
         "title": "John Passmore Edwards plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC6"
     },
     {
       "type": "Feature",
@@ -121,11 +127,12 @@
       "properties": {
         "title": "John Kirk and William Hale White brown plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC7"
     },
     {
       "type": "Feature",
@@ -139,11 +146,12 @@
       "properties": {
         "title": "Edouard Espinosa blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC8"
     },
     {
       "type": "Feature",
@@ -157,11 +165,12 @@
       "properties": {
         "title": "Winnie The Pooh green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC9"
     },
     {
       "type": "Feature",
@@ -175,11 +184,12 @@
       "properties": {
         "title": "Richard White green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC10"
     },
     {
       "type": "Feature",
@@ -193,11 +203,12 @@
       "properties": {
         "title": "Arthur Haynes blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC11"
     },
     {
       "type": "Feature",
@@ -211,11 +222,12 @@
       "properties": {
         "title": "Brown plaque № 9996",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC12"
     },
     {
       "type": "Feature",
@@ -229,11 +241,12 @@
       "properties": {
         "title": "Charles Hamilton blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC13"
     },
     {
       "type": "Feature",
@@ -247,11 +260,12 @@
       "properties": {
         "title": "George Meredith and Kingston Lodge green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC14"
     },
     {
       "type": "Feature",
@@ -265,11 +279,12 @@
       "properties": {
         "title": "Matthew Flinders blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC15"
     },
     {
       "type": "Feature",
@@ -283,11 +298,12 @@
       "properties": {
         "title": "C. L. R. James blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC16"
     },
     {
       "type": "Feature",
@@ -301,11 +317,12 @@
       "properties": {
         "title": "Mervyn Mansell blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC17"
     },
     {
       "type": "Feature",
@@ -319,11 +336,12 @@
       "properties": {
         "title": "Blue plaque № 10024",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC18"
     },
     {
       "type": "Feature",
@@ -337,11 +355,12 @@
       "properties": {
         "title": "Harry Vardon blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC19"
     },
     {
       "type": "Feature",
@@ -355,11 +374,12 @@
       "properties": {
         "title": "Harry Tate and Camden House red plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC20"
     },
     {
       "type": "Feature",
@@ -373,11 +393,12 @@
       "properties": {
         "title": "George Lansbury plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC21"
     },
     {
       "type": "Feature",
@@ -391,11 +412,12 @@
       "properties": {
         "title": "Decimus Burton and Tivoli Lodge green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC22"
     },
     {
       "type": "Feature",
@@ -409,11 +431,12 @@
       "properties": {
         "title": "Ernest Boulton and Frederick Park blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC23"
     },
     {
       "type": "Feature",
@@ -427,11 +450,12 @@
       "properties": {
         "title": "Elizabeth Bowen blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC24"
     },
     {
       "type": "Feature",
@@ -445,11 +469,12 @@
       "properties": {
         "title": "Ettore Schmitz and Italo Svevo blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC25"
     },
     {
       "type": "Feature",
@@ -463,11 +488,12 @@
       "properties": {
         "title": "Marie Tussaud bronze plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC26"
     },
     {
       "type": "Feature",
@@ -481,11 +507,12 @@
       "properties": {
         "title": "Nicolas Medtner blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC27"
     },
     {
       "type": "Feature",
@@ -499,11 +526,12 @@
       "properties": {
         "title": "Marianne Jean-Baptiste blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC28"
     },
     {
       "type": "Feature",
@@ -517,11 +545,12 @@
       "properties": {
         "title": "P. G. Wodehouse blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC29"
     },
     {
       "type": "Feature",
@@ -535,11 +564,12 @@
       "properties": {
         "title": "Voltaire green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC30"
     },
     {
       "type": "Feature",
@@ -553,11 +583,12 @@
       "properties": {
         "title": "Alfred Munnings blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC31"
     },
     {
       "type": "Feature",
@@ -571,11 +602,12 @@
       "properties": {
         "title": "Blue plaque № 10098",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC32"
     },
     {
       "type": "Feature",
@@ -589,11 +621,12 @@
       "properties": {
         "title": "plaque № 10093",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC33"
     },
     {
       "type": "Feature",
@@ -607,11 +640,12 @@
       "properties": {
         "title": "Brown plaque № 10091",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC34"
     },
     {
       "type": "Feature",
@@ -625,11 +659,12 @@
       "properties": {
         "title": "Anne Shelton blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC35"
     },
     {
       "type": "Feature",
@@ -643,11 +678,12 @@
       "properties": {
         "title": "Blue plaque № 10090",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC36"
     },
     {
       "type": "Feature",
@@ -661,11 +697,12 @@
       "properties": {
         "title": "William McMillan blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC37"
     },
     {
       "type": "Feature",
@@ -679,11 +716,12 @@
       "properties": {
         "title": "Henry Moore plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC38"
     },
     {
       "type": "Feature",
@@ -697,11 +735,12 @@
       "properties": {
         "title": "plaque № 10088",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC39"
     },
     {
       "type": "Feature",
@@ -715,11 +754,12 @@
       "properties": {
         "title": "Frederick Marryat plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC40"
     },
     {
       "type": "Feature",
@@ -733,11 +773,12 @@
       "properties": {
         "title": "Hendon Parish Cage blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC41"
     },
     {
       "type": "Feature",
@@ -751,11 +792,12 @@
       "properties": {
         "title": "Rose Macaulay blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC42"
     },
     {
       "type": "Feature",
@@ -769,11 +811,12 @@
       "properties": {
         "title": "Grey plaque № 2937",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC43"
     },
     {
       "type": "Feature",
@@ -787,11 +830,12 @@
       "properties": {
         "title": "plaque № 10130",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC44"
     },
     {
       "type": "Feature",
@@ -805,11 +849,12 @@
       "properties": {
         "title": "John Walter blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC45"
     },
     {
       "type": "Feature",
@@ -823,11 +868,12 @@
       "properties": {
         "title": "Gregory Gunne and Tyburn Convent black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC46"
     },
     {
       "type": "Feature",
@@ -841,11 +887,12 @@
       "properties": {
         "title": "Eleanor Marx blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC47"
     },
     {
       "type": "Feature",
@@ -859,11 +906,12 @@
       "properties": {
         "title": "William Crookes blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC48"
     },
     {
       "type": "Feature",
@@ -877,11 +925,12 @@
       "properties": {
         "title": "Kenneth Horne blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC49"
     },
     {
       "type": "Feature",
@@ -895,11 +944,12 @@
       "properties": {
         "title": "Wynkyn de Worde black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC50"
     },
     {
       "type": "Feature",
@@ -913,11 +963,12 @@
       "properties": {
         "title": "Edward Goodrich Acheson blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC51"
     },
     {
       "type": "Feature",
@@ -931,11 +982,12 @@
       "properties": {
         "title": "Richard Norman Shaw, Frederick Goodall, and William Schwenck Gilbert blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC52"
     },
     {
       "type": "Feature",
@@ -949,11 +1001,12 @@
       "properties": {
         "title": "Thomas Paine white plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC53"
     },
     {
       "type": "Feature",
@@ -967,11 +1020,12 @@
       "properties": {
         "title": "Christopher Pinchbeck stone plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC54"
     },
     {
       "type": "Feature",
@@ -985,11 +1039,12 @@
       "properties": {
         "title": "Henry Irving and Bram Stoker grey plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC55"
     },
     {
       "type": "Feature",
@@ -1003,11 +1058,12 @@
       "properties": {
         "title": "Gas Light & Coke Company green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC56"
     },
     {
       "type": "Feature",
@@ -1021,11 +1077,12 @@
       "properties": {
         "title": "Blue plaque № 31504",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC57"
     },
     {
       "type": "Feature",
@@ -1039,11 +1096,12 @@
       "properties": {
         "title": "William Willett green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC58"
     },
     {
       "type": "Feature",
@@ -1057,11 +1115,12 @@
       "properties": {
         "title": "Hugh Myddelton blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC59"
     },
     {
       "type": "Feature",
@@ -1075,11 +1134,12 @@
       "properties": {
         "title": "plaque № 9993",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC60"
     },
     {
       "type": "Feature",
@@ -1093,11 +1153,12 @@
       "properties": {
         "title": "Benny Hill blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC61"
     },
     {
       "type": "Feature",
@@ -1111,11 +1172,12 @@
       "properties": {
         "title": "Mary Wollstonecraft brown plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC62"
     },
     {
       "type": "Feature",
@@ -1129,11 +1191,12 @@
       "properties": {
         "title": "Samuel Johnson, Joshua Reynolds, and The Club green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC63"
     },
     {
       "type": "Feature",
@@ -1147,11 +1210,12 @@
       "properties": {
         "title": "Colin Chapman white plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC64"
     },
     {
       "type": "Feature",
@@ -1165,11 +1229,12 @@
       "properties": {
         "title": "Vivian Stanshall blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC65"
     },
     {
       "type": "Feature",
@@ -1183,11 +1248,12 @@
       "properties": {
         "title": "Green plaque № 10276",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC66"
     },
     {
       "type": "Feature",
@@ -1201,11 +1267,12 @@
       "properties": {
         "title": "Red plaque № 10283",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC67"
     },
     {
       "type": "Feature",
@@ -1219,11 +1286,12 @@
       "properties": {
         "title": "Morell Mackenzie black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC68"
     },
     {
       "type": "Feature",
@@ -1237,11 +1305,12 @@
       "properties": {
         "title": "Ronan McCloskey black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC69"
     },
     {
       "type": "Feature",
@@ -1255,11 +1324,12 @@
       "properties": {
         "title": "Elizabeth Finn, Constance Finn, and Distressed Gentlefolk's Aid Association blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC70"
     },
     {
       "type": "Feature",
@@ -1273,11 +1343,12 @@
       "properties": {
         "title": "Thomas Woolner white plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC71"
     },
     {
       "type": "Feature",
@@ -1291,11 +1362,12 @@
       "properties": {
         "title": "William Morris and Woodford Hall white plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC72"
     },
     {
       "type": "Feature",
@@ -1309,11 +1381,12 @@
       "properties": {
         "title": "Blue plaque № 10311",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC73"
     },
     {
       "type": "Feature",
@@ -1327,11 +1400,12 @@
       "properties": {
         "title": "Nina Mackay red plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC74"
     },
     {
       "type": "Feature",
@@ -1345,11 +1419,12 @@
       "properties": {
         "title": "Dwight D. Eisenhower plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC75"
     },
     {
       "type": "Feature",
@@ -1363,11 +1438,12 @@
       "properties": {
         "title": "Peter Collinson blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC76"
     },
     {
       "type": "Feature",
@@ -1381,11 +1457,12 @@
       "properties": {
         "title": "Samuel Pepys, John Evelyn, Davies Amphitheatre, Bear Gardens, and 2 others",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC77"
     },
     {
       "type": "Feature",
@@ -1399,11 +1476,12 @@
       "properties": {
         "title": "Free Grammar School of Queen Elizabeth I blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC78"
     },
     {
       "type": "Feature",
@@ -1417,11 +1495,12 @@
       "properties": {
         "title": "Edward Owen Greening claret plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC79"
     },
     {
       "type": "Feature",
@@ -1435,11 +1514,12 @@
       "properties": {
         "title": "Thomas Hancock blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC80"
     },
     {
       "type": "Feature",
@@ -1453,11 +1533,12 @@
       "properties": {
         "title": "Bing Crosby brass plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC81"
     },
     {
       "type": "Feature",
@@ -1471,11 +1552,12 @@
       "properties": {
         "title": "Cowan Dobson plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC82"
     },
     {
       "type": "Feature",
@@ -1489,11 +1571,12 @@
       "properties": {
         "title": "Grey plaque № 10310",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC83"
     },
     {
       "type": "Feature",
@@ -1507,11 +1590,12 @@
       "properties": {
         "title": "Blue plaque № 5306",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC84"
     },
     {
       "type": "Feature",
@@ -1525,11 +1609,12 @@
       "properties": {
         "title": "John Horne Tooke blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC85"
     },
     {
       "type": "Feature",
@@ -1543,11 +1628,12 @@
       "properties": {
         "title": "A. W. Hofmann blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC86"
     },
     {
       "type": "Feature",
@@ -1561,11 +1647,12 @@
       "properties": {
         "title": "plaque № 40664",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC87"
     },
     {
       "type": "Feature",
@@ -1579,11 +1666,12 @@
       "properties": {
         "title": "Eduard Suess blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC88"
     },
     {
       "type": "Feature",
@@ -1597,11 +1685,12 @@
       "properties": {
         "title": "first regular high definition television service blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC89"
     },
     {
       "type": "Feature",
@@ -1615,11 +1704,12 @@
       "properties": {
         "title": "Joseph Grimaldi blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC90"
     },
     {
       "type": "Feature",
@@ -1633,11 +1723,12 @@
       "properties": {
         "title": "Blue plaque № 5310",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC91"
     },
     {
       "type": "Feature",
@@ -1651,11 +1742,12 @@
       "properties": {
         "title": "St. John Street Turnpike green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC92"
     },
     {
       "type": "Feature",
@@ -1669,11 +1761,12 @@
       "properties": {
         "title": "George Baxter blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC93"
     },
     {
       "type": "Feature",
@@ -1687,11 +1780,12 @@
       "properties": {
         "title": "White plaque № 10278",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC94"
     },
     {
       "type": "Feature",
@@ -1705,11 +1799,12 @@
       "properties": {
         "title": "Richard Titmuss blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC95"
     },
     {
       "type": "Feature",
@@ -1723,11 +1818,12 @@
       "properties": {
         "title": "Fenner Brockway green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC96"
     },
     {
       "type": "Feature",
@@ -1741,11 +1837,12 @@
       "properties": {
         "title": "Stephen Tibble grey plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC97"
     },
     {
       "type": "Feature",
@@ -1759,11 +1856,12 @@
       "properties": {
         "title": "John Alfred Prestwich green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC98"
     },
     {
       "type": "Feature",
@@ -1777,11 +1875,12 @@
       "properties": {
         "title": "Alfred Marks blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC99"
     },
     {
       "type": "Feature",
@@ -1795,11 +1894,12 @@
       "properties": {
         "title": "Geoffrey Wilkinson blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC100"
     },
     {
       "type": "Feature",
@@ -1813,11 +1913,12 @@
       "properties": {
         "title": "Derek Barton blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC101"
     },
     {
       "type": "Feature",
@@ -1831,11 +1932,12 @@
       "properties": {
         "title": "Blue plaque № 9156",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC102"
     },
     {
       "type": "Feature",
@@ -1849,11 +1951,12 @@
       "properties": {
         "title": "Terracotta plaque № 9992",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC103"
     },
     {
       "type": "Feature",
@@ -1867,11 +1970,12 @@
       "properties": {
         "title": "Edith Margaret Garrud green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC104"
     },
     {
       "type": "Feature",
@@ -1885,11 +1989,12 @@
       "properties": {
         "title": "Richard Murdoch blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC105"
     },
     {
       "type": "Feature",
@@ -1903,11 +2008,12 @@
       "properties": {
         "title": "Mark Lemon blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC106"
     },
     {
       "type": "Feature",
@@ -1921,11 +2027,12 @@
       "properties": {
         "title": "Benjamin Waugh blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC107"
     },
     {
       "type": "Feature",
@@ -1939,11 +2046,12 @@
       "properties": {
         "title": "Robert Browning blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC108"
     },
     {
       "type": "Feature",
@@ -1957,11 +2065,12 @@
       "properties": {
         "title": "Richard III plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC109"
     },
     {
       "type": "Feature",
@@ -1975,11 +2084,12 @@
       "properties": {
         "title": "plaque № 9989",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC110"
     },
     {
       "type": "Feature",
@@ -1993,11 +2103,12 @@
       "properties": {
         "title": "C. R. Ashbee plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC111"
     },
     {
       "type": "Feature",
@@ -2011,11 +2122,12 @@
       "properties": {
         "title": "Richard Taverner, George Evelyn, Anthony Benn, and Mary Chester green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC112"
     },
     {
       "type": "Feature",
@@ -2029,11 +2141,12 @@
       "properties": {
         "title": "Tommy Steele blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC113"
     },
     {
       "type": "Feature",
@@ -2047,11 +2160,12 @@
       "properties": {
         "title": "Arthur Fleischmann green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC114"
     },
     {
       "type": "Feature",
@@ -2065,11 +2179,12 @@
       "properties": {
         "title": "Blue plaque № 6766",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC115"
     },
     {
       "type": "Feature",
@@ -2083,11 +2198,12 @@
       "properties": {
         "title": "John Adams-Acton green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC116"
     },
     {
       "type": "Feature",
@@ -2101,11 +2217,12 @@
       "properties": {
         "title": "Clement Metternich blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC117"
     },
     {
       "type": "Feature",
@@ -2119,11 +2236,12 @@
       "properties": {
         "title": "Oskar Kokoschka blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC118"
     },
     {
       "type": "Feature",
@@ -2137,11 +2255,12 @@
       "properties": {
         "title": "William Reid Dick blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC119"
     },
     {
       "type": "Feature",
@@ -2155,11 +2274,12 @@
       "properties": {
         "title": "Laura Knight and Harold Knight blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC120"
     },
     {
       "type": "Feature",
@@ -2173,11 +2293,12 @@
       "properties": {
         "title": "John Lennon blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC121"
     },
     {
       "type": "Feature",
@@ -2191,11 +2312,12 @@
       "properties": {
         "title": "Alexis Soyer green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC122"
     },
     {
       "type": "Feature",
@@ -2209,11 +2331,12 @@
       "properties": {
         "title": "Jet Harris blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC123"
     },
     {
       "type": "Feature",
@@ -2227,11 +2350,12 @@
       "properties": {
         "title": "Blue plaque № 5974",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC124"
     },
     {
       "type": "Feature",
@@ -2245,11 +2369,12 @@
       "properties": {
         "title": "George Orwell blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC125"
     },
     {
       "type": "Feature",
@@ -2263,11 +2388,12 @@
       "properties": {
         "title": "John Maria Gatti , Adelphi Theatre Restaurant, Agostino Gatti, and Rocco Joseph Stefano Gatti green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC126"
     },
     {
       "type": "Feature",
@@ -2281,11 +2407,12 @@
       "properties": {
         "title": "Michael Balcon green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC127"
     },
     {
       "type": "Feature",
@@ -2299,11 +2426,12 @@
       "properties": {
         "title": "David Bowie black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC128"
     },
     {
       "type": "Feature",
@@ -2317,11 +2445,12 @@
       "properties": {
         "title": "Walter James MacQueen-Pope green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC129"
     },
     {
       "type": "Feature",
@@ -2335,11 +2464,12 @@
       "properties": {
         "title": "The Bee Gees, Barry Gibb, Robin Hugh Gibb, and Maurice Gibb green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC130"
     },
     {
       "type": "Feature",
@@ -2353,11 +2483,12 @@
       "properties": {
         "title": "François-René de Chateaubriand brass plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC131"
     },
     {
       "type": "Feature",
@@ -2371,11 +2502,12 @@
       "properties": {
         "title": "Thomas Sheraton blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC132"
     },
     {
       "type": "Feature",
@@ -2389,11 +2521,12 @@
       "properties": {
         "title": "W. Heath Robinson green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC133"
     },
     {
       "type": "Feature",
@@ -2407,11 +2540,12 @@
       "properties": {
         "title": "Henry VIII of England and Elizabeth I of England black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC134"
     },
     {
       "type": "Feature",
@@ -2425,11 +2559,12 @@
       "properties": {
         "title": "Julius Jacob von Haynau and Barclay, Perkins & Co. black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC135"
     },
     {
       "type": "Feature",
@@ -2443,11 +2578,12 @@
       "properties": {
         "title": "Ernest Bevin blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC136"
     },
     {
       "type": "Feature",
@@ -2461,11 +2597,12 @@
       "properties": {
         "title": "John Hughlings Jackson blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC137"
     },
     {
       "type": "Feature",
@@ -2479,11 +2616,12 @@
       "properties": {
         "title": "William Morris bronze plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC138"
     },
     {
       "type": "Feature",
@@ -2497,11 +2635,12 @@
       "properties": {
         "title": "Frederick Marryat blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC139"
     },
     {
       "type": "Feature",
@@ -2515,11 +2654,12 @@
       "properties": {
         "title": "John Robert Godley blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC140"
     },
     {
       "type": "Feature",
@@ -2533,11 +2673,12 @@
       "properties": {
         "title": "Lindsay Anderson film cell plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC141"
     },
     {
       "type": "Feature",
@@ -2551,11 +2692,12 @@
       "properties": {
         "title": "Alfred Milner blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC142"
     },
     {
       "type": "Feature",
@@ -2569,11 +2711,12 @@
       "properties": {
         "title": "Blue plaque № 6114",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC143"
     },
     {
       "type": "Feature",
@@ -2587,11 +2730,12 @@
       "properties": {
         "title": "Borough Market blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC144"
     },
     {
       "type": "Feature",
@@ -2605,11 +2749,12 @@
       "properties": {
         "title": "Old Serjeants' Inn blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC145"
     },
     {
       "type": "Feature",
@@ -2623,11 +2768,12 @@
       "properties": {
         "title": "plaque № 9988",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC146"
     },
     {
       "type": "Feature",
@@ -2641,11 +2787,12 @@
       "properties": {
         "title": "plaque № 9987",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC147"
     },
     {
       "type": "Feature",
@@ -2659,11 +2806,12 @@
       "properties": {
         "title": "George Denman and Thomas Denman brown plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC148"
     },
     {
       "type": "Feature",
@@ -2677,11 +2825,12 @@
       "properties": {
         "title": "Peter Sellers, Spike Milligan, Harry Secombe, and Michael Bentine brushed metal plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC149"
     },
     {
       "type": "Feature",
@@ -2695,11 +2844,12 @@
       "properties": {
         "title": "King's Wardrobe blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC150"
     },
     {
       "type": "Feature",
@@ -2713,11 +2863,12 @@
       "properties": {
         "title": "Thomas Guy grey plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC151"
     },
     {
       "type": "Feature",
@@ -2731,11 +2882,12 @@
       "properties": {
         "title": "Arthur Joseph Penty green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC152"
     },
     {
       "type": "Feature",
@@ -2749,11 +2901,12 @@
       "properties": {
         "title": "Richard D'Oyly Carte blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC153"
     },
     {
       "type": "Feature",
@@ -2767,11 +2920,12 @@
       "properties": {
         "title": "Osbert Sitwell blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC154"
     },
     {
       "type": "Feature",
@@ -2785,11 +2939,12 @@
       "properties": {
         "title": "Joe Strummer stone plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC155"
     },
     {
       "type": "Feature",
@@ -2803,11 +2958,12 @@
       "properties": {
         "title": "George Cruikshank green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC156"
     },
     {
       "type": "Feature",
@@ -2821,11 +2977,12 @@
       "properties": {
         "title": "Thomas Linacre blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC157"
     },
     {
       "type": "Feature",
@@ -2839,11 +2996,12 @@
       "properties": {
         "title": "Green plaque № 11891",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC158"
     },
     {
       "type": "Feature",
@@ -2857,11 +3015,12 @@
       "properties": {
         "title": "Charles George Gordon blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC159"
     },
     {
       "type": "Feature",
@@ -2875,11 +3034,12 @@
       "properties": {
         "title": "Noël Coward red plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC160"
     },
     {
       "type": "Feature",
@@ -2893,11 +3053,12 @@
       "properties": {
         "title": "plaque № 9986",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC161"
     },
     {
       "type": "Feature",
@@ -2911,11 +3072,12 @@
       "properties": {
         "title": "Harry Worth blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC162"
     },
     {
       "type": "Feature",
@@ -2929,11 +3091,12 @@
       "properties": {
         "title": "Christopher Jones and Mayflower blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC163"
     },
     {
       "type": "Feature",
@@ -2947,11 +3110,12 @@
       "properties": {
         "title": "Charles Dickens blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC164"
     },
     {
       "type": "Feature",
@@ -2965,11 +3129,12 @@
       "properties": {
         "title": "Agatha Christie blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC165"
     },
     {
       "type": "Feature",
@@ -2983,11 +3148,12 @@
       "properties": {
         "title": "Peter II grey plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC166"
     },
     {
       "type": "Feature",
@@ -3001,11 +3167,12 @@
       "properties": {
         "title": "Charles I of England black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC167"
     },
     {
       "type": "Feature",
@@ -3019,11 +3186,12 @@
       "properties": {
         "title": "Bronze plaque № 10802",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC168"
     },
     {
       "type": "Feature",
@@ -3037,11 +3205,12 @@
       "properties": {
         "title": "Keith Clifford Hall green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC169"
     },
     {
       "type": "Feature",
@@ -3055,11 +3224,12 @@
       "properties": {
         "title": "Diana Spencer blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC170"
     },
     {
       "type": "Feature",
@@ -3073,11 +3243,12 @@
       "properties": {
         "title": "Eugène Goossens, Annie Cook, Eugene Aynsley Goossens, Marie Goossens, and 3 others",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC171"
     },
     {
       "type": "Feature",
@@ -3091,11 +3262,12 @@
       "properties": {
         "title": "Mohammed Ali Jinnah blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC172"
     },
     {
       "type": "Feature",
@@ -3109,11 +3281,12 @@
       "properties": {
         "title": "Old Slaughters Coffee House and Royal Society for the Protection of Animals green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC173"
     },
     {
       "type": "Feature",
@@ -3127,11 +3300,12 @@
       "properties": {
         "title": "Edith Nesbit and John Arnold maroon plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC174"
     },
     {
       "type": "Feature",
@@ -3145,11 +3319,12 @@
       "properties": {
         "title": "Blue plaque № 6080",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC175"
     },
     {
       "type": "Feature",
@@ -3163,11 +3338,12 @@
       "properties": {
         "title": "Green plaque № 3009",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC176"
     },
     {
       "type": "Feature",
@@ -3181,11 +3357,12 @@
       "properties": {
         "title": "City of London School blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC177"
     },
     {
       "type": "Feature",
@@ -3199,11 +3376,12 @@
       "properties": {
         "title": "Green plaque № 6408",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC178"
     },
     {
       "type": "Feature",
@@ -3217,11 +3395,12 @@
       "properties": {
         "title": "plaque № 6458",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC179"
     },
     {
       "type": "Feature",
@@ -3235,11 +3414,12 @@
       "properties": {
         "title": "John Nash and Humphry Repton plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC180"
     },
     {
       "type": "Feature",
@@ -3253,11 +3433,12 @@
       "properties": {
         "title": "Gerald Massey plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC181"
     },
     {
       "type": "Feature",
@@ -3271,11 +3452,12 @@
       "properties": {
         "title": "Thomas Wilde blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC182"
     },
     {
       "type": "Feature",
@@ -3289,11 +3471,12 @@
       "properties": {
         "title": "A. E. Housman blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC183"
     },
     {
       "type": "Feature",
@@ -3307,11 +3490,12 @@
       "properties": {
         "title": "Brass plaque № 5230",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC184"
     },
     {
       "type": "Feature",
@@ -3325,11 +3509,12 @@
       "properties": {
         "title": "Marcus Mosiah Garvey blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC185"
     },
     {
       "type": "Feature",
@@ -3343,11 +3528,12 @@
       "properties": {
         "title": "Coppice Row green plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC186"
     },
     {
       "type": "Feature",
@@ -3361,11 +3547,12 @@
       "properties": {
         "title": "Henry VI of England stone plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC187"
     },
     {
       "type": "Feature",
@@ -3379,11 +3566,12 @@
       "properties": {
         "title": "Derek Nimmo blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC188"
     },
     {
       "type": "Feature",
@@ -3397,11 +3585,12 @@
       "properties": {
         "title": "White plaque № 39058",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC189"
     },
     {
       "type": "Feature",
@@ -3415,11 +3604,12 @@
       "properties": {
         "title": "Green plaque № 5176",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC190"
     },
     {
       "type": "Feature",
@@ -3433,11 +3623,12 @@
       "properties": {
         "title": "Ladbroke Grove Train Disaster black plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC191"
     },
     {
       "type": "Feature",
@@ -3451,11 +3642,12 @@
       "properties": {
         "title": "Charles Gounod blue plaque",
         "marker-icon": {
-          "icon-base": "map-static-icon",
-          "icon-status": "info",
+          "icon-base": "StaticIcon",
+          "icon-type": "info",
           "icon-with-badge": true
         }
-      }
+      },
+      "id": "ABC192"
     }
   ]
 }

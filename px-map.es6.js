@@ -101,6 +101,7 @@
          */
         maxZoom: {
           type: Number,
+          value: 18
         },
 
         /**
@@ -226,13 +227,13 @@
           let markerGeom = layer.getLatLng();
           bounds.extend(markerGeom);
         }
-        // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
-        if (layer.Cluster && layer.Cluster.ComputeGlobalBounds) {
-          let clusterBounds = layer.Cluster.ComputeGlobalBounds();
-          // A raw object is returned that must be turned into a `L.LatLngBounds` instance
-          let composedBounds = L.latLngBounds([clusterBounds.minLat, clusterBounds.maxLng],[clusterBounds.maxLat, clusterBounds.minLng]);
-          bounds.extend(composedBounds);
-        }
+        // // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
+        // if (layer.Cluster && layer.Cluster.ComputeGlobalBounds) {
+        //   let clusterBounds = layer.Cluster.ComputeGlobalBounds();
+        //   // A raw object is returned that must be turned into a `L.LatLngBounds` instance
+        //   let composedBounds = L.latLngBounds([clusterBounds.minLat, clusterBounds.maxLng],[clusterBounds.maxLat, clusterBounds.minLng]);
+        //   bounds.extend(composedBounds);
+        // }
       });
       return bounds;
     }
