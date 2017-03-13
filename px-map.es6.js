@@ -277,6 +277,10 @@
         // Attach to the read-only `elementInst`
         this._setElementInst(map);
         this.fire('px-map-layer-instance-created');
+
+        // Bind map move listeners
+        const mapMoveFn = this._handleMapMove.bind(this);
+        this._mapMoveHandlerFn = map.on('moveend', mapMoveFn)
       }
 
       // Ensure a tile layer is applied to the map
@@ -290,39 +294,18 @@
 
       // Try to fit to map markers if the `fitToMarkers` attribute was set
       this._fitMapToMakers();
+    }
 
-      // TEMPORARY MARKER TEST
-      // var newMarker = L.marker([this.lat, this.lng]).addTo(this.elementInst);
+    _handleMapMove() {
+      let latLng = this.elementInst.getCenter();
+      let zoom = this.elementInst.getZoom();
 
-
-      // TEMPORARY CONTROLBOX TEST
-      // let controlHTML =
-      // `
-      // <div class="px-map-data-box-control">
-      //   <div class="data-box">
-      //     <div class="data-box__header">
-      //       <h3 class="data-box__header__text">Dispatch Hub: San Ramon</h3>
-      //     </div>
-      //     <div class="data-box__table">
-      //       <div class="data-box__table__cell"><p>Description</p></div>
-      //       <div class="data-box__table__cell"><p>NSS 177 ROAD</p></div>
-      //
-      //       <div class="data-box__table__cell"><p>Milepost</p></div>
-      //       <div class="data-box__table__cell"><p>50</p></div>
-      //
-      //       <div class="data-box__table__cell"><p>DIV/SUB</p></div>
-      //       <div class="data-box__table__cell"><p>Bakersfield, CA</p></div>
-      //
-      //       <div class="data-box__table__cell"><p>Next Test</p></div>
-      //       <div class="data-box__table__cell"><p>9/12/16</p></div>
-      //     </div>
-      //   </div>
-      // </div>
-      // `;
-      // var controlBox = L.Control.controlBox({ position: 'topright', content: controlHTML });
-      // controlBox.addTo(this.elementInst);
-      // this.controlBox = controlBox;
-      //
+      this.fire('px-map-moved', {
+        latLng: latLng,
+        lat: latLng.lat,
+        lng: latLng.lng,
+        zoom: zoom
+      });
     }
 
     /**
@@ -334,6 +317,35 @@
         let updateFn = () => { this.elementInst.setView([this.lat, this.lng], this.zoom) };
         this.debounce('update-map-view', updateFn, 1);
       }
+    }
+
+    getVisibleMarkers() {
+      const mapBounds = this.elementInst.getBounds();
+      let markers = [];
+
+      // Loop over the layers
+      this.elementInst.eachLayer((layer) => {
+        // Markers have a `layer.options.icon` set
+        if (layer.options && layer.options.icon) {
+          // Only push markers that are visible
+          if (mapBounds.contains(layer.getLatLng())) {
+            markers.push(layer);
+          }
+        }
+
+        // Marker clusters have a `_markerCluster` key
+        if (layer._markerCluster) {
+          layer.eachLayer((marker) => {
+            // Only push markers that are visible
+            let parentCluster = layer.getVisibleParent(marker);
+            if (parentCluster && mapBounds.contains(parentCluster.getLatLng())) {
+              markers.push(marker);
+            }
+          })
+        }
+      });
+
+      return markers;
     }
 
   }

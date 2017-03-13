@@ -33,16 +33,21 @@
       <!-- Load geojson for markers with iron-ajax -->
       <iron-ajax url="marker-clusters-geojson-transit.json" last-response="{{geoJSON}}" auto></iron-ajax>
 
-      <px-map fit-to-markers flex-to-size>
+      <px-map fit-to-markers flex-to-size on-px-map-moved="mapMove">
         <px-map-tile-layer url="http://api.tiles.mapbox.com/v3/aj.map-b0cn5uze/{z}/{x}/{y}.png"></px-map-tile-layer>
         <px-map-control-zoom position="bottomright"></px-map-control-zoom>
 
         <!-- Data-bind the output of the iron-ajax call `geoJSON` to the marker group's `data` attribute -->
         <px-map-marker-group name="Plaques" data="{{geoJSON}}"></px-map-marker-group>
       </px-map>
-
-
     </template>
   </section>
+  <script>
+    var tmpl = document.querySelector('template[is=dom-bind]');
+    tmpl.mapMove = function(evt) {
+      var markers = evt.srcElement.getVisibleMarkers();
+      console.log('There are ' + markers.length + ' markers visible on the map.');
+    }
+  </script>
 </body>
 </html>
