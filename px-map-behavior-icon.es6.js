@@ -146,7 +146,7 @@
             </g>
         </svg>
       `;
-    };
+    }
   };
 
   /* Ensures the klass namespace is created */

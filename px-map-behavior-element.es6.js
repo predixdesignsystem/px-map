@@ -34,20 +34,25 @@
         this.fire('px-map-layer-instance-created');
       }
 
+      // @TODO: Bind events
+      this.__instEvents = (this.__instEvents || []);
+      this.__instEventsElementsMap = (this.__instEventsElementsMap || new WeakMap());
+
       // Add the instance to its parent
       if (this.elementInst && parent || !parent.hasLayer(this.elementInst)) {
         this.addInst(parent);
       };
-
-      // @TODO: Bind events
     },
 
     shouldRemoveInst(parent) {
+      // @TODO: Unbind events
+      this.unbindAllEvents(this.__instEvents, this.__instEventsElementsMap);
+      this.__instEvents = null;
+      this.__instEventsElementsMap = null;
+
       if (this.elementInst) {
         this.removeInst(parent ? parent : undefined);
       };
-
-      // @TODO: Unbind events
     },
 
     // Simple observer trigger for dynamic properties that should be synced
@@ -107,6 +112,37 @@
         this.extend(this.properties, ...properties)
       }
       return this.properties;
+    },
+
+    bindEvents(evts, target) {
+      if ((typeof evts !== 'object') || !Object.keys(evts).length) return;
+
+      const el = target || this.elementInst;
+      if (!el || !el.on) return;
+
+      const boundEvts = this.__instEvents;
+      const boundEvtEls = this.__instEventsElementsMap;
+
+      for (let evtName in evts) {
+        let evtReference = {name: evtName, fn: evts[evtName]};
+        el.on(evtReference.name, evtReference.fn);
+        boundEvts.push(evtReference);
+        boundEvtEls.set(evtReference, el);
+      }
+    },
+
+    unbindAllEvents(boundEvts, boundEvtEls) {
+      if (!boundEvts || !boundEvts.length || !boundEvtEls) return;
+
+      for (let evt of boundEvts) {
+        let el = boundEvtEls.get(evt);
+        if (!el || !el.off) continue;
+
+        let {name, fn} = evt;
+        el.off(name, fn);
+
+        boundEvtEls.delete(evt);
+      }
     }
   };
   /* Bind Element behavior */

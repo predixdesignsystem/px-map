@@ -103,36 +103,58 @@
             "important" : this.getComputedStyleValue('--px-map-marker-group-important-color')
           }
         }
+      },
+
+      iconFns: {
+        type: Object,
+        value: function(){
+          return {
+            cluster: undefined,
+            marker: undefined
+          }
+        }
       }
     },
 
-    createInst(options={}) {
-      // Create a bound function that will be called to create each cluster
-      // icon for the map
-      const boundCreateClusterIcon = this._createClusterIcon.bind(this);
-      options.iconCreateFunction = boundCreateClusterIcon;
+    addInst(parent) {
+      PxMapBehavior.LayerImpl.addInst.call(this, parent);
 
+      // Bind custom events for this cluster. Events will be unbound automatically.
+      const spiderifyFn = this._handleClusterSpiderify.bind(this);
+      const unspiderifyFn = this._handleClusterUnspiderify.bind(this);
+      this.bindEvents({
+        'spiderfied' : spiderifyFn,
+        'unspiderfied' : unspiderifyFn
+      });
+    },
+
+    removeInst(parent) {
+      PxMapBehavior.LayerImpl.removeInst.call(this, parent);
+    },
+
+    createInst(options={}) {
       const cluster = L.markerClusterGroup(options);
 
       if (options.data && options.data.features && options.data.features.length) {
         this._syncDataWithMarkers(options.data.features, cluster);
       }
+
       return cluster;
     },
 
     updateInst(lastOptions, nextOptions) {
       if (nextOptions.data && nextOptions.data.features && nextOptions.data.features.length) {
         this._syncDataWithMarkers(nextOptions.data.features, this.elementInst);
-
-        // this._syncDataToMarkers(nextOptions.data.features);
-        // this.fire('px-map-marker-add');
+        this.fire('px-map-marker-group-add');
       }
     },
 
     getInstOptions() {
       return {
         maxClusterRadius: 150,
-        data: this.data
+        spiderifyOnMaxZoom: true,
+        data: this.data,
+        iconCreateFunction: this.iconFns.cluster || this._createClusterIcon.bind(this)
       };
     },
 
@@ -212,59 +234,6 @@
         return types;
       }, {});
     },
-
-    _generateClusterMarkerClasses(markerCount, markerTypeCount) {
-
-    },
-
-    // _syncDataToMarkers(featCollection, clusterInst) {
-    //   if (!featCollection || !featCollection.features || !featCollection.features.length) return;
-    //
-    //   const markers = this._markers = (this._markers || new Map());
-    //   const visited = new WeakSet();
-    //   const feats = featCollection.features;
-    //   // Keep track of any changes that will require a sync
-    //   let mustUpdateCluster = false;
-    //   // Placeholders for our loop
-    //   let i, len, marker, markerWasChanged, known, valid;
-    //
-    //   // Loop over features to add unknown features to the cluster or update known features if necessary
-    //   for (i=0, len=feats.length; i<len; i++) {
-    //     // Determine if this feature is already represented in the cluster
-    //     known = markers.has(feats[i]);
-    //     // If these tests aren't met, the feature is invalid and can't be drawn as a marker
-    //     // Any invalid markers won't be visited and will be removed
-    //     valid = ((feats[i].geometry && feats[i].geometry.type === 'Point') && (feats[i].geometry.coordinates instanceof Array && feats[i].geometry.coordinates.length === 2) && (feats[i].id));
-    //     if (!valid) continue;
-    //
-    //     // This is a valid feature we don't know. Create a marker for this feature and add it.
-    //     if (!known) {
-    //       marker = this._createMarker(feats[i]);
-    //       clusterInst.RegisterMarker(marker);
-    //       // Save this marker to the map for later syncs, and add it to visited set for our diff comparison
-    //       markers.set(feats[i].id, marker);
-    //       visited.add(feats[i].id);
-    //       mustUpdateCluster = true;
-    //     }
-    //
-    //     // We know this feature and have a marker for it. Ensure the marker is up-to-date.
-    //     if (known) {
-    //       marker = markers.get(feats[i].id);
-    //       markerWasChanged = this._updateMarkerIfNeeded(feats[i], marker);
-    //       visited.add(feats[i].id);
-    //       if (markerWasChanged) mustUpdateCluster = true;
-    //     }
-    //   }
-    //
-    //   // Delete any markers we didn't visit in our features loop
-    //   const markersToRemove = this._findForgottenMarkers(markers, visited);
-    //   if (markersToRemove) {
-    //     clusterInst.RemoveMarkers(markersToRemove);
-    //     mustUpdateCluster = true;
-    //   }
-    //
-    //   // Force an update
-    // },
 
     _syncDataWithMarkers(newFeatures, clusterInst) {
       if (!newFeatures.length) return;
@@ -390,44 +359,11 @@
       };
     },
 
-    // _diffLastFeaturesWithNext(lastFeatures, nextFeatures) {
-    //   // If there were no last features, all the nextFeatures are new markers
-    //   // and there are none to remove
-    //   if (!lastFeatures) {
-    //     return {
-    //       markersToAdd: nextFeatures,
-    //       markersToRemove: {size:false}
-    //     }
-    //   }
-    //
-    //   // If the last and next markers are the same, no changes to make
-    //   if (Immutable.is(lastFeatures, nextFeatures)) {
-    //     return {
-    //       markersToAdd: {size:false},
-    //       markersToRemove: {size:false}
-    //     };
-    //   }
-    //
-    //   // Otherwise, diff the Immutable lists to produce a list of those to add
-    //   // and those to remove
-    //   const addedFeatures = Immutable.Seq(nextFeatures)
-    //     .filter(feat => !lastFeatures.has(feat))
-    //     .filter(feat => feat.hasIn(['geometry', 'type'], 'Point') && feat.getIn(['geometry', 'coordinates']).size == 2 && feat.has('id'))
-    //   const removedFeatures = Immutable.Seq(lastFeatures)
-    //     .filter(feat => !nextFeatures.has(feat))
-    //
-    //   return {
-    //     markersToAdd: addedFeatures,
-    //     markersToRemove: removedFeatures
-    //   };
-    // },
-
     _removeMarker(markerData, clusterInst){
-      debugger;
+      // debugger;
     },
-    _createMarker(feature, clusterInst) {
-      // ... WITH MARKERCLUSTER ...
 
+    _createMarker(feature, clusterInst) {
       // Extract geometry (GeoJSON coordinate pairs are Lat/Lng, we need Lng/Lat,
       // so we have to reverse)
       const [lat, lng] = feature.geometry.coordinates;
@@ -436,10 +372,8 @@
 
       // If any icon settings were passed with the feature, fetch them to pass
       // to the icon constructor
-      const type = (feature.properties['marker-icon'] && feature.properties['marker-icon']['icon-type']) ? feature.properties['marker-icon']['icon-type'] : undefined;
-      const withBadge = (feature.properties['marker-icon'] && feature.properties['marker-icon']['icon-with-badge']) ? feature.properties['marker-icon']['icon-with-badge'] : undefined;
-      // Assign an icon
-      const icon = new PxMap.StaticIcon({type, withBadge});
+      const iconSettings = (feature.properties['marker-icon']) ? this._extractIconSettings(feature.properties['marker-icon']) : {};
+      const icon = this.iconFns.marker ? this.iconFns.marker.call(this, iconSettings) : this._createMarkerIcon(iconSettings);
       marker.setIcon(icon);
 
       // Attach the properties to the marker instance to read later
@@ -448,132 +382,50 @@
       return marker;
     },
 
-    /**
-     * Create and return a new `PruneCluster.Marker` configured with the geometry
-     * and properties of `feature`.
-     *
-     * @param {Object} feature - A GeoJSON feature with keys `geometry` and `properties`
-     * @return {PruneCluster.Marker}
-     */
-     _createMarkerOLDOLD(feature) {
-       debugger;
-       let marker = new PruneCluster.Marker(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+    _extractIconSettings(featSettings) {
+      const featSettingsKeys = Object.keys(featSettings);
+      if (!featSettingsKeys.length) return undefined;
 
-       // Bind marker icon creation to `this`
-      //  marker.data.icon = this._createMarkerIcon.bind(this);
+      const iconSettings = {};
+      let i, len, featKey, featKeyCamelized;
 
-       // Sets the category ID, from a lookup table
-      //  if (feature.properties['marker-icon'] && feature.properties['marker-icon']['icon-status'] && this.categoryByName[feature.properties['marker-icon']['icon-status']]) {
-      //    marker.category = this.categoryByName[feature.properties['marker-icon']['icon-status']];
-      //  }
+      for (i=0, len=featSettingsKeys.length; i<len; i++) {
+        featKey = featSettingsKeys[i];
+        if (featKey.substring(0,5) !== "icon-") continue;
+        featKeyCamelized = featKey.substring(5).replace(/(\-[a-z])/g, (match, captured) => captured.charAt(1).toUpperCase());
+        iconSettings[featKeyCamelized] = featSettings[featKey];
+      }
 
-       return marker;
-     },
+      return iconSettings;
+    },
 
-    _createMarkerIcon(markerData, markerCategory) {
-      const options = {
-        type: 'info',
-        badge: false
-      };
+    _createMarkerIcon(options) {
       return new PxMap.StaticIcon(options);
     },
 
     /**
-     * Loops over all known markers and compares each with a set of markers we
-     * recently visited. That set contains all markers active in the feature
-     * collection pased in from outside this component. Any markers not in that
-     * set will be deleted from the markers map and returned for removal.
-     *
-     * @param {Map} markers - A Map of markers. Keys are feature object IDs. Values are cluster markers.
-     * @param {WeakSet} remembered - A WeakSet (non-iterable weak reference list) of feature objects IDs whose related markers should keep around. Remove all other markers.
-     * @return {Array}
+     * When the cluster is spiderified, set its visibility to hidden to ensure
+     * it is not kept around as an opaque background to the markers.
      */
-    _findForgottenMarkers(markers, remembered) {
-      const markerList = markers.entries(); // returns array of arrays with entries [key, value] aka [featureDataObject, clusterMarkerInstance]
-      const markersToRemove = [];
-      let i, len;
+    _handleClusterSpiderify(evt) {
+      const localEvt = Polymer.dom(evt);
+      const node = localEvt.node;
+      if (!node || !node.cluster || !node.cluster._icon) return;
 
-      for (i=0, len=markerList.length; i<len; i++) {
-        // We saw this marker in the features, so it can stick around
-        if (remembered.has(markerList[i][0])) continue;
-        // Otherwise, remove it from the markers map and prep it for deletion
-        markersToRemove.push(markerList[i][1]);
-        markers.delete(markerList[i][0]);
-      }
-
-      return markersToRemove;
+      node.cluster._icon.style.visibility = 'hidden';
     },
 
     /**
-     * Ensure the data in the `feature` matches the configured `marker`. If
-     * it does not match, update the marker.
-     *
-     * @param {Object} feature - A GeoJSON feature with keys `geometry` and `properties`
-     * @param {PruneCluster.Marker} marker - A PruneCluster marker instance that is in the cluster
+     * When the cluster is unspiderified, set its visibility to visible to ensure
+     * it is shown again on the map.
      */
-    _ensureMarkerMatchesData(feature, marker) {
-      // ...
+    _handleClusterUnspiderify(evt) {
+      const localEvt = Polymer.dom(evt);
+      const node = localEvt.node;
+      if (!node || !node.cluster || !node.cluster._icon) return;
+
+      node.cluster._icon.style.visibility = 'visible';
     }
-
-
-    // listeners: {
-    //   'px-map-layer-instance-created' : 'shouldUpdateInst'
-    // },
-    //
-    // categoryById: {
-    //   0 : 'unknown',
-    //   1 : 'info',
-    //   2 : 'warning',
-    //   3 : 'important'
-    // },
-    //
-    // categoryByName: {
-    //   'unknown'   : 0,
-    //   'info'      : 1,
-    //   'warning'   : 2,
-    //   'important' : 3
-    // },
-    //
-    // createInst() {
-    //   this._markers = this._markers || new Map();
-    //   return new PruneClusterForLeaflet();
-    // },
-    //
-    // updateInst(lastOptions, nextOptions) {
-    //   if (nextOptions.data && nextOptions.data.features && nextOptions.data.features.length) {
-    //     this._updateMarkers(nextOptions.data.features);
-    //     this.fire('px-map-marker-add');
-    //   }
-    // },
-    //
-    // getOptions() {
-    //   return {
-    //     data: this.data || {}
-    //   };
-    // },
-    //
-    // _updateMarkers(features) {
-    //   if (!features || !(features instanceof Array) || !features.length) return;
-    //
-    //   for (let feature of features) {
-    //     if (this._markers.has(feature)) continue;
-    //
-    //     // feature.geometry.coordinates is [lng,lat] and marker wants lat,lng
-    //     let marker = this._createMarker(feature);
-    //     this.elementInst.RegisterMarker(marker);
-    //     this._markers.set(feature, marker);
-    //   }
-    // },
-    //
-    //
-    //
-    // getIcon(data, category) {
-    //   return this.createStaticIcon(this.getIconOptions(category));
-    // },
-    //
-    // getIconOptions(category) {
-    //   return this.getStaticIconOptions({ type: this.categoryById[category] });
-    // }
   };
   /* Bind MarkerGroup behavior */
   namespace.MarkerGroup = [

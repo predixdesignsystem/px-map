@@ -74,6 +74,7 @@
     }
   };
   /* Bind Layer behavior */
+  namespace.LayerImpl = LayerImpl;
   namespace.Layer = [
     namespace.Element,
     LayerImpl
@@ -104,7 +105,8 @@
     _tryToAddAllChildren(evt) {
       // If this element's elementInst isn't ready, halt and wait until later
       // If this event isn't coming from this element, do not handle
-      if (!this.elementInst || evt.srcElement !== this) return;
+      const localEvt = Polymer.dom(evt);
+      if (!this.elementInst || localEvt.rootTarget !== this) return;
 
       // If my own elementInst was just created, loop over children and try to attach them
       this._attachLayerChildren();
@@ -112,7 +114,8 @@
 
     _tryToAddOneChild(evt) {
       // If the added-to-dom event belongs to this element, just return and let it bubble
-      if (evt.srcElement === this) return;
+      const localEvt = Polymer.dom(evt);
+      if (localEvt.rootTarget === this) return;
 
       // This element is the parent, so stop this event from bubbling
       evt.stopPropagation();
@@ -120,7 +123,7 @@
       // If I have no elementInst, halt and wait until later
       if (!this.elementInst) return;
 
-      this._attachLayerChild(evt.srcElement);
+      this._attachLayerChild(localEvt.rootTarget);
     },
 
     _attachLayerChildren() {
