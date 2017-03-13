@@ -90,7 +90,8 @@
         zoom: {
           type: Number,
           value: 10,
-          notify: true
+          notify: true,
+          observer: '_updateMapView'
         },
 
         /**
@@ -178,12 +179,14 @@
 
       if (this.fitToMarkers) {
         this.listen(this, 'px-map-marker-add', '_fitMapToMakers');
+        this.listen(this, 'px-map-marker-group-add', '_fitMapToMakers');
       }
     }
 
     detached() {
       if (this.fitToMarkers) {
         this.unlisten(this, 'px-map-marker-add', '_fitMapToMakers');
+        this.listen(this, 'px-map-marker-group-add', '_fitMapToMakers');
       }
     }
 
@@ -227,13 +230,12 @@
           let markerGeom = layer.getLatLng();
           bounds.extend(markerGeom);
         }
-        // // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
-        // if (layer.Cluster && layer.Cluster.ComputeGlobalBounds) {
-        //   let clusterBounds = layer.Cluster.ComputeGlobalBounds();
-        //   // A raw object is returned that must be turned into a `L.LatLngBounds` instance
-        //   let composedBounds = L.latLngBounds([clusterBounds.minLat, clusterBounds.maxLng],[clusterBounds.maxLat, clusterBounds.minLng]);
-        //   bounds.extend(composedBounds);
-        // }
+
+        // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
+        if (layer._markerCluster && layer.getBounds) {
+          let clusterBounds = layer.getBounds();
+          bounds.extend(clusterBounds);
+        }
       });
       return bounds;
     }

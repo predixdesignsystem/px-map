@@ -224,62 +224,64 @@
  /* GENERIC: Info box generic styles, can be placed in multiple containers */
 
 // Style for the title, which is a text tag
-.map-box-info__title {
-  font-weight: 600;
-  margin: 0 0 $inuit-base-spacing-unit--tiny;
-}
-// Style for the description, which is a text tag
-.map-box-info__description {
-  margin: 0;
-}
-// Style for the optional image, which is set to the left of the content
-.map-box-info__image {
-  display: block;
-  float: left;
-  max-width: 75px;
-  margin-right: $inuit-base-spacing-unit--small;
-  img {
-    max-width: 100%;
-    height: auto;
+.leaflet-popup-content {
+  .map-box-info__title {
+    font-weight: 600;
+    margin: 0 0 $inuit-base-spacing-unit--tiny;
   }
-}
-// We need the content container to be a block with overflow hidden to
-// inset the picture to the left without text wrapping.
-.map-box-info__content {
-  display: block;
-  overflow: hidden;
+  // Style for the description, which is a text tag
+  .map-box-info__description {
+    margin: 0;
+  }
+  // Style for the optional image, which is set to the left of the content
+  .map-box-info__image {
+    display: block;
+    float: left;
+    max-width: 75px;
+    margin-right: $inuit-base-spacing-unit--small;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  // We need the content container to be a block with overflow hidden to
+  // inset the picture to the left without text wrapping.
+  .map-box-info__content {
+    display: block;
+    overflow: hidden;
+  }
 }
 
 /* GENERIC: Data box generic styles, can be placed in multiple containers */
 
-.map-data-box {
-}
-.map-data-box__header {
-  padding: calculateRem(10px);
-}
-.map-data-box__header__text {
-  text-transform: uppercase;
-  font-size: calculateRem(12px);
-  line-height: calculateRem(14px);
-  margin: 0;
-}
-.map-data-box__table {
-  display: flex;
-  flex-wrap: wrap;
-}
-.map-data-box__table__cell {
-  flex-grow: 1;
-  overflow: hidden;
-  width: 50%;
+.leaflet-popup-content {
+  .map-data-box__header {
+    padding: calculateRem(10px);
+  }
+  .map-data-box__header__text {
+    text-transform: uppercase;
+    font-size: calculateRem(12px);
+    line-height: calculateRem(14px);
+    margin: 0;
+  }
+  .map-data-box__table {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .map-data-box__table__cell {
+    flex-grow: 1;
+    overflow: hidden;
+    width: 50%;
 
-  border-top: 1px solid $gray4;
-  &:nth-child(2n) { border-left: 1px solid $gray4; }
+    border-top: 1px solid $gray4;
+    &:nth-child(2n) { border-left: 1px solid $gray4; }
 
-  padding: calculateRem(10px);
-  text-transform: uppercase;
-  font-size: calculateRem(12px);
-  line-height: calculateRem(14px);
-  p { margin: 0; }
+    padding: calculateRem(10px);
+    text-transform: uppercase;
+    font-size: calculateRem(12px);
+    line-height: calculateRem(14px);
+    p { margin: 0; }
+  }
 }
 
 /*******************************************************************************
