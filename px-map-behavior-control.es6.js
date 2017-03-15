@@ -46,6 +46,30 @@
    * @polymerBehavior PxMapBehavior.ZoomControl
    */
   const ZoomControlImpl = {
+    properties: {
+      /**
+       * Sets the icon for zoom in button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomInText: {
+        type: String, 
+        value: '<i class="fa fa-plus"></i>',
+      },
+    
+      /**
+       * Sets the icon for zoom out button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomOutText: {
+        type: String, 
+        value: '<i class="fa fa-minus"></i>',
+      }
+    },
+
     createInst(options) {
       // return new PxMap.ZoomControl(options);
       return L.control.zoom(options);
@@ -60,8 +84,8 @@
     getInstOptions() {
       return {
         position: this.position,
-        zoomInText: '<i class="fa fa-plus"></i>',
-        zoomOutText: '<i class="fa fa-minus"></i>'
+        zoomInText: this.zoomInText,
+        zoomOutText: this.zoomOutText
       };
     }
   };
