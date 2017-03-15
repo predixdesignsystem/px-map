@@ -57,6 +57,7 @@
         type: String, 
         value: '<i class="fa fa-plus"></i>',
       },
+    
       /**
        * Sets the icon for zoom out button
        * This is not dynamic and can only be set at run time
@@ -67,7 +68,6 @@
         type: String, 
         value: '<i class="fa fa-minus"></i>',
       }
-
     },
 
     createInst(options) {
