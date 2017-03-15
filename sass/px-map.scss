@@ -171,11 +171,6 @@
 
 // MAP CONTROL: ZOOM
 
-// Directly overwrite leaflet classes
-// .leaflet-touch .leaflet-control-layers,
-// .leaflet-touch .leaflet-bar,
-// .leaflet-control-zoom
-
 .leaflet-bar.leaflet-control.leaflet-control-zoom {
   border: none;
   border-radius: 0;
@@ -193,15 +188,56 @@
   a.leaflet-control-zoom-out i {
     position: relative;
     left: -0.03rem;
-    // top: .55rem;
-  }
-  // Push the minus icon down a bit
-  a.leaflet-control-zoom-out i {
-    // top: .59rem;
   }
 }
 
-/* CONTROL: Info control */
+// MAP CONTROL: SCALE
+
+// Set background and border style
+.leaflet-control-scale-line {
+  background: none;
+  font-size: $inuit-base-font-size;
+  border-width: 1px;
+  border-color: $black;
+
+  &:not(:first-child) {
+    border-top: 1px solid $black;
+    border-bottom: none;
+    margin-top: -1px;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-bottom: 1px solid $black;
+  }
+}
+
+// Set the styles for the `reverse` modifier (for dark backgrounds)
+.leaflet-control-scale.leaflet-control-scale--reverse {
+  background-color: rgba($black, 0.4);
+  padding: 3px;
+}
+.leaflet-control-scale--reverse .leaflet-control-scale-line {
+  color: white;
+  border-color: $white;
+
+  &:not(:first-child) {
+    border-top-color: $white;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-bottom-color: $white;
+  }
+}
+
+// Set margins to be the same as other elements
+.leaflet-left .leaflet-control-scale {
+  margin-left: 10px;
+}
+.leaflet-bottom .leaflet-control-scale {
+  margin-bottom: 10px;
+}
+
+// MAP CONTROL: INFO
 
 .map-info-control {
   background-color: white;
@@ -213,8 +249,6 @@
 .map-info-control .map-data-box {
   border: 1px solid $gray4;
 }
-
-
 
 /*******************************************************************************
  * GENERIC BOXES
