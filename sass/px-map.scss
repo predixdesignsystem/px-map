@@ -156,6 +156,8 @@
   line-height: calculateRem(36px);
   font-size: calculateRem(20px);
   font-weight: 400;
+  width: calculateRem(40px);
+  height: calculateRem(40px);
 
   margin-bottom: $inuit-base-spacing-unit--tiny;
 
@@ -170,6 +172,39 @@
   height: calculateRem(40px);
   position: relative;
   border-radius: 100%;
+}
+
+// MAP CONTROL: LOCATE
+
+.leaflet-bar.leaflet-control.leaflet-control-locate {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.leaflet-bar.leaflet-control.leaflet-control-locate {
+  a.leaflet-control-locate-button {
+    @extend %map-control-button;
+    position: relative;
+  }
+  a.leaflet-control-locate-button i {
+    position: relative;
+    top: 0.1rem;
+  }
+}
+
+// States for locating
+a.leaflet-control-locate-button {
+  &.leaflet-control-locate-button--locating {}
+  &.leaflet-control-locate-button--error {}
+  &.leaflet-control-locate-button--disabled {}
+}
+
+// Locate followed by zoom OR zoom followed by locate should have a negative
+// top margin that pulls the button groups toward eachother and makes spacing
+// between buttons in both components look the same
+.leaflet-control-locate + .leaflet-control-zoom,
+.leaflet-control-zoom + .leaflet-control-locate {
+  margin-top: $inuit-base-spacing-unit--tiny * -1;
 }
 
 // MAP CONTROL: ZOOM

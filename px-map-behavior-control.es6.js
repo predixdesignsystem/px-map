@@ -279,6 +279,84 @@
     PxMapBehavior.ScaleControlImpl
   ];
 
+  /**
+   *
+   * @polymerBehavior PxMapBehavior.LocateControl
+   */
+  const LocateControlImpl = {
+    properties: {
+      /**
+       * A string of HTML that will be used as the locate button text.
+       *
+       * @type {String}
+       */
+      locateText: {
+        type: String,
+        value: '<i class="fa fa-crosshairs"></i>',
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * A title for the locate text button. Will be used to inform users with
+       * screen reading devices what the button does.
+       *
+       * @type {String}
+       */
+      locateTitle: {
+        type: String,
+        value: 'Zoom to your location',
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * If enabled, the map will set its view center to the user's current
+       * location after a successful locate browser API call.
+       *
+       * @type {Boolean}
+       */
+      moveToLocation: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * The maximum zoom level to set when the map moves to the user's location.
+       * The `moveToLocation` attribute must be set for the map to move to
+       * after a location event.
+       *
+       * @type {Number}
+       */
+      moveMaxZoom: {
+        type: Number
+      }
+    },
+
+    createInst(options) {
+      return new PxMap.LocateControl(options);
+    },
+
+    updateInst(lastOptions, nextOptions) {
+      if (lastOptions.position !== nextOptions.position) {
+        this.elementInst.setPosition(nextOptions.position);
+      }
+    },
+
+    getInstOptions() {
+      return {
+        position: this.position,
+        locateText: this.locateText,
+        locateTitle: this.locateTitle,
+        moveToLocation: this.moveToLocation,
+        moveMaxZoom: this.moveMaxZoom
+      };
+    }
+  };
+  /* Bind LocateControl behavior */
+  namespace.LocateControl = [
+    namespace.Control,
+    LocateControlImpl
+  ];
+
   /****************************************************************************
    * KLASSES
    ****************************************************************************/
@@ -422,4 +500,149 @@
   };
   /* Bind ZoomControl klass */
   PxMap.ZoomControl = ZoomControl;
+
+  /**
+   *
+   * @class PxMap.LocateControl
+   */
+  class LocateControl extends L.Control {
+    initialize(options={}) {
+      const defaultOptions = {
+        position: 'bottomright',
+        className: '',
+        locateText: '<i class="fa fa-crosshairs"></i>',
+        locateTitle: 'Zoom to your location',
+        locateProgressText: '<i class="px-map-spinner"></i>',
+        locateErrorText: '<i class="fa fa-times"></i>',
+        locateTimeout: 10000,
+        moveToLocation: true,
+        moveMaxZoom: null
+      };
+      const composedOptions = Object.assign(defaultOptions, options);
+      L.Util.setOptions(this, composedOptions);
+    }
+
+    onAdd(map) {
+      const locateName = 'leaflet-control-locate';
+      this.__container = L.DomUtil.create('div', `${locateName} leaflet-bar ${this.options.className}`);
+      this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
+
+      /* Bind map events */
+      L.DomEvent.on(map, 'locationfound', L.DomEvent.stop);
+      L.DomEvent.on(map, 'locationfound', this._locationFound, this);
+      // map.on('locationfound', this._locationFound, this);
+      L.DomEvent.on(map, 'locationerror', L.DomEvent.stop);
+      L.DomEvent.on(map, 'locationerror', this._locationError, this);
+      // map.on('locationerror', this._locationError, this);
+
+      /* Bind button events */
+      L.DomEvent.disableClickPropagation(this.__locateButton);
+      L.DomEvent.on(this.__locateButton, 'click', L.DomEvent.stop);
+      L.DomEvent.on(this.__locateButton, 'click', this.locate, this);
+      L.DomEvent.on(this.__locateButton, 'click', this._refocusOnMap, this);
+
+      return this.__container;
+    }
+
+    onRemove(map) {
+      /* Unbind map events */
+      map.off('locationfound', this._locationFound, this);
+      map.off('locationerror', this._locationError, this);
+
+      /* Unbind button events */
+      L.DomEvent.off(this.__locateButton, 'click', L.DomEvent.stop);
+      L.DomEvent.off(this.__locateButton, 'click', this.locate, this);
+      L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
+    }
+
+    locate() {
+      this.__locating = true;
+      this._map.locate({
+        setView: this.options.moveToLocation,
+        maxZoom: this.options.moveMaxZoon,
+        timeout: this.options.locateTimeout
+      });
+      this._setLocatingState();
+    }
+
+    reset() {
+      this._setReadyState();
+    }
+
+    isDisabled() {
+      return this.__disabled || false;
+    }
+
+    _createButton(html, title, className, container, clickFn) {
+      const buttonEl = L.DomUtil.create('a', className, container);
+      buttonEl.innerHTML = html;
+      buttonEl.href = '#';
+      buttonEl.title = title;
+
+      // Tells screen readers to treat this as a button and read its title
+      buttonEl.setAttribute('role', 'button');
+      buttonEl.setAttribute('aria-label', title);
+
+      return buttonEl;
+    }
+
+    _locationFound(evt) {
+      if (this.__locating) {
+        this.__locating = false;
+        this._setReadyState();
+      }
+    }
+
+    _locationError(evt) {
+      if (this.__locating) {
+        this.__locating = false;
+        this._setErrorState();
+      }
+    }
+
+    _setLocatingState() {
+      if (!this.__locateButton || !this.__locating) return;
+
+      this.__locateButton.innerHTML = this.options.locateProgressText;
+      L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--locating');
+
+      this.__disabled = true;
+      this._updateDisabled();
+    }
+
+    _setReadyState() {
+      if (!this.__locateButton || this.__locating) return;
+
+      this.__locateButton.innerHTML = this.options.locateText;
+      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
+      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
+
+      this.__disabled = false;
+      this._updateDisabled();
+    }
+
+    _setErrorState() {
+      if (!this.__locateButton || this.__locating) return;
+
+      this.__locateButton.innerHTML = this.options.locateErrorText;
+      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
+      L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--error');
+
+      this.__disabled = true;
+      this._updateDisabled();
+    }
+
+    _updateDisabled() {
+      if (!this.__locateButton) return;
+
+      if (this.__disabled) {
+        L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
+      }
+      if (!this.__disabled) {
+        L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
+      }
+    }
+  };
+  /* Bind LocateControl klass */
+  PxMap.LocateControl = LocateControl;
 })();
