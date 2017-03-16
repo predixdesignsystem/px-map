@@ -153,7 +153,7 @@
       },
 
       /**
-       * A list of key/valye pairs to display in a data table. Must be in the
+       * A list of key/value pairs to display in a data table. Must be in the
        * format of an object with human-readable keys and associated values.
        *
        * For example, to show the name and location of a place, set this
@@ -191,7 +191,7 @@
     getInstOptions() {
       return {
         title: this.title,
-        data: this.data
+        data: (typeof this.data === "object") ? this.data : {}
       };
     }
   };
