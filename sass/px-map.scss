@@ -74,6 +74,9 @@
 // MAP ICON: STATIC
 @import "_map-icon-static.scss";
 
+// MAP ICON: SYMBOL
+@import "_map-icon-symbol.scss";
+
 // MAP ICON: CLUSTER
 .map-icon-cluster {
   @extend %map-icon !optional;

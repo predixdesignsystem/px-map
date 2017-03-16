@@ -1,0 +1,146 @@
+// ICON CONTAINER
+
+.map-icon-symbol {
+  @extend %map-icon !optional;
+  width: 50px;
+  height: 50px;
+  display: block;
+  position: absolute;
+}
+
+// ICON BODY
+
+.map-icon-symbol__body {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: $primary-blue;
+  border-radius: 100%;
+  position: absolute;
+  border: 2px solid var(--px-map-icon-symbol-border-color, $gray1);
+}
+
+// ICON DESCENDER
+
+.map-icon-symbol__descender {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 17px 5px 0;
+  border-color: $primary-blue transparent transparent transparent;
+  position: absolute;
+  left: 15px;
+  top: 37px;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 23px 8px 0px;
+    border-color: var(--px-map-icon-symbol-border-color, $gray1) transparent transparent;
+    position: absolute;
+    z-index: -1;
+    left: -8px;
+    top: -17px;
+    transform: scaleY(1.1);
+  }
+}
+
+// ICON MODIFIERS
+// Use a modifier to change the color and appearance of an icon.
+
+// 'info' modifier - sets the info-icon-color (defaults to $primary-blue)
+.map-icon-symbol--info .map-icon-symbol__body {
+  background-color: var(--px-map-icon-symbol-info-color, $primary-blue);
+}
+.map-icon-symbol--info .map-icon-symbol__descender {
+  border-top-color: var(--px-map-icon-symbol-info-color, $primary-blue);
+}
+
+// 'important' modifier - sets icon-important-color (defaults to $alert-red)
+.map-icon-symbol--important .map-icon-symbol__body {
+  background-color: var(--px-map-icon-symbol-important-color, $alert-red);
+}
+.map-icon-symbol--important .map-icon-symbol__descender {
+  border-top-color: var(--px-map-icon-symbol-important-color, $alert-red);
+}
+
+// 'warning' modifier - sets icon-warning-color (defaults to $alert-orange)
+.map-icon-symbol--warning .map-icon-symbol__body {
+  background-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+}
+.map-icon-symbol--warning .map-icon-symbol__descender {
+  border-top-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+}
+
+// 'unknown' modifier - sets icon-unknown-color (defaults to $dv-light-gray)
+.map-icon-symbol--unknown .map-icon-symbol__body {
+  background-color: var(--px-map-icon-symbol-unknown-color, $dv-light-gray);
+}
+.map-icon-symbol--unknown .map-icon-symbol__descender {
+  border-top-color: var(--px-map-icon-symbol-unknown-color, $dv-light-gray);
+}
+
+// ICON BADGE
+// Only visible if applied with a modifier
+
+.map-icon-symbol__badge {
+  display: block;
+}
+
+%map-icon-symbol__badge--diamond {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: $alert-orange; //TODO css var
+  border: 2px solid var(--px-map-icon-symbol-border-color, $gray1);
+  transform: rotate(45deg);
+  position: absolute;
+  left: 29px;
+  top: 0px;
+}
+
+%map-icon-symbol__badge--triangle {
+  display: block;
+  position: absolute;
+  left: 23px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 25px;
+  border-color: transparent transparent var(--px-map-icon-symbol-border-color, $gray1) transparent;
+
+  &:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 11px 19px;
+    border-color: transparent transparent $primary-blue transparent;
+    z-index: 0;
+    position: absolute;
+    left: -11px;
+    top: 4px;
+  }
+}
+
+// ICON BADGE MODIFIERS
+// Use to add a badge (small alert symbol) to the icon. These modifiers should
+// be extended inside one of the map icon type modifiers
+
+// 'important' and 'with-badge' modifier - adds the triangle icon
+.map-icon-symbol--important.map-icon-symbol--with-badge .map-icon-symbol__badge {
+  @extend %map-icon-symbol__badge--triangle;
+  &:after { border-color: transparent transparent var(--px-map-icon-symbol-important-color, $alert-red) transparent; }
+}
+
+// 'warning' and 'with-badge' modifier - adds the triangle icon
+.map-icon-symbol--warning.map-icon-symbol--with-badge .map-icon-symbol__badge {
+  @extend %map-icon-symbol__badge--diamond;
+  background-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+}

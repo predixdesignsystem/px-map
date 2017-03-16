@@ -53,6 +53,57 @@
 
   /**
    *
+   * @class PxMap.SymbolIcon
+   */
+  class SymbolIcon {
+    constructor(settings={}) {
+      this.icon = this.createIcon(settings);
+      return this.icon;
+    }
+
+    createIcon(settings={}) {
+      // Extract `type` and `badge` from settings with defaults
+      let { type='info', badge=false, symbol='fa fa-briefcase' } = settings;
+
+      const className = this._generateSymbolIconClasses(type, badge);
+
+      // Symbol options
+      const html = `
+        <i class="map-icon-symbol__body"></i>
+        <i class="map-icon-symbol__descender"></i>
+        <i class="map-icon-symbol__symbol"> <i class="${symbol}"></i> </i>
+        <i class="map-icon-symbol__badge"></i>
+      `;
+      const iconSize = L.point(70,55); //biggest the icon can be
+      const iconAnchor = L.point(9.01, 39.5);
+      const popupAnchor = L.point(1,-38);
+
+      // Define the `divIcon` options
+      const options = {
+        className,
+        html,
+        iconSize,
+        iconAnchor,
+        popupAnchor
+      };
+
+      return L.divIcon(options);
+    }
+
+    _generateSymbolIconClasses(type, badge) {
+      const classes = ['map-icon', 'map-icon-symbol'];
+      if (type && type.length) {
+        classes.push(`map-icon-symbol--${type}`);
+      }
+      if (badge) {
+        classes.push(`map-icon-symbol--with-badge`);
+      }
+      return classes.join(' ');
+    }
+  };
+
+  /**
+   *
    * @class PxMap.ClusterIcon
    */
   class ClusterIcon {
@@ -154,6 +205,9 @@
 
   /* Bind StaticIcon klass */
   klass.StaticIcon = StaticIcon;
+
+  /* Bind SymbolIcon klass */
+  klass.SymbolIcon = SymbolIcon;
 
   /* Bind ClusterIcon klass */
   klass.ClusterIcon = ClusterIcon;

@@ -287,7 +287,11 @@
       // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
       //   maxZoom: 18
-      // }).addTo(this.elementInst);
+      // }).addTo(this.elementInst);\
+
+      //DON'T COMMIT THIS CODE OR DIST CODE
+      var marker = L.marker([38.0154,-121.9424]);
+      marker.addTo(this.elementInst);
 
       // Set the view from current defaults
       this._updateMapView();
