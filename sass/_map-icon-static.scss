@@ -14,7 +14,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-color: $primary-blue;
+  background-color: $alert-blue;
   border-radius: 100%;
   position: absolute;
   border: 2px solid var(--px-map-static-icon-border-color, $white);
@@ -28,7 +28,7 @@
   height: 0;
   border-style: solid;
   border-width: 17px 5px 0;
-  border-color: $primary-blue transparent transparent transparent;
+  border-color: $alert-blue transparent transparent transparent;
   position: absolute;
   left: 5px;
   top: 16px;
@@ -52,12 +52,12 @@
 // ICON MODIFIERS
 // Use a modifier to change the color and appearance of an icon.
 
-// 'info' modifier - sets the info-icon-color (defaults to $primary-blue)
+// 'info' modifier - sets the info-icon-color (defaults to $alert-blue)
 .map-icon-static--info .map-icon-static__body {
-  background-color: var(--px-map-static-icon-info-color, $primary-blue);
+  background-color: var(--px-map-static-icon-info-color, $alert-blue);
 }
 .map-icon-static--info .map-icon-static__descender {
-  border-top-color: var(--px-map-static-icon-info-color, $primary-blue);
+  border-top-color: var(--px-map-static-icon-info-color, $alert-blue);
 }
 
 // 'important' modifier - sets icon-important-color (defaults to $alert-red)
@@ -121,7 +121,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 8px 15px;
-    border-color: transparent transparent $primary-blue transparent;
+    border-color: transparent transparent $alert-blue transparent;
     z-index: 0;
     position: absolute;
     left: -8px;
