@@ -1,0 +1,33 @@
+<!-- Import d3 without overwriting other people's d3. Maintain a link to the
+     Px version of d3. -->
+<script>
+  (function(win,doc){
+    win.Px = win.Px || {};
+
+    // If we already have win.Px.d3, we don't need to do anything
+    if (win.Px.d3) {
+      return;
+    }
+
+    if (typeof d3 !== 'undefined') {
+      win.Px.oldD3 = d3;
+      win.d3 = {};
+    }
+
+    function loadScript() {
+      var script = doc.createElement('script');
+      script.src = '../pxd3/d3.min.js';
+      script.onload = onD3Loaded;
+      doc.head.appendChild(script);
+    }
+
+    function onD3Loaded() {
+      win.Px.d3 = d3;
+      if (typeof win.Px.oldD3 !== 'undefined') {
+        win.d3 = win.Px.oldD3;
+      }
+    }
+
+    loadScript();
+  })(window, document);
+</script>

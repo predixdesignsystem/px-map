@@ -1,0 +1,96 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../../polymer/polymer.html"/>
+
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-root.html">
+
+<!-- Import style modules -->
+<link rel="import" href="../css/px-map-leaflet-styles.html">
+<link rel="import" href="../css/px-map-styles.html">
+
+<!--
+A lightweight framework for building interactive maps using Polymer web components.
+The framework includes `px-map`, a base mapping component that can be extended by
+and controls a variety of sub-components that display geospatial data, offer
+controls for the user, and accomplish other common mapping tasks.
+
+This is a simple example with little configuration that will display a map
+centered on Tokyo, Japan:
+
+    <px-map lat="35.6895" lon="139.6917" zoom="12">
+    </px-map>
+
+Maps can be extended with a variety of attributes and by passing sub-components
+into the tag. We can extend the map above by changing how the map initially draws
+in its container, and by placing an overlay layer with markers showing interesting
+landmarks in Tokyo:
+
+    <px-map lat="35.6895" lon="139.6917" zoom="15" flex-to-size fit-to-markers>
+      <px-map-overlay-layer name="Landmarks">
+        <px-map-static-icon lat="35.6763976" lon="35.6763976">
+          <slot name="title">Meiji Jingu</slot>
+        </px-map-static-icon>
+        <px-map-static-icon lat="35.6654861" lon="139.7706668">
+          <slot name="title">Tsukiji Market</slot>
+        </px-map-static-icon>
+      </px-map-overlay-layer>
+    </px-map>
+
+See the component's API documentation pages for more information on possible
+configurations and available sub-components.
+
+### What's provided
+
+The following pieces are provided by `px-map` and its sub-components:
+
+* Base map: Orchestrates tile layers, overlay layers, and interactive controls
+* Tile layers: Display mapping tiles showing geography or other information
+* Overlay layers: Display interactive geospatial data on top of the map tiles
+* UI components: Display markers, circles, polygons, and other repsentations of data on the map
+* Controls: Offer a variety of user controls to manipualte the map and explore its data
+
+### Underlying map library
+
+The current iteration of `px-map` uses the open source Leaflet library as a base
+for display a map with base tiles and geospatial overlays. Future iterations of
+the component may offer the ability to use a different library in place of
+Leaflet, while keeping the same basic API.
+
+@element px-map
+@blurb A lightweight framework for building interactive maps with web components
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map">
+  <template>
+    <!-- Vendor style modules to provide base styling -->
+    <style include="px-map-leaflet-styles"></style>
+
+    <!-- This should always be the last style module imported to override default styles -->
+    <style include="px-map-styles"></style>
+
+    <style>
+      /* Use flex to resize */
+      :host([flex-to-size]) {
+        display: flex;
+        flex: 1;
+      }
+      :host([flex-to-size]) #map {
+        flex: 1;
+      }
+    </style>
+    <div id="map"></div>
+    <content select="*"></content>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-map',
+    behaviors: [PxMapBehavior.LeafletRoot]
+  });
+</script>
