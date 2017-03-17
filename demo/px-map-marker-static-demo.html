@@ -47,21 +47,10 @@
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
-      <div style="height:250px; width:500px;display:flex">
-        <px-map
-          zoom="{{props.zoom.value}}"
-          lat="{{props.lat.value}}"
-          lng="{{props.lng.value}}"
-          flex-to-size
-          fit-to-markers>
-          <!-- Uses the Open Street Map (OSM) tiles for base layer -->
+      <div style="height:400px; width:600px;display:flex">
+        <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-          <!-- Adds a scale with imperial units in the bottom left corner -->
-          <px-map-control-scale position="bottomleft" imperial-units></px-map-control-scale>
-          <!-- Adds a zoom control in the bottom right corner -->
-          <px-map-control-zoom position="bottomright"></px-map-control-zoom>
-          <!-- Adds a map marker at the specified location -->
-          <px-map-marker-static lat="38.0154" lng="-121.9424" type="info" show-badge></px-map-marker-static>
+          <px-map-marker-static lat="{{props.lat.value}}" lng="{{props.lng.value}}" type="{{props.type.value}}"></px-map-marker-static>
         </px-map>
       </div>
     </px-demo-component>
@@ -74,7 +63,7 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <!-- <px-demo-api-viewer source="px-map"></px-demo-api-viewer> -->
+  <px-demo-api-viewer source="px-map"></px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -126,27 +115,28 @@
        * @type {Object}
        */
       demoProps: {
-        // counterValue: {
-        //   type: Number,
-        //   defaultValue: '0',
-        //   inputType: 'text'
-        // }
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
         lat: {
           inputLabel: 'Latitude',
           type: Number,
-          defaultValue: 37.7749,
+          defaultValue: 37.7673626,
           inputType: 'text'
         },
         lng: {
           inputLabel: 'Longitude',
           type: Number,
-          defaultValue: -122.4312,
+          defaultValue: -121.9595048,
           inputType: 'text'
+        },
+        type: {
+          inputLabel: 'Marker Type',
+          type: String,
+          defaultValue: 'info',
+          inputType: 'dropdown',
+          inputChoices: ['important', 'warning', 'info', 'unknown']
+        },
+        lightDomContent: {
+          type: String,
+          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
         }
       }
     });

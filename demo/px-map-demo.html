@@ -47,12 +47,11 @@
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
-      <div style="height:250px; width:500px;display:flex">
+      <div style="height:400px;width:600px;display:flex">
         <px-map
           zoom="{{props.zoom.value}}"
           lat="{{props.lat.value}}"
-          lng="{{props.lng.value}}"
-          flex-to-size>
+          lng="{{props.lng.value}}">
           <!-- Uses the Open Street Map (OSM) tiles for base layer -->
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <!-- Adds a scale with imperial units in the bottom left corner -->
@@ -71,7 +70,7 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <!-- <px-demo-api-viewer source="px-map"></px-demo-api-viewer> -->
+  <px-demo-api-viewer source="px-map"></px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -110,8 +109,8 @@
           value: function(){
             return [
               { configName: "Default",
-                configReset: true }
-            ]
+                configReset: true },
+              ]
           }
         }
       },
@@ -123,11 +122,6 @@
        * @type {Object}
        */
       demoProps: {
-        // counterValue: {
-        //   type: Number,
-        //   defaultValue: '0',
-        //   inputType: 'text'
-        // }
         zoom: {
           type: Number,
           defaultValue: 10,
@@ -144,6 +138,10 @@
           type: Number,
           defaultValue: -122.4312,
           inputType: 'text'
+        },
+        lightDomContent: {
+          type: String,
+          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
         }
       }
     });
