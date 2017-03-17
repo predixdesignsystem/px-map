@@ -23,4 +23,9 @@
   </style>
   <template></template>
 </dom-module>
-<script src="dist/px-map-popup-info.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-popup-info',
+    behaviors: [PxMapBehavior.InfoPopup]
+  });
+</script>

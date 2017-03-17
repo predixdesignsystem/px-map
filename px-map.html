@@ -5,9 +5,8 @@
 -->
 <link rel="import" href="../polymer/polymer.html"/>
 
-<!-- Local dependencies -->
-<link rel="import" href="px-map-leaflet-import.html">
-<link rel="import" href="px-map-behavior-layer.html" />
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-root.html">
 
 <!-- Import style modules -->
 <link rel="import" href="css/px-map-leaflet-styles.html">
@@ -89,4 +88,9 @@ Leaflet, while keeping the same basic API.
     <content select="*"></content>
   </template>
 </dom-module>
-<script src="dist/px-map.js"></script>
+<script>
+  Polymer({
+    is: 'px-map',
+    behaviors: [PxMapBehavior.LeafletRoot]
+  });
+</script>

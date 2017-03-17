@@ -30,4 +30,9 @@ both scales at the same time is supported.
 <dom-module id="px-map-control-scale">
   <template></template>
 </dom-module>
-<script src="dist/px-map-control-scale.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-control-scale',
+    behaviors: [PxMapBehavior.ScaleControl]
+  });
+</script>
