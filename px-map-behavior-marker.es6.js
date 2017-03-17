@@ -199,7 +199,8 @@
       },
 
       /**
-       *
+       * Replaces the symbol on iconSymbols
+       * accepts font awesome icons
        */
       symbolClass: {
         type: String,
