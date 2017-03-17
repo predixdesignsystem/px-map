@@ -56,7 +56,7 @@
        */
       zoomInText: {
         type: String,
-        value: '<i class="fa fa-plus"></i>',
+        value: '<i class="fa fa-plus"></i>'
       },
 
       /**
@@ -67,7 +67,73 @@
        */
       zoomOutText: {
         type: String,
-        value: '<i class="fa fa-minus"></i>',
+        value: '<i class="fa fa-minus"></i>'
+      },
+
+      /**
+       * Sets the hover text for zoom in button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomInTitle: {
+        type: String,
+        value: 'Zoom in'
+      },
+
+      /**
+       * Sets the hover text for zoom out button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomOutTitle: {
+        type: String,
+        value: 'Zoom out'
+      },
+
+      /**
+       * A valid IETF language tag as a string that `app-localize-behavior` will
+       * use to localize this component (see https://en.wikipedia.org/wiki/IETF_language_tag)
+       * for a list of valid tags.
+       *
+       * Examples:
+       * - 'en' (English)
+       * - 'es' (Spanish)
+       * - 'zh-cn' (Simplified Chinese)
+       *
+       * See https://github.com/PolymerElements/app-localize-behavior for API
+       * documentation and more information.
+       *
+       * @type {String}
+       */
+      language: {
+        type: String,
+        value: 'en'
+      },
+
+      /**
+       * Object providing localized strings that `app-localize-behavior` will use
+       * to localize this component. The first key should be a valid IETF language
+       * tag, followed by key/value pairs for each string you need to localize.
+       * Settings can also be loaded from a locales.json file at the app level.
+       *
+       * For this component, the following keys can be localized:
+       * - 'Zoom in' - [en default] 'Zoom in'
+       * - 'Zoom out' - [en default] 'Zoom out'
+       *
+       * See https://github.com/PolymerElements/app-localize-behavior for API
+       * documentation and more information.
+       *
+       * @type {Object}
+       */
+      resources: {
+        type: Object,
+        value: function() {
+          return {
+            'en': {'Zoom in': 'Zoom in', 'Zoom out': 'Zoom out'}
+          };
+        }
       }
     },
 
@@ -86,13 +152,16 @@
       return {
         position: this.position,
         zoomInText: this.zoomInText,
-        zoomOutText: this.zoomOutText
+        zoomOutText: this.zoomOutText,
+        zoomInTitle: this.localize(this.zoomInTitle),
+        zoomOutTitle: this.localize(this.zoomOutTitle)
       };
     }
   };
   /* Bind ZoomControl behavior */
   /** @polymerBehavior */
   PxMapBehavior.ZoomControl = [
+    Polymer.AppLocalizeBehavior,
     PxMapBehavior.Control,
     PxMapBehavior.ZoomControlImpl
   ];
