@@ -15,9 +15,10 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<!-- <link rel="import" href="../px-map-marker-direction.html" /> -->
 
 <!-- Demo DOM module -->
-<dom-module id="px-map-demo">
+<dom-module id="px-map-marker-direction-demo">
   <template>
   <style include="px-demo-styles" is="custom-style"></style>
 
@@ -30,7 +31,7 @@
 
   <!-- Header -->
   <px-demo-header
-      module-name="px-map"
+      module-name="px-map-marker-direction"
       description="The px-map component is awesome!">
   </px-demo-header>
 
@@ -44,7 +45,7 @@
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
-      <div style="height:400px;width:600px;display:flex">
+      <div style="height:400px; width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
         </px-map>
@@ -59,7 +60,7 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <px-demo-api-viewer source="px-map"></px-demo-api-viewer>
+  <px-demo-api-viewer source="px-map-marker-direction"></px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -68,7 +69,7 @@
 
   <script>
     Polymer({
-      is: 'px-map-demo',
+      is: 'px-map-marker-direction-demo',
 
       properties: {
 
@@ -98,8 +99,8 @@
           value: function(){
             return [
               { configName: "Default",
-                configReset: true },
-              ]
+                configReset: true }
+            ]
           }
         }
       },
@@ -111,22 +112,24 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
         lat: {
           inputLabel: 'Latitude',
           type: Number,
-          defaultValue: 37.7749,
+          defaultValue: 37.7673626,
           inputType: 'text'
         },
         lng: {
           inputLabel: 'Longitude',
           type: Number,
-          defaultValue: -122.4312,
+          defaultValue: -121.9595048,
           inputType: 'text'
+        },
+        type: {
+          inputLabel: 'Marker Type',
+          type: String,
+          defaultValue: 'info',
+          inputType: 'dropdown',
+          inputChoices: ['important', 'warning', 'info', 'unknown']
         },
         lightDomContent: {
           type: String,

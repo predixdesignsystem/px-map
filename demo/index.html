@@ -5,7 +5,19 @@
 
 <!-- Import peer demo pages -->
 <link rel="import" href="px-map-demo.html" />
+<link rel="import" href="px-map-tile-layer-demo.html" />
 <link rel="import" href="px-map-marker-static-demo.html" />
+<link rel="import" href="px-map-marker-symbol-demo.html" />
+<link rel="import" href="px-map-marker-locate-demo.html" />
+<!-- <link rel="import" href="px-map-marker-direction-demo.html" /> -->
+<link rel="import" href="px-map-marker-group-demo.html" />
+<link rel="import" href="px-map-layer-group-demo.html" />
+<link rel="import" href="px-map-popup-info-demo.html" />
+<link rel="import" href="px-map-popup-data-demo.html" />
+<link rel="import" href="px-map-control-zoom-demo.html" />
+<link rel="import" href="px-map-control-scale-demo.html" />
+<link rel="import" href="px-map-control-info-demo.html" />
+<link rel="import" href="px-map-control-geolocate-demo.html" />
 
 <!-- Demo DOM module -->
 <dom-module id="local-element-demo">
@@ -47,8 +59,32 @@
           return [
             { name: "px-map",
               tagName: "px-map-demo" },
+            { name: "px-map-tile-layer",
+              tagName: "px-map-tile-layer-demo" },
             { name: "px-map-marker-static",
-              tagName: "px-map-marker-static-demo" }
+              tagName: "px-map-marker-static-demo" },
+            { name: "px-map-marker-symbol",
+              tagName: "px-map-marker-symbol-demo" },
+            { name: "px-map-marker-locate",
+              tagName: "px-map-marker-locate-demo" },
+            // { name: "px-map-marker-direction",
+            //   tagName: "px-map-marker-direction-demo" },
+            { name: "px-map-marker-group",
+              tagName: "px-map-marker-group-demo" },
+            { name: "px-map-layer-group",
+              tagName: "px-map-layer-group-demo" },
+            { name: "px-map-popup-info",
+              tagName: "px-map-popup-info-demo" },
+            { name: "px-map-popup-data",
+              tagName: "px-map-popup-data-demo" },
+            { name: "px-map-control-zoom",
+              tagName: "px-map-control-zoom-demo" },
+            { name: "px-map-control-scale",
+              tagName: "px-map-control-scale-demo" },
+            { name: "px-map-control-info",
+              tagName: "px-map-control-info-demo" },
+            { name: "px-map-control-geolocate",
+              tagName: "px-map-control-geolocate-demo" }
           ]
         }
       },

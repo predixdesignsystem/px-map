@@ -15,9 +15,10 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-location-control.html" />
 
 <!-- Demo DOM module -->
-<dom-module id="px-map-demo">
+<dom-module id="px-map-control-geolocate-demo">
   <template>
   <style include="px-demo-styles" is="custom-style"></style>
 
@@ -30,8 +31,8 @@
 
   <!-- Header -->
   <px-demo-header
-      module-name="px-map"
-      description="The px-map component is awesome!">
+      module-name="px-map-control-geolocate"
+      description="The px-map-control-geolocate component is awesome!">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -59,7 +60,7 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <px-demo-api-viewer source="px-map"></px-demo-api-viewer>
+  <px-demo-api-viewer source="px-map-control-geolocate"></px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -68,7 +69,7 @@
 
   <script>
     Polymer({
-      is: 'px-map-demo',
+      is: 'px-map-control-geolocate-demo',
 
       properties: {
 
