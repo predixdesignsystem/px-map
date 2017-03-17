@@ -64,7 +64,6 @@
     createIcon(settings={}) {
       // Extract `type` and `badge` from settings with defaults
       let { type='info', badge=false, symbol='fa fa-bolt' } = settings;
-      // debugger;
       const className = this._generateSymbolIconClasses(type, badge);
 
       // Symbol options
@@ -80,7 +79,7 @@
         </div>
       `;
       const iconSize = L.point(55,66);
-      const iconAnchor = L.point(19.8, 115.3);
+      const iconAnchor = L.point(19.8, 65);
       const popupAnchor = L.point(1,-38);
 
       // Define the `divIcon` options

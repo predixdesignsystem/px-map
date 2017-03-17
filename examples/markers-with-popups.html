@@ -31,18 +31,18 @@
 <body>
   <section class="wrap">
     <px-map zoom="12" fit-to-markers flex-to-size>
-      <!--<px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>-->
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
 
       <px-map-layer-group name="BART Stations">
-        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="info" show-badge>
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="info" show-badge symbol-class="fa fa-tint">
           <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
         </px-map-marker-symbol>
 
-        <px-map-marker-static lat="38.0154" lng="-121.9424" type="info" show-badge>
+        <px-map-marker-static lat="38.0035" lng="-122.0247" type="info" show-badge>
           <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
         </px-map-marker-static>
 
-        <!--<px-map-marker-static lat="37.9741" lng="-122.0282" type="info" show-badge>
+        <px-map-marker-static lat="37.9741" lng="-122.0282" type="info" show-badge>
           <px-map-popup-data title="BART: Concord" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
         </px-map-marker-static>
 
@@ -204,7 +204,7 @@
 
         <px-map-marker-static lat="37.7016" lng="-121.8909" type="info" show-badge>
           <px-map-popup-data title="BART: Dublin/Pleasanton" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
-        </px-map-marker-static>-->
+        </px-map-marker-static>
       </px-map-layer-group>
     </px-map>
   </section>

@@ -289,10 +289,6 @@
       //   maxZoom: 18
       // }).addTo(this.elementInst);\
 
-      //DON'T COMMIT THIS CODE OR DIST CODE
-      var marker = L.marker([38.0154,-121.9424]);
-      marker.addTo(this.elementInst);
-
       // Set the view from current defaults
       this._updateMapView();
 
