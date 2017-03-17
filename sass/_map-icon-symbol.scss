@@ -8,6 +8,11 @@
   position: absolute;
 }
 
+.map-icon-symbol__wrapper{
+  position: relative;
+  top: 4px;
+}
+
 // ICON BODY
 
 .map-icon-symbol__body {
@@ -17,7 +22,7 @@
   background-color: $primary-blue;
   border-radius: 100%;
   position: absolute;
-  border: 2px solid var(--px-map-icon-symbol-border-color, $gray1);
+  border: 2px solid var(--px-map-icon-symbol-border-color, $white);
 }
 
 // ICON DESCENDER
@@ -40,13 +45,25 @@
     height: 0;
     border-style: solid;
     border-width: 23px 8px 0px;
-    border-color: var(--px-map-icon-symbol-border-color, $gray1) transparent transparent;
+    border-color: var(--px-map-icon-symbol-border-color, $white) transparent transparent;
     position: absolute;
     z-index: -1;
     left: -8px;
     top: -17px;
     transform: scaleY(1.1);
   }
+}
+
+.map-icon-symbol__symbol--container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-icon-symbol__symbol {
+  color: var(--px-map-icon-symbol-symbol-color, $white);;
+  position: absolute;
+  font-size: calculateRem(20px);
 }
 
 // ICON MODIFIERS
@@ -96,7 +113,7 @@
   width: 20px;
   height: 20px;
   background-color: $alert-orange; //TODO css var
-  border: 2px solid var(--px-map-icon-symbol-border-color, $gray1);
+  border: 2px solid var(--px-map-icon-symbol-border-color, $white);
   transform: rotate(45deg);
   position: absolute;
   left: 29px;
@@ -112,7 +129,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 15px 25px;
-  border-color: transparent transparent var(--px-map-icon-symbol-border-color, $gray1) transparent;
+  border-color: transparent transparent var(--px-map-icon-symbol-border-color, $white) transparent;
 
   &:after {
     content: '';
