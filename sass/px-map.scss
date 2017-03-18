@@ -43,7 +43,7 @@
  */
 :host {
   --px-map-marker-group-unknown-color: var(--px-map-static-icon-unknown-color, $dv-light-gray);
-  --px-map-marker-group-info-color: var(--px-map-static-icon-info-color, $primary-blue);
+  --px-map-marker-group-info-color: var(--px-map-static-icon-info-color, $alert-blue);
   --px-map-marker-group-warning-color: var(--px-map-static-icon-warning-color, $alert-orange);
   --px-map-marker-group-important-color: var(--px-map-static-icon-important-color, $alert-red);
 
