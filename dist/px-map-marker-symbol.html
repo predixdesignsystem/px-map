@@ -1,0 +1,55 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../../polymer/polymer.html"/>
+
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-marker.html">
+
+<!--
+Creates a symbol marker that can be attached to the map.
+
+The marker can be used to show a point-of-interest or represent a physical asset.
+It can be configured to show an asset's state (through color or badge) and updated
+when the asset's state changes. It can also be configured to show custom font
+awesome icons.
+
+Place a popup inside the `px-map-marker-symbol` to show data about the point
+to the user when they tap, hover over, or interact with the marker.
+
+Interactions with the marker will trigger events (documented on the component's
+API page). Attach a listener to the marker or its parent component(s) to trigger
+view changes that show additional data about the point elsewhere in your app.
+
+### Usage
+
+Use this component inside of a `px-map` element, or inside of a `px-map-layer-group`
+element to group it with other geospatial visualizations.
+
+Enable the `fit-to-markers` attribute on the `px-map` element to automatically
+fit this marker and any other markers drawn within the visual boundaries of the
+map when it is first loaded.
+
+For example, the following map will show a single marker within a layer
+group and automatically fit the marker in the view when the map is loaded.
+
+    <px-map zoom="15" fit-to-markers >
+      <px-map-layer-group name="Landmarks">
+        <px-map-marker-symbol lat="35.6654861" lon="139.7706668" type="info" show-badge></px-map-marker-symbol>
+      </px-map-layer-group>
+    </px-map>
+
+@element px-map-marker-symbol
+@blurb Creates a symbol marker that can be attached to the map.
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map-marker-symbol">
+  <template>
+    <content select="*"></content>
+  </template>
+</dom-module>
+<script src="dist/px-map-marker-symbol.js"></script>

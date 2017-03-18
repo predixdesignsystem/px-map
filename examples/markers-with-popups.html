@@ -12,6 +12,7 @@
   <link rel="import" href="../px-map-control-zoom.html" />
   <link rel="import" href="../px-map-layer-group.html" />
   <link rel="import" href="../px-map-marker-static.html" />
+  <link rel="import" href="../px-map-marker-symbol.html" />
   <link rel="import" href="../px-map-popup-info.html" />
   <link rel="import" href="../px-map-popup-data.html" />
 </head>
@@ -33,9 +34,9 @@
       <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
 
       <px-map-layer-group name="BART Stations">
-        <px-map-marker-static lat="38.0154" lng="-121.9424" type="info" show-badge>
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="info" show-badge symbol-class="fa fa-tint">
           <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
-        </px-map-marker-static>
+        </px-map-marker-symbol>
 
         <px-map-marker-static lat="38.0035" lng="-122.0247" type="info" show-badge>
           <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
@@ -185,7 +186,7 @@
           <px-map-popup-data title="BART: Hayward" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
         </px-map-marker-static>
 
-        <px-map-marker-static lat="37.6356" lng="-122.0563" type="info" show-badge>
+        <px-map-marker-static lat="37.6356" lng="-122.0563" type="warning" show-badge>
           <px-map-popup-data title="BART: South Hayward" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
         </px-map-marker-static>
 

@@ -17,7 +17,7 @@
   background-color: $alert-blue;
   border-radius: 100%;
   position: absolute;
-  border: 2px solid var(--px-map-static-icon-border-color, $gray1);
+  border: 2px solid var(--px-map-static-icon-border-color, $white);
 }
 
 // ICON DESCENDER
@@ -40,7 +40,7 @@
     height: 0;
     border-style: solid;
     border-width: 23px 8px 0px;
-    border-color: var(--px-map-static-icon-border-color, $gray1) transparent transparent;
+    border-color: var(--px-map-static-icon-border-color, $white) transparent transparent;
     position: absolute;
     z-index: -1;
     left: -8px;
@@ -93,10 +93,10 @@
 
 %map-icon-static__badge--diamond {
   display: block;
-  width: 14px;
-  height: 14px;
-  background-color: $alert-blue;
-  border: 2px solid var(--px-map-static-icon-border-color, $gray1);
+  width: 17px;
+  height: 17px;
+  background-color: $alert-orange;
+  border: 2px solid var(--px-map-static-icon-border-color, $white);
   transform: rotate(45deg);
   position: absolute;
   left: 10px;
@@ -106,13 +106,13 @@
 %map-icon-static__badge--triangle {
   display: block;
   position: absolute;
-  left: 8px;
-  top: -3px;
+  left: 3px;
+  top: -4px;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 8px 16px 8px;
-  border-color: transparent transparent var(--px-map-static-icon-border-color, $gray1) transparent;
+  border-width: 0 12px 21px;
+  border-color: transparent transparent var(--px-map-static-icon-border-color, $white) transparent;
 
   &:after {
     content: '';
@@ -120,11 +120,11 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 5px 10px 5px;
+    border-width: 0 8px 15px;
     border-color: transparent transparent $alert-blue transparent;
     z-index: 0;
     position: absolute;
-    left: -5px;
+    left: -8px;
     top: 4px;
   }
 }

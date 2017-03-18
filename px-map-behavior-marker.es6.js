@@ -106,6 +106,80 @@
 
   /**
    *
+   * @polymerBehavior PxMapBehavior.SymbolMarker
+   */
+  PxMapBehavior.SymbolMarkerImpl = {
+    properties: {
+      /**
+       * The visual type of the marker. Sets the color of the marker to indicate
+       * the state of the thing it represents. Choose from 'important', 'warning',
+       * or 'info', or 'unknown'. Defaults to 'info'.
+       *
+       * @type {String}
+       */
+      type: {
+        type: String,
+        reflectToAttribute: true,
+        value: 'info',
+        observer: '_updateMarkerIcon'
+      },
+
+      /**
+       * Shows a small notification badge on the icon that indicates there is
+       * some relevant updated information about the marker.
+       *
+       * @type {Object}
+       */
+      showBadge: {
+        type: Boolean,
+        value: true,
+        observer: '_updateMarkerIcon'
+      },
+
+      /**
+       * Replaces the symbol on iconSymbols
+       * accepts font awesome icons
+       */
+      symbolClass: {
+        type: String,
+        observer: '_updateMarkerIcon'
+      }
+    },
+
+    getMarkerIcon() {
+      if (!this.markerIcon) {
+        const options = this._getMarkerIconOptions();
+        this.markerIcon = new PxMap.SymbolIcon(options);
+      }
+      return this.markerIcon;
+    },
+
+    _updateMarkerIcon() {
+      if (!this.markerIcon) return;
+
+      const options = this._getMarkerIconOptions();
+      this.markerIcon = new PxMap.SymbolIcon(options);
+
+      this.shouldUpdateInst();
+    },
+
+    _getMarkerIconOptions() {
+      return {
+        type: this.type,
+        badge: this.showBadge,
+        symbol: this.symbolClass
+      };
+    }
+  };
+  /* Bind SymbolMarker behavior */
+  /** @polymerBehavior */
+  PxMapBehavior.SymbolMarker = [
+    PxMapBehavior.Marker,
+    PxMapBehavior.SymbolMarkerImpl
+  ];
+
+  /**
+   *
    * @polymerBehavior PxMapBehavior.StaticMarker
    */
   PxMapBehavior.StaticMarkerImpl = {

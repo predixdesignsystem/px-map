@@ -31,7 +31,7 @@
         <i class="map-icon-static__badge"></i>
       `;
       const iconSize = L.point(50,50);
-      const iconAnchor = L.point(9.01, 39.5);
+      const iconAnchor = L.point(9.8, 40.3);
       const popupAnchor = L.point(1,-38);
 
       // Define the `divIcon` options
@@ -59,6 +59,63 @@
   };
   /* Bind StaticIcon klass */
   PxMap.StaticIcon = StaticIcon;
+
+  /**
+   *
+   * @class PxMap.SymbolIcon
+   */
+  class SymbolIcon {
+    constructor(settings={}) {
+      this.icon = this.createIcon(settings);
+      return this.icon;
+    }
+
+    createIcon(settings={}) {
+      // Extract `type` and `badge` from settings with defaults
+      let { type='info', badge=false, symbol='fa fa-bolt' } = settings;
+      const className = this._generateSymbolIconClasses(type, badge);
+
+      // Symbol options
+      const html = `
+        <div class="map-icon-symbol__wrapper">
+          <i class="map-icon-symbol__body">
+            <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+              <i class="map-icon-symbol__symbol ${symbol}"></i>
+            </div>
+          </i>
+          <i class="map-icon-symbol__descender"></i>
+          <i class="map-icon-symbol__badge"></i>
+        </div>
+      `;
+      const iconSize = L.point(55,66);
+      const iconAnchor = L.point(19.8, 65);
+      const popupAnchor = L.point(1,-38);
+
+      // Define the `divIcon` options
+      const options = {
+        className,
+        html,
+        iconSize,
+        iconAnchor,
+        popupAnchor
+      };
+
+      return L.divIcon(options);
+    }
+
+    _generateSymbolIconClasses(type, badge) {
+      const classes = ['map-icon', 'map-icon-symbol'];
+      if (type && type.length) {
+        classes.push(`map-icon-symbol--${type}`);
+      }
+      if (badge) {
+        classes.push(`map-icon-symbol--with-badge`);
+      }
+      return classes.join(' ');
+    }
+  };
+  /* Bind SymbolIcon klass */
+  PxMap.SymbolIcon = SymbolIcon;
 
   /**
    *
