@@ -16,7 +16,7 @@
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
 </head>
 
-<style is="custom-style">
+<style>
   body {
     margin: 0;
   }
@@ -45,7 +45,7 @@
   <script>
     var tmpl = document.querySelector('template[is=dom-bind]');
     tmpl.mapMove = function(evt) {
-      var markers = evt.srcElement.getVisibleMarkers();
+      var markers = Polymer.dom(evt).rootTarget.getVisibleMarkers();
       console.log('There are ' + markers.length + ' markers visible on the map.');
     }
   </script>
