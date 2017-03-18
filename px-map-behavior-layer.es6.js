@@ -6,14 +6,14 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    *
    * @polymerBehavior PxMapBehavior.Layer
    */
-  const LayerImpl = {
+  PxMapBehavior.LayerImpl = {
     // When this element is attached to the DOM, fire an event to notify
     // a parent that it is ready
 
@@ -74,10 +74,10 @@
     }
   };
   /* Bind Layer behavior */
-  namespace.LayerImpl = LayerImpl;
-  namespace.Layer = [
-    namespace.Element,
-    LayerImpl
+  /** @polymerBehavior */
+  PxMapBehavior.Layer = [
+    PxMapBehavior.Element,
+    PxMapBehavior.LayerImpl
   ];
 
   /**
@@ -85,7 +85,7 @@
    *
    * @polymerBehavior PxMapBehavior.ParentLayer
    */
-  const ParentLayerImpl = {
+  PxMapBehavior.ParentLayerImpl = {
     listeners: {
       'px-map-layer-instance-created' : '_tryToAddAllChildren',
       'px-map-layer-ready-to-add' : '_tryToAddOneChild'
@@ -161,6 +161,6 @@
     }
   };
   /* Bind ParentLayer behavior */
-  namespace.ParentLayer = [ParentLayerImpl];
-
+  /** @polymerBehavior */
+  PxMapBehavior.ParentLayer = [PxMapBehavior.ParentLayerImpl];
 })();

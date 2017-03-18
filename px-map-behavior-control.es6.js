@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.Control
    */
-  const ControlImpl = {
+  PxMapBehavior.ControlImpl = {
     properties: {
       /**
        * Positions the control in one of the map corners. Choose from 'topright',
@@ -36,16 +36,17 @@
     }
   };
   /* Bind Control behavior */
-  namespace.Control = [
-    namespace.Layer,
-    ControlImpl
+  /** @polymerBehavior */
+  PxMapBehavior.Control = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.ControlImpl
   ];
 
   /**
    *
    * @polymerBehavior PxMapBehavior.ZoomControl
    */
-  const ZoomControlImpl = {
+  PxMapBehavior.ZoomControlImpl = {
     properties: {
       /**
        * Sets the icon for zoom in button
@@ -55,7 +56,7 @@
        */
       zoomInText: {
         type: String,
-        value: '<i class="fa fa-plus"></i>',
+        value: '<i class="fa fa-plus"></i>'
       },
 
       /**
@@ -66,7 +67,73 @@
        */
       zoomOutText: {
         type: String,
-        value: '<i class="fa fa-minus"></i>',
+        value: '<i class="fa fa-minus"></i>'
+      },
+
+      /**
+       * Sets the hover text for zoom in button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomInTitle: {
+        type: String,
+        value: 'Zoom in'
+      },
+
+      /**
+       * Sets the hover text for zoom out button
+       * This is not dynamic and can only be set at run time
+       *
+       * @type {String}
+       */
+      zoomOutTitle: {
+        type: String,
+        value: 'Zoom out'
+      },
+
+      /**
+       * A valid IETF language tag as a string that `app-localize-behavior` will
+       * use to localize this component (see https://en.wikipedia.org/wiki/IETF_language_tag)
+       * for a list of valid tags.
+       *
+       * Examples:
+       * - 'en' (English)
+       * - 'es' (Spanish)
+       * - 'zh-cn' (Simplified Chinese)
+       *
+       * See https://github.com/PolymerElements/app-localize-behavior for API
+       * documentation and more information.
+       *
+       * @type {String}
+       */
+      language: {
+        type: String,
+        value: 'en'
+      },
+
+      /**
+       * Object providing localized strings that `app-localize-behavior` will use
+       * to localize this component. The first key should be a valid IETF language
+       * tag, followed by key/value pairs for each string you need to localize.
+       * Settings can also be loaded from a locales.json file at the app level.
+       *
+       * For this component, the following keys can be localized:
+       * - 'Zoom in' - [en default] 'Zoom in'
+       * - 'Zoom out' - [en default] 'Zoom out'
+       *
+       * See https://github.com/PolymerElements/app-localize-behavior for API
+       * documentation and more information.
+       *
+       * @type {Object}
+       */
+      resources: {
+        type: Object,
+        value: function() {
+          return {
+            'en': {'Zoom in': 'Zoom in', 'Zoom out': 'Zoom out'}
+          };
+        }
       }
     },
 
@@ -85,21 +152,25 @@
       return {
         position: this.position,
         zoomInText: this.zoomInText,
-        zoomOutText: this.zoomOutText
+        zoomOutText: this.zoomOutText,
+        zoomInTitle: this.localize(this.zoomInTitle),
+        zoomOutTitle: this.localize(this.zoomOutTitle)
       };
     }
   };
   /* Bind ZoomControl behavior */
-  namespace.ZoomControl = [
-    namespace.Control,
-    ZoomControlImpl
+  /** @polymerBehavior */
+  PxMapBehavior.ZoomControl = [
+    Polymer.AppLocalizeBehavior,
+    PxMapBehavior.Control,
+    PxMapBehavior.ZoomControlImpl
   ];
 
   /**
    *
    * @polymerBehavior PxMapBehavior.ScaleControl
    */
-  const ScaleControlImpl = {
+  PxMapBehavior.ScaleControlImpl = {
     properties: {
       /**
        * Shows a imperial unit scale (ft/mi) line if enabled. Multiple unit scales
@@ -169,9 +240,10 @@
     }
   };
   /* Bind ScaleControl behavior */
-  namespace.ScaleControl = [
-    namespace.Control,
-    ScaleControlImpl
+  /** @polymerBehavior */
+  PxMapBehavior.ScaleControl = [
+    PxMapBehavior.Control,
+    PxMapBehavior.ScaleControlImpl
   ];
 
   /****************************************************************************
@@ -179,7 +251,7 @@
    ****************************************************************************/
 
   /* Ensures the klass namespace is created */
-  const klass = (window.PxMap = window.PxMap || {});
+  window.PxMap = (window.PxMap || {});
 
   /**
    *
@@ -282,6 +354,5 @@
 
   };
   /* Bind ScaleControl klass */
-  klass.ScaleControl = ScaleControl;
-
+  PxMap.ScaleControl = ScaleControl;
 })();

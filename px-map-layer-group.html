@@ -29,4 +29,9 @@
     <content select="*"></content>
   </template>
 </dom-module>
-<script src="dist/px-map-layer-group.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-layer-group',
+    behaviors: [PxMapBehavior.LayerGroup]
+  });
+</script>

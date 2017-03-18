@@ -3,21 +3,29 @@
     siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
     'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
-<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../../polymer/polymer.html"/>
 
 <!-- Load required PxMapBehaviors -->
-<link rel="import" href="px-map-behavior-popup.html">
+<link rel="import" href="px-map-behavior-marker-group.html">
+
+<!-- Import style modules -->
+<link rel="import" href="../css/px-map-styles.html">
 
 <!--
 ...
 
-@element px-map-popup-data
+##### Usage
+
+    ...
+
+@element px-map-marker-group
 @blurb ...
 @homepage index.html
 @demo index.html
 -->
 
-<dom-module id="px-map-popup-data">
+<dom-module id="px-map-marker-group">
+  <style include="px-map-styles"></style>
   <style>
     :host { display: none }
   </style>
@@ -25,7 +33,7 @@
 </dom-module>
 <script>
   Polymer({
-    is: 'px-map-popup-data',
-    behaviors: [PxMapBehavior.DataPopup]
+    is: 'px-map-marker-group',
+    behaviors: [PxMapBehavior.MarkerGroup]
   });
 </script>

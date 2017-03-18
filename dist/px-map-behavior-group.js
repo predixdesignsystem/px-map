@@ -1,2 +1,0 @@
-'use strict';(function(){'use strict';var namespace=window.PxMapBehavior=window.PxMapBehavior||{};var LayerGroupImpl={properties:{name:{type:String,notify:true}},createInst:function createInst(){return L.layerGroup()},updateInst:function updateInst(){return undefined},getInstOptions:function getInstOptions(){return{}}};namespace.LayerGroup=[namespace.Layer,namespace.ParentLayer,LayerGroupImpl]})();
-//# sourceMappingURL=px-map-behavior-group.js.map

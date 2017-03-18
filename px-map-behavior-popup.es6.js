@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.Popup
    */
-  const PopupImpl = {
+  PxMapBehavior.PopupImpl = {
     properties: {
       /**
        * Will be `true` when the popup becomes visible, and `false` when the
@@ -49,16 +49,17 @@
     }
   };
   /* Bind Popup behavior */
-  namespace.Popup = [
-    namespace.Layer,
-    PopupImpl
+  /** @polymerBehavior */
+  PxMapBehavior.Popup = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.PopupImpl
   ];
 
   /**
    *
    * @polymerBehavior PxMapBehavior.InfoPopup
    */
-  const InfoPopupImpl = {
+  PxMapBehavior.InfoPopupImpl = {
     properties: {
       /**
        * Title text to display in bold at the top of the popup. Should be kept
@@ -131,16 +132,17 @@
     }
   };
   /* Bind InfoPopup behavior */
-  namespace.InfoPopup = [
-    namespace.Popup,
-    InfoPopupImpl
+  /** @polymerBehavior */
+  PxMapBehavior.InfoPopup = [
+    PxMapBehavior.Popup,
+    PxMapBehavior.InfoPopupImpl
   ];
 
   /**
    *
    * @polymerBehavior PxMapBehavior.DataPopup
    */
-  const DataPopupImpl = {
+  PxMapBehavior.DataPopupImpl = {
     properties: {
       /**
        * Title text to display in bold at the top of the popup. Should be kept
@@ -196,9 +198,10 @@
     }
   };
   /* Bind DataPopup behavior */
-  namespace.DataPopup = [
-    namespace.Popup,
-    DataPopupImpl
+  /** @polymerBehavior */
+  PxMapBehavior.DataPopup = [
+    PxMapBehavior.Popup,
+    PxMapBehavior.DataPopupImpl
   ];
 
   /****************************************************************************
@@ -206,7 +209,7 @@
    ****************************************************************************/
 
   /* Ensures the klass namespace is created */
-  const klass = (window.PxMap = window.PxMap || {});
+  window.PxMap = (window.PxMap || {});
 
   /**
    *
@@ -272,7 +275,7 @@
     }
   };
   /* Bind InfoPopup klass */
-  klass.InfoPopup = InfoPopup;
+  PxMap.InfoPopup = InfoPopup;
 
   /**
    *
@@ -347,6 +350,5 @@
     }
   };
   /* Bind DataPopup klass */
-  klass.DataPopup = DataPopup;
-
+  PxMap.DataPopup = DataPopup;
 })();

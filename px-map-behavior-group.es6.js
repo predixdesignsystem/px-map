@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.LayerGroup
    */
-  const LayerGroupImpl = {
+  PxMapBehavior.LayerGroupImpl = {
     properties: {
       /**
        * A human-readable name for this layer group. If the map has a layer
@@ -40,10 +40,10 @@
     }
   };
   /* Bind LayerGroup behavior */
-  namespace.LayerGroup = [
-    namespace.Layer,
-    namespace.ParentLayer,
-    LayerGroupImpl
+  /** @polymerBehavior */
+  PxMapBehavior.LayerGroup = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.ParentLayer,
+    PxMapBehavior.LayerGroupImpl
   ];
-
 })();

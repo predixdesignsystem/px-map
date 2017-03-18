@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.Marker
    */
-  const MarkerImpl = {
+  PxMapBehavior.MarkerImpl = {
     properties: {
       /**
        * The latitude of the marker. Set a value to draw the marker at a coordinate
@@ -97,17 +97,18 @@
     }
   };
   /* Bind Marker behavior */
-  namespace.Marker = [
-    namespace.Layer,
-    namespace.ParentLayer,
-    MarkerImpl
+  /** @polymerBehavior */
+  PxMapBehavior.Marker = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.ParentLayer,
+    PxMapBehavior.MarkerImpl
   ];
 
   /**
    *
    * @polymerBehavior PxMapBehavior.StaticMarker
    */
-  const StaticMarkerImpl = {
+  PxMapBehavior.StaticMarkerImpl = {
     properties: {
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
@@ -161,9 +162,9 @@
     }
   };
   /* Bind StaticMarker behavior */
-  namespace.StaticMarker = [
-    namespace.Marker,
-    StaticMarkerImpl
+  /** @polymerBehavior */
+  PxMapBehavior.StaticMarker = [
+    PxMapBehavior.Marker,
+    PxMapBehavior.StaticMarkerImpl
   ];
-
-})()
+})();

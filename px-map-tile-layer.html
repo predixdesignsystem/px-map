@@ -27,4 +27,9 @@
   </style>
   <template></template>
 </dom-module>
-<script src="dist/px-map-tile-layer.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-tile-layer',
+    behaviors: [PxMapBehavior.TileLayer]
+  });
+</script>

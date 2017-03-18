@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.TileLayer
    */
-  const TileLayerImpl = {
+  PxMapBehavior.TileLayerImpl = {
     properties: {
       /**
        *
@@ -45,9 +45,9 @@
     }
   };
   /* Bind TileLayer behavior */
-  namespace.TileLayer = [
-    namespace.Layer,
-    TileLayerImpl
+  /** @polymerBehavior */
+  PxMapBehavior.TileLayer = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.TileLayerImpl
   ];
-
 })();

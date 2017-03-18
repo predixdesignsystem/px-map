@@ -3,29 +3,33 @@
     siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
     'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
-<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../../polymer/polymer.html"/>
 
-<!-- Load required PxMapBehaviors -->
-<link rel="import" href="px-map-behavior-popup.html">
+<!-- Local dependencies -->
+<link rel="import" href="px-map-behavior-control.html">
 
 <!--
-...
+The zoom control creates a set of buttons the user can tap to zoom in or out
+of the map.
 
-@element px-map-popup-data
+### Usage
+
+    <px-map>
+      <px-map-control-zoom position="topright"></px-map-control-zoom>
+    </px-map>
+
+@element px-map-control-zoom
 @blurb ...
 @homepage index.html
 @demo index.html
 -->
 
-<dom-module id="px-map-popup-data">
-  <style>
-    :host { display: none }
-  </style>
+<dom-module id="px-map-control-zoom">
   <template></template>
 </dom-module>
 <script>
   Polymer({
-    is: 'px-map-popup-data',
-    behaviors: [PxMapBehavior.DataPopup]
+    is: 'px-map-control-zoom',
+    behaviors: [PxMapBehavior.ZoomControl]
   });
 </script>

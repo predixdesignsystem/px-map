@@ -24,12 +24,11 @@
     ".editorconfig"
   ],
   "dependencies": {
+    "app-localize-behavior": "^0.10.1",
     "polymer": "^1.7.1",
     "pxd3": "d3#~4.4.0",
     "px-theme": "^2.0.3",
     "leaflet": "^1.0.3",
-    "es6-promise": "^3.3.1",
-    "PruneCluster": "^1.1.0",
     "leaflet.markercluster": "^1.0.3"
   },
   "devDependencies": {

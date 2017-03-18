@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.Element
    */
-  const ElementImpl = {
+  PxMapBehavior.ElementImpl = {
     beforeRegister() {
       /**
        * A reference to this element's instance. The instance can be configured and
@@ -146,6 +146,5 @@
     }
   };
   /* Bind Element behavior */
-  namespace.Element = [ElementImpl];
-
+  PxMapBehavior.Element = [PxMapBehavior.ElementImpl];
 })();

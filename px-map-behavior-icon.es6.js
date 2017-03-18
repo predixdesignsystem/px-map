@@ -1,6 +1,13 @@
 (function() {
   'use strict';
 
+  /****************************************************************************
+   * KLASSES
+   ****************************************************************************/
+
+  /* Ensures the klass namespace is created */
+  window.PxMap = (window.PxMap || {});
+
   /**
    *
    * @class PxMap.StaticIcon
@@ -50,6 +57,8 @@
       return classes.join(' ');
     }
   };
+  /* Bind StaticIcon klass */
+  PxMap.StaticIcon = StaticIcon;
 
   /**
    *
@@ -148,13 +157,6 @@
       `;
     }
   };
-
-  /* Ensures the klass namespace is created */
-  const klass = (window.PxMap = window.PxMap || {});
-
-  /* Bind StaticIcon klass */
-  klass.StaticIcon = StaticIcon;
-
   /* Bind ClusterIcon klass */
-  klass.ClusterIcon = ClusterIcon;
+  PxMap.ClusterIcon = ClusterIcon;
 })();

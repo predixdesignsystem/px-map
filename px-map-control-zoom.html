@@ -27,4 +27,9 @@ of the map.
 <dom-module id="px-map-control-zoom">
   <template></template>
 </dom-module>
-<script src="dist/px-map-control-zoom.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-control-zoom',
+    behaviors: [PxMapBehavior.ZoomControl]
+  });
+</script>

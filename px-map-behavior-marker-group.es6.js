@@ -6,13 +6,13 @@
    ****************************************************************************/
 
   /* Ensures the behavior namespace is created */
-  const namespace = (window.PxMapBehavior = window.PxMapBehavior || {});
+  window.PxMapBehavior = (window.PxMapBehavior || {});
 
   /**
    *
    * @polymerBehavior PxMapBehavior.MarkerGroup
    */
-  const MarkerGroupImpl = {
+  PxMapBehavior.MarkerGroupImpl = {
     properties: {
       /**
        * A human-readable name for this layer group. If the map has a layer
@@ -446,11 +446,8 @@
      * it is not kept around as an opaque background to the markers.
      */
     _handleClusterSpiderify(evt) {
-      const localEvt = Polymer.dom(evt);
-      const node = localEvt.node;
-      if (!node || !node.cluster || !node.cluster._icon) return;
-
-      node.cluster._icon.style.visibility = 'hidden';
+      if (!evt || !evt.cluster || !evt.cluster._icon) return;
+      evt.cluster._icon.style.visibility = 'hidden';
     },
 
     /**
@@ -458,17 +455,14 @@
      * it is shown again on the map.
      */
     _handleClusterUnspiderify(evt) {
-      const localEvt = Polymer.dom(evt);
-      const node = localEvt.node;
-      if (!node || !node.cluster || !node.cluster._icon) return;
-
-      node.cluster._icon.style.visibility = 'visible';
+      if (!evt || !evt.cluster || !evt.cluster._icon) return;
+      evt.cluster._icon.style.visibility = 'visible';
     }
   };
   /* Bind MarkerGroup behavior */
-  namespace.MarkerGroup = [
-    namespace.Layer,
-    MarkerGroupImpl
+  /** @polymerBehavior */
+  PxMapBehavior.MarkerGroup = [
+    PxMapBehavior.Layer,
+    PxMapBehavior.MarkerGroupImpl
   ];
-
 })();
