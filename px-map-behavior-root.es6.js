@@ -328,10 +328,12 @@
 
       // Loop over the layers
       this.elementInst.eachLayer((layer) => {
-        // Markers have a `layer.options.icon` set
-        if (layer.options && layer.options.icon) {
+        // Markers have a `layer.options.icon` set. If a layer has `layer._markers`
+        // defined, it is a cluster layer and we should skip it (we'll count
+        // if another way)
+        if (layer.options && layer.options.icon && !layer._markers) {
           // Only push markers that are visible
-          if (mapBounds.contains(layer.getLatLng())) {
+          if (mapBounds.contains(layer.getLatLng()) && markers.indexOf(layer) === -1) {
             markers.push(layer);
           }
         }
@@ -341,7 +343,7 @@
           layer.eachLayer((marker) => {
             // Only push markers that are visible
             let parentCluster = layer.getVisibleParent(marker);
-            if (parentCluster && mapBounds.contains(parentCluster.getLatLng())) {
+            if (parentCluster && mapBounds.contains(parentCluster.getLatLng()) && marker && markers.indexOf(marker) === -1) {
               markers.push(marker);
             }
           })
