@@ -15,6 +15,7 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-control-zoom.html" />
 <link rel="import" href="../px-map-control-scale.html" />
 
 <!-- Demo DOM module -->
@@ -25,7 +26,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-control-scale"
-      description="The px-map-control-scale component is awesome!">
+      description="The px-map-control-scale component places a scale on the map in either imperial or metric units, or both.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -39,8 +40,15 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-control-scale
+            position="{{props.position.value}}"
+            imperial-units="{{props.imperialUnits.value}}"
+            metric-units="{{props.metricUnits.value}}"
+            reverse-colors="{{props.reverseColors.value}}">
+          </px-map-control-scale>
+          <px-map-control-zoom position="bottomright"></px-map-control-zoom>
         </px-map>
       </div>
     </px-demo-component>
@@ -48,7 +56,7 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map">
+        element-name="px-map-control-scale">
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -87,45 +95,61 @@
          * @property configs
          * @type {Array}
          */
-        configs: {
-          type: Array,
-          value: function(){
-            return [
-              { configName: "Default",
-                configReset: true },
-              ]
-          }
-        }
-      },
+         configs: {
+           type: Array,
+           value: function(){
+             return [
+               { configName: "Basic",
+                 configReset: true },
 
-      /**
-       * A reference for `this.props`. Read the documentation there.
-       *
-       * @property demoProps
-       * @type {Object}
-       */
-      demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
-        lightDomContent: {
-          type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
-        }
-      }
-    });
-  </script>
+               { configName: "Imperial & Metric",
+                 configReset: true,
+                 imperialUnits: true,
+                 metricUnits: true,
+                 reverseColors: false },
+
+               { configName: "Reverse Colors",
+                 configReset: true,
+                 imperialUnits: true,
+                 metricUnits: false,
+                 reverseColors: true },
+              ]
+           }
+         }
+       },
+
+       /**
+        * A reference for `this.props`. Read the documentation there.
+        *
+        * @property demoProps
+        * @type {Object}
+        */
+       demoProps: {
+         position: {
+           type: String,
+           defaultValue: 'bottomleft',
+           inputType: 'dropdown',
+           inputChoices: ['topleft', 'topright', 'bottomleft', 'bottomright']
+         },
+
+         imperialUnits: {
+           type: Boolean,
+           defaultValue: true,
+           inputType: 'toggle'
+         },
+
+         metricUnits: {
+           type: Boolean,
+           defaultValue: false,
+           inputType: 'toggle'
+         },
+
+         reverseColors: {
+           type: Boolean,
+           defaultValue: false,
+           inputType: 'toggle'
+         },
+
+       }
+     });
+   </script>
