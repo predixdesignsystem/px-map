@@ -200,14 +200,24 @@
      */
     _fitMapToMarkers() {
       if (this.elementInst && this.fitToMarkers) {
+        this.debounce('fit-map-to-markers', this._fitBounds, 1);
+      }
+    },
 
-        const fitFn = () => {
-          const bounds = this._getAllMarkerGeoms();
-          if (!bounds.isValid || !bounds.isValid()) return;
-          this.elementInst.fitBounds(bounds);
-        };
-
-        this.debounce('fit-map-to-markers', fitFn, 1);
+    /**
+     * Gets the bounds of all markers. If the bounds object is empty, retries
+     * once in the event that markers didn't have enough time to render.
+     *
+     * @param {Boolean} isRetry - If true, this is the second try and the function shouldn't be tried again. Allow the function to call this method on itself.
+     */
+    _fitBounds(isRetry) {
+      const bounds = this._getAllMarkerGeoms();
+      const boundsAreNotValid = (!bounds.isValid || !bounds.isValid());
+      if (boundsAreNotValid && !isRetry) {
+        return setTimeout(this._fitBounds.bind(this), 0);
+      }
+      if (!boundsAreNotValid) {
+        this.elementInst.fitBounds(bounds);
       }
     },
 
@@ -220,7 +230,6 @@
     _getAllMarkerGeoms() {
       // Create a new bounds and extend with the map center point
       let bounds = new L.LatLngBounds();
-      // bounds.extend(L.latLng([this.lat, this.lng]));
 
       // Loop over the layers
       this.elementInst.eachLayer((layer) => {
@@ -230,7 +239,7 @@
           bounds.extend(markerGeom);
         }
 
-        // Markers in a PruneCluster have a `layer.Cluster._markers` array with length
+        // Markers in a cluster have a `layer._markerCluster` property
         if (layer._markerCluster && layer.getBounds) {
           let clusterBounds = layer.getBounds();
           bounds.extend(clusterBounds);
