@@ -18,6 +18,21 @@ of the map.
       <px-map-control-zoom position="topright"></px-map-control-zoom>
     </px-map>
 
+### Ordering/stacking controls
+
+Multiple controls can be placed in the same position e.g. ('bottomright' for the
+bottom right-hand corner of the map). Controls will stack automatically in the
+reverse order they were placed in the DOM. This means that controls that appear
+later in the DOM will be placed above those that appear earlier.
+
+For example, this map has two controls in the same bottom right position, a zoom
+control and a scale control:
+
+    <px-map>
+      <px-map-control-zoom position="bottomright"></px-map-control-zoom>
+      <px-map-control-scale position="bottomright" imperial-units></px-map-control-zoom>
+    </px-map>
+
 @element px-map-control-zoom
 @blurb ...
 @homepage index.html
