@@ -1,3 +1,8 @@
 node_modules
 .DS_Store
+<<<<<<< f4ae13cfa6e75a6f3f08b6f065a1a248c5062edc
 bower_components
+=======
+bower_components
+.yo-rc.json
+>>>>>>> started styling location button

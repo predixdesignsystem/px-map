@@ -512,7 +512,7 @@
         className: '',
         locateText: '<i class="fa fa-crosshairs"></i>',
         locateTitle: 'Zoom to your location',
-        locateProgressText: '<i class="px-map-spinner"></i>',
+        // locateProgressText: '<i class="fa fa-crosshairs"></i>',
         locateErrorText: '<i class="fa fa-times"></i>',
         locateTimeout: 10000,
         moveToLocation: true,
@@ -603,7 +603,7 @@
     _setLocatingState() {
       if (!this.__locateButton || !this.__locating) return;
 
-      this.__locateButton.innerHTML = this.options.locateProgressText;
+      // this.__locateButton.innerHTML = this.options.locateProgressText;
       L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--locating');
 
       this.__disabled = true;
