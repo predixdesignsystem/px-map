@@ -512,8 +512,6 @@
         className: '',
         locateText: '<i class="fa fa-crosshairs"></i>',
         locateTitle: 'Zoom to your location',
-        // locateProgressText: '<i class="fa fa-crosshairs"></i>',
-        locateErrorText: '<i class="fa fa-times"></i>',
         locateTimeout: 10000,
         moveToLocation: true,
         moveMaxZoom: null
@@ -530,10 +528,8 @@
       /* Bind map events */
       L.DomEvent.on(map, 'locationfound', L.DomEvent.stop);
       L.DomEvent.on(map, 'locationfound', this._locationFound, this);
-      // map.on('locationfound', this._locationFound, this);
       L.DomEvent.on(map, 'locationerror', L.DomEvent.stop);
       L.DomEvent.on(map, 'locationerror', this._locationError, this);
-      // map.on('locationerror', this._locationError, this);
 
       /* Bind button events */
       L.DomEvent.disableClickPropagation(this.__locateButton);
@@ -597,13 +593,13 @@
       if (this.__locating) {
         this.__locating = false;
         this._setErrorState();
+        this.fire('px-map-locating-error');
       }
     }
 
     _setLocatingState() {
       if (!this.__locateButton || !this.__locating) return;
 
-      // this.__locateButton.innerHTML = this.options.locateProgressText;
       L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--locating');
 
       this.__disabled = true;
@@ -625,8 +621,6 @@
       if (!this.__locateButton || this.__locating) return;
 
       this.__locateButton.innerHTML = this.options.locateErrorText;
-      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
-      L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--error');
 
       this.__disabled = true;
       this._updateDisabled();
