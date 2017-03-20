@@ -207,7 +207,8 @@
         colorsByType: colors,
         containerSize: containerSize,
         pathSize: pathSize,
-        borderSize: borderSize
+        borderSize: borderSize,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
 
       return new PxMap.ClusterIcon(options);

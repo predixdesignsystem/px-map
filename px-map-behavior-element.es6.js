@@ -143,6 +143,29 @@
 
         boundEvtEls.delete(evt);
       }
+    },
+
+    /**
+     * If this component is being drawn in Shady DOM, returns true. Used to
+     * ensure the shady DOM scope classes are applied when we make DOM
+     * transactions that can't be reviewed by the scopeSubtree observer
+     * in the root `px-map` component that is the parent of all elements.
+     *
+     * @return {Boolean}
+     */
+    isShadyScoped() {
+      return !Polymer.Settings.useNativeShadow;
+    },
+
+    /**
+     * Returns the stringified shady DOM scope classes. Useful for ensuring they're
+     * applied during DOM transactions that can't be reviewed by the scopeSubtree
+     * observer in the root `px-map` component that is the parent of all elements.
+     *
+     * @return {String} A list of CSS classes separated by spaces
+     */
+    getShadyScope() {
+      return 'style-scope px-map';
     }
   };
   /* Bind Element behavior */

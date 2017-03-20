@@ -20,9 +20,9 @@
 
     createIcon(settings={}) {
       // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false } = settings;
+      let { type='info', badge=false, styleScope } = settings;
 
-      const className = this._generateStaticIconClasses(type, badge);
+      const className = this._generateStaticIconClasses(type, badge, styleScope);
 
       // Static options
       const html = `
@@ -46,13 +46,16 @@
       return L.divIcon(options);
     }
 
-    _generateStaticIconClasses(type, badge) {
+    _generateStaticIconClasses(type, badge, styleScope) {
       const classes = ['map-icon', 'map-icon-static'];
       if (type && type.length) {
         classes.push(`map-icon-static--${type}`);
       }
       if (badge) {
         classes.push(`map-icon-static--with-badge`);
+      }
+      if (styleScope) {
+        classes.push(styleScope);
       }
       return classes.join(' ');
     }
@@ -72,8 +75,8 @@
 
     createIcon(settings={}) {
       // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false, symbol='fa fa-bolt' } = settings;
-      const className = this._generateSymbolIconClasses(type, badge);
+      let { type='info', badge=false, symbol='fa fa-bolt', styleScope } = settings;
+      const className = this._generateSymbolIconClasses(type, badge, styleScope);
 
       // Symbol options
       const html = `
@@ -103,13 +106,16 @@
       return L.divIcon(options);
     }
 
-    _generateSymbolIconClasses(type, badge) {
+    _generateSymbolIconClasses(type, badge, styleScope) {
       const classes = ['map-icon', 'map-icon-symbol'];
       if (type && type.length) {
         classes.push(`map-icon-symbol--${type}`);
       }
       if (badge) {
         classes.push(`map-icon-symbol--with-badge`);
+      }
+      if (styleScope) {
+        classes.push(styleScope);
       }
       return classes.join(' ');
     }
@@ -129,7 +135,7 @@
 
     createIcon(settings={}) {
       // Extract `count`, `countByType`, `colorsByType`
-      const { count, countByType, colorsByType, containerSize=50, pathSize=10, borderSize=0, className='' } = settings;
+      const { count, countByType, colorsByType, containerSize=50, pathSize=10, borderSize=0, className='', styleScope } = settings;
 
       // The chart size is the container size with the border size subtracted out,
       // so we can draw and transform our SVG in the right dimensions
@@ -142,7 +148,7 @@
       const svg = this._generateClusterIconSVG(countByType, colorsByType, chartSize, pathSize);
 
       // Generate the classes and wrapper HTML
-      const classes = `map-icon-cluster ${className||''}`
+      const classes = `map-icon-cluster ${className||''} ${styleScope||''}`
       const html = `
         <div class="map-icon-cluster__container" style="width: ${containerSize}px; height: ${containerSize}px">
           <i class="map-icon-cluster__svg">${svg}</i>

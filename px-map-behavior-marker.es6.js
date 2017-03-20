@@ -167,7 +167,8 @@
       return {
         type: this.type,
         badge: this.showBadge,
-        symbol: this.symbolClass
+        symbol: this.symbolClass,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
   };
@@ -231,7 +232,8 @@
     _getMarkerIconOptions() {
       return {
         type: this.type || '',
-        badge: this.showBadge || false
+        badge: this.showBadge || false,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
   };
