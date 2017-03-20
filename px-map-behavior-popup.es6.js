@@ -215,8 +215,20 @@
     getInstOptions() {
       return {
         title: this.title,
-        data: (typeof this.data === "object") ? this.data : {}
+        data: this._getValidData()
       };
+    },
+
+    _getValidData() {
+      if (typeof this.data !== 'object') {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+          You entered an invalid \`data\` attribute for ${this.is}. You must pass a valid object.
+          An attribute of type \`${typeof this.data}\` was passed.`);
+
+        return {};
+      }
+
+      return this.data;
     }
   };
   /* Bind DataPopup behavior */
