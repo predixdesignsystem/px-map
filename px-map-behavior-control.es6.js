@@ -149,13 +149,20 @@
     },
 
     getInstOptions() {
-      return {
-        position: this.position,
-        zoomInText: this.zoomInText,
-        zoomOutText: this.zoomOutText,
-        zoomInTitle: this.localize(this.zoomInTitle),
-        zoomOutTitle: this.localize(this.zoomOutTitle)
-      };
+      const options = {};
+      options.position = this.position;
+      options.zoomInText = this.zoomInText;
+      options.zoomOutText = this.zoomOutText;
+
+      // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
+      // cause the zoom control not to draw. Check if this.localize exists
+      // and can be called before doing so.
+      if (typeof this.localize === 'function') {
+        options.zoomInTitle = this.localize(this.zoomInTitle);
+        options.zoomInTitle =  this.localize(this.zoomOutTitle);
+      }
+
+      return options;
     }
   };
   /* Bind ZoomControl behavior */
