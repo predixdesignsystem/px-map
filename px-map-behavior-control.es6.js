@@ -33,6 +33,31 @@
 
     removeInst(parent) {
       this.elementInst.remove();
+    },
+
+    getInstOptions() {
+      return {
+        position: this._getValidPosition()
+      }
+    },
+
+    _getValidPosition() {
+      const positionIsValid = (/^(topright|topleft|bottomright|bottomleft)$/.test(this.position));
+
+      if (!positionIsValid) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+          You entered an invalid \`position\` attribute '${this.position}' for ${this.is}.
+          Position must be a string with one of the following values:
+          - 'topright'
+          - 'topleft'
+          - 'bottomright'
+          - 'bottomleft'
+          Defaulting to 'bottomright'.`);
+
+        return 'bottomright';
+      }
+
+      return this.position;
     }
   };
   /* Bind Control behavior */
@@ -149,7 +174,8 @@
     },
 
     getInstOptions() {
-      const options = {};
+      const options = PxMapBehavior.ControlImpl.getInstOptions.call(this);
+
       options.position = this.position;
       options.zoomInText = this.zoomInText;
       options.zoomOutText = this.zoomOutText;
@@ -238,12 +264,13 @@
     },
 
     getInstOptions() {
-      return {
-        imperial: this.imperialUnits,
-        metric: this.metricUnits,
-        reverseColors: this.reverseColors,
-        position: this.position
-      };
+      const options = PxMapBehavior.ControlImpl.getInstOptions.call(this);
+
+      options.imperial = this.imperialUnits;
+      options.metric = this.metricUnits;
+      options.reverseColors = this.reverseColors;
+
+      return options;
     }
   };
   /* Bind ScaleControl behavior */
