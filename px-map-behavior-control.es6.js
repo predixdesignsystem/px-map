@@ -163,8 +163,7 @@
     },
 
     createInst(options) {
-      // return new PxMap.ZoomControl(options);
-      return L.control.zoom(options);
+      return new PxMap.ZoomControl(options);
     },
 
     updateInst(lastOptions, nextOptions) {
@@ -389,4 +388,38 @@
   };
   /* Bind ScaleControl klass */
   PxMap.ScaleControl = ScaleControl;
+
+  /**
+   *
+   * @class PxMap.ZoomControl
+   */
+  class ZoomControl extends L.Control.Zoom {
+    _zoomIn(e) {
+      super._zoomIn(e);
+
+      if (this._map && this._map.fire) {
+        this._map.fire('controlclick', {
+          src: this,
+          action: 'zoomin'
+        })
+      }
+    }
+
+    _zoomOut(e) {
+      super._zoomOut(e);
+
+      if (this._map && this._map.fire) {
+        this._map.fire('controlclick', {
+          src: this,
+          action: 'zoomout'
+        });
+      }
+    }
+
+    _fireZoomClickEvt(evt) {
+      debugger;
+    }
+  };
+  /* Bind ZoomControl klass */
+  PxMap.ZoomControl = ZoomControl;
 })();

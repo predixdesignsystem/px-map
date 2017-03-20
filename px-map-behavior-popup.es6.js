@@ -33,18 +33,40 @@
        */
       bindToControl: {
         type: String
+      },
+
+      /**
+       * If set to `true`, the popup will be automatically closed when the user
+       * interacts with any control buttons (e.g. zoom buttons or locate button).
+       * By default, the popup only closes when the user clicks the map.
+       */
+      closeOnControlInteract: {
+        type: Boolean,
+        value: false
       }
     },
 
     addInst(parent) {
       if (parent && parent.getPopup() !== this.elementInst) {
         parent.bindPopup(this.elementInst);
+
+        // Bind custom events for this cluster. Events will be unbound automatically.
+        const controlClickFn = this._handleControlClick.bind(this, parent);
+        this.bindEvents({
+          'controlclick' : controlClickFn
+        }, parent._mapToAdd);
       }
     },
 
     removeInst(parent) {
-      if (parent && parent.getPopup() === this.elementInst) {
+      if (parent && parent.getPopup && (parent.getPopup() === this.elementInst)) {
         parent.unbindPopup(this.elementInst);
+      }
+    },
+
+    _handleControlClick(parent) {
+      if (this.closeOnControlInteract && parent && parent.closePopup) {
+        parent.closePopup();
       }
     }
   };
