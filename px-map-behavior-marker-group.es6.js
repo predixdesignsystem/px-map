@@ -139,7 +139,7 @@
     createInst(options={}) {
       const cluster = L.markerClusterGroup(options);
 
-      if (options.data && options.data.features && options.data.features.length) {
+      if (options.data) {
         this._syncDataWithMarkers(options.data.features, cluster);
       }
 
@@ -172,10 +172,51 @@
       const options = Object.assign(defaultOptions, (this.clusterConfig || {}));
       // Assign the `data` and `iconCreateFunction` options. These cannot be
       // configured through the `clusterConfig` attribture
-      options.data = this.data;
+      options.data = this._getValidData();
       options.iconCreateFunction = this._createClusterIcon.bind(this);
       // Return the options composed together
       return options;
+    },
+
+    /**
+     * Determines if the data provided through the `data` attribute appears to
+     * be valid GeoJSON. This is a high-level check for the existence of
+     * necessary keys/values. It does not deeply validate each feature
+     * for correctness.
+     */
+    _getValidData() {
+      if (!this.data) {
+        // It's possible we will be initialized without any data. Don't complain
+        // loudly if there's no data, just return `undefined`.
+        return undefined;
+      }
+
+      const dataIsNotValid = (
+        (typeof this.data !== 'object') ||
+        (this.data.type !== 'FeatureCollection') ||
+        (!Array.isArray(this.data.features)) ||
+        !this.data.features.length ||
+        (typeof this.data.features[0] !== 'object')
+      );
+
+      if (dataIsNotValid) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+          The \`data\` attribute for ${this.is} is not valid GeoJSON. Valid GeoJSON
+          that follows the FeatureCollection standard is required to draw the
+          marker clusters. See the GeoJSON spec website (http://geojson.org/geojson-spec.html)
+          for more information on what is required.
+
+          The minimum requirements for ${this.is} are:
+          - Must be a valid JavaScript object (or deserializable to an object)
+          - Must have key \`type\` with value 'FeatureCollection'
+          - Must have key \`features\` with value of an array with length
+          - Each entry in \`features\` must be a valid object
+        `);
+
+        return undefined;
+      }
+
+      return this.data;
     },
 
     _createClusterIcon(cluster) {
