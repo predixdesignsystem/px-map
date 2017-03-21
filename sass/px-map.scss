@@ -42,15 +42,16 @@
  * Style variables shared across sub-components
  */
 :host {
-  --px-map-static-icon-unknown-color: $dv-light-gray;
-  --px-map-static-icon-info-color: $primary-blue;
-  --px-map-static-icon-warning-color: $alert-orange;
-  --px-map-static-icon-important-color: $alert-red;
+  --px-map-icon-unknown-color: $dv-light-gray;
+  --px-map-icon-info-color: $primary-blue;
+  --px-map-icon-warning-color: $alert-orange;
+  --px-map-icon-important-color: $alert-red;
+  --px-map-icon-border-color: $gray1;
 
-  --px-map-marker-group-unknown-color: var(--px-map-static-icon-unknown-color);
-  --px-map-marker-group-info-color: var(--px-map-static-icon-info-color);
-  --px-map-marker-group-warning-color: var(--px-map-static-icon-warning-color);
-  --px-map-marker-group-important-color: var(--px-map-static-icon-important-color);
+  --px-map-marker-group-unknown-color: var(--px-map-icon-unknown-color);
+  --px-map-marker-group-info-color: var(--px-map-icon-info-color);
+  --px-map-marker-group-warning-color: var(--px-map-icon-warning-color);
+  --px-map-marker-group-important-color: var(--px-map-icon-important-color);
 
   --px-map-marker-group-cluster-path-size: 10px;
   --px-map-marker-group-cluster-border-size: 5px;
