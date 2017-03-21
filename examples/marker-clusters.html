@@ -19,7 +19,7 @@
   <link rel="import" href="../dist/px-map-marker-group.html" /> -->
 
   <!-- Importing for the demo only... -->
-  <link rel="import" href="../../iron-ajax/iron-ajax.html"
+  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
 </head>
 
 <style>
@@ -36,6 +36,15 @@
 <body>
   <section class="wrap">
     <template is="dom-bind">
+      <style>
+        px-map-marker-group {
+          --px-map-icon-unknown-color: lime;
+          --px-map-icon-info-color: salmon;
+          --px-map-icon-warning-color: purple:
+          --px-map-icon-important-color: blue;
+          --px-map-marker-group-cluster-border-size: 1px;
+        }
+      </style>
       <!-- Load geojson for markers with iron-ajax -->
       <iron-ajax url="marker-clusters-geojson-transit.json" last-response="{{geoJSON}}" auto></iron-ajax>
 

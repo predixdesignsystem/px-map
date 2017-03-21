@@ -350,11 +350,11 @@
       const baseConfig = {};
       baseConfig.radius = 7.5;
       baseConfig.stroke = true;
-      baseConfig.color = this.getComputedStyleValue('--px-map-marker-locate-icon-border-color');
+      baseConfig.color = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-border-color');
       baseConfig.weight = 3;
       baseConfig.opacity = 1;
       baseConfig.fill = true;
-      baseConfig.fillColor = this.getComputedStyleValue('--px-map-marker-locate-icon-color');
+      baseConfig.fillColor = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-color');
       baseConfig.fillOpacity = 1;
       baseConfig.className = `map-marker-locate-base ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
 
@@ -367,8 +367,8 @@
       accuracyConfig.stroke = false;
       accuracyConfig.opacity = 0;
       accuracyConfig.fill = true;
-      accuracyConfig.fillColor = this.getComputedStyleValue('--px-map-marker-locate-icon-accuracy-color');
-      accuracyConfig.fillOpacity = this.getComputedStyleValue('--px-map-marker-locate-icon-accuracy-opacity');
+      accuracyConfig.fillColor = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-accuracy-color');
+      accuracyConfig.fillOpacity = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-accuracy-opacity');
       accuracyConfig.className = `map-marker-locate-accuracy ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
 
       return { geometry, baseConfig, accuracyRadius, accuracyConfig };

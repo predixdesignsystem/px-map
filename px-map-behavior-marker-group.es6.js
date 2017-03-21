@@ -97,10 +97,10 @@
         type: Object,
         value: function(){
           return {
-            "unknown" : this.getComputedStyleValue('--px-map-marker-group-unknown-color'),
-            "info" : this.getComputedStyleValue('--px-map-marker-group-info-color'),
-            "warning" : this.getComputedStyleValue('--px-map-marker-group-warning-color'),
-            "important" : this.getComputedStyleValue('--px-map-marker-group-important-color')
+            "unknown" : this.getComputedStyleValue('--internal-px-map-marker-group-unknown-color'),
+            "info" : this.getComputedStyleValue('--internal-px-map-marker-group-info-color'),
+            "warning" : this.getComputedStyleValue('--internal-px-map-marker-group-warning-color'),
+            "important" : this.getComputedStyleValue('--internal-px-map-marker-group-important-color')
           }
         }
       },
