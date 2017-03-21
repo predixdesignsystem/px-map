@@ -9,14 +9,48 @@
 <link rel="import" href="px-map-behavior-control.html">
 
 <!--
-The zoom control creates a set of buttons the user can tap to zoom in or out
-of the map.
+The locate control creates a button that the user can tap to center the map
+on their location. Pair this control with the `px-map-control-zoom` component
+to give the user multiple options for navigating the map.
+
+This control relies on the user's browser to expose API methods for finding
+the user's location. Some browsers implement this API differently and have
+unique restrictions on when it can be called. Generally, the page calling
+the location API must be served over HTTPS, and the browser usually pops up
+a permissions box to confirm the user wants to share their location.
+
+See the MDN article on browser geolocation API usage for more information on
+how your app must be configured to use it: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
 
 ### Usage
 
     <px-map>
       <px-map-control-locate position="bottomright"></px-map-control-locate>
     </px-map>
+
+When the user taps on the button in the example above, the map will automatically
+set its center to their location if it successfully found.
+
+### Handling location events and failure
+
+If you app doesn't meet the requirements for the user's browser to respond to the
+locate request, the control will stop trying to find their location and dispatch
+an error event. Ideally, you should listen for this error event (which will include
+a message describing the reason for the failure) and notify the user that their
+location can't be found (e.g. with an alert message).
+
+Bind an event listener to the `px-map-control-locate-error` event to handle a
+failure and notify the user:
+
+    <px-map>
+      <px-map-control-locate id="locate" position="bottomright"></px-map-control-locate>
+    </px-map>
+    <script>
+      var control = document.querySelector('#locate');
+      control.addEventListener('px-map-control-locate-error', function(evt) {
+        // do something with `evt.message` to notify the user ...
+      });
+    </script>
 
 @element px-map-control-locate
 @blurb ...

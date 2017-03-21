@@ -331,6 +331,26 @@
       }
     },
 
+    addInst(parent) {
+      PxMapBehavior.ControlImpl.addInst.call(this, parent);
+
+      // Bind custom events for this control. Events will be unbound automatically.
+      const foundFn = this._handleLocationFound.bind(this);
+      const errorFn = this._handleLocationError.bind(this);
+      const tapFn = this._handleLocationTap.bind(this);
+      this.bindEvents({
+        'locationfound' : foundFn,
+        'locationerror' : errorFn,
+        'controlclick' : tapFn
+      });
+    },
+
+    removeInst(parent) {
+      PxMapBehavior.ControlImpl.removeInst.call(this, parent);
+
+      // Unbind events if necessary...
+    },
+
     createInst(options) {
       return new PxMap.LocateControl(options);
     },
@@ -349,7 +369,73 @@
         moveToLocation: this.moveToLocation,
         moveMaxZoom: this.moveMaxZoom
       };
+    },
+
+    /**
+     * Bound to the control instance's `locationfound` event. Called when that
+     * event is fired. Parses the event details and fires an event from this
+     * component that the developer can handle.
+     */
+    _handleLocationFound(evt) {
+      if (!evt) return;
+
+      const detail = {
+        latitude: evt.latitude || null,
+        longitude: evt.longitude || null,
+        timestamp: evt.timestamp || null,
+        bounds: evt.bounds || null
+      };
+
+      this.fire('px-map-control-locate-success', detail);
+    },
+    /**
+     * Fired after the user's location is successfully found.
+     *
+     * @event px-map-control-locate-success
+     * @param {Object} detail
+     * @param {Number} detail.latitude - The user's found latitude
+     * @param {Number} detail.longitude - The user's found longitude
+     * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when the the location was found
+     * @param {L.LatLngBouds} [detail.bounds] - A custom Leaflet object describing the visible bounds of the map after moving to the user's location, if available
+     */
+
+    /**
+     * Bound to the control instance's `locationerror` event. Called when that
+     * event is fired. Parses the event details and fires an event from this
+     * component that the developer can handle.
+     */
+    _handleLocationError(evt) {
+      if (!evt) return;
+
+      const detail = {
+        message: evt.message || null
+      };
+
+      this.fire('px-map-control-locate-error', detail);
+    },
+    /**
+     * Fired after the control fails to find the user's location.
+     *
+     * @event px-map-control-locate-error
+     * @param {Object} detail
+     * @param {String} detail.message - A message describing the reason for the failure
+     */
+
+     /**
+      * Bound to the control instance's `controlclick` event. Called when that
+      * event is fired, but only handles the event if its `evt.action` is 'locate'.
+      * Fires an event from this component that the developer can handle.
+      */
+    _handleLocationTap(evt) {
+      if (!evt || evt.action !== 'locate') return;
+
+      this.fire('px-map-locate-button-tap');
     }
+    /**
+     * Fired when the user clicks the locate button and initiates a location search.
+     *
+     * @event px-map-locate-button-tap
+     */
   };
   /* Bind LocateControl behavior */
   /** @polymerBehavior */
@@ -527,15 +613,13 @@
       this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
 
       /* Bind map events */
-      L.DomEvent.on(map, 'locationfound', L.DomEvent.stop);
       L.DomEvent.on(map, 'locationfound', this._locationFound, this);
-      L.DomEvent.on(map, 'locationerror', L.DomEvent.stop);
       L.DomEvent.on(map, 'locationerror', this._locationError, this);
 
       /* Bind button events */
       L.DomEvent.disableClickPropagation(this.__locateButton);
       L.DomEvent.on(this.__locateButton, 'click', L.DomEvent.stop);
-      L.DomEvent.on(this.__locateButton, 'click', this.locate, this);
+      L.DomEvent.on(this.__locateButton, 'click', this._locate, this);
       L.DomEvent.on(this.__locateButton, 'click', this._refocusOnMap, this);
 
       return this.__container;
@@ -543,13 +627,39 @@
 
     onRemove(map) {
       /* Unbind map events */
-      map.off('locationfound', this._locationFound, this);
-      map.off('locationerror', this._locationError, this);
+      L.DomEvent.off(map, 'locationfound', this._locationFound, this);
+      L.DomEvent.off(map, 'locationerror', this._locationError, this);
 
       /* Unbind button events */
       L.DomEvent.off(this.__locateButton, 'click', L.DomEvent.stop);
-      L.DomEvent.off(this.__locateButton, 'click', this.locate, this);
+      L.DomEvent.off(this.__locateButton, 'click', this._locate, this);
       L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
+    }
+
+    on(...args) {
+      if (!this._map) {
+        return undefined;
+      }
+      return this._map.on(...args);
+    }
+
+    off(...args) {
+      if (!this._map) {
+        return undefined;
+      }
+      return this._map.off(...args);
+    }
+
+    /**
+     * Internal method that calls the public `locate` method and fires an event
+     * to notify that the button has been clicked.
+     */
+    _locate(evt) {
+      this._map.fire('controlclick', {
+        src: this,
+        action: 'locate'
+      });
+      this.locate(evt);
     }
 
     locate() {
@@ -593,8 +703,7 @@
     _locationError(evt) {
       if (this.__locating) {
         this.__locating = false;
-        this._setErrorState();
-        this.fire('px-map-locating-error');
+        this._setReadyState();
       }
     }
 
@@ -615,15 +724,6 @@
       L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
 
       this.__disabled = false;
-      this._updateDisabled();
-    }
-
-    _setErrorState() {
-      if (!this.__locateButton || this.__locating) return;
-
-      this.__locateButton.innerHTML = this.options.locateErrorText;
-
-      this.__disabled = true;
       this._updateDisabled();
     }
 
