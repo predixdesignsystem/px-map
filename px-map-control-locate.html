@@ -27,4 +27,9 @@ of the map.
 <dom-module id="px-map-control-locate">
   <template></template>
 </dom-module>
-<script src="dist/px-map-control-locate.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-control-locate',
+    behaviors: [PxMapBehavior.LocateControl]
+  });
+</script>

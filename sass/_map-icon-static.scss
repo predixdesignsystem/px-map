@@ -17,7 +17,7 @@
   background-color: $alert-blue;
   border-radius: 100%;
   position: absolute;
-  border: 2px solid var(--px-map-icon-border-color, $gray1);
+  border: 2px solid var(--px-map-icon-border-color, $white);
 }
 
 // ICON DESCENDER
@@ -40,7 +40,7 @@
     height: 0;
     border-style: solid;
     border-width: 23px 8px 0px;
-    border-color: var(--px-map-icon-border-color, $gray1) transparent transparent;
+    border-color: var(--px-map-icon-border-color) transparent transparent;
     position: absolute;
     z-index: -1;
     left: -8px;
@@ -95,8 +95,8 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-color: $primary-blue;
-  border: 2px solid var(--px-map-icon-border-color, $gray1);
+  background-color: var(--px-map-icon-warning-color);
+  border: 2px solid var(--px-map-icon-border-color);
   transform: rotate(45deg);
   position: absolute;
   left: 10px;
@@ -111,8 +111,8 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 8px 16px 8px;
-  border-color: transparent transparent var(--px-map-icon-border-color, $gray1) transparent;
+  border-width: 0 12px 21px;
+  border-color: transparent transparent var(--px-map-icon-border-color) transparent;
 
   &:after {
     content: '';
@@ -121,7 +121,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 8px 15px;
-    border-color: transparent transparent $alert-blue transparent;
+    border-color: transparent transparent var(--px-map-icon-important-color) transparent;
     z-index: 0;
     position: absolute;
     left: -8px;
@@ -136,11 +136,12 @@
 // 'important' and 'with-badge' modifier - adds the triangle icon
 .map-icon-static--important.map-icon-static--with-badge .map-icon-static__badge {
   @extend %map-icon-static__badge--triangle;
-  &:after { border-color: transparent transparent var(--px-map-icon-important-color, $alert-red) transparent; }
+  background-color:
+  &:after { border-color: transparent transparent var(--px-map-icon-important-color) transparent; }
 }
 
 // 'warning' and 'with-badge' modifier - adds the triangle icon
 .map-icon-static--warning.map-icon-static--with-badge .map-icon-static__badge {
   @extend %map-icon-static__badge--diamond;
-  &:after { border-color: transparent transparent var(--px-map-icon-warning-color, $alert-orange) transparent; }
+  &:after { border-color: transparent transparent var(--px-map-icon-warning-color) transparent; }
 }

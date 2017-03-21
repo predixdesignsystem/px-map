@@ -52,4 +52,9 @@ group and automatically fit the marker in the view when the map is loaded.
     <content select="*"></content>
   </template>
 </dom-module>
-<script src="dist/px-map-marker-symbol.js"></script>
+<script>
+  Polymer({
+    is: 'px-map-marker-symbol',
+    behaviors: [PxMapBehavior.SymbolMarker]
+  });
+</script>

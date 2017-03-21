@@ -283,7 +283,7 @@
    *
    * @polymerBehavior PxMapBehavior.LocateControl
    */
-  const LocateControlImpl = {
+  PxMapBehavior.LocateControlImpl = {
     properties: {
       /**
        * A string of HTML that will be used as the locate button text.
@@ -352,9 +352,10 @@
     }
   };
   /* Bind LocateControl behavior */
-  namespace.LocateControl = [
-    namespace.Control,
-    LocateControlImpl
+  /** @polymerBehavior */
+  PxMapBehavior.LocateControl = [
+    PxMapBehavior.Control,
+    PxMapBehavior.LocateControlImpl
   ];
 
   /****************************************************************************

@@ -22,7 +22,7 @@
   background-color: $alert-blue;
   border-radius: 100%;
   position: absolute;
-  border: 2px solid var(--px-map-icon-symbol-border-color, $white);
+  border: 2px solid var(--px-map-icon-border-color, $white);
 }
 
 // ICON DESCENDER
@@ -45,7 +45,7 @@
     height: 0;
     border-style: solid;
     border-width: 23px 8px 0px;
-    border-color: var(--px-map-icon-symbol-border-color, $white) transparent transparent;
+    border-color: var(--px-map-icon-border-color, $white) transparent transparent;
     position: absolute;
     z-index: -1;
     left: -8px;
@@ -61,7 +61,7 @@
 }
 
 .map-icon-symbol__symbol {
-  color: var(--px-map-icon-symbol-symbol-color, $white);;
+  color: var(--px-map-icon-symbol-symbol-color, $white);
   position: absolute;
   font-size: calculateRem(20px);
 }
@@ -71,34 +71,34 @@
 
 // 'info' modifier - sets the info-icon-color (defaults to $alert-blue)
 .map-icon-symbol--info .map-icon-symbol__body {
-  background-color: var(--px-map-icon-symbol-info-color, $alert-blue);
+  background-color: var(--px-map-icon-info-color, $alert-blue);
 }
 .map-icon-symbol--info .map-icon-symbol__descender {
-  border-top-color: var(--px-map-icon-symbol-info-color, $alert-blue);
+  border-top-color: var(--px-map-icon-info-color, $alert-blue);
 }
 
 // 'important' modifier - sets icon-important-color (defaults to $alert-red)
 .map-icon-symbol--important .map-icon-symbol__body {
-  background-color: var(--px-map-icon-symbol-important-color, $alert-red);
+  background-color: var(--px-map-icon-important-color, $alert-red);
 }
 .map-icon-symbol--important .map-icon-symbol__descender {
-  border-top-color: var(--px-map-icon-symbol-important-color, $alert-red);
+  border-top-color: var(--px-map-icon-important-color, $alert-red);
 }
 
 // 'warning' modifier - sets icon-warning-color (defaults to $alert-orange)
 .map-icon-symbol--warning .map-icon-symbol__body {
-  background-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+  background-color: var(--px-map-icon-warning-color, $alert-orange);
 }
 .map-icon-symbol--warning .map-icon-symbol__descender {
-  border-top-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+  border-top-color: var(--px-map-icon-warning-color, $alert-orange);
 }
 
 // 'unknown' modifier - sets icon-unknown-color (defaults to $dv-light-gray)
 .map-icon-symbol--unknown .map-icon-symbol__body {
-  background-color: var(--px-map-icon-symbol-unknown-color, $dv-light-gray);
+  background-color: var(--px-map-icon-unknown-color, $dv-light-gray);
 }
 .map-icon-symbol--unknown .map-icon-symbol__descender {
-  border-top-color: var(--px-map-icon-symbol-unknown-color, $dv-light-gray);
+  border-top-color: var(--px-map-icon-unknown-color, $dv-light-gray);
 }
 
 // ICON BADGE
@@ -113,7 +113,7 @@
   width: 20px;
   height: 20px;
   background-color: $alert-orange; //TODO css var
-  border: 2px solid var(--px-map-icon-symbol-border-color, $white);
+  border: 2px solid var(--px-map-icon-border-color, $white);
   transform: rotate(45deg);
   position: absolute;
   left: 29px;
@@ -129,7 +129,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 15px 25px;
-  border-color: transparent transparent var(--px-map-icon-symbol-border-color, $white) transparent;
+  border-color: transparent transparent var(--px-map-icon-border-color, $white) transparent;
 
   &:after {
     content: '';
@@ -153,11 +153,11 @@
 // 'important' and 'with-badge' modifier - adds the triangle icon
 .map-icon-symbol--important.map-icon-symbol--with-badge .map-icon-symbol__badge {
   @extend %map-icon-symbol__badge--triangle;
-  &:after { border-color: transparent transparent var(--px-map-icon-symbol-important-color, $alert-red) transparent; }
+  &:after { border-color: transparent transparent var(--px-map-icon-important-color, $alert-red) transparent; }
 }
 
 // 'warning' and 'with-badge' modifier - adds the triangle icon
 .map-icon-symbol--warning.map-icon-symbol--with-badge .map-icon-symbol__badge {
   @extend %map-icon-symbol__badge--diamond;
-  background-color: var(--px-map-icon-symbol-warning-color, $alert-orange);
+  background-color: var(--px-map-icon-warning-color, $alert-orange);
 }
