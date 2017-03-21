@@ -20,7 +20,8 @@
        * @type {String}
        */
       url: {
-        type: String
+        type: String,
+        observer: 'shouldUpdateInst'
       }
     },
 
