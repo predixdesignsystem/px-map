@@ -442,6 +442,8 @@
       // If any icon settings were passed with the feature, fetch them to pass
       // to the icon constructor
       const iconSettings = (feature.properties['marker-icon']) ? this._extractMarkerIconSettings(feature.properties['marker-icon']) : {};
+      iconSettings.base = iconSettings.base || 'static-icon';
+      iconSettings.type = iconSettings.type || 'info';
       const icon = this._createMarkerIcon(iconSettings);
       marker.setIcon(icon);
 
@@ -475,7 +477,7 @@
       }
       // Otherwise, attempt to convert the feature's 'icon-base' to a klass name
       // and call the constructor for that klass
-      const klassName = options.base ? this._strToKlassName(options.base) : 'StaticIcon';
+      const klassName = this._strToKlassName(options.base);
       return new PxMap[klassName](options);
     },
 
