@@ -471,88 +471,6 @@
     PxMapBehavior.LocateControlImpl
   ];
 
-  /**
-   *
-   * @polymerBehavior PxMapBehavior.InfoControl
-   */
-  PxMapBehavior.InfoControlImpl = {
-    properties: {
-      /**
-       * A name for the control. Will be used by elements on the map to send
-       * messages to a specific control. This name should be unique among
-       * all controls, unless you want multiple controls to recieve the
-       * same message.
-       *
-       * @type {String}
-       */
-      name: {
-        type: String,
-        notify: true
-      },
-
-      /**
-       * The maximum width (in pixels) to set for the info box. Do not include
-       * the units (e.g. set to '300' not '300px').
-       *
-       * @type {String}
-       */
-      maxWidth: {
-        type: String,
-        value: '300'
-      },
-
-      /**
-       * The maximum height (in pixels) to set for the info box. Do not include
-       * the units (e.g. set to '300' not '300px'). Do not set to allow the
-       * popup to grow to fit its children.
-       *
-       * @type {String}
-       */
-      maxHeight: {
-        type: String
-      },
-
-      /**
-       * Stringified HTML to set as the info box's content. Changing the content
-       * will update the info box.
-       *
-       * @type {String}
-       */
-      content: {
-        type: String,
-        observer: 'shouldUpdateInst'
-      }
-    },
-
-    createInst(options) {
-      return new PxMap.InfoControl(options);
-    },
-
-    updateInst(lastOptions, nextOptions) {
-      if (lastOptions.position !== nextOptions.position) {
-        this.elementInst.setPosition(nextOptions.position);
-      }
-      if (lastOptions.content !== nextOptions.content) {
-        this.elementInst.setContent(nextOptions.content);
-      }
-    },
-
-    getInstOptions() {
-      const options = PxMapBehavior.ControlImpl.getInstOptions.call(this);
-
-      options.content = this.content;
-      options.styleScope = this.isShadyScoped() ? this.getShadyScope() : undefined;
-
-      return options;
-    }
-  };
-  /* Bind InfoControl behavior */
-  /** @polymerBehavior */
-  PxMapBehavior.InfoControl = [
-    PxMapBehavior.Control,
-    PxMapBehavior.InfoControlImpl
-  ];
-
   /****************************************************************************
    * KLASSES
    ****************************************************************************/
@@ -697,269 +615,156 @@
   /* Bind ZoomControl klass */
   PxMap.ZoomControl = ZoomControl;
 
-
-    /**
-     *
-     * @class PxMap.LocateControl
-     */
-    class LocateControl extends L.Control {
-      initialize(options={}) {
-        const defaultOptions = {
-          position: 'bottomright',
-          className: '',
-          locateText: '<i class="fa fa-crosshairs"></i>',
-          locateTitle: 'Zoom to your location',
-          locateTimeout: 10000,
-          moveToLocation: true,
-          moveMaxZoom: null
-        };
-        const composedOptions = Object.assign(defaultOptions, options);
-        L.Util.setOptions(this, composedOptions);
-      }
-
-      onAdd(map) {
-        const locateName = 'leaflet-control-locate';
-        this.__container = L.DomUtil.create('div', `${locateName} leaflet-bar ${this.options.className}`);
-        this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
-
-        /* Bind map events */
-        L.DomEvent.on(map, 'locationfound', this._locationFound, this);
-        L.DomEvent.on(map, 'locationerror', this._locationError, this);
-
-        /* Bind button events */
-        L.DomEvent.disableClickPropagation(this.__locateButton);
-        L.DomEvent.on(this.__locateButton, 'click', L.DomEvent.stop);
-        L.DomEvent.on(this.__locateButton, 'click', this._locate, this);
-        L.DomEvent.on(this.__locateButton, 'click', this._refocusOnMap, this);
-
-        return this.__container;
-      }
-
-      onRemove(map) {
-        /* Unbind map events */
-        L.DomEvent.off(map, 'locationfound', this._locationFound, this);
-        L.DomEvent.off(map, 'locationerror', this._locationError, this);
-
-        /* Unbind button events */
-        L.DomEvent.off(this.__locateButton, 'click', L.DomEvent.stop);
-        L.DomEvent.off(this.__locateButton, 'click', this._locate, this);
-        L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
-      }
-
-      on(...args) {
-        if (!this._map) {
-          return undefined;
-        }
-        return this._map.on(...args);
-      }
-
-      off(...args) {
-        if (!this._map) {
-          return undefined;
-        }
-        return this._map.off(...args);
-      }
-
-      /**
-       * Internal method that calls the public `locate` method and fires an event
-       * to notify that the button has been clicked.
-       */
-      _locate(evt) {
-        this._map.fire('controlclick', {
-          src: this,
-          action: 'locate'
-        });
-        this.locate(evt);
-      }
-
-      locate() {
-        this.__locating = true;
-        this._map.locate({
-          setView: this.options.moveToLocation,
-          maxZoom: this.options.moveMaxZoon,
-          timeout: this.options.locateTimeout
-        });
-        this._setLocatingState();
-      }
-
-      reset() {
-        this._setReadyState();
-      }
-
-      isDisabled() {
-        return this.__disabled || false;
-      }
-
-      _createButton(html, title, className, container, clickFn) {
-        const buttonEl = L.DomUtil.create('a', className, container);
-        buttonEl.innerHTML = html;
-        buttonEl.href = '#';
-        buttonEl.title = title;
-
-        // Tells screen readers to treat this as a button and read its title
-        buttonEl.setAttribute('role', 'button');
-        buttonEl.setAttribute('aria-label', title);
-
-        return buttonEl;
-      }
-
-      _locationFound(evt) {
-        if (this.__locating) {
-          this.__locating = false;
-          this._setReadyState();
-        }
-      }
-
-      _locationError(evt) {
-        if (this.__locating) {
-          this.__locating = false;
-          this._setReadyState();
-        }
-      }
-
-      _setLocatingState() {
-        if (!this.__locateButton || !this.__locating) return;
-
-        L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--locating');
-
-        this.__disabled = true;
-        this._updateDisabled();
-      }
-
-      _setReadyState() {
-        if (!this.__locateButton || this.__locating) return;
-
-        this.__locateButton.innerHTML = this.options.locateText;
-        L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
-        L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
-
-        this.__disabled = false;
-        this._updateDisabled();
-      }
-
-      _updateDisabled() {
-        if (!this.__locateButton) return;
-
-        if (this.__disabled) {
-          L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
-        }
-        if (!this.__disabled) {
-          L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
-        }
-      }
-    };
-    /* Bind LocateControl klass */
-    PxMap.LocateControl = LocateControl;
-
   /**
    *
-   * @class PxMap.InfoControl
+   * @class PxMap.LocateControl
    */
-  class InfoControl extends L.Control {
+  class LocateControl extends L.Control {
     initialize(options={}) {
-      // Merge with inherited options, assign resulting options to `this.options`
       const defaultOptions = {
         position: 'bottomright',
-        content: '',
-        className: 'map-control-info',
-        autoOpen: true,
-        styleScope: ''
+        className: '',
+        locateText: '<i class="fa fa-crosshairs"></i>',
+        locateTitle: 'Zoom to your location',
+        locateTimeout: 10000,
+        moveToLocation: true,
+        moveMaxZoom: null
       };
       const composedOptions = Object.assign(defaultOptions, options);
       L.Util.setOptions(this, composedOptions);
     }
 
     onAdd(map) {
-      // Create an element
-      this.controlContainer = L.DomUtil.create('div');
-      this.controlContainer.className = `${this.options.className} ${this.options.styleScope}`;
-      this.controlContainer.innerHTML = this._content = this.options.content;
+      const locateName = 'leaflet-control-locate';
+      this.__container = L.DomUtil.create('div', `${locateName} leaflet-bar ${this.options.className}`);
+      this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
 
-      // Determine if the control box should be shown right now or hidden
-      if (this.options.autoOpen && this._content.length) {
-        this._isVisible = false;
-        this.show();
-        this._isVisible = true;
-      } else {
-        this._isVisible = true;
-        this.hide()
-        this._isVisible = false;
-      }
+      /* Bind map events */
+      L.DomEvent.on(map, 'locationfound', this._locationFound, this);
+      L.DomEvent.on(map, 'locationerror', this._locationError, this);
 
-      // Disable scroll events on the container
-      L.DomEvent.disableScrollPropagation(this.controlContainer);
+      /* Bind button events */
+      L.DomEvent.disableClickPropagation(this.__locateButton);
+      L.DomEvent.on(this.__locateButton, 'click', L.DomEvent.stop);
+      L.DomEvent.on(this.__locateButton, 'click', this._locate, this);
+      L.DomEvent.on(this.__locateButton, 'click', this._refocusOnMap, this);
 
-      return this.controlContainer;
+      return this.__container;
     }
 
     onRemove(map) {
-      // Handled automatically by `L.Control`
+      /* Unbind map events */
+      L.DomEvent.off(map, 'locationfound', this._locationFound, this);
+      L.DomEvent.off(map, 'locationerror', this._locationError, this);
+
+      /* Unbind button events */
+      L.DomEvent.off(this.__locateButton, 'click', L.DomEvent.stop);
+      L.DomEvent.off(this.__locateButton, 'click', this._locate, this);
+      L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
+    }
+
+    on(...args) {
+      if (!this._map) {
+        return undefined;
+      }
+      return this._map.on(...args);
+    }
+
+    off(...args) {
+      if (!this._map) {
+        return undefined;
+      }
+      return this._map.off(...args);
     }
 
     /**
-     * Sets the control content to some stringified HTML.
-     *
-     * @param {String} stringifiedHTML
+     * Internal method that calls the public `locate` method and fires an event
+     * to notify that the button has been clicked.
      */
-    setContent(stringifiedHTML) {
-      if (this.controlContainer) {
-        this._content = stringifiedHTML || '';
-        this._updateContent();
+    _locate(evt) {
+      this._map.fire('controlclick', {
+        src: this,
+        action: 'locate'
+      });
+      this.locate(evt);
+    }
+
+    locate() {
+      this.__locating = true;
+      this._map.locate({
+        setView: this.options.moveToLocation,
+        maxZoom: this.options.moveMaxZoon,
+        timeout: this.options.locateTimeout
+      });
+      this._setLocatingState();
+    }
+
+    reset() {
+      this._setReadyState();
+    }
+
+    isDisabled() {
+      return this.__disabled || false;
+    }
+
+    _createButton(html, title, className, container, clickFn) {
+      const buttonEl = L.DomUtil.create('a', className, container);
+      buttonEl.innerHTML = html;
+      buttonEl.href = '#';
+      buttonEl.title = title;
+
+      // Tells screen readers to treat this as a button and read its title
+      buttonEl.setAttribute('role', 'button');
+      buttonEl.setAttribute('aria-label', title);
+
+      return buttonEl;
+    }
+
+    _locationFound(evt) {
+      if (this.__locating) {
+        this.__locating = false;
+        this._setReadyState();
       }
     }
 
-    /**
-     * Updates the content of the `this.controlContainer` element with the most
-     * up-to-date `this._content`.
-     */
-    _updateContent() {
-      if ((typeof this._content !== 'string') || !this.controlContainer) return;
-
-      if (!this._content.length && this.options.autoOpen) {
-        this.hide();
+    _locationError(evt) {
+      if (this.__locating) {
+        this.__locating = false;
+        this._setReadyState();
       }
-      if (this._content.length && this.options.autoOpen) {
-        this.show();
-      }
-
-      this.controlContainer.innerHTML = this._content;
     }
 
-    /**
-     * Ensures the info control is visible on the map. If the info control is already
-     * visible, does nothing.
-     */
-    show() {
-      if (!this._isVisible && this.controlContainer && this._containerElIsHidden() === true) {
-        L.DomUtil.removeClass(this.controlContainer, 'visuallyhidden');
-      }
-      this._isVisible = true;
+    _setLocatingState() {
+      if (!this.__locateButton || !this.__locating) return;
+
+      L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--locating');
+
+      this.__disabled = true;
+      this._updateDisabled();
     }
 
-    /**
-     * Ensures the info control is hidden. If the info control is already hidden,
-     * does nothing.
-     */
-    hide() {
-      if (this._isVisible && this.controlContainer && this._containerElIsHidden() === false) {
-        L.DomUtil.addClass(this.controlContainer, 'visuallyhidden');
-      }
-      this._isVisible = false;
+    _setReadyState() {
+      if (!this.__locateButton || this.__locating) return;
+
+      this.__locateButton.innerHTML = this.options.locateText;
+      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
+      L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
+
+      this.__disabled = false;
+      this._updateDisabled();
     }
 
-    /**
-     * Checks if the container HTMLElement has the `visuallyhidden` class. If the
-     * container doesn't exist, returns null. Otherwise, returns Boolean value:
-     * `true` if is has the class (and is hidden), `false` if it doesn't have the
-     * class (and is not hidden).s
-     *
-     * @return {Boolean|null}
-     */
-    _containerElIsHidden() {
-      if (!this.controlContainer) return null;
-      return L.DomUtil.hasClass(this.controlContainer, 'visuallyhidden');
+    _updateDisabled() {
+      if (!this.__locateButton) return;
+
+      if (this.__disabled) {
+        L.DomUtil.addClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
+      }
+      if (!this.__disabled) {
+        L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--disabled');
+      }
     }
   };
-  /* Bind InfoControl klass */
-  PxMap.InfoControl = InfoControl;
+  /* Bind LocateControl klass */
+  PxMap.LocateControl = LocateControl;
 })();

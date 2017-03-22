@@ -74,11 +74,11 @@ $px-map-control-button-text-color--hover:           var(--px-map-control-button-
 $px-map-control-button-border-color--disabled:      var(--px-map-control-button-border-color--disabled, $gray4);
 $px-map-control-button-text-color--disabled:        var(--px-map-control-button-text-color--disabled, $gray4);
 
-$px-map-control-info-background-color:              var(--px-map-control-info-background-color, $white);
-$px-map-control-info-border-color:                  var(--px-map-control-info-border-color, $gray4);
+$px-map-info-control-background-color:              var(--px-map-info-control-background-color, $white);
+$px-map-info-control-border-color:                  var(--px-map-info-control-border-color, $gray4);
 
-$px-map-box-data-border-color__top:                 var(--px-map-box-data-border-color__top, $gray4);
-$px-map-box-data-border-color__left:                var(--px-map-box-data-border-color__left, $gray4);
+$px-map-data-box-border-color__top:                 var(--px-map-data-box-border-color__top, $gray4);
+$px-map-data-box-border-color__left:                var(--px-map-data-box-border-color__left, $gray4);
 
 $px-map-popup-content-wrapper-border:               var(--px-map-popup-content-wrapper-border, $gray5);
 
@@ -344,15 +344,15 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 
 // MAP CONTROL: INFO
 
-.map-control-info {
-  background-color: $px-map-control-info-background-color;
+.map-info-control {
+  background-color: $px-map-info-control-background-color;
   max-width: 250px;
 }
-.map-control-info .map-box-info {
+.map-info-control .map-box-info {
   margin: $inuit-base-spacing-unit;
 }
-.map-control-info .map-box-data {
-  border: 1px solid $px-map-control-info-border-color;
+.map-info-control .map-data-box {
+  border: 1px solid $px-map-info-control-border-color;
 }
 
 /*******************************************************************************
@@ -364,7 +364,8 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 
  /* GENERIC: Info box generic styles, can be placed in multiple containers */
 
-%map-box-info {
+// Style for the title, which is a text tag
+.leaflet-popup-content {
   .map-box-info__title {
     font-weight: 600;
     margin: 0 0 $inuit-base-spacing-unit--tiny;
@@ -391,33 +392,30 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
     overflow: hidden;
   }
 }
-// Scope to the correct areas
-.leaflet-popup-content, .map-control-info {
-  @extend %map-box-info;
-}
 
 /* GENERIC: Data box generic styles, can be placed in multiple containers */
-%map-box-data {
-  .map-box-data__header {
+
+.leaflet-popup-content {
+  .map-data-box__header {
     padding: calculateRem(10px);
   }
-  .map-box-data__header__text {
+  .map-data-box__header__text {
     text-transform: uppercase;
     font-size: calculateRem(12px);
     line-height: calculateRem(14px);
     margin: 0;
   }
-  .map-box-data__table {
+  .map-data-box__table {
     display: flex;
     flex-wrap: wrap;
   }
-  .map-box-data__table__cell {
+  .map-data-box__table__cell {
     flex-grow: 1;
     overflow: hidden;
     width: 50%;
 
-    border-top: 1px solid $px-map-box-data-border-color__top;
-    &:nth-child(2n) { border-left: 1px solid $px-map-box-data-border-color__left;}
+    border-top: 1px solid $px-map-data-box-border-color__top;
+    &:nth-child(2n) { border-left: 1px solid $px-map-data-box-border-color__left;}
 
     padding: calculateRem(10px);
     text-transform: uppercase;
@@ -425,10 +423,6 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
     line-height: calculateRem(14px);
     p { margin: 0; }
   }
-}
-// Scope to the correct areas
-.leaflet-popup-content, .map-control-info {
-  @extend %map-box-data;
 }
 
 /*******************************************************************************
