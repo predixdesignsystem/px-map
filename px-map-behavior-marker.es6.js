@@ -62,11 +62,31 @@
     },
 
     createInst(options) {
-      return L.marker(options.geometry, options.config);
+      this.marker = L.marker(options.geometry, options.config);
+
+      /*
+       * Used by other map elements to determine if this is a marker. Useful for
+       * looping through layers and determining which should be added to the
+       * visible bounds of the map.
+       */
+      this.marker.isMarker = true;
+
+      return this.marker;
     },
 
     updateInst(lastOptions, nextOptions) {
-      if (lastOptions.geometry !== nextOptions.geometry) {
+      const geomWasDefined = (typeof lastOptions.geometry === 'object');
+      const geomIsDefined = (typeof nextOptions.geometry === 'object');
+      const geomIsDifferent = (geomWasDefined && geomIsDefined &&
+        (lastOptions.geometry.lat !== nextOptions.geometry.lat || lastOptions.geometry.lng !== nextOptions.geometry.lng)
+      );
+      if (geomWasDefined && !geomIsDefined) {
+        this.elementInst.setOpacity(0);
+      }
+      if (!geomWasDefined && geomIsDefined) {
+        this.elementInst.setOpacity(1);
+      }
+      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
         this.elementInst.setLatLng(nextOptions.geometry);
       }
       if (lastOptions.config.icon !== nextOptions.config.icon) {
@@ -249,5 +269,115 @@
   PxMapBehavior.StaticMarker = [
     PxMapBehavior.Marker,
     PxMapBehavior.StaticMarkerImpl
+  ];
+
+  /**
+   *
+   * @polymerBehavior PxMapBehavior.LocateMarker
+   */
+  PxMapBehavior.LocateMarkerImpl = {
+    properties: {
+      /**
+       * The accuracy margin of error in meters from the centerpoint of the
+       * location marker. (e.g. `12.23` for 12.23 meters)
+       *
+       * @type {Number}
+       */
+      accuracy: {
+        type: Object,
+        observer: 'shouldUpdateInst'
+      }
+    },
+
+    createInst(options) {
+      // There are two different pieces that make up the locate marker: a
+      // `CircleMarker` which draws the base blue dot, and an optional `Circle`
+      // representing the accuracy of the location. They're combined together
+      // in a `FeatureGroup` to ensure they share interactive bindings like popups.
+      this.markerBaseIcon = L.circleMarker(options.geometry, options.baseConfig);
+      this.markerAccuracyIcon = L.circle(options.geometry, options.accuracyRadius, options.accuracyConfig);
+      this.markerGroup = L.featureGroup([this.markerAccuracyIcon, this.markerBaseIcon]);
+
+      /*
+       * Used by other map elements to determine if this is a marker. Useful for
+       * looping through layers and determining which should be added to the
+       * visible bounds of the map.
+       */
+      this.markerGroup.isMarker = true;
+
+      /*
+       * Bind the `getLatLng` method to this `FeatureGroup` instance so it can
+       * walk like a marker and talk like a marker.
+       */
+      this.markerGroup.getLatLng = this.getLatLng.bind(this);
+
+      return this.markerGroup;
+    },
+
+    updateInst(lastOptions, nextOptions) {
+      const geomWasDefined = (typeof lastOptions.geometry === 'object');
+      const geomIsDefined = (typeof nextOptions.geometry === 'object');
+      const geomIsDifferent = (geomWasDefined && geomIsDefined &&
+        (lastOptions.geometry.lat !== nextOptions.geometry.lat || lastOptions.geometry.lng !== nextOptions.geometry.lng)
+      );
+      // If LatLng was previously defined and now is not, hide the markers
+      if (geomWasDefined && !geomIsDefined) {
+        this.markerBaseIcon.setStyle({ opacity: 0, fillOpacity: 0 });
+        this.markerAccuracyIcon.setStyle({ opacity: 0, fillOpacity: 0 });
+      }
+      // If LatLng has changed or if it was just defined, set the new LatLng
+      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+        this.markerBaseIcon.setLatLng(nextOptions.geometry);
+        this.markerAccuracyIcon.setLatLng(nextOptions.geometry);
+      }
+      // If LatLng was just defined, ensure the markers are shown
+      if (lastOptions && (!geomWasDefined && geomIsDefined)) {
+        this.markerBaseIcon.setStyle(nextOptions.baseConfig);
+        this.markerAccuracyIcon.setStyle(nextOptions.accuracyConfig);
+      }
+
+      if (lastOptions.accuracyRadius !== nextOptions.accuracyRadius) {
+        this.markerAccuracyIcon.setRadius(nextOptions.accuracyRadius);
+      }
+    },
+
+    getInstOptions() {
+      // Get the geometry of the marker
+      const geometry = this.getLatLng();
+
+      // Configure the base icon. Most options are static, but the border color
+      // and fill color can be set with CSS variables.
+      const baseConfig = {};
+      baseConfig.radius = 7.5;
+      baseConfig.stroke = true;
+      baseConfig.color = this.getComputedStyleValue('--px-map-marker-locate-icon-border-color');
+      baseConfig.weight = 3;
+      baseConfig.opacity = 1;
+      baseConfig.fill = true;
+      baseConfig.fillColor = this.getComputedStyleValue('--px-map-marker-locate-icon-color');
+      baseConfig.fillOpacity = 1;
+      baseConfig.className = `map-marker-locate-base ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
+
+      // Calculates the radius of the circle from the accuracy passed in and
+      // the minimum size required to draw the base marker
+      const accuracyRadius = this.accuracy || 0;
+
+      // Configure the accuracy icon
+      const accuracyConfig = {};
+      accuracyConfig.stroke = false;
+      accuracyConfig.opacity = 0;
+      accuracyConfig.fill = true;
+      accuracyConfig.fillColor = this.getComputedStyleValue('--px-map-marker-locate-icon-accuracy-color');
+      accuracyConfig.fillOpacity = this.getComputedStyleValue('--px-map-marker-locate-icon-accuracy-opacity');
+      accuracyConfig.className = `map-marker-locate-accuracy ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
+
+      return { geometry, baseConfig, accuracyRadius, accuracyConfig };
+    }
+  };
+  /* Bind LocateMarker behavior */
+  /** @polymerBehavior */
+  PxMapBehavior.LocateMarker = [
+    PxMapBehavior.Marker,
+    PxMapBehavior.LocateMarkerImpl
   ];
 })();

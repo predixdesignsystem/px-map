@@ -328,6 +328,24 @@
        */
       moveMaxZoom: {
         type: Number
+      },
+
+      /**
+       * After the user's location is successfully found the result will be
+       * placed here. The object will have the following keys:
+       *
+       *     * {Number} `lat` - User's found latitude
+       *     * {Number} `lng` - User's found longitude
+       *     * {Number} `timestamp` - Timestamp (UNIX format) for the location event
+       *     * {Number} `accuracy` - The accuracy margin of error in meters from the centerpoint
+       *     * {L.LatLngBouds} `bounds` - A bounding rectangle detailing the accuracy of the location
+       *
+       * @type {Object}
+       */
+      lastFoundLocation: {
+        type: Object,
+        value: function(){ return {}; },
+        notify: true
       }
     },
 
@@ -374,29 +392,38 @@
     /**
      * Bound to the control instance's `locationfound` event. Called when that
      * event is fired. Parses the event details and fires an event from this
-     * component that the developer can handle.
+     * component that the developer can handle. Also sets the `lastFoundLocation`
+     * property and notifies it.
      */
     _handleLocationFound(evt) {
       if (!evt) return;
 
       const detail = {
-        latitude: evt.latitude || null,
-        longitude: evt.longitude || null,
+        lat: evt.latitude || null,
+        lng: evt.longitude || null,
         timestamp: evt.timestamp || null,
         bounds: evt.bounds || null
       };
 
+      // Attempt to calculate the distance in meters from the center
+      // of the bounds to its NorthWest extent. This is our accuracy.
+      detail.accuracy = (evt.bounds.getCenter() && evt.bounds.getNorthWest()) ? evt.bounds.getCenter().distanceTo(evt.bounds.getNorthEast()) : null;
+
       this.fire('px-map-control-locate-success', detail);
+
+      this.set('lastFoundLocation', detail);
+      this.notifyPath('lastFoundLocation.*');
     },
     /**
      * Fired after the user's location is successfully found.
      *
      * @event px-map-control-locate-success
      * @param {Object} detail
-     * @param {Number} detail.latitude - The user's found latitude
-     * @param {Number} detail.longitude - The user's found longitude
+     * @param {Number} detail.lat - The user's found latitude
+     * @param {Number} detail.lng - The user's found longitude
      * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when the the location was found
      * @param {L.LatLngBouds} [detail.bounds] - A custom Leaflet object describing the visible bounds of the map after moving to the user's location, if available
+     * @param {Number} [detail.accuracy] - The margin of error of the accuracy in meters from its centerpoint to its maximum extent
      */
 
     /**

@@ -48,6 +48,11 @@
   --px-map-icon-important-color: $alert-red;
   --px-map-icon-border-color: $gray1;
 
+  --px-map-marker-locate-icon-color: var(--px-map-locate-icon-color, $primary-blue);
+  --px-map-marker-locate-icon-border-color: $white;
+  --px-map-marker-locate-icon-accuracy-color: $black;
+  --px-map-marker-locate-icon-accuracy-opacity: 0.3;
+
   --px-map-marker-group-unknown-color: var(--px-map-icon-unknown-color);
   --px-map-marker-group-info-color: var(--px-map-icon-info-color);
   --px-map-marker-group-warning-color: var(--px-map-icon-warning-color);
