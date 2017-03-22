@@ -25,7 +25,8 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-control-locate"
-      description="The px-map-control-locate component is awesome!">
+      description="The px-map-control-locate subcomponent places a button on
+      the map that the user can tap to center the map on their current location.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -41,6 +42,7 @@
       <div style="height:400px;width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-control-locate position="{{props.position.value}}"></px-map-control-locate>
         </px-map>
       </div>
     </px-demo-component>
@@ -105,26 +107,19 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
-        lightDomContent: {
+        position: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: 'bottomright',
+          inputType: 'dropdown',
+          inputChoices: ['topleft', 'topright', 'bottomleft', 'bottomright']
+        },
+
+        parentComponent: {
+          value: ["<px-map>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: '<px-map-tile-layer url=\'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\'></px-map-tile-layer>'
         }
       }
     });
