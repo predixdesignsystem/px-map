@@ -2,7 +2,7 @@
   // The wrapper container around the popup content. Expands to the maximum
   // allowable size set on the attribute (not configured in CSS).
   .leaflet-popup-content-wrapper {
-    border: 1px solid $gray5;
+    border: 1px solid var(--internal-px-map-popup-content-wrapper-border);
     border-radius: 0;
   }
   // To set a border color on the content wrapper, we need to position a psuedo
@@ -11,7 +11,7 @@
   .leaflet-popup-content-wrapper:after {
     content: '';
     position: absolute;
-    background-color: white;
+    background-color: $white; //TODO create style variable
     height: 4px;
     width: 19px;
     left: 50%;
@@ -20,7 +20,7 @@
   }
   // Add the border to the 'tip' pointer
   .leaflet-popup-tip {
-    border: 1px solid $gray5;
+    border: 1px solid var(--internal-px-map-popup-content-wrapper-border);
   }
   // The inner container holding the popup content
   .leaflet-popup-content {

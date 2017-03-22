@@ -59,7 +59,7 @@ function buildCSS(){
 
 gulp.task('sass', function() {
   return gulp.src(['./sass/*.scss'])
-    .pipe(cache('sassing'))
+    // .pipe(cache('sassing'))
     .pipe(buildCSS())
     .pipe(stylemod({
       moduleId: function(file) {
@@ -157,7 +157,7 @@ gulp.task('serve', function() {
 
   gulp.watch(['./*.js','./*.html'], ['dist']);
   gulp.watch(['sass/*.scss'], ['sass']);
-  gulp.watch(['css/*-styles.html', './*.html', `./*.js`, 'demo/*.html']).on('change', browserSync.reload);
+  gulp.watch(['css/*-styles.html', './*.html', `./*.js`, 'demo/*.html', 'examples/*.html']).on('change', browserSync.reload);
 });
 
 /* Rebuilds all `.es6.js` files to the `/dist` directory along with all regular

@@ -97,10 +97,10 @@
         type: Object,
         value: function(){
           return {
-            "unknown" : this.getComputedStyleValue('--px-map-marker-group-unknown-color'),
-            "info" : this.getComputedStyleValue('--px-map-marker-group-info-color'),
-            "warning" : this.getComputedStyleValue('--px-map-marker-group-warning-color'),
-            "important" : this.getComputedStyleValue('--px-map-marker-group-important-color')
+            "unknown" : this.getComputedStyleValue('--internal-px-map-icon-unknown-color'),
+            "info" : this.getComputedStyleValue('--internal-px-map-icon-info-color'),
+            "warning" : this.getComputedStyleValue('--internal-px-map-icon-warning-color'),
+            "important" : this.getComputedStyleValue('--internal-px-map-icon-important-color')
           }
         }
       },
@@ -163,8 +163,8 @@
         animate: true,
         polygonOptions: {
           stroke: true,
-          color: this.getComputedStyleValue('--px-map-marker-group-cluster-polygon-stroke-color'),
-          fillColor: this.getComputedStyleValue('--px-map-marker-group-cluster-polygon-fill-color'),
+          color: this.getComputedStyleValue('--internal-px-map-marker-group-cluster-polygon-stroke-color'),
+          fillColor: this.getComputedStyleValue('--internal-px-map-marker-group-cluster-polygon-fill-color'),
           fillOpacity: 0.4
         }
       };
@@ -238,8 +238,8 @@
       // Get the container size for this count
       const containerSize = this._getClusterIconSize(count);
       // Get the path (chart stroke width) and border width for this chart
-      const pathSize = this._getStyleValueAsNum('--px-map-marker-group-cluster-path-size') || 10;
-      const borderSize = this._getStyleValueAsNum('--px-map-marker-group-cluster-border-size') || 0;
+      const pathSize = this._getStyleValueAsNum('--internal-px-map-marker-group-cluster-path-size') || 10;
+      const borderSize = this._getStyleValueAsNum('--internal-px-map-marker-group-cluster-border-size') || 0;
 
       // Set up the options to send into ClusterIcon
       const options = {

@@ -19,7 +19,7 @@
   <link rel="import" href="../dist/px-map-marker-group.html" /> -->
 
   <!-- Importing for the demo only... -->
-  <link rel="import" href="../../iron-ajax/iron-ajax.html"
+  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
 </head>
 
 <style>
@@ -31,6 +31,15 @@
     width: 90vw;
     height: 90vh;
     margin: 5vh 5vw;
+  }
+</style>
+<style is="custom-style">
+  :root {
+    --px-map-icon-unknown-color: lime;
+    --px-map-icon-info-color: slateblue;
+    --px-map-icon-warning-color: orange;
+    --px-map-icon-important-color: hotpink;
+    --px-map-marker-group-cluster-border-size: 5px;
   }
 </style>
 <body>
