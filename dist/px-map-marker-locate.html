@@ -12,7 +12,37 @@
 <link rel="import" href="../css/px-map-styles.html">
 
 <!--
-...
+Creates a locate marker that can be attached to the map.
+
+The marker can be used to show a point-of-interest or represent a physical asset.
+It can be configured to show an asset's state (through color or badge) and updated
+when the asset's state changes. It can also be configured to show custom font
+awesome icons.
+
+Place a popup inside the `px-map-marker-symbol` to show data about the point
+to the user when they tap, hover over, or interact with the marker.
+
+Interactions with the marker will trigger events (documented on the component's
+API page). Attach a listener to the marker or its parent component(s) to trigger
+view changes that show additional data about the point elsewhere in your app.
+
+### Usage
+
+Use this component inside of a `px-map` element, or inside of a `px-map-layer-group`
+element to group it with other geospatial visualizations.
+
+Enable the `fit-to-markers` attribute on the `px-map` element to automatically
+fit this marker and any other markers drawn within the visual boundaries of the
+map when it is first loaded.
+
+For example, the following map will show a single marker within a layer
+group and automatically fit the marker in the view when the map is loaded.
+
+    <px-map zoom="15" fit-to-markers >
+      <px-map-layer-group name="Landmarks">
+        <px-map-marker-locate lat="35.6654861" lng="139.7706668"></px-map-marker-locate>
+      </px-map-layer-group>
+    </px-map>
 
 @element px-map-marker-locate
 @blurb ...
