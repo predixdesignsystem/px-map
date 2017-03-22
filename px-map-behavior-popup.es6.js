@@ -50,11 +50,21 @@
       if (parent && parent.getPopup() !== this.elementInst) {
         parent.bindPopup(this.elementInst);
 
-        // Bind custom events for this cluster. Events will be unbound automatically.
+        // Bind custom events for this popup. Events will be unbound automatically.
         const controlClickFn = this._handleControlClick.bind(this, parent);
         this.bindEvents({
           'controlclick' : controlClickFn
         }, parent._mapToAdd);
+
+        // Bind custom events for this popup's parent. Events will be unbound automatically.
+        const openedFn = this._handlePopupOpened.bind(this);
+        const closedFn = this._handlePopupClosed.bind(this);
+        const clickedFn = this._handlePopupParentClicked.bind(this);
+        this.bindEvents({
+          'popupopen' : openedFn,
+          'popupclose' : closedFn,
+          'click' : clickedFn
+        }, parent);
       }
     },
 
@@ -68,7 +78,19 @@
       if (this.closeOnControlInteract && parent && parent.closePopup) {
         parent.closePopup();
       }
-    }
+    },
+
+    _handlePopupOpened(evt) {
+      L.DomEvent.stop(evt);
+      evt.target.closePopup();
+      debugger;
+    },
+
+    _handlePopupClosed(evt) {
+      debugger;
+    },
+
+    _handlePopupParentClicked(evt) {}
   };
   /* Bind Popup behavior */
   /** @polymerBehavior */
@@ -346,8 +368,8 @@
         vals.length && vals[0] !== undefined ? fn.call(this, ...vals) : '';
 
       let titleTmpl = (title) => `
-        <div class="map-data-box__header">
-          <h3 class="map-data-box__header__text">${title}</h3>
+        <div class="map-box-data__header">
+          <h3 class="map-box-data__header__text">${title}</h3>
         </div>
       `;
       let dataTmpl = (data) => {
@@ -356,14 +378,14 @@
         }, []).join('');
 
         return `
-          <div class="map-data-box__table">
+          <div class="map-box-data__table">
             ${dataList}
           </div>
         `;
       };
       let dataItemTmpl = (label, value) => `
-        <div class="map-data-box__table__cell"><p>${label}</p></div>
-        <div class="map-data-box__table__cell"><p>${value}</p></div>
+        <div class="map-box-data__table__cell"><p>${label}</p></div>
+        <div class="map-box-data__table__cell"><p>${value}</p></div>
       `;
 
       return `
