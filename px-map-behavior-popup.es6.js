@@ -82,6 +82,7 @@
 
     _handlePopupOpened(evt) {
       L.DomEvent.stop(evt);
+      L.DomUtil.addClass(this.__scaleContainer, 'leaflet-control-scale--reverse');
       evt.target.closePopup();
       debugger;
     },

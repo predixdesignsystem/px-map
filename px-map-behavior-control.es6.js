@@ -528,6 +528,26 @@
       return new PxMap.InfoControl(options);
     },
 
+    addInst(parent) {
+      PxMapBehavior.ControlImpl.addInst.call(this, parent);
+
+      // Bind custom events for this control. Events will be unbound automatically.
+      const openedFn = this._handlePopupOpened.bind(this);
+      const closedFn = this._handlePopupClosed.bind(this);
+      const clickedFn = this._handlePopupParentClicked.bind(this);
+      this.bindEvents({
+        'locationfound' : foundFn,
+        'locationerror' : errorFn,
+        'controlclick' : tapFn
+      });
+    },
+
+    removeInst(parent) {
+      PxMapBehavior.ControlImpl.removeInst.call(this, parent);
+
+      // Unbind events if necessary...
+    },
+
     updateInst(lastOptions, nextOptions) {
       if (lastOptions.position !== nextOptions.position) {
         this.elementInst.setPosition(nextOptions.position);
