@@ -15,7 +15,7 @@
   PxMapBehavior.MarkerImpl = {
     properties: {
       /**
-       * The latitude of the marker. Set a value to draw the marker at a coordinate
+       * [REQUIRED] The latitude of the marker. Set a value to draw the marker at a coordinate
        * when the map is loaded. Listen for updates to track the marker's location
        * if the marker is draggable or created dynamically by the user.
        *
@@ -28,7 +28,7 @@
       },
 
       /**
-       * The longitude of the marker. Set a value to draw the marker at a coordinate
+       * [REQUIRED] The longitude of the marker. Set a value to draw the marker at a coordinate
        * when the map is loaded. Listen for updates to track the marker's location
        * if the marker is draggable or created dynamically by the user.
        *
@@ -56,11 +56,19 @@
     },
 
     // DEFAULT METHODS FOR EVERY BASE ELEMENT...
-
+    /**
+     * Returns true if there is a valid latitude and longitude.
+     * Used by child elements to determine if they are ready to
+     * be added to their parent.
+     */
     canAddInst() {
       return (typeof this.lat === 'number') && (typeof this.lng === 'number');
     },
 
+    /**
+     * Creates new instance of leaflet marker.
+     * Returns this.marker
+     */
     createInst(options) {
       this.marker = L.marker(options.geometry, options.config);
 
@@ -74,6 +82,13 @@
       return this.marker;
     },
 
+    /**
+     * Compares lastOptions with nextOptions and only updates what as changed.
+     * If marker has been removed set the opacity to 0.
+     * If marker has been added set the opacity to 1.
+     * If marker has moved or been added update the Lat and Lng.
+     * If marker icon has changed update the icon.
+     */
     updateInst(lastOptions, nextOptions) {
       const geomWasDefined = (typeof lastOptions.geometry === 'object');
       const geomIsDefined = (typeof nextOptions.geometry === 'object');
@@ -94,6 +109,9 @@
       }
     },
 
+    /**
+     *
+     */
     getInstOptions() {
       const geometry = this.getLatLng();
       const config = {};
@@ -118,7 +136,9 @@
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...
-
+    /**
+     * Throws error: 'The `getMarkerIcon` method must be implemented.'
+     */
     getMarkerIcon() {
       throw new Error('The `getMarkerIcon` method must be implemented.');
     }
@@ -139,8 +159,11 @@
     properties: {
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
-       * the state of the thing it represents. Choose from 'important', 'warning',
-       * or 'info', or 'unknown'. Defaults to 'info'.
+       * the state of the thing it represents.
+       * - `important` is red
+       * - `warning` is orange
+       * - `info` is blue
+       * - `unknown` is gray
        *
        * @type {String}
        */
@@ -153,7 +176,7 @@
 
       /**
        * Shows a small notification badge on the icon that indicates there is
-       * some relevant updated information about the marker.
+       * some relevant information about the marker.
        *
        * @type {Object}
        */
@@ -173,6 +196,12 @@
       }
     },
 
+    /**
+     * If this.markerIcon exist return the markerIcon.
+     * If this.markerIcon doesn't exist create a new
+     * markerIcon and return it.
+     * @return {this.markerIcon}
+     */
     getMarkerIcon() {
       if (!this.markerIcon) {
         const options = this._getMarkerIconOptions();
@@ -181,6 +210,9 @@
       return this.markerIcon;
     },
 
+    /**
+     *
+     */
     _updateMarkerIcon() {
       if (!this.markerIcon) return;
 
@@ -190,6 +222,9 @@
       this.shouldUpdateInst();
     },
 
+    /**
+     *
+     */
     _getMarkerIconOptions() {
       return {
         type: this.type,
@@ -199,6 +234,7 @@
       };
     }
   };
+
   /* Bind SymbolMarker behavior */
   /** @polymerBehavior */
   PxMapBehavior.SymbolMarker = [
@@ -214,8 +250,11 @@
     properties: {
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
-       * the state of the thing it represents. Choose from 'important', 'warning',
-       * or 'info', or 'unknown'. Defaults to 'info'.
+       * the state of the thing it represents.
+       * - `important` is red
+       * - `warning` is orange
+       * - `info` is blue
+       * - `unknown` is gray
        *
        * @type {String}
        */
@@ -239,6 +278,12 @@
       }
     },
 
+    /**
+     * If this.markerIcon exist return the markerIcon.
+     * If this.markerIcon doesn't exist create a new
+     * markerIcon and return it.
+     * @return {this.markerIcon}
+     */
     getMarkerIcon() {
       if (!this.markerIcon) {
         const options = this._getMarkerIconOptions();
@@ -247,6 +292,9 @@
       return this.markerIcon;
     },
 
+    /**
+     *
+     */
     _updateMarkerIcon() {
       if (!this.markerIcon) return;
 
@@ -256,6 +304,9 @@
       this.shouldUpdateInst();
     },
 
+    /**
+     *
+     */
     _getMarkerIconOptions() {
       return {
         type: this.type || '',
@@ -289,6 +340,9 @@
       }
     },
 
+    /**
+     *
+     */
     createInst(options) {
       // There are two different pieces that make up the locate marker: a
       // `CircleMarker` which draws the base blue dot, and an optional `Circle`
@@ -314,6 +368,9 @@
       return this.markerGroup;
     },
 
+    /**
+     *
+     */
     updateInst(lastOptions, nextOptions) {
       const geomWasDefined = (typeof lastOptions.geometry === 'object');
       const geomIsDefined = (typeof nextOptions.geometry === 'object');
@@ -341,6 +398,9 @@
       }
     },
 
+    /**
+     *
+     */
     getInstOptions() {
       // Get the geometry of the marker
       const geometry = this.getLatLng();
