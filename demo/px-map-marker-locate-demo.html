@@ -15,6 +15,7 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-marker-locate.html" />
 
 <!-- Demo DOM module -->
 <dom-module id="px-map-marker-locate-demo">
@@ -24,7 +25,8 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-locate"
-      description="The px-map-marker-locate subcomponent creates a geolocation marker on the map.">
+      description="The px-map-marker-locate subcomponent creates a geolocation
+      marker which displays the user's current location on the map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -38,13 +40,13 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px; width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map zoom="15" fit-to-markers flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-marker-locate
-          lat="{{props.lat.value}}"
-          lng="{{props.lng.value}}"
-          type="{{props.type.value}}">
-        </px-map-marker-locate>
+            lat="{{props.lat.value}}"
+            lng="{{props.lng.value}}"
+            accuracy="{{props.accuracy.value}}">
+          </px-map-marker-locate>
         </px-map>
       </div>
     </px-demo-component>
@@ -123,16 +125,18 @@
           inputType: 'text'
         },
 
-        type: {
-          inputLabel: 'Marker Type',
-          type: String,
-          defaultValue: 'info',
-          inputType: 'dropdown',
-          inputChoices: ['important', 'warning', 'info', 'unknown']
+        accuracy: {
+          type: Number,
+          defaultValue: '12',
+          inputType: 'text'
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size>", "</px-map>"]
+          value: ["<px-map zoom=\"15\" fit-to-markers flex-to-size>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: '<px-map-tile-layer url=\'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\'>'
         }
       }
     });

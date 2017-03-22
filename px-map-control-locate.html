@@ -10,7 +10,7 @@
 
 <!--
 The locate control creates a button that the user can tap to center the map
-on their location. Pair this control with the `px-map-control-zoom` component
+on her current location. Pair this control with the `px-map-control-zoom` component
 to give the user multiple options for navigating the map.
 
 This control relies on the user's browser to expose API methods for finding
@@ -25,15 +25,16 @@ how your app must be configured to use it: https://developer.mozilla.org/en-US/d
 ### Usage
 
     <px-map>
-      <px-map-control-locate position="bottomright"></px-map-control-locate>
+      <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>
+      <px-map-control-locate move-to-location position="bottomright"></px-map-control-locate>
     </px-map>
 
 When the user taps on the button in the example above, the map will automatically
-set its center to their location if it successfully found.
+set its center to the user's detected location (if it is successfully found).
 
 ### Handling location events and failure
 
-If you app doesn't meet the requirements for the user's browser to respond to the
+If your app doesn't meet the requirements for the user's browser to respond to the
 locate request, the control will stop trying to find their location and dispatch
 an error event. Ideally, you should listen for this error event (which will include
 a message describing the reason for the failure) and notify the user that their

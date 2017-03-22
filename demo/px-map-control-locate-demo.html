@@ -26,7 +26,8 @@
   <px-demo-header
       module-name="px-map-control-locate"
       description="The px-map-control-locate subcomponent places a button on
-      the map that the user can tap to center the map on their current location.">
+      the map that the user can tap to detect and center the map on their
+      current location.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -40,9 +41,15 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-          <px-map-control-locate position="{{props.position.value}}"></px-map-control-locate>
+          <px-map-control-locate
+            position="{{props.position.value}}"
+            locate-text="{{props.locateText.value}}"
+            locate-title="{{props.locateTitle.value}}"
+            move-max-zoom="{{props.moveMaxZoom.value}}"
+            move-to-location="{{props.moveToLocation.value}}">
+          </px-map-control-locate>
         </px-map>
       </div>
     </px-demo-component>
@@ -93,7 +100,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true },
               ]
           }
@@ -114,8 +121,34 @@
           inputChoices: ['topleft', 'topright', 'bottomleft', 'bottomright']
         },
 
+        locateText: {
+          inputLabel: 'Button Icon',
+          type: String,
+          defaultValue: '<i class="fa fa-crosshairs"></i>',
+          inputType: 'text'
+        },
+
+        locateTitle: {
+          inputLabel: 'Button Title',
+          type: String,
+          defaultValue: 'Zoom to your location',
+          inputType: 'text'
+        },
+
+        moveMaxZoom: {
+          type: Number,
+          defaultValue: 12,
+          inputType: 'text'
+        },
+
+        moveToLocation: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
         parentComponent: {
-          value: ["<px-map>", "</px-map>"]
+          value: ["<px-map flex-to-size>", "</px-map>"]
         },
 
         siblingElement: {

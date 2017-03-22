@@ -284,7 +284,7 @@
        * @type {Number}
        */
       accuracy: {
-        type: Object,
+        type: Number,
         observer: 'shouldUpdateInst'
       }
     },
