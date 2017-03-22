@@ -33,18 +33,18 @@
     margin: 5vh 5vw;
   }
 </style>
+<style is="custom-style">
+  :root {
+    --px-map-icon-unknown-color: lime;
+    --px-map-icon-info-color: slateblue;
+    --px-map-icon-warning-color: orange;
+    --px-map-icon-important-color: hotpink;
+    --px-map-marker-group-cluster-border-size: 5px;
+  }
+</style>
 <body>
   <section class="wrap">
     <template is="dom-bind">
-      <style>
-        px-map-marker-group {
-          --px-map-icon-unknown-color: lime;
-          --px-map-icon-info-color: salmon;
-          --px-map-icon-warning-color: purple:
-          --px-map-icon-important-color: blue;
-          --px-map-marker-group-cluster-border-size: 1px;
-        }
-      </style>
       <!-- Load geojson for markers with iron-ajax -->
       <iron-ajax url="marker-clusters-geojson-transit.json" last-response="{{geoJSON}}" auto></iron-ajax>
 

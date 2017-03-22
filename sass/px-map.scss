@@ -48,12 +48,6 @@ $px-map-icon-important-color:                       var(--px-map-icon-important-
 $px-map-icon-border-color:                          var(--px-map-icon-border-color, $gray1);
 $px-map-icon-symbol-color:                          var(--px-map-icon-symbol-color, $white);
 
-// DELETE
-$px-map-marker-group-unknown-color:                 var(--px-map-marker-group-unknown-color, $dv-light-gray);
-$px-map-marker-group-info-color:                    var(--px-map-marker-group-info-color, $primary-blue);
-$px-map-marker-group-warning-color:                 var(--px-map-marker-group-warning-color, $alert-orange);
-$px-map-marker-group-important-color:               var(--px-map-marker-group-important-color, $alert-red);
-
 $px-map-marker-group-cluster-path-size:             var(--px-map-marker-group-cluster-path-size, 10px);
 $px-map-marker-group-cluster-font-size:             var(--px-map-marker-group-cluster-font-size, 15px);
 $px-map-marker-group-cluster-font-color:            var(--px-map-marker-group-cluster-font-color, $primary-blue);
@@ -107,10 +101,10 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   --internal-px-map-icon-border-color: $px-map-icon-border-color;
   --internal-px-map-icon-symbol-color: $px-map-icon-symbol-color;
 
-  --internal-px-map-marker-group-unknown-color: $px-map-marker-group-unknown-color;
-  --internal-px-map-marker-group-info-color: $px-map-marker-group-info-color;
-  --internal-px-map-marker-group-warning-color: $px-map-marker-group-warning-color;
-  --internal-px-map-marker-group-important-color: $px-map-marker-group-important-color;
+  --internal-px-map-marker-group-cluster-polygon-stroke-color: $px-map-marker-group-cluster-polygon-stroke-color;
+  --internal-px-map-marker-group-cluster-polygon-fill-color: $px-map-marker-group-cluster-polygon-fill-color;
+  --internal-px-map-marker-group-cluster-path-size: $px-map-marker-group-cluster-path-size;
+  --internal-px-map-marker-group-cluster-border-size: $px-map-marker-group-cluster-border-size;
 
   --internal-px-map-marker-locate-icon-color: $px-map-marker-locate-icon-color;
   --internal-px-map-marker-locate-icon-border-color: $px-map-marker-locate-icon-border-color;
