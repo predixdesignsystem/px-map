@@ -41,49 +41,52 @@
 /*
  * Style variables shared across sub-components
  */
-$px-map-icon-unknown-color: var(--px-map-icon-unknown-color, $dv-light-gray);
-$px-map-icon-info-color: var(--px-map-icon-info-color, $primary-blue);
-$px-map-icon-warning-color: var(--px-map-icon-warning-color, $alert-orange);
-$px-map-icon-important-color: var(--px-map-icon-important-color, $alert-red);
-$px-map-icon-border-color: var(--px-map-icon-border-color, $gray1);
+$px-map-icon-unknown-color:                         var(--px-map-icon-unknown-color, $dv-light-gray);
+$px-map-icon-info-color:                            var(--px-map-icon-info-color, $primary-blue);
+$px-map-icon-warning-color:                         var(--px-map-icon-warning-color, $alert-orange);
+$px-map-icon-important-color:                       var(--px-map-icon-important-color, $alert-red);
+$px-map-icon-border-color:                          var(--px-map-icon-border-color, $gray1);
+$px-map-icon-symbol-color:                          var(--px-map-icon-symbol-color, $white);
 
 // DELETE
-$px-map-marker-group-unknown-color: var(--px-map-marker-group-unknown-color, $dv-light-gray);
-$px-map-marker-group-info-color: var(--px-map-marker-group-info-color, $primary-blue);
-$px-map-marker-group-warning-color: var(--px-map-marker-group-warning-color, $alert-orange);
-$px-map-marker-group-important-color: var(--px-map-marker-group-important-color, $alert-red);
+$px-map-marker-group-unknown-color:                 var(--px-map-marker-group-unknown-color, $dv-light-gray);
+$px-map-marker-group-info-color:                    var(--px-map-marker-group-info-color, $primary-blue);
+$px-map-marker-group-warning-color:                 var(--px-map-marker-group-warning-color, $alert-orange);
+$px-map-marker-group-important-color:               var(--px-map-marker-group-important-color, $alert-red);
 
-$px-map-marker-group-cluster-path-size: var(--px-map-marker-group-cluster-path-size, 10px);
-$px-map-marker-group-cluster-font-size: var(--px-map-marker-group-cluster-font-size, 15px);
-$px-map-marker-group-cluster-font-color: var(--px-map-marker-group-cluster-font-color, $primary-blue);
-$px-map-marker-group-cluster-font-weight: var(--px-map-marker-group-cluster-font-weight, normal);
+$px-map-marker-group-cluster-path-size:             var(--px-map-marker-group-cluster-path-size, 10px);
+$px-map-marker-group-cluster-font-size:             var(--px-map-marker-group-cluster-font-size, 15px);
+$px-map-marker-group-cluster-font-color:            var(--px-map-marker-group-cluster-font-color, $primary-blue);
+$px-map-marker-group-cluster-font-weight:           var(--px-map-marker-group-cluster-font-weight, normal);
 
-$px-map-marker-group-cluster-font-color: var(--px-map-marker-group-cluster-font-color, inherit);
-$px-map-marker-group-cluster-font-size: var(--px-map-marker-group-cluster-font-size, inherit);
-$px-map-marker-group-cluster-font-weight: var(--px-map-marker-group-cluster-font-weight, inherit);
-$px-map-marker-group-cluster-line-height: var(--px-map-marker-group-cluster-line-height, inherit);
+$px-map-marker-group-cluster-font-color:            var(--px-map-marker-group-cluster-font-color, inherit);
+$px-map-marker-group-cluster-font-size:             var(--px-map-marker-group-cluster-font-size, inherit);
+$px-map-marker-group-cluster-font-weight:           var(--px-map-marker-group-cluster-font-weight, inherit);
+$px-map-marker-group-cluster-line-height:           var(--px-map-marker-group-cluster-line-height, inherit);
 
-$px-map-marker-group-cluster-border-size: var(--px-map-marker-group-cluster-border-size, 0);
-$px-map-marker-group-cluster-border-color: var(--px-map-marker-group-cluster-border-color, rgba($black,0.3));
-$px-map-marker-group-cluster-polygon-stroke-color: var(--px-map-marker-group-cluster-polygon-stroke-color, $dv-light-blue);
-$px-map-marker-group-cluster-polygon-fill-color: var(--px-map-marker-group-cluster-polygon-fill-color, $dv-basic-blue);
-$px-map-marker-group-cluster-background-color: var(--px-map-marker-group-cluster-background-color, $white);
+$px-map-marker-group-cluster-border-size:           var(--px-map-marker-group-cluster-border-size, 0);
+$px-map-marker-group-cluster-border-color:          var(--px-map-marker-group-cluster-border-color, rgba($black,0.3));
+$px-map-marker-group-cluster-polygon-stroke-color:  var(--px-map-marker-group-cluster-polygon-stroke-color, $dv-light-blue);
+$px-map-marker-group-cluster-polygon-fill-color:    var(--px-map-marker-group-cluster-polygon-fill-color, $dv-basic-blue);
+$px-map-marker-group-cluster-background-color:      var(--px-map-marker-group-cluster-background-color, $white);
 
-$px-map-control-button-background-color: var(--px-map-control-button-background-color, $white);
-$px-map-control-button-text-color: var(--px-map-control-button-text-color, $primary-blue);
-$px-map-control-button-border-width: var(--px-map-control-button-border-width, 3px);
-$px-map-control-button-border-color: var(--px-map-control-button-border-color, rgba($black,.3));
-$px-map-control-button-background-color--hover: var(--px-map-control-button-background-color--hover, $gray3);
-$px-map-control-button-text-color--hover: var(--px-map-control-button-text-color--hover, $primary-blue-hover);
+$px-map-control-button-background-color:            var(--px-map-control-button-background-color, $white);
+$px-map-control-button-text-color:                  var(--px-map-control-button-text-color, $primary-blue);
+$px-map-control-button-border-width:                var(--px-map-control-button-border-width, 3px);
+$px-map-control-button-border-color:                var(--px-map-control-button-border-color, rgba($black,.3));
+$px-map-control-button-background-color--hover:     var(--px-map-control-button-background-color--hover, $gray3);
+$px-map-control-button-text-color--hover:           var(--px-map-control-button-text-color--hover, $primary-blue-hover);
 
-$px-map-control-button-border-color--disabled: var(--px-map-control-button-border-color--disabled, $gray4);
-$px-map-control-button-text-color--disabled: var(--px-map-control-button-text-color--disabled, $gray4);
+$px-map-control-button-border-color--disabled:      var(--px-map-control-button-border-color--disabled, $gray4);
+$px-map-control-button-text-color--disabled:        var(--px-map-control-button-text-color--disabled, $gray4);
 
-$px-map-info-control-background-color: var(--px-map-info-control-background-color, $white);
-$px-map-info-control-border-color: var(--px-map-info-control-border-color, $gray4);
+$px-map-info-control-background-color:              var(--px-map-info-control-background-color, $white);
+$px-map-info-control-border-color:                  var(--px-map-info-control-border-color, $gray4);
 
-$px-map-data-box-border-color__top: var(--px-map-data-box-border-color__top, $gray4);
-$px-map-data-box-border-color__left: var(--px-map-data-box-border-color__left, $gray4);
+$px-map-data-box-border-color__top:                 var(--px-map-data-box-border-color__top, $gray4);
+$px-map-data-box-border-color__left:                var(--px-map-data-box-border-color__left, $gray4);
+
+$px-map-popup-content-wrapper-border:               var(--px-map-popup-content-wrapper-border, $gray5);
 
 $px-map-marker-locate-icon-color: var(--px-map-marker-locate-icon-color, $primary-blue);
 $px-map-marker-locate-icon-border-color: var(--px-map-marker-locate-icon-border-color, $white);
@@ -94,6 +97,7 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   * we need to us the css vars both in are css and our js
   we need to create interanl reps that cna we over writen
   host has a hight specficy than root
+  also used of other sass files
   */
 :host {
   --internal-px-map-icon-unknown-color: $px-map-icon-unknown-color;
@@ -101,6 +105,7 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   --internal-px-map-icon-warning-color: $px-map-icon-warning-color;
   --internal-px-map-icon-important-color: $px-map-icon-important-color;
   --internal-px-map-icon-border-color: $px-map-icon-border-color;
+  --internal-px-map-icon-symbol-color: $px-map-icon-symbol-color;
 
   --internal-px-map-marker-group-unknown-color: $px-map-marker-group-unknown-color;
   --internal-px-map-marker-group-info-color: $px-map-marker-group-info-color;
@@ -111,6 +116,8 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   --internal-px-map-marker-locate-icon-border-color: $px-map-marker-locate-icon-border-color;
   --internal-px-map-marker-locate-icon-accuracy-color: $px-map-marker-locate-icon-accuracy-color;
   --internal-px-map-marker-locate-icon-accuracy-opacity: $px-map-marker-locate-icon-accuracy-opacity;
+
+  --internal-px-map-popup-content-wrapper-border: $px-map-popup-content-wrapper-border;
 }
 
 /*

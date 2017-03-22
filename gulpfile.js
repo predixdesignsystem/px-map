@@ -59,7 +59,7 @@ function buildCSS(){
 
 gulp.task('sass', function() {
   return gulp.src(['./sass/*.scss'])
-    .pipe(cache('sassing'))
+    // .pipe(cache('sassing'))
     .pipe(buildCSS())
     .pipe(stylemod({
       moduleId: function(file) {

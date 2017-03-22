@@ -1,4 +1,9 @@
 // ICON CONTAINER
+// $px-map-icon-unknown-color:                         var(--internal-px-map-icon-unknown-color, $dv-light-gray);
+// $px-map-icon-info-color:                            var(--internal-px-map-icon-info-color, $primary-blue);
+// $px-map-icon-warning-color:                         var(--internal-px-map-icon-warning-color, $alert-orange);
+// $px-map-icon-important-color:                       var(--internal-px-map-icon-important-color, $alert-red);
+// $px-map-icon-border-color:                          var(--internal-px-map-icon-border-color, $gray1);
 
 .map-icon-static {
   @extend %map-icon !optional;
@@ -14,10 +19,10 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-color: $alert-blue;
+  background-color: var(--internal-px-map-icon-info-color);
   border-radius: 100%;
   position: absolute;
-  border: 2px solid var(--px-map-icon-border-color, $white);
+  border: 2px solid var(--internal-px-map-icon-border-color);
 }
 
 // ICON DESCENDER
@@ -28,7 +33,7 @@
   height: 0;
   border-style: solid;
   border-width: 17px 5px 0;
-  border-color: $alert-blue transparent transparent transparent;
+  border-color: var(--internal-px-map-icon-info-color) transparent transparent transparent;
   position: absolute;
   left: 5px;
   top: 16px;
@@ -40,7 +45,7 @@
     height: 0;
     border-style: solid;
     border-width: 23px 8px 0px;
-    border-color: var(--px-map-icon-border-color) transparent transparent;
+    border-color: var(--internal-px-map-icon-border-color) transparent transparent;
     position: absolute;
     z-index: -1;
     left: -8px;
@@ -54,34 +59,34 @@
 
 // 'info' modifier - sets the info-icon-color (defaults to $alert-blue)
 .map-icon-static--info .map-icon-static__body {
-  background-color: var(--px-map-icon-info-color);
+  background-color: var(--internal-px-map-icon-info-color);
 }
 .map-icon-static--info .map-icon-static__descender {
-  border-top-color: var(--px-map-icon-info-color);
+  border-top-color: var(--internal-px-map-icon-info-color);
 }
 
 // 'important' modifier - sets icon-important-color (defaults to $alert-red)
 .map-icon-static--important .map-icon-static__body {
-  background-color: var(--px-map-icon-important-color);
+  background-color: var(--internal-px-map-icon-important-color);
 }
 .map-icon-static--important .map-icon-static__descender {
-  border-top-color: var(--px-map-icon-important-color);
+  border-top-color: var(--internal-px-map-icon-important-color);
 }
 
 // 'warning' modifier - sets icon-warning-color (defaults to $alert-orange)
 .map-icon-static--warning .map-icon-static__body {
-  background-color: var(--px-map-icon-warning-color);
+  background-color: var(--internal-px-map-icon-warning-color);
 }
 .map-icon-static--warning .map-icon-static__descender {
-  border-top-color: var(--px-map-icon-warning-color);
+  border-top-color: var(--internal-px-map-icon-warning-color);
 }
 
 // 'unknown' modifier - sets icon-unknown-color (defaults to $dv-light-gray)
 .map-icon-static--unknown .map-icon-static__body {
-  background-color: var(--px-map-icon-unknown-color);
+  background-color: var(--internal-px-map-icon-unknown-color);
 }
 .map-icon-static--unknown .map-icon-static__descender {
-  border-top-color: var(--px-map-icon-unknown-color);
+  border-top-color: var(--internal-px-map-icon-unknown-color);
 }
 
 // ICON BADGE
@@ -95,8 +100,8 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-color: var(--px-map-icon-warning-color);
-  border: 2px solid var(--px-map-icon-border-color);
+  background-color: var(--internal-px-map-icon-warning-color);
+  border: 2px solid var(--internal-px-map-icon-border-color);
   transform: rotate(45deg);
   position: absolute;
   left: 10px;
@@ -112,7 +117,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 12px 21px;
-  border-color: transparent transparent var(--px-map-icon-border-color) transparent;
+  border-color: transparent transparent var(--internal-px-map-icon-border-color) transparent;
 
   &:after {
     content: '';
@@ -121,7 +126,7 @@
     height: 0;
     border-style: solid;
     border-width: 0 8px 15px;
-    border-color: transparent transparent var(--px-map-icon-important-color) transparent;
+    border-color: transparent transparent var(--internal-px-map-icon-important-color) transparent;
     z-index: 0;
     position: absolute;
     left: -8px;
@@ -136,12 +141,11 @@
 // 'important' and 'with-badge' modifier - adds the triangle icon
 .map-icon-static--important.map-icon-static--with-badge .map-icon-static__badge {
   @extend %map-icon-static__badge--triangle;
-  background-color:
-  &:after { border-color: transparent transparent var(--px-map-icon-important-color) transparent; }
+  &:after { border-color: transparent transparent var(--internal-px-map-icon-important-color) transparent; }
 }
 
 // 'warning' and 'with-badge' modifier - adds the triangle icon
 .map-icon-static--warning.map-icon-static--with-badge .map-icon-static__badge {
   @extend %map-icon-static__badge--diamond;
-  &:after { border-color: transparent transparent var(--px-map-icon-warning-color) transparent; }
+  &:after { border-color: transparent transparent var(--internal-px-map-icon-warning-color) transparent; }
 }
