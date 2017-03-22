@@ -22,10 +22,10 @@
        * This is exposed as a framework-level building block to allow binding of the
        * map instance to other elements that call methods on it. Do not call methods
        * directly on the map instance. Use the web component APIs provided by
-       * `px-map` and its subcomponents to manipulate the map. If you call methods
+       * `px-map` and its sub-components to manipulate the map. If you call methods
        * directly on this instance, your data model may become out-of-sync.
        *
-       * This map instance will need to be passed down to subcomponents so they
+       * This map instance will need to be passed down to sub-components so they
        * can draw themselves on the map. Use declarative data binding to pass it.
        * For example:
        *
@@ -52,7 +52,7 @@
       // ---------------------------------------------------------------------
 
       /**
-       * The Coordinate Reference System to use when drawing the map. Leave the
+       * The Coordinate Reference System used when drawing the map. Leave the
        * default if you're not sure what this means.
        *
        * @type {String}
