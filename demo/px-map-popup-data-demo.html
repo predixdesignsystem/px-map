@@ -11,7 +11,6 @@
 <link rel="import" href="../../px-demo/px-demo-interactive.html" />
 <link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
 <link rel="import" href="../../px-demo/css/px-demo-styles.html" />
-<link rel="import" href="../../px-demo/px-demo-code-editor.html" />
 
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
@@ -26,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-popup-data"
-      description="The px-map-popup-data component displays a popup box with
+      description="The px-map-popup-data subcomponent displays a popup box with
       some data on a given marker when that marker is clicked.">
   </px-demo-header>
 
@@ -37,9 +36,6 @@
 
     <!-- Props -->
     <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
-
-    <!-- Code Editor -->
-    <px-demo-code-editor props="{{props}}"></px-demo-code-editor>
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
