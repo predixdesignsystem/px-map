@@ -38,7 +38,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size="{{props.flexToSize.value}}">
+        <px-map zoom="{{props.zoom.value}}" lat="{{props.lat.value}}" lng="{{props.lng.value}}" flex-to-size="{{props.flexToSize.value}}">
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
         </px-map>
       </div>
@@ -106,31 +106,36 @@
       demoProps: {
         zoom: {
           type: Number,
-          defaultValue: 10,
+          defaultValue: 8,
           inputType: 'text'
         },
+
         lat: {
           inputLabel: 'Latitude',
           type: Number,
           defaultValue: 37.7749,
           inputType: 'text'
         },
+
         lng: {
           inputLabel: 'Longitude',
           type: Number,
           defaultValue: -122.4312,
           inputType: 'text'
         },
-        lightDomContent: {
-          type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
-        },
+
         flexToSize: {
           type: Boolean,
           defaultValue: true,
           inputType: 'toggle',
           inputDisabled: true
+        },
+
+        lightDomContent: {
+          type: String,
+          defaultValue: '<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\">'
         }
+
       }
     });
   </script>
