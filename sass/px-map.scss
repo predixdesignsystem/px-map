@@ -39,7 +39,7 @@
 // Component
 
 /*
- * Style variables shared across sub-components
+ * Sass Variables and Style variables shared across sub-components
  */
 $px-map-icon-unknown-color:                         var(--px-map-icon-unknown-color, $dv-light-gray);
 $px-map-icon-info-color:                            var(--px-map-icon-info-color, $primary-blue);
@@ -88,10 +88,16 @@ $px-map-marker-locate-icon-accuracy-color: var(--px-map-marker-locate-icon-accur
 $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-accuracy-opacity, 0.3);
 
 /**
-  * we need to us the css vars both in are css and our js
-  we need to create interanl reps that cna we over writen
-  host has a hight specficy than root
-  also used of other sass files
+  * Internal css variables
+  * We need internal css variables to be defined in :host so that we can
+  * use them in the rest of the project. We could not put our external
+  * variables in :host because :host has a higher specficy than :root.
+  * This means the external variables would not be themable if they were
+  * inside :host.
+  *
+  * The internal css variables are for the components who need to use
+  * getComputedStyle in their js file. We also need these internal styles
+  * for other scss files.
   */
 :host {
   --internal-px-map-icon-unknown-color: $px-map-icon-unknown-color;
