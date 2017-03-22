@@ -55,12 +55,12 @@
         <px-map-control-locate position="bottomright" move-to-location move-max-zoom="12" last-found-location="{{location}}"></px-map-control-locate>
 
         <px-map-layer-group name="Buildings">
-          <px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
+          <!--<px-map-marker-static lat="37.7672375" lng="-121.9584131" type="important" show-badge>
             <px-map-popup-data title="Dispatch Hub: San Ramon" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-data-popup>
-          </px-map-marker-static>
+          </px-map-marker-static>-->
 
-          <!-- <px-map-marker-locate lat="{{location.lat}}" lng="{{location.lng}}" accuracy="{{location.accuracy}}"></px-map-marker-locate> -->
-          <px-map-marker-locate lat="39.7672375" lng="-121.9584131" accuracy="200"></px-map-marker-locate>
+           <px-map-marker-locate lat="{{location.lat}}" lng="{{location.lng}}" accuracy="{{location.accuracy}}"></px-map-marker-locate>
+          <!--<px-map-marker-locate lat="39.7672375" lng="-121.9584131" accuracy="200"></px-map-marker-locate>-->
 
           <px-map-marker-static lat="37.9055234" lng="-122.0675267" type="info" show-badge>
             <px-map-popup-info title="Walnut Creek BART" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum labore voluptatem in sapiente qui tenetur ipsa enim assumenda pariatur velit aperiam dolore a eveniet cupiditate at explicabo."></px-map-popup-info>
