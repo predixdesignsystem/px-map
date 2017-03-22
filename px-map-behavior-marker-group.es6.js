@@ -120,6 +120,23 @@
       }
     },
 
+    // PUBLIC METHODS
+
+    /**
+     * Forces the marker group to check the `data` attribute, look for differences
+     * in the data from the last draw, and make any necessary updates. Call this
+     * method if you are passing an object by reference to `data` and making
+     * deep updates that don't trigger changes.
+     */
+    update() {
+      if (!this.elementInst) return;
+
+      const {data} = this.getInstOptions();
+      this._syncDataWithMarkers(data.features, this.elementInst);
+    },
+
+    // INSTANCE METHODS
+
     addInst(parent) {
       PxMapBehavior.LayerImpl.addInst.call(this, parent);
 
@@ -330,7 +347,7 @@
         markersToOperate = [];
         for (feature of featuresToUpdate) {
           cachedMarker = nextMarkersMap.get(feature);
-          cachedMarker.marker = this._updateMarker(cachedMarker.marker);
+          cachedMarker.marker = this._updateMarker(feature, cachedMarker.marker);
           markersToOperate.push(cachedMarker.marker);
           nextMarkersMap.set(feature, cachedMarker);
         }
@@ -342,7 +359,6 @@
         markersToOperate = [];
         for (feature of featuresToRemove) {
           cachedMarker = nextMarkersMap.get(feature);
-          this._removeMarker(cachedMarker.marker);
           markersToOperate.push(cachedMarker.marker);
           nextMarkersMap.delete(feature);
         }
@@ -416,7 +432,6 @@
 
       // Clear all references in the last feature set to ensure values can
       // be garbage collected
-      lastFeatureSet.clear();
       lastFeatureSet = null;
 
       return {
@@ -428,11 +443,7 @@
       };
     },
 
-    _removeMarker(markerData, clusterInst){
-      // debugger;
-    },
-
-    _createMarker(feature, clusterInst) {
+    _createMarker(feature) {
       // Extract geometry (GeoJSON coordinate pairs are Lat/Lng, we need Lng/Lat,
       // so we have to reverse)
       const [lat, lng] = feature.geometry.coordinates;
@@ -441,6 +452,26 @@
 
       // If any icon settings were passed with the feature, fetch them to pass
       // to the icon constructor
+      const iconSettings = (feature.properties['marker-icon']) ? this._extractMarkerIconSettings(feature.properties['marker-icon']) : {};
+      iconSettings.base = iconSettings.base || 'static-icon';
+      iconSettings.type = iconSettings.type || 'info';
+      const icon = this._createMarkerIcon(iconSettings);
+      marker.setIcon(icon);
+
+      // Attach the properties to the marker instance to read later
+      marker.featureProperties = feature.properties;
+
+      return marker;
+    },
+
+    _updateMarker(feature, marker) {
+      const {lat, lng} = marker.getLatLng();
+      const [nextLng, nextLat] = feature.geometry.coordinates;
+
+      if (lat !== Number(nextLat) || lng !== Number(nextLng)) {
+        marker.setLatLng([nextLat, nextLng]);
+      }
+
       const iconSettings = (feature.properties['marker-icon']) ? this._extractMarkerIconSettings(feature.properties['marker-icon']) : {};
       iconSettings.base = iconSettings.base || 'static-icon';
       iconSettings.type = iconSettings.type || 'info';
@@ -475,6 +506,8 @@
       if (this.iconFns.marker) {
         return this.iconFns.marker.call(this, options);
       }
+      // If we are in Shady DOM with a style scope, apply it
+      options.styleScope = this.isShadyScoped() ? this.getShadyScope() : undefined;
       // Otherwise, attempt to convert the feature's 'icon-base' to a klass name
       // and call the constructor for that klass
       const klassName = this._strToKlassName(options.base);
