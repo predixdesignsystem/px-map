@@ -233,8 +233,9 @@
 
       // Loop over the layers
       this.elementInst.eachLayer((layer) => {
-        // Markers have a `layer.options.icon` set
-        if (layer.options && layer.options.icon) {
+        // Most markers should have an `isMarker` static property defined as `true`
+        // and a `getLatLng` method
+        if (layer.isMarker && layer.getLatLng) {
           let markerGeom = layer.getLatLng();
           bounds.extend(markerGeom);
         }
@@ -337,10 +338,9 @@
 
       // Loop over the layers
       this.elementInst.eachLayer((layer) => {
-        // Markers have a `layer.options.icon` set. If a layer has `layer._markers`
-        // defined, it is a cluster layer and we should skip it (we'll count
-        // if another way)
-        if (layer.options && layer.options.icon && !layer._markers) {
+        // Most markers should have an `isMarker` static property defined as `true`
+        // and a `getLatLng` method
+        if (layer.isMarker && layer.getLatLng) {
           // Only push markers that are visible
           if (mapBounds.contains(layer.getLatLng()) && markers.indexOf(layer) === -1) {
             markers.push(layer);

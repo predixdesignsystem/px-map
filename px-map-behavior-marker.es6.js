@@ -75,7 +75,7 @@
     },
 
     getInstOptions() {
-      const geometry = this.getMarkerLatLng();
+      const geometry = this.getLatLng();
       const config = {};
       config.title = (this.name || '');
       config.icon = this.getMarkerIcon();
@@ -85,8 +85,15 @@
 
     // CUSTOM METHODS FOR MARKERS...
 
-    getMarkerLatLng() {
-      if (!this.lat || !this.lng) return [];
+    /**
+     * Returns a `L.LatLng` object with an array of points in the format
+     * [latitude, longitude]. If either `lat` or `lng` are not defined,
+     * returns undefined.
+     *
+     * @return {L.LatLng|undefined}
+     */
+    getLatLng() {
+      if (!this.lat || !this.lng) return undefined;
       return L.latLng(this.lat, this.lng);
     },
 
