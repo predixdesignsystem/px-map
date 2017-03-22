@@ -24,7 +24,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-locate"
-      description="The px-map component is awesome!">
+      description="The px-map-marker-locate component creates a geolocation marker on the map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -40,6 +40,11 @@
       <div style="height:400px; width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-marker-locate
+          lat="{{props.lat.value}}"
+          lng="{{props.lng.value}}"
+          type="{{props.type.value}}">
+        </px-map-marker-locate>
         </px-map>
       </div>
     </px-demo-component>
@@ -110,12 +115,14 @@
           defaultValue: 37.7673626,
           inputType: 'text'
         },
+
         lng: {
           inputLabel: 'Longitude',
           type: Number,
           defaultValue: -121.9595048,
           inputType: 'text'
         },
+
         type: {
           inputLabel: 'Marker Type',
           type: String,
@@ -123,9 +130,9 @@
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
         },
-        lightDomContent: {
-          type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+
+        parentComponent: {
+          value: ["<px-map flex-to-size>", "</px-map>"]
         }
       }
     });

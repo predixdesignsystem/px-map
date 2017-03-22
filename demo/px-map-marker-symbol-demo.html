@@ -15,6 +15,7 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-marker-symbol.html" />
 
 <!-- Demo DOM module -->
 <dom-module id="px-map-marker-symbol-demo">
@@ -24,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-symbol"
-      description="The px-map component is awesome!">
+      description="The px-map-marker-symbol component creates a marker with a specified icon at a given location on the map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -40,6 +41,13 @@
       <div style="height:400px; width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-marker-symbol
+            lat="{{props.lat.value}}"
+            lng="{{props.lng.value}}"
+            type="{{props.type.value}}"
+            show-badge={{props.showBadge.value}}
+            symbol-class={{props.symbolClass.value}}>
+        </px-map-marker-symbol>
         </px-map>
       </div>
     </px-demo-component>
@@ -110,12 +118,14 @@
           defaultValue: 37.7673626,
           inputType: 'text'
         },
+
         lng: {
           inputLabel: 'Longitude',
           type: Number,
           defaultValue: -121.9595048,
           inputType: 'text'
         },
+
         type: {
           inputLabel: 'Marker Type',
           type: String,
@@ -123,9 +133,25 @@
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
         },
-        lightDomContent: {
+
+        showBadge: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        symbolClass: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: 'fa fa-briefcase',
+          inputType: 'text'
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
         }
       }
     });

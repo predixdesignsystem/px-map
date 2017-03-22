@@ -25,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-control-zoom"
-      description="The px-map-control-zoom component places zoom controls on the map.">
+      description="The px-map-control-zoom component places zoom controls in a corner of the map selected by the user.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -112,12 +112,14 @@
           inputType: 'dropdown',
           inputChoices: ['topleft', 'topright', 'bottomleft', 'bottomright']
         },
+
         parentComponent: {
           value: ["<px-map flex-to-size>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
         }
-        // siblingComponent: {
-        //   value: '<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer>'
-        // }
       }
     });
   </script>

@@ -15,8 +15,6 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
-<link rel="import" href="../px-map-control-zoom.html" />
-<link rel="import" href="../px-map-control-scale.html" />
 <link rel="import" href="../px-map-marker-static.html" />
 
 <!-- Demo DOM module -->
@@ -27,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-static"
-      description="The px-map-marker-static component is awesome!">
+      description="The px-map-marker-static component creates a static marker at a given location on the map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -41,9 +39,14 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px; width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map zoom="8" flex-to-size >
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-          <px-map-marker-static lat="{{props.lat.value}}" lng="{{props.lng.value}}" type="{{props.type.value}}"></px-map-marker-static>
+          <px-map-marker-static
+            lat="{{props.lat.value}}"
+            lng="{{props.lng.value}}"
+            type="{{props.type.value}}"
+            show-badge={{props.showBadge.value}}>
+          </px-map-marker-static>
         </px-map>
       </div>
     </px-demo-component>
@@ -56,7 +59,7 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <px-demo-api-viewer source="px-map"></px-demo-api-viewer>
+  <px-demo-api-viewer source="px-map-marker-static"></px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -94,7 +97,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Single Marker",
                 configReset: true }
             ]
           }
@@ -114,12 +117,14 @@
           defaultValue: 37.7673626,
           inputType: 'text'
         },
+
         lng: {
           inputLabel: 'Longitude',
           type: Number,
           defaultValue: -121.9595048,
           inputType: 'text'
         },
+
         type: {
           inputLabel: 'Marker Type',
           type: String,
@@ -127,9 +132,19 @@
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
         },
-        lightDomContent: {
-          type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+
+        showBadge: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
         }
       }
     });

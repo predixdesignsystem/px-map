@@ -9,11 +9,19 @@
 <link rel="import" href="px-map-behavior-group.html">
 
 <!--
-...
+A group containing one or more related markers that can all be shown, hidden,
+or manipulated together.
 
-##### Usage
+### Usage
 
-    ...
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-layer-group name="Oakland Downtown BART Stations">
+        <px-map-marker-static lat="37.8079" lng="-122.2687"></px-map-marker-static>
+        <px-map-marker-static lat="37.8033" lng="-122.2719"></px-map-marker-static>
+        <px-map-marker-static lat="37.7970" lng="-122.2652"></px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
 
 @element px-map-layer-group
 @blurb ...

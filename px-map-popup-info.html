@@ -9,13 +9,29 @@
 <link rel="import" href="px-map-behavior-popup.html">
 
 <!--
-...
+This component creates a popup that is displayed when a given marker is clicked
+by the user. The popup can contain a title and text giving more information about
+the selected marker.
+
+There is no text limit, but we recommend limiting the text in the description
+to 3 lines.
+
+### Usage
+
+    <px-map>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info" show-badge>
+        <px-map-popup-info title="GE Digital" description="We have great maps. Our maps are the best maps."></px-map-popup-info>
+      </px-map-marker-static>
+    </px-map>
+
 
 @element px-map-popup-info
 @blurb ...
 @homepage index.html
 @demo index.html
 -->
+
 
 <dom-module id="px-map-popup-info">
   <style>

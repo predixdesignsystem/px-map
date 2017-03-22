@@ -21,20 +21,19 @@ controls for the user, and accomplish other common mapping tasks.
 This is a simple example with little configuration that will display a map
 centered on Tokyo, Japan:
 
-    <px-map lat="35.6895" lon="139.6917" zoom="12">
-    </px-map>
+    <px-map lat="35.6895" lng="139.6917" zoom="12"></px-map>
 
 Maps can be extended with a variety of attributes and by passing sub-components
 into the tag. We can extend the map above by changing how the map initially draws
 in its container, and by placing an overlay layer with markers showing interesting
 landmarks in Tokyo:
 
-    <px-map lat="35.6895" lon="139.6917" zoom="15" flex-to-size fit-to-markers>
+    <px-map lat="35.6895" lng="139.6917" zoom="15" flex-to-size fit-to-markers>
       <px-map-overlay-layer name="Landmarks">
-        <px-map-static-icon lat="35.6763976" lon="35.6763976">
+        <px-map-static-icon lat="35.6763976" lng="35.6763976">
           <slot name="title">Meiji Jingu</slot>
         </px-map-static-icon>
-        <px-map-static-icon lat="35.6654861" lon="139.7706668">
+        <px-map-static-icon lat="35.6654861" lng="139.7706668">
           <slot name="title">Tsukiji Market</slot>
         </px-map-static-icon>
       </px-map-overlay-layer>

@@ -9,11 +9,18 @@
 <link rel="import" href="px-map-behavior-tile-layer.html">
 
 <!--
-...
+This subcomponent provides the baselayer for a px-map. The base layer calls a
+tile service, which loads tiles, i.e. square images, that together create a
+full map. The title layer includes information like streets, buildings, national
+parks, etc. Tile layers are mutually exclusive (there should be only one tile
+layer per map).
 
-##### Usage
+### Usage
 
-    ...
+    <px-map>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png">
+      </px-map-tile-layer>
+    </px-map>
 
 @element px-map-tile-layer
 @blurb ...

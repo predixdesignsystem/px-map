@@ -25,7 +25,8 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-popup-info"
-      description="The px-map-popup-info component is awesome!">
+      description="The px-map-popup-info component displays a popup box with
+      some text on a given marker when that marker is clicked.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -39,8 +40,11 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map flex-to-size fit-to-markers>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-marker-static lat="42.3518414" lng="-71.0500149" type="info" show-badge>
+            <px-map-popup-info title="{{props.title.value}}" description="{{props.description.value}}"></px-map-popup-info>
+          </px-map-marker-static>
         </px-map>
       </div>
     </px-demo-component>
@@ -91,7 +95,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true },
               ]
           }
@@ -105,26 +109,20 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
-        lightDomContent: {
+        title: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: 'General Electric HQ',
+          inputType: 'text'
+        },
+
+        description: {
+          type: String,
+          defaultValue: 'The move to the new GE Corporate headquarters will be completed by 2018.',
+          inputType: 'text'
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size fit-to-markers><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"42.3518414\" lng=\"-71.0500149\" type=\"info\" show-badge>", "</px-map-marker-static></px-map>"]
         }
       }
     });

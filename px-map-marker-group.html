@@ -12,11 +12,14 @@
 <link rel="import" href="css/px-map-styles.html">
 
 <!--
-...
+This component lets you load a large number of markers onto your map.
 
-##### Usage
+### Usage
 
-    ...
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-marker-group name="Plaques" data="{{geoJSON}}"></px-map-marker-group>
+    </px-map>
 
 @element px-map-marker-group
 @blurb ...

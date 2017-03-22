@@ -25,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-layer-group"
-      description="The px-map-layer-group component is awesome!">
+      description="The px-map-layer-group component allows the user to group together multiple related markers.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -39,8 +39,13 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map fit-to-markers flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-layer-group name="{{props.name.value}}">
+            <px-map-marker-static lat="37.8079" lng="-122.2687"></px-map-marker-static>
+            <px-map-marker-static lat="37.8033" lng="-122.2719"></px-map-marker-static>
+            <px-map-marker-static lat="37.7970" lng="-122.2652"></px-map-marker-static>
+          </px-map-layer-group>
         </px-map>
       </div>
     </px-demo-component>
@@ -91,7 +96,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true },
               ]
           }
@@ -105,26 +110,15 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
+        name: {
+          type: String,
+          defaultValue: 'Oakland Downtown BART',
           inputType: 'text'
         },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
+
         lightDomContent: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: "<px-map-marker-static lat=\"37.8079\" lng=\"-122.2687\" type=\"info\" show-badge><px-map-popup-info title=\"BART: 19th Street/Oakland\"></px-map-popup-info></px-map-marker-static><px-map-marker-static lat=\"37.8033\" lng=\"-122.2719\" type=\"info\" show-badge><px-map-popup-info title=\"BART: Oakland City Center/12th Street\"></px-map-popup-info></px-map-marker-static><px-map-marker-static lat=\"37.7970\" lng=\"-122.2652\" type=\"info\" show-badge><px-map-popup-info title=\"BART: Lake Merritt\"></px-map-popup-info></px-map-marker-static>"
         }
       }
     });

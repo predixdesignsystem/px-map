@@ -164,8 +164,8 @@
       },
 
       /**
-       * Replaces the symbol on iconSymbols
-       * accepts font awesome icons
+       * Replaces the symbol on iconSymbols.
+       * Accepts font awesome icons
        */
       symbolClass: {
         type: String,

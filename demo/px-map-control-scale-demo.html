@@ -25,8 +25,8 @@
 
   <!-- Header -->
   <px-demo-header
-      module-name="px-map-control-scale"
-      description="The px-map-control-scale component places a scale on the map in either imperial or metric units, or both.">
+      module-name="px-map-control-scale" The scale control
+      description="The px-map-control-scale component places a distance scale on the map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -104,11 +104,13 @@
 
                { configName: "Imperial & Metric",
                  configReset: true,
+                 position: 'bottomleft',
                  imperialUnits: true,
                  metricUnits: true,
                  reverseColors: false },
 
                { configName: "Reverse Colors",
+                 position: 'topright',
                  configReset: true,
                  imperialUnits: true,
                  metricUnits: false,
@@ -150,6 +152,13 @@
            inputType: 'toggle'
          },
 
+         parentComponent: {
+           value: ["<px-map flex-to-size>", "</px-map>"]
+         },
+
+         siblingElement: {
+           value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
+         }
        }
      });
    </script>

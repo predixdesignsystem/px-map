@@ -11,6 +11,7 @@
 <link rel="import" href="../../px-demo/px-demo-interactive.html" />
 <link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
 <link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../../px-demo/px-demo-code-editor.html" />
 
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
@@ -25,7 +26,8 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-popup-data"
-      description="The px-map-popup-data component is awesome!">
+      description="The px-map-popup-data component displays a popup box with
+      some data on a given marker when that marker is clicked.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -36,11 +38,20 @@
     <!-- Props -->
     <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
+    <!-- Code Editor -->
+    <px-demo-code-editor props="{{props}}"></px-demo-code-editor>
+
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info" show-badge>
+            <px-map-popup-data
+              title="{{props.title.value}}"
+              data="{{props.data.value}}">
+            </px-map-popup-data>
+          </px-map-marker-static>
         </px-map>
       </div>
     </px-demo-component>
@@ -91,7 +102,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true },
               ]
           }
@@ -105,26 +116,20 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
-        lightDomContent: {
+        title: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: 'GE Digital',
+          inputType: 'text'
+        },
+
+        data: {
+          type: Object,
+          defaultValue: { "Employees" : "2000", "Parking" : "Yes", "Snacks" : "Yes", "Gym" : "No" },
+          inputType: 'code:JSON'
+        },
+
+        parentComponent: {
+          value: ["<px-map zoom=\"12\" flex-to-size><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"37.7673626\" lng=\"-121.9595048\" type=\"info\" show-badge>", "</px-map-marker-static></px-map>"]
         }
       }
     });

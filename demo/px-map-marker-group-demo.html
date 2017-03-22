@@ -25,7 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-group"
-      description="The px-map-marker-group component is awesome!">
+      description="The px-map-marker-group component lets you load a large number of markers onto your map.">
   </px-demo-header>
 
   <!-- Interactive -->
@@ -39,9 +39,11 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map flex-to-size fit-to-markers>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-marker-group name="Plaques" data="{{props.data.value}}"></px-map-marker-group>
         </px-map>
+
       </div>
     </px-demo-component>
     <!-- END Component ------------------------------------------------------>
@@ -78,6 +80,8 @@
           value: function(){ return this.demoProps; }
         },
 
+
+
         /**
          * An array of pre-configured `props` that can be used to provide the user
          * with a set of common examples. These configs will be made available
@@ -91,7 +95,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true },
               ]
           }
@@ -105,26 +109,195 @@
        * @type {Object}
        */
       demoProps: {
-        zoom: {
-          type: Number,
-          defaultValue: 10,
-          inputType: 'text'
-        },
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7749,
-          inputType: 'text'
-        },
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -122.4312,
-          inputType: 'text'
-        },
-        lightDomContent: {
+        name: {
           type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+          defaultValue: 'Bus stop data',
+          inputType: 'text'
+        },
+
+        data: {
+          type: Object,
+          inputType: 'code:JSON',
+          defaultValue: {
+            "type": "FeatureCollection",
+            "features": [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.24042573",
+                    "32.67445793"
+                  ]
+                },
+                "properties": {
+                  "title": "Cabrillo National Monument",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "warning",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10001"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.27618677",
+                    "32.83957829"
+                  ]
+                },
+                "properties": {
+                  "title": "Pearl St & Draper Av",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "info",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10003"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.2738099",
+                    "32.84012848"
+                  ]
+                },
+                "properties": {
+                  "title": "Pearl St & Fay Av",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "unknown",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10004"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.26867322",
+                    "32.8458467"
+                  ]
+                },
+                "properties": {
+                  "title": "Torrey Pines Rd & Exchange Pl",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "important",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10006"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.26175158",
+                    "32.84931178"
+                  ]
+                },
+                "properties": {
+                  "title": "Torrey Pines Rd & Hillside Dr",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "unknown",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10007"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.24825013",
+                    "32.79810093"
+                  ]
+                },
+                "properties": {
+                  "title": "Garnet Av & Everts St",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "unknown",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10011"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.24583394",
+                    "32.79652904"
+                  ]
+                },
+                "properties": {
+                  "title": "Grand Av & Fanuel St",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "warning",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10012"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.24277358",
+                    "32.79929398"
+                  ]
+                },
+                "properties": {
+                  "title": "Garnet Av & Haines St",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "info",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10013"
+              },
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    "-117.24120249",
+                    "32.79965017"
+                  ]
+                },
+                "properties": {
+                  "title": "Garnet Av & Ingraham St",
+                  "marker-icon": {
+                    "icon-base": "static-icon",
+                    "icon-type": "important",
+                    "icon-with-badge": true
+                  }
+                },
+                "id": "10015"
+              }
+            ]
+          }
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size fit-to-markers>", "</px-map>"]
         }
       }
     });
