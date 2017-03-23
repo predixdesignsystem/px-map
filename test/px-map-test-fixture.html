@@ -11,19 +11,25 @@
          for any URL ending with "/web-component-tester/browser.js"
          when wct is run from the command line -->
     <script src="../web-component-tester/browser.js"></script>
-    <link rel="import" href="../px-map.html" />
     <!-- Retain this link for px-theme.html -->
     <!-- px-theme is needed for WCT to run without errors -->
-    <link rel="import" href="../../px-theme/px-theme.html"/>
-    <!-- This script link will contain the generated script for basic wct test cases -->
-    <script src="px-map-base-tests.js"></script>
+    <link rel="import" href="../bower_components/px-theme/px-theme-styles.html" />
+    <!-- Load local components -->
+    <link rel="import" href="../px-map.html" />
     <!-- This script link will contain the generated script stub for custom, developer-added test cases -->
     <script src="px-map-custom-tests.js"></script>
+
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link href="../../test-fixture/test-fixture.html" rel="import">
   </head>
 
   <body>
     <style include="px-theme-styles" is="custom-style"></style>
-    <h3>Web Component Test : Fixture for px-map</h3>
-    <px-map id="px_map_1"></px-map>
+
+    <test-fixture id="fixture-basic-map">
+      <template>
+        <px-map style="width:100px; height:100px;"></px-map>
+      </template>
+    </test-fixture>
   </body>
 </html>

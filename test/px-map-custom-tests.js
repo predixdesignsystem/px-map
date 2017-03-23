@@ -1,27 +1,50 @@
-// This is the wrapper for custom tests, called upon web components ready state
-function runCustomTests() {
-  // Place any setup steps like variable declaration and initialization here
+document.addEventListener("WebComponentsReady", function() {
+  runCustomTests();
+});
 
-  // This is the placeholder suite to place custom tests in
-  // Use testCase(options) for a more convenient setup of the test cases
-  suite('Custom Automation Tests for px-map', function() {
-    test('Check initial value of counter', function(done){
-      var counterEl = Polymer.dom(document).querySelector('px-map'),
-          counterValueEl = Polymer.dom(counterEl.root).querySelector('span');
-      assert.equal(counterValueEl.textContent, '0');
-      done();
+function runCustomTests() {
+
+  describe('Basic px-map without options', function () {
+    it('has a #map element in its shadow root', function() {
+      var mapEl = fixture('fixture-basic-map');
+      var shadowTarget = Polymer.dom(mapEl.root).querySelector('#map');
+
+      expect(shadowTarget).to.be.an.instanceof(HTMLElement);
     });
 
-    test('Clicking px-map increments the counter', function(done){
-      var counterEl = Polymer.dom(document).querySelector('px-map'),
-          counterValueEl = Polymer.dom(counterEl.root).querySelector('span');
-      assert.equal(counterValueEl.textContent, '0');
+    it('has a #map element that fills its declared height and width', function() {
+      var mapEl = fixture('fixture-basic-map');
+      var shadowTarget = Polymer.dom(mapEl.root).querySelector('#map');
+      var shadowTargetRect = shadowTarget.getBoundingClientRect();
 
-      counterEl.click();
-      flush(function(){
-        assert.equal(counterValueEl.textContent, '1');
-      });
-      done();
+      expect(shadowTargetRect.width, 'width should have been 100px').to.be.closeTo(100,1);
+      expect(shadowTargetRect.height, 'width should have been 100px').to.be.closeTo(100,1);
+    });
+
+    it('creates an instance of L.Map after attaching', function() {
+      var mapEl = fixture('fixture-basic-map');
+      var mapInstance = mapEl.elementInst;
+
+      expect(mapInstance).to.be.an.instanceof(L.Map);
+    });
+
+    it('has a default lat, lng, and zoom if none are set', function() {
+      var mapEl = fixture('fixture-basic-map');
+
+      expect(mapEl.lat).to.be.a('number');
+      expect(mapEl.lng).to.be.a('number');
+      expect(mapEl.zoom).to.be.a('number');
+    });
+
+    it('sets its centerpoint and zoom to the default lat, lng, and zoom if none are set', function() {
+      var mapEl = fixture('fixture-basic-map');
+      var latLng = mapEl.elementInst.getCenter();
+      var zoom = mapEl.elementInst.getZoom();
+
+      expect(latLng.lat).to.equal(37.7672375);
+      expect(latLng.lng).to.equal(-121.9584131);
+      expect(zoom).to.equal(10);
     });
   });
+
 }
