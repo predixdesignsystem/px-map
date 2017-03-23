@@ -139,7 +139,7 @@
 
       // The chart size is the container size with the border size subtracted out,
       // so we can draw and transform our SVG in the right dimensions
-      const chartSize = (containerSize - (borderSize*2));
+      const chartSize = (containerSize - (borderSize > 0 ? (borderSize*2)-0.5 : 0));
 
       // The icon size is a point representing the size of the icon's outer container
       const iconSize = L.point(containerSize, containerSize);
