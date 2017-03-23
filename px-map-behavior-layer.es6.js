@@ -36,7 +36,7 @@
     shouldAddInst(parent) {
       PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
 
-      if (this.elementInst && parent && !parent.hasLayer(this.elementInst)) {
+      if (this.elementInst && parent) {
         this.addInst(parent);
       };
     },
