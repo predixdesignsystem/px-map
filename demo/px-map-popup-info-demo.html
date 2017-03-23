@@ -57,7 +57,10 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <px-demo-api-viewer source="px-map-popup-info"></px-demo-api-viewer>
+  <px-demo-api-viewer
+    source="px-map-popup-info"
+    mark-private="[[apiMarkPrivate]]">
+  </px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -98,6 +101,31 @@
               { configName: "Basic",
                 configReset: true },
               ]
+          }
+        },
+
+        apiMarkPrivate: {
+          type: Array,
+          value: function() {
+            return [
+              "notifyInstReady",
+              "notifyInstReady",
+              "canAddInst",
+              "shouldAddInst",
+              "addInst",
+              "shouldRemoveInst",
+              "removeInst",
+              "shouldUpdateInst",
+              "updateInst",
+              "createInst",
+              "getInstOptions",
+              "bindEvents",
+              "unbindAllEvents",
+              "addProperties",
+              "extendObj",
+              "getShadyScope",
+              "isShadyScoped"
+            ]
           }
         }
       },

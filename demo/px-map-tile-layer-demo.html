@@ -53,7 +53,10 @@
   </px-demo-interactive>
 
   <!-- API Viewer -->
-  <px-demo-api-viewer source="px-map-tile-layer"></px-demo-api-viewer>
+  <px-demo-api-viewer
+    source="px-map-tile-layer"
+    mark-private="[[apiMarkPrivate]]">
+  </px-demo-api-viewer>
 
   <!-- Footer -->
   <px-demo-footer></px-demo-footer>
@@ -98,6 +101,31 @@
                 configReset: true,
                 url: 'http://api.tiles.mapbox.com/v3/aj.map-b0cn5uze/{z}/{x}/{y}.png' }
               ]
+          }
+        },
+
+        apiMarkPrivate: {
+          type: Array,
+          value: function() {
+            return [
+              "notifyInstReady",
+              "notifyInstReady",
+              "canAddInst",
+              "shouldAddInst",
+              "addInst",
+              "shouldRemoveInst",
+              "removeInst",
+              "shouldUpdateInst",
+              "updateInst",
+              "createInst",
+              "getInstOptions",
+              "bindEvents",
+              "unbindAllEvents",
+              "addProperties",
+              "extendObj",
+              "getShadyScope",
+              "isShadyScoped"
+            ]
           }
         }
       },
