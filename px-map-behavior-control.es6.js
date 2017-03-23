@@ -74,8 +74,8 @@
   PxMapBehavior.ZoomControlImpl = {
     properties: {
       /**
-       * Sets the icon for zoom in button
-       * This is not dynamic and can only be set at run time
+       * Sets the icon for the 'Zoom in' button.
+       * This is not dynamic and can only be set at run time.
        *
        * @type {String}
        */
@@ -85,8 +85,8 @@
       },
 
       /**
-       * Sets the icon for zoom out button
-       * This is not dynamic and can only be set at run time
+       * Sets the icon for the 'Zoom out' button.
+       * This is not dynamic and can only be set at run time.
        *
        * @type {String}
        */
@@ -96,8 +96,8 @@
       },
 
       /**
-       * Sets the hover text for zoom in button
-       * This is not dynamic and can only be set at run time
+       * Sets the hover text for the 'Zoom in' button.
+       * This is not dynamic and can only be set at run time.
        *
        * @type {String}
        */
@@ -107,8 +107,8 @@
       },
 
       /**
-       * Sets the hover text for zoom out button
-       * This is not dynamic and can only be set at run time
+       * Sets the hover text for the 'Zoom out' button.
+       * This is not dynamic and can only be set at run time.
        *
        * @type {String}
        */
@@ -205,7 +205,7 @@
   PxMapBehavior.ScaleControlImpl = {
     properties: {
       /**
-       * Shows a imperial unit scale (ft/mi) line if enabled. Multiple unit scales
+       * Shows an imperial unit scale (ft/mi) line if enabled. Multiple unit scales
        * can be enabled to show multiple scales. If no units are enabled,
        * the scale cannot be drawn.
        *
@@ -231,8 +231,8 @@
       },
 
       /**
-       * Enable to reverse the the scale's colors, making it easier to read
-       * against a dark tile layer.
+       * Enable this property to reverse the the scale's colors, making it
+       * easier to read against a dark tile layer.
        *
        * @type {Boolean}
        */
@@ -286,7 +286,7 @@
   PxMapBehavior.LocateControlImpl = {
     properties: {
       /**
-       * A string of HTML that will be used as the locate button text.
+       * A string of HTML that will set an icon to be used on the locate button.
        *
        * @type {String}
        */
@@ -297,7 +297,7 @@
       },
 
       /**
-       * A title for the locate text button. Will be used to inform users with
+       * A title for the locate button. Will be used to inform users with
        * screen reading devices what the button does.
        *
        * @type {String}
@@ -321,8 +321,8 @@
 
       /**
        * The maximum zoom level to set when the map moves to the user's location.
-       * The `moveToLocation` attribute must be set for the map to move to
-       * after a location event.
+       * The `moveToLocation` attribute must be set for the map to move to the
+       * user's location after a location event.
        *
        * @type {Number}
        */
@@ -331,7 +331,7 @@
       },
 
       /**
-       * After the user's location is successfully found the result will be
+       * After the user's location is successfully found, the result will be
        * placed here. The object will have the following keys:
        *
        *     * {Number} `lat` - User's found latitude
