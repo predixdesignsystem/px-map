@@ -229,8 +229,12 @@
 
       // Bind custom events for the map intance. Events will be unbound automatically.
       const mapMoveFn = this._handleMapMove.bind(this);
+      const zoomStartFn = this._handleZoomStart.bind(this);
+      const zoomEndFn = this._handleZoomEnd.bind(this);
       this.bindEvents({
-        'moveend' : mapMoveFn
+        'moveend' : mapMoveFn,
+        'zoomstart' : zoomStartFn,
+        'zoomend' : zoomEndFn
       });
 
       this.listen(this, 'px-map-marker-add', '_fitMapToMarkersIfConfigured');
@@ -378,15 +382,18 @@
     },
 
     _handleMapMove() {
+      if (this.__isZooming) {
+        this.__onZoomEnd = this._handleMapMove.bind(this);
+        return;
+      }
+
       this.debounce('handle-map-move', function() {
         const latLng = this.elementInst.getCenter();
         const zoom = this.elementInst.getZoom();
         const bounds = this.elementInst.getBounds();
 
-        if (this.lat !== latLng.lat) {
+        if (this.lat !== latLng.lat || this.lng !== latLng.lng) {
           this.set('lat', latLng.lat);
-        }
-        if (this.lng !== latLng.lng) {
           this.set('lng', latLng.lng);
         }
         if (this.zoom !== zoom) {
@@ -415,6 +422,26 @@
      * @event px-map-moved
      */
 
+     /**
+      * Sets an internal boolean that allows us to wait before handling any map
+      * movements until the zoom animation is over.
+      */
+    _handleZoomStart() {
+      this.__isZooming = true;
+    },
+
+    /**
+     * Sets an internal boolean that allows us to wait before handling any map
+     * movements until the zoom animation is over.
+     */
+   _handleZoomEnd() {
+     this.__isZooming = false;
+     if (typeof this.__onZoomEnd === 'function') {
+       this.__onZoomEnd();
+       this.__onZoomEnd = null;
+     }
+   },
+
     /**
      * Called when the `lat`, `lng`, or `zoom` is set or updated. Sets the active
      * map center to the new values.
@@ -427,7 +454,7 @@
         const zoom = this.elementInst.getZoom();
 
         if (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
-          this.elementInst.setView([lat,lng], zoom);
+          this.elementInst.setView([this.lat,this.lng], this.zoom);
         }
       });
     },
