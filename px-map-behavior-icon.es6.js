@@ -148,7 +148,7 @@
       const svg = this._generateClusterIconSVG(countByType, colorsByType, chartSize, pathSize);
 
       // Generate the classes and wrapper HTML
-      const classes = `map-icon-cluster ${className||''} ${styleScope||''}`
+      const classes = `map-icon-cluster ${className||''} ${styleScope||''}`;
       const html = `
         <div class="map-icon-cluster__container" style="width: ${containerSize}px; height: ${containerSize}px">
           <i class="map-icon-cluster__svg">${svg}</i>

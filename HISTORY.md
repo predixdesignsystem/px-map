@@ -1,3 +1,8 @@
+v1.0.3
+==================
+## Bug fixes
+* Add missing semicolon that causes a failure after inlining script
+
 v1.0.2
 ==================
 ## Bug fixes
