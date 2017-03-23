@@ -30,6 +30,25 @@
       this.shouldRemoveInst();
     },
 
+    // Extends the `Element` behavior lifecycle methods to include adding the
+    // instance to its parent
+
+    shouldAddInst(parent) {
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
+
+      if (this.elementInst && parent || !parent.hasLayer(this.elementInst)) {
+        this.addInst(parent);
+      };
+    },
+
+    shouldRemoveInst(parent) {
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
+
+      if (this.elementInst) {
+        this.removeInst(parent ? parent : undefined);
+      };
+    },
+
     // Methods to bind to/unbind from parent
 
     addInst(parent) {
@@ -87,7 +106,7 @@
    */
   PxMapBehavior.ParentLayerImpl = {
     listeners: {
-      'px-map-layer-instance-created' : '_tryToAddAllChildren',
+      'px-map-element-instance-created' : '_tryToAddAllChildren',
       'px-map-layer-ready-to-add' : '_tryToAddOneChild'
     },
 

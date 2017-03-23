@@ -26,33 +26,22 @@
       this.elementInst = null;
     },
 
-    shouldAddInst(parent) {
+    shouldAddInst() {
       // Create the instance, if it doesn't already exist
       if (!this.elementInst) {
         const options = this.__initialOptions = this.getInstOptions();
         this.elementInst = this.createInst(options);
-        this.fire('px-map-layer-instance-created');
+        this.fire('px-map-element-instance-created');
       }
 
-      // @TODO: Bind events
       this.__instEvents = (this.__instEvents || []);
       this.__instEventsElementsMap = (this.__instEventsElementsMap || new WeakMap());
-
-      // Add the instance to its parent
-      if (this.elementInst && parent || !parent.hasLayer(this.elementInst)) {
-        this.addInst(parent);
-      };
     },
 
-    shouldRemoveInst(parent) {
-      // @TODO: Unbind events
+    shouldRemoveInst() {
       this.unbindAllEvents(this.__instEvents, this.__instEventsElementsMap);
       this.__instEvents = null;
       this.__instEventsElementsMap = null;
-
-      if (this.elementInst) {
-        this.removeInst(parent ? parent : undefined);
-      };
     },
 
     // Simple observer trigger for dynamic properties that should be synced

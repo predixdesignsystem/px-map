@@ -15,52 +15,15 @@
   PxMapBehavior.LeafletRootImpl = {
     properties: {
       /**
-       * The active map instance. Currently, the only mapping base library offered
-       * is Leaflet, so this will be a reference to the `L.map` that is displaying
-       * all the relevant map data.
+       * The coordinate reference system to use when projecting geographic points
+       * into pixel coordinates. Can only be set once before the map is first
+       * initialized. If you don't know what this is, do not set it and the map
+       * will revert to the most common web mapping projection (EPSG3857).
        *
-       * This is exposed as a framework-level building block to allow binding of the
-       * map instance to other elements that call methods on it. Do not call methods
-       * directly on the map instance. Use the web component APIs provided by
-       * `px-map` and its subcomponents to manipulate the map. If you call methods
-       * directly on this instance, your data model may become out-of-sync.
-       *
-       * This map instance will need to be passed down to subcomponents so they
-       * can draw themselves on the map. Use declarative data binding to pass it.
-       * For example:
-       *
-       * ```
-       * <px-map map-instance="{{map}}">
-       *   <px-map-overlay-layer map-instance="{{map}}"></px-map-overlay-layer>
-       * </px-map>
-       * ```
-       *
-       * You can also use the `DistributeProperties` behavior to automatically
-       * distribute the map instance to all light DOM children as they are added,
-       * and keep the map instance up-to-date.
-       *
-       * @type {Object}
-       */
-      elementInst: {
-        type: Object,
-        notify: true,
-        readOnly: true
-      },
-
-      // ---------------------------------------------------------------------
-      // CONFIGURES THE VIEW SETTINGS FOR THE ACTIVE MAP
-      // ---------------------------------------------------------------------
-
-      /**
-       * The Coordinate Reference System to use when drawing the map. Leave the
-       * default if you're not sure what this means.
-       *
-       * @type {String}
+       * @type {L.CRS}
        */
       crs: {
-        type: String,
-        value: 'L.CRS.EPSG3857',
-        notify: true
+        type: Object
       },
 
       /**
@@ -73,7 +36,8 @@
       lat: {
         type: Number,
         value: 37.7672375,
-        notify: true
+        notify: true,
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -86,7 +50,8 @@
       lng: {
         type: Number,
         value: -121.9584131,
-        notify: true
+        notify: true,
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -100,43 +65,107 @@
         type: Number,
         value: 10,
         notify: true,
-        observer: '_updateMapView'
+        observer: 'shouldUpdateInst'
       },
 
       /**
-       * The maximum zoom level for the active map. Will be applied to all
-       * layers of the map.
+       * The maximum zoom level for the active map (the furthest the user can
+       * zoom in). Setting it at the map level will take precedence over the
+       * max zoom of all other layers, including tile layers. If you need to
+       * set different zoom bounds based on the visible tile layer, set the
+       * max zoom directly on your tile layer.
        *
        * @type {Number}
        */
       maxZoom: {
         type: Number,
-        value: 18
+        observer: 'shouldUpdateInst'
       },
 
       /**
-       * The minimum zoom level for the active map. Will be applied to all
-       * layers of the map.
+      * The minimum zoom level for the active map (the furthest the user can
+      * zoom out). Setting it at the map level will take precedence over the
+      * min zoom of all other layers, including tile layers. If you need to
+      * set different zoom bounds based on the visible tile layer, set the
+      * min zoom directly on your tile layer.
        *
        * @type {Number}
        */
       minZoom: {
         type: Number,
+        observer: 'shouldUpdateInst'
       },
 
       /**
-       * Restricts the view of the map to a given geographical boundary. The
-       * user will be bounced back if they attempt to pan outside the view.
+       * Restricts the user from moving the map outside of a specific geographic
+       * boundary. The user will be bounced back if they attempt to pan outside the view.
        * Disabled by default, letting the user pan to any point on the map.
        *
-       * Pass an array of `<LatLng>` values like the following:
+       * Pass an array of [lat,lng] values like the following:
        *
-       *        [40.712, -74.227], [40.774, -74.125]
+       *        [[40.712, -74.227], [40.774, -74.125]]
+       *
+       * The first pair should represent the southwest extend of the boundary,
+       * and the second  pair should represent the northeast extend of the
+       * boundary.
        *
        * @type {Array}
        */
-      bounds: {
-        type: Array
+      maxBounds: {
+        type: Array,
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Set to disable dragging of the map with the mouse or by touch. Use to
+       * restrict changing the map's visible area (e.g. for a static map) or
+       * to set up a map for being updated programatically (e.g. through regular
+       * responses from an API).
+       *
+       * @type {Boolean}
+       */
+      disableDragging: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Set to disable zooming with the scroll wheel. Useful if you have a map
+       * that takes up the full width of a page and want to allow the user to
+       * scroll/swipe past without getting stuck in a zoom-in-zoom-out loop.
+       *
+       * @type {Boolean}
+       */
+      disableScrollZoom: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Set to disable the two-finger zoom gesture on touch devices.
+       *
+       * @type {Boolean}
+       */
+      disableTouchZoom: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Set to disable the attribution control, which can be used to show the
+       * source of tile layers or other data overlays.
+       *
+       * This property is not dynamic and can only be set once when the map is
+       * first initialized.
+       *
+       * @type {Boolean}
+       */
+      disableAttribution: {
+        type: Boolean,
+        value: false
       },
 
       // ---------------------------------------------------------------------
@@ -152,7 +181,7 @@
       fitToMarkers: {
         type: Boolean,
         value: false,
-        observer: '_fitMapToMarkers'
+        observer: '_fitMapToMarkersIfConfigured'
       },
 
       // ---------------------------------------------------------------------
@@ -174,33 +203,132 @@
     },
 
     attached() {
-      window.requestAnimationFrame(this._drawMap.bind(this,0,10));
-
-      if (this.fitToMarkers) {
-        this.listen(this, 'px-map-marker-add', '_fitMapToMarkers');
-        this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkers');
-      }
+      this.shouldAddInst();
+      this.addInst();
     },
 
     detached() {
-      if (this.fitToMarkers) {
-        this.unlisten(this, 'px-map-marker-add', '_fitMapToMarkers');
-        this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkers');
+      this.shouldRemoveInst();
+      this.removeInst();
+    },
+
+    createInst(options) {
+      const mapEl = Polymer.dom(this.root).querySelector('#map');
+      return L.map(mapEl, options);
+    },
+
+    addInst() {
+      // @TODO: This is a shim for browsers without shadow DOM. We need to
+      // re-append the `#map` element or it won't get the 'style-scope' CSS
+      // classes needed to style it or its children. That's bad. When the
+      // polyfill is updated or support is cut for browsers without shadow
+      // DOM, this should be removed.
+      if (this.isShadyScoped()) {
+        this.scopeSubtree(this.$.map, true);
+      }
+
+      // Bind custom events for the map intance. Events will be unbound automatically.
+      const mapMoveFn = this._handleMapMove.bind(this);
+      this.bindEvents({
+        'moveend' : mapMoveFn
+      });
+
+      this.listen(this, 'px-map-marker-add', '_fitMapToMarkersIfConfigured');
+      this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkersIfConfigured');
+    },
+
+    removeInst() {
+      // Stop watching the shady root map element for changes
+      if (this.isShadyScoped()) {
+        this.scopeSubtree(this.$.map, false);
+      }
+
+      this.unlisten(this, 'px-map-marker-add', '_fitMapToMarkersIfConfigured');
+      this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkersIfConfigured');
+    },
+
+    getInstOptions() {
+      const options = {};
+
+      // Static options
+      options.zoomControl = false;
+
+      // Dynamic options
+      options.crs = this.crs || L.CRS.EPSG3857;
+      options.center = [this.lat, this.lng];
+      options.zoom = this.zoom;
+      options.minZoom = this.minZoom || undefined;
+      options.maxZoom = this.maxZoom || undefined;
+      options.maxBounds = this.maxBounds || undefined;
+
+      options.dragging = !this.disableDragging;
+      options.scrollWheelZoom = !this.disableScrollZoom;
+      options.touchZoom = !this.disableTouchZoom;
+      options.attributionControl = !this.disableAttribution;
+
+      return options;
+    },
+
+    updateInst(lastOptions, nextOptions) {
+      if (lastOptions.center[0] !== nextOptions.center[0] ||
+          lastOptions.center[1] !== nextOptions.center[1] ||
+          lastOptions.zoom !== nextOptions.zoom) {
+        this._updateMapView();
+      }
+
+      if (lastOptions.maxZoom !== nextOptions.maxZoom && !isNaN(nextOptions.maxZoom)) {
+        this.setMaxZoom(nextOptions.maxZoom);
+      }
+      if (lastOptions.minZoom !== nextOptions.minZoom && !isNaN(nextOptions.minZoom)) {
+        this.setMaxZoom(nextOptions.minZoom);
+      }
+      if (lastOptions.maxBounds !== nextOptions.maxBounds && !isNaN(nextOptions.maxBounds)) {
+        this.setMaxZoom(nextOptions.maxBounds);
+      }
+
+      if (!lastOptions.dragging && nextOptions.dragging) {
+        this.elementInst.dragging.enable();
+      }
+      if (lastOptions.dragging && !nextOptions.dragging) {
+        this.elementInst.dragging.disable();
+      }
+
+      if (!lastOptions.scrollWheelZoom && nextOptions.scrollWheelZoom) {
+        this.elementInst.scrollWheelZoom.enable();
+      }
+      if (lastOptions.scrollWheelZoom && !nextOptions.scrollWheelZoom) {
+        this.elementInst.scrollWheelZoom.disable();
+      }
+
+      if (!lastOptions.touchZoom && nextOptions.touchZoom) {
+        this.elementInst.touchZoom.enable();
+      }
+      if (lastOptions.touchZoom && !nextOptions.touchZoom) {
+        this.elementInst.touchZoom.disable();
       }
     },
 
     /**
-     * If the map is configured to fit itself to markers, iterates over all
-     * layers to find marker and ensures they fit in the view.
+     * Iterates over all attached markers and pans/zooms the map to fit all
+     * markers within the visible bounds.
      *
-     * This functio will be called when:
-     * 1. The `fitToMarkers` property is defined
-     * 2. Any marker fires a 'px-map-marker-add' event that bubbles up to the map
-     * 3. The map is first drawn
+     * Set the `fit-map-to-markers` attribute to automatically fit all markers
+     * as they are added to the map.
      */
-    _fitMapToMarkers() {
-      if (this.elementInst && this.fitToMarkers) {
+    fitMapToMarkers() {
+      if (this.elementInst) {
         this.debounce('fit-map-to-markers', this._fitBounds, 1);
+      }
+    },
+
+    /**
+     * Internal method that calls `fitMapToMarkers` only if the `fit-map-to-markers`
+     * attribute is set. Ensures we don't call the method internally unless
+     * the map is configured to do so.
+     */
+    _fitMapToMarkersIfConfigured() {
+      if (this.fitMapToMarkers) {
+        this.fitMapToMarkers();
       }
     },
 
@@ -249,89 +377,75 @@
       return bounds;
     },
 
-    /**
-     * Attemps to draw the map, if it hasn't already been drawn. If the parent
-     * has no height, throws it back into the stack to draw on the next
-     * animation frame.
-     */
-    _drawMap(retries=0, maxRetries=10) {
-      const x = this._drawX = this.parentElement.clientWidth;
-      const y = this._drawY = this.parentElement.clientHeight;
-
-      if (!x || !y) {
-        // Try again, if there are any retries left
-        if (retries < maxRetries) {
-          window.requestAnimationFrame(this._drawMap.bind(this, (retries+1), maxRetries));
-        }
-        return;
-      }
-
-      // Try to find an initialized map instance. If there is none, create it.
-      if (!this.elementInst) {
-        const mapDrawEl = Polymer.dom(this.root).querySelector('#map');
-        let map = L.map(mapDrawEl, {
-          minZoom: this.minZoom,
-          maxZoom: this.maxZoom,
-          zoomControl: false
-        });
-
-        // @TODO: This is a shim for browsers without shadow DOM. We need to
-        // re-append the `#map` element or it won't get the 'style-scope' CSS
-        // classes needed to style it or its children. That's bad. When the
-        // polyfill is updated or support is cut for browsers without shadow
-        // DOM, this should be removed.
-        // Polymer.dom(this.root).appendChild(mapDrawEl);
-        this.scopeSubtree(this.$.map, true);
-
-        // Attach to the read-only `elementInst`
-        this._setElementInst(map);
-        this.fire('px-map-layer-instance-created');
-
-        // Bind map move listeners
-        const mapMoveFn = this._handleMapMove.bind(this);
-        this._mapMoveHandlerFn = map.on('moveend', mapMoveFn)
-      }
-
-      // Ensure a tile layer is applied to the map
-      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //   attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-      //   maxZoom: 18
-      // }).addTo(this.elementInst);
-
-      // Set the view from current defaults
-      this._updateMapView();
-
-      // Try to fit to map markers if the `fitToMarkers` attribute was set
-      this._fitMapToMarkers();
-    },
-
     _handleMapMove() {
-      let latLng = this.elementInst.getCenter();
-      let zoom = this.elementInst.getZoom();
+      this.debounce('handle-map-move', function() {
+        const latLng = this.elementInst.getCenter();
+        const zoom = this.elementInst.getZoom();
+        const bounds = this.elementInst.getBounds();
 
-      // Handle this task after a short queueing process to allow clusters
-      // to draw on map
-      this.async(() => {
+        if (this.lat !== latLng.lat) {
+          this.set('lat', latLng.lat);
+        }
+        if (this.lng !== latLng.lng) {
+          this.set('lng', latLng.lng);
+        }
+        if (this.zoom !== zoom) {
+          this.set('zoom', zoom);
+        }
+
         this.fire('px-map-moved', {
-          latLng: latLng,
           lat: latLng.lat,
           lng: latLng.lng,
-          zoom: zoom
+          zoom: zoom,
+          bounds: bounds
         });
       });
     },
+    /**
+     * Fired when the map's centerpoint (lat/lng) or zoom is changed by the user
+     * or programatically.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the map centerpoint after moving
+     *   * {Number} detail.lat - Latitude of the map centerpoint after moving
+     *   * {Number} detail.lng - Longitude of the map centerpoint after moving
+     *   * {Number} detail.zoom - Zoom level of the map after moving
+     *   * {L.LatLngBouds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
+     *
+     * @event px-map-moved
+     */
 
     /**
      * Called when the `lat`, `lng`, or `zoom` is set or updated. Sets the active
      * map center to the new values.
      */
     _updateMapView() {
-      if (this.elementInst) {
-        let updateFn = () => { this.elementInst.setView([this.lat, this.lng], this.zoom) };
-        this.debounce('update-map-view', updateFn, 1);
-      }
+      if (!this.elementInst) return;
+
+      this.debounce('update-map-view', function() {
+        const {lat, lng} = this.elementInst.getCenter();
+        const zoom = this.elementInst.getZoom();
+
+        if (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
+          this.elementInst.setView([lat,lng], zoom);
+        }
+      });
     },
 
+    /**
+     * Iterates over all markers attached to the map and returns an array of markers
+     * that are within the visible bounds. Use to discover which markers the
+     * user can currently see and change/filter the state of your app.
+     *
+     * This is an expensive operation, particularly for maps with many markers
+     * (e.g. in a marker group). Only call it when necessary.
+     *
+     * To get continuous updates on which markers are visible, attach a
+     * `px-map-moved` event listener to this element and call this method
+     * after each moved event.
+     *
+     * @return {Array}
+     */
     getVisibleMarkers() {
       const mapBounds = this.elementInst.getBounds();
       let markers = [];
@@ -365,7 +479,7 @@
   /* Bind Popup behavior */
   /** @polymerBehavior */
   PxMapBehavior.LeafletRoot = [
-    PxMapBehavior.Layer,
+    PxMapBehavior.Element,
     PxMapBehavior.ParentLayer,
     PxMapBehavior.LeafletRootImpl
   ];
