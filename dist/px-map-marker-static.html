@@ -24,7 +24,7 @@ view changes that show additional data about the point elsewhere in your app.
 
 ### Usage
 
-Use this component inside of a `px-map` element, or inside of a `px-map-overlay-layer`
+Use this component inside of a `px-map` element, or inside of a `px-map-layer-group`
 element to group it with other geospatial visualizations.
 
 Enable the `fit-to-markers` attribute on the parent `px-map` element to automatically
@@ -35,9 +35,9 @@ For example, the following map will show a single marker within an overlay
 layer and automatically fit the marker in the view when the map is loaded.
 
     <px-map zoom="15" fit-to-markers>
-      <px-map-overlay-layer name="Landmarks">
+      <px-map-layer-group name="Landmarks">
         <px-map-marker-static lat="35.6654861" lng="139.7706668"></px-map-marker-static>
-      </px-map-overlay-layer>
+      </px-map-layer-group>
     </px-map>
 
 @element px-map-marker-static
