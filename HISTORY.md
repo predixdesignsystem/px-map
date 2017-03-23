@@ -1,3 +1,7 @@
+v1.0.1
+==================
+* Well, that was quick. Small patch for some build-time requirements (deploy key and travis configuration).
+
 v1.0.0
 ==================
 
