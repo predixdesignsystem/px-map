@@ -9,10 +9,10 @@
 <link rel="import" href="px-map-behavior-marker.html">
 
 <!--
-Creates a static marker that can be attached to the map.
+This subcomponent creates a static marker that can be attached to the map.
 
 The marker can be used to show a point-of-interest or represent a physical asset.
-It can be configured to show an asset's state (through color or badge) and updated
+It can be configured to show an asset's state (through color and badge) and updated
 when the asset's state changes.
 
 Place a popup inside the `px-map-marker-static` to show data about the point
@@ -31,13 +31,21 @@ Enable the `fit-to-markers` attribute on the parent `px-map` element to automati
 fit this marker and any other markers drawn within the visual boundaries of the
 map when it is first loaded.
 
-For example, the following map will show a single marker within an overlay
-layer and automatically fit the marker in the view when the map is loaded.
+For example, the following map will show a single marker within a layer group
+and automatically fit the marker in the view when the map is loaded:
 
     <px-map zoom="15" fit-to-markers>
       <px-map-layer-group name="Landmarks">
         <px-map-marker-static lat="35.6654861" lng="139.7706668"></px-map-marker-static>
       </px-map-layer-group>
+    </px-map>
+
+You can place multiple markers on a px-map or within a px-map-layer-group:
+
+    <px-map zoom="15" fit-to-markers>
+      <px-map-marker-static lat="37.7654861" lng="-122.8706668"></px-map-marker-static>
+      <px-map-marker-static lat="37.6654861" lng="-122.7706668"></px-map-marker-static>
+      <px-map-marker-static lat="37.9654861" lng="-122.9706668"></px-map-marker-static>
     </px-map>
 
 @element px-map-marker-static

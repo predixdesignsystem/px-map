@@ -45,7 +45,6 @@
             lat="{{props.lat.value}}"
             lng="{{props.lng.value}}"
             type="{{props.type.value}}"
-            show-badge={{props.showBadge.value}}
             symbol-class={{props.symbolClass.value}}>
         </px-map-marker-symbol>
         </px-map>
@@ -101,7 +100,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Default",
+              { configName: "Basic",
                 configReset: true }
             ]
           }
@@ -160,12 +159,6 @@
           defaultValue: 'info',
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
-        },
-
-        showBadge: {
-          type: Boolean,
-          defaultValue: true,
-          inputType: 'toggle'
         },
 
         symbolClass: {

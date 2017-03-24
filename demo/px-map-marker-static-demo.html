@@ -39,7 +39,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px; width:600px;display:flex">
-        <px-map zoom="8" flex-to-size >
+        <px-map flex-to-size >
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-marker-static
             lat="{{props.lat.value}}"
@@ -100,7 +100,7 @@
           type: Array,
           value: function(){
             return [
-              { configName: "Single Marker",
+              { configName: "Basic",
                 configReset: true }
             ]
           }
@@ -159,12 +159,6 @@
           defaultValue: 'info',
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
-        },
-
-        showBadge: {
-          type: Boolean,
-          defaultValue: true,
-          inputType: 'toggle'
         },
 
         parentComponent: {
