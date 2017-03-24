@@ -17,8 +17,8 @@
 
 .map-icon-static__body {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background-color: var(--internal-px-map-icon-info-color);
   border-radius: 100%;
   position: absolute;
@@ -32,11 +32,11 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 17px 5px 0;
+  border-width: 11px 4px 0;
   border-color: var(--internal-px-map-icon-info-color) transparent transparent transparent;
   position: absolute;
-  left: 5px;
-  top: 16px;
+  left: 4px;
+  top: 12px;
 
   &:after {
     content: '';
@@ -44,12 +44,12 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 23px 8px 0px;
+    border-width: 16px 7px 0px;
     border-color: var(--internal-px-map-icon-border-color) transparent transparent;
     position: absolute;
     z-index: -1;
-    left: -8px;
-    top: -17px;
+    left: -7px;
+    top: -12px;
     transform: scaleY(1.1);
   }
 }
@@ -98,13 +98,13 @@
 
 %map-icon-static__badge--diamond {
   display: block;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   background-color: var(--internal-px-map-icon-warning-color);
   border: 2px solid var(--internal-px-map-icon-border-color);
   transform: rotate(45deg);
   position: absolute;
-  left: 10px;
+  left: 8px;
   top: 0px;
 }
 
@@ -112,11 +112,11 @@
   display: block;
   position: absolute;
   left: 3px;
-  top: -4px;
+  top: -3px;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0 12px 21px;
+  border-width: 0 9px 16px;
   border-color: transparent transparent var(--internal-px-map-icon-border-color) transparent;
 
   &:after {
@@ -125,11 +125,11 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 8px 15px;
+    border-width: 0 6px 10px;
     border-color: transparent transparent var(--internal-px-map-icon-important-color) transparent;
     z-index: 0;
     position: absolute;
-    left: -8px;
+    left: -6px;
     top: 4px;
   }
 }

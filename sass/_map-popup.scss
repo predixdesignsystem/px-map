@@ -11,12 +11,13 @@
   .leaflet-popup-content-wrapper:after {
     content: '';
     position: absolute;
-    background-color: $white; //TODO create style variable
-    height: 4px;
-    width: 19px;
+    height: 0px;
+    width: 0px;
     left: 50%;
-    margin-left: -9px;
-    border-radius: 5px;
+    margin-left: -11px;
+    border-width: 11px 11px 0px;
+    border-style: solid;
+    border-color: $white transparent transparent transparent;
   }
   // Add the border to the 'tip' pointer
   .leaflet-popup-tip {
