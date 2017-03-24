@@ -1,10 +1,20 @@
+v1.0.3
+==================
+## Bug fixes
+* Add missing semicolon that causes a failure after inlining script
+
+v1.0.2
+==================
+## Bug fixes
+* Fix lat/lng/zoom set and notification timing bugs, add tests to cover
+
 v1.0.1
 ==================
+## Bug fixes
 * Well, that was quick. Small patch for some build-time requirements (deploy key and travis configuration).
 
 v1.0.0
 ==================
-
 ## Introduction
 This is the first release of the `px-map` components. The map components make it easy to build an interactive map out of web components with simple, expressive APIs.
 

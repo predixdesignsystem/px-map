@@ -88,6 +88,16 @@ yes | cp ${REPO_NAME}/bower.json bower.json
 bower install
 
 # ------------------------------------------------------------------------------
+# CUSTOM FOR PX-MAP: REMOVE SYMLINKS
+# ------------------------------------------------------------------------------
+
+# So, the leaflet repository installed through bower has a `docs/` directory
+# that apparentlty includes symlinks to things that don't exist. Or at least
+# Github Pages thinks so, and fails to build the site because of it.
+# To allow us to build, we need to force remove the `leaflet/docs` directory.
+rm -rf leaflet/docs
+
+# ------------------------------------------------------------------------------
 # BUILD PROJECT
 # ------------------------------------------------------------------------------
 
