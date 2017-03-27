@@ -3,7 +3,7 @@
 // $px-map-icon-info-color:                            var(--internal-px-map-icon-info-color, $primary-blue);
 // $px-map-icon-warning-color:                         var(--internal-px-map-icon-warning-color, $alert-orange);
 // $px-map-icon-important-color:                       var(--internal-px-map-icon-important-color, $alert-red);
-// $px-map-icon-border-color:                          var(--internal-px-map-icon-border-color, $gray1);
+// $px-map-icon-border-color:                          var(--internal-px-map-icon-border-color, $white);
 
 .map-icon-static {
   @extend %map-icon !optional;
