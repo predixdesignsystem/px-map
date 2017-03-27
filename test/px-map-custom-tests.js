@@ -81,11 +81,11 @@ function runCustomTests() {
         expect(mapEl.zoom, 'the `zoom` property was reset to its old value').to.equal(6);
         expect(newMapZoom, 'the map zoom was not set to its new value').to.equal(6);
         done();
-      }, 300);
+      }, 400);
     });
 
     it('fires an event once when all of lat, lng, and zoom are set in quick succession', function(done) {
-      this.timeout(300);
+      this.timeout(400);
 
       var mapEl = fixture('fixture-basic-map');
       mapEl.addEventListener('px-map-moved', function(evt) {
