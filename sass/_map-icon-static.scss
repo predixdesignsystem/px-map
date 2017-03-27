@@ -13,8 +13,12 @@
   position: absolute;
 }
 
-// ICON BODY
+.map-icon-static__wrapper{
+  position: relative;
+  top: 3px;
+}
 
+// ICON BODY
 .map-icon-static__body {
   display: block;
   width: 16px;
@@ -26,7 +30,6 @@
 }
 
 // ICON DESCENDER
-
 .map-icon-static__descender {
   display: block;
   width: 0;
