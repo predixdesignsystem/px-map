@@ -198,7 +198,7 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 .map-popup-data {
   @extend %map-popup;
 
-  .map-popup-data .map-box-data {
+  .map-box-data {
     margin: $inuit-base-spacing-unit;
   }
 }
@@ -343,7 +343,6 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 }
 
 // MAP CONTROL: INFO
-
 .map-info-control {
   background-color: $px-map-info-control-background-color;
   max-width: 250px;

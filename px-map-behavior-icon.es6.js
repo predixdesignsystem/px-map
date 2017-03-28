@@ -34,7 +34,7 @@
       `;
       const iconSize = L.point(23,31);
       const iconAnchor = L.point(7.6, 31);
-      const popupAnchor = L.point(1,-38);
+      const popupAnchor = L.point(1,-31);
 
       // Define the `divIcon` options
       const options = {
@@ -94,7 +94,7 @@
       `;
       const iconSize = L.point(39,47);
       const iconAnchor = L.point(14.6, 46);
-      const popupAnchor = L.point(1,-38);
+      const popupAnchor = L.point(1,-45);
 
       // Define the `divIcon` options
       const options = {
