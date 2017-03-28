@@ -96,28 +96,6 @@
       },
 
       /**
-       * Sets the hover text for the 'Zoom in' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomInTitle: {
-        type: String,
-        value: 'Zoom in'
-      },
-
-      /**
-       * Sets the hover text for the 'Zoom out' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomOutTitle: {
-        type: String,
-        value: 'Zoom out'
-      },
-
-      /**
        * A valid IETF language tag as a string that `app-localize-behavior` will
        * use to localize this component (see https://en.wikipedia.org/wiki/IETF_language_tag)
        * for a list of valid tags.
@@ -183,8 +161,8 @@
       // cause the zoom control not to draw. Check if this.localize exists
       // and can be called before doing so.
       if (typeof this.localize === 'function') {
-        options.zoomInTitle = this.localize(this.zoomInTitle);
-        options.zoomInTitle =  this.localize(this.zoomOutTitle);
+        options.zoomInTitle = this.localize('Zoom in');
+        options.zoomOutTitle =  this.localize('Zoom out');
       }
 
       return options;
