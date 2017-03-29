@@ -26,13 +26,15 @@
 
       // Static options
       const html = `
-        <i class="map-icon-static__body"></i>
-        <i class="map-icon-static__descender"></i>
-        <i class="map-icon-static__badge"></i>
+        <div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body"></i>
+          <i class="map-icon-static__descender"></i>
+          <i class="map-icon-static__badge"></i>
+        </div>
       `;
-      const iconSize = L.point(50,50);
-      const iconAnchor = L.point(9.8, 40.3);
-      const popupAnchor = L.point(1,-38);
+      const iconSize = L.point(23,31);
+      const iconAnchor = L.point(7.6, 31);
+      const popupAnchor = L.point(1,-31);
 
       // Define the `divIcon` options
       const options = {
@@ -90,9 +92,9 @@
           <i class="map-icon-symbol__badge"></i>
         </div>
       `;
-      const iconSize = L.point(55,66);
-      const iconAnchor = L.point(19.8, 65);
-      const popupAnchor = L.point(1,-38);
+      const iconSize = L.point(39,47);
+      const iconAnchor = L.point(14.6, 46);
+      const popupAnchor = L.point(1,-45);
 
       // Define the `divIcon` options
       const options = {
