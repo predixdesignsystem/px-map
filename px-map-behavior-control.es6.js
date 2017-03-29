@@ -434,12 +434,12 @@
     _handleLocationTap(evt) {
       if (!evt || evt.action !== 'locate') return;
 
-      this.fire('px-map-locate-button-tap');
+      this.fire('px-map-locate-button-tapped');
     }
     /**
      * Fired when the user clicks the locate button and initiates a location search.
      *
-     * @event px-map-locate-button-tap
+     * @event px-map-locate-button-tapped
      */
   };
   /* Bind LocateControl behavior */

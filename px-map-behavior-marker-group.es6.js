@@ -132,14 +132,13 @@
       if (!this.elementInst) return;
 
       const {data} = this.getInstOptions();
-      this._syncDataWithMarkers(data.features, this.elementInst);
+      const features = this._syncDataWithMarkers(data.features, this.elementInst);
+      this._notifyNewFeatures(features);
     },
 
     // INSTANCE METHODS
 
     addInst(parent) {
-      PxMapBehavior.LayerImpl.addInst.call(this, parent);
-
       // Bind custom events for this cluster. Events will be unbound automatically.
       const spiderifyFn = this._handleClusterSpiderify.bind(this);
       const unspiderifyFn = this._handleClusterUnspiderify.bind(this);
@@ -147,7 +146,27 @@
         'spiderfied' : spiderifyFn,
         'unspiderfied' : unspiderifyFn
       });
+
+      PxMapBehavior.LayerImpl.addInst.call(this, parent);
+
+      this.async(function(){
+        this.fire('px-map-marker-group-added');
+      });
     },
+    /**
+     * Fired when the marker group is attached to a parent layer (e.g. the map).
+     *
+     * Note that it isn't guaranteed that all marker clusters and individual
+     * markers added to the group have drawn, only that the marker group itself
+     * has attached to a parent. Marker clusters and individual may be drawn
+     * asynchronously, and data may be added or changed later to cause additional
+     * redraws.
+     *
+     * Listen to the `px-map-marker-group-features-changed` event for notifications
+     * on the features in the cluster.
+     *
+     * @event px-map-marker-group-added
+     */
 
     removeInst(parent) {
       PxMapBehavior.LayerImpl.removeInst.call(this, parent);
@@ -157,16 +176,17 @@
       const cluster = L.markerClusterGroup(options);
 
       if (options.data) {
-        this._syncDataWithMarkers(options.data.features, cluster);
+        const features = this._syncDataWithMarkers(options.data.features, cluster);
+        this._notifyNewFeatures(features);
       }
 
       return cluster;
     },
 
     updateInst(lastOptions, nextOptions) {
-      if (nextOptions.data && nextOptions.data.features && nextOptions.data.features.length) {
-        this._syncDataWithMarkers(nextOptions.data.features, this.elementInst);
-        this.fire('px-map-marker-group-add');
+      if (nextOptions.data) {
+        const features = this._syncDataWithMarkers(nextOptions.data.features, this.elementInst);
+        this._notifyNewFeatures(features);
       }
     },
 
@@ -194,6 +214,36 @@
       // Return the options composed together
       return options;
     },
+
+    /**
+     * Takes a `Set` of feature objects. Fires an event with the bounds of the
+     * feature set.
+     *
+     * @param {Set} featureSet
+     */
+    _notifyNewFeatures(featureSet) {
+      if (!featureSet || !(featureSet instanceof Set) || !featureSet.size) return;
+
+      this.async(function _notifyNewFeaturesDebounce() {
+        const bounds = L.latLngBounds();
+        let feature;
+        for (feature of featureSet) {
+          // Reminder: the coordinates array is backwards, switch from `lngLat` to `latLng`
+          bounds.extend([feature.geometry.coordinates[1], feature.geometry.coordinates[0]])
+        }
+        this.fire('px-map-marker-group-features-changed', { bounds: bounds });
+      }, 1);
+    },
+    /**
+     * Fired when the marker group's features are changed (i.e. when a GeoJSON
+     * FeatureCollection is set or updated through the group's `data` attribute).
+     * If any features are available, sends out the extend of their bounds.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {L.LatLng} detail.bounds - Custom Leaflet `LatLngBounds` bounds instance representing the total area covered by the features
+     *
+     * @event px-map-marker-group-features-changed
+     */
 
     /**
      * Determines if the data provided through the `data` attribute appears to
@@ -321,6 +371,16 @@
       }, {});
     },
 
+    /**
+     * Takes an array of GeoJSON feature objects and an `L.MarkerClusterGroup`
+     * instance. Diffs the feature array against any previous feature arrays
+     * passed to this method and updates the cluster instance. Returns a
+     * `Set` of features.
+     *
+     * @param {Array} newFeatures
+     * @param {L.MarkerClusterGroup} clusterInst
+     * @return {Set} features
+     */
     _syncDataWithMarkers(newFeatures, clusterInst) {
       if (!newFeatures.length) return;
 
@@ -373,6 +433,8 @@
       featuresToAdd.clear();
       featuresToUpdate.clear();
       featuresToRemove.clear();
+
+      return this._features;
     },
 
     _diffNewFeatures(newFeatures, lastFeatureSet, markerMap) {
