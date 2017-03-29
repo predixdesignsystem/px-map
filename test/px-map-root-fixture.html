@@ -26,9 +26,17 @@
   <body>
     <style include="px-theme-styles" is="custom-style"></style>
 
-    <test-fixture id="fixture-basic-map">
+    <test-fixture id="BasicMapFixture">
       <template>
         <px-map style="width:100px; height:100px;"></px-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="FitMarkersMapFixture">
+      <template>
+        <px-map style="width:300px; height:500px;" fit-to-markers>
+          <px-magic-stub-el></px-magic-stub-el>
+        </px-map>
       </template>
     </test-fixture>
   </body>
