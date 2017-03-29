@@ -55,7 +55,6 @@
       }
     },
 
-    // DEFAULT METHODS FOR EVERY BASE ELEMENT...
     /**
      * Returns true if there is a valid latitude and longitude.
      * Used by child elements to determine if they are ready to
@@ -63,6 +62,32 @@
      */
     canAddInst() {
       return (typeof this.lat === 'number') && (typeof this.lng === 'number');
+    },
+
+    // extends the layer `addInst` method to harvest and fire events when the
+    // markers are added
+    addInst(parent) {
+      // Bind custom events. Events will be unbound automatically.
+      const addedFn = this._handleMarkerAdded.bind(this);
+      const removedFn = this._handleMarkerRemoved.bind(this);
+      const tapFn = this._handleMarkerTapped.bind(this);
+      this.bindEvents({
+        'add' : addedFn,
+        'remove' : removedFn,
+        'click' : tapFn
+      }, this.marker);
+
+      // Now call layer's add
+      PxMapBehavior.LayerImpl.addInst.call(this, parent);
+    },
+
+    removeInst(parent) {
+      // Fire the removed event. If the marker is removed after its events are
+      // cleaned up we'll never hit the `_handleMarkerRemoved` function.
+      this._handleMarkerRemoved();
+
+      // Now call layer's remove
+      PxMapBehavior.LayerImpl.removeInst.call(this, parent);
     },
 
     /**
@@ -136,12 +161,79 @@
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...
-    /**
-     * Throws error: 'The `getMarkerIcon` method must be implemented.'
-     */
     getMarkerIcon() {
       throw new Error('The `getMarkerIcon` method must be implemented.');
+    },
+
+
+    // HANDLE EVENTS...
+
+    /**
+     * Called when the marker is added to a layer instance.
+     */
+    _handleMarkerAdded() {
+      const latLng = this.getLatLng();
+      const {lat, lng} = latLng;
+      const detail = {
+        latLng: latLng,
+        lat: lat,
+        lng: lng
+      };
+      this.fire('px-map-marker-added', detail);
+    },
+    /**
+     * Fired when the marker is attached to a parent layer (e.g. the map).
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the marker
+     *   * {Number} detail.lng - Longitude of the marker
+     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-added
+     */
+
+    _handleMarkerRemoved() {
+      const latLng = this.getLatLng();
+      const {lat, lng} = latLng;
+      const detail = {
+        latLng: latLng,
+        lat: lat,
+        lng: lng
+      };
+      this.fire('px-map-marker-removed', detail);
+    },
+    /**
+     * Fired when the marker is detached to a parent layer (e.g. the map) and
+     * removed from the DOM.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the marker before removal
+     *   * {Number} detail.lng - Longitude of the marker before removal
+     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-removed
+     */
+
+    _handleMarkerTapped() {
+      const latLng = this.getLatLng();
+      const {lat, lng} = latLng;
+      const detail = {
+        latLng: latLng,
+        lat: lat,
+        lng: lng
+      };
+      this.fire('px-map-marker-tapped', detail);
     }
+    /**
+     * Fired when the marker is clicked or tapped by the user.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the marker
+     *   * {Number} detail.lng - Longitude of the marker
+     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-tapped
+     */
   };
   /* Bind Marker behavior */
   /** @polymerBehavior */
