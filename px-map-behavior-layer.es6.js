@@ -42,7 +42,7 @@
     },
 
     shouldRemoveInst(parent) {
-      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
+      PxMapBehavior.ElementImpl.shouldRemoveInst.call(this, parent);
 
       if (this.elementInst) {
         this.removeInst(parent ? parent : undefined);

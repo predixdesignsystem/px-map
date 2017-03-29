@@ -149,7 +149,8 @@
       return {
         title: this.title,
         description: this.description,
-        imgSrc: this.imgSrc
+        imgSrc: this.imgSrc,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
   };
@@ -215,7 +216,8 @@
     getInstOptions() {
       return {
         title: this.title,
-        data: this._getValidData()
+        data: this._getValidData(),
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     },
 
@@ -250,26 +252,22 @@
    * @class PxMap.InfoPopup
    */
   class InfoPopup extends L.Popup {
-    constructor(settings={}, config={}) {
+    constructor(settings={}) {
       super();
-      this._createPopup(settings, config);
+      this._createPopup(settings);
       return this;
     }
 
     // Note `createPopup` is an internet explorer native method, but deprecated
     // so hopefully it won't cause grief
-    _createPopup(settings={}, config={}) {
+    _createPopup(settings={}) {
+      // Assign settings and create content
       this.settings = settings;
-      let {title, description, imgSrc} = settings;
-      let content = this._generatePopupContent(title, description, imgSrc);
+      const { title, description, imgSrc, styleScope } = settings;
+      const content = this._generatePopupContent(title, description, imgSrc);
+      const className = `map-popup-info ${styleScope||''}`
 
-      let defaultConfig = {
-        className: 'map-popup-info'
-      };
-      let composedConfig = {};
-      Object.assign(composedConfig, defaultConfig, config);
-
-      this.initialize(composedConfig);
+      this.initialize({ className });
       this.setContent(content);
     }
 
@@ -302,8 +300,9 @@
 
     updateSettings(settings={}) {
       Object.assign(this.settings, settings);
-      let {title, description, imgSrc} = this.settings;
-      let content = this._generatePopupContent(title, description, imgSrc);
+      const { title, description, imgSrc, styleScope } = this.settings;
+      const content = this._generatePopupContent(title, description, imgSrc);
+
       this.setContent(content);
       this.update();
     }
@@ -316,9 +315,9 @@
    * @class PxMap.DataPopup
    */
   class DataPopup extends L.Popup {
-    constructor(settings={}, config={}) {
+    constructor(settings={}) {
       super();
-      this._createPopup(settings, config);
+      this._createPopup(settings);
       return this;
     }
 
@@ -326,18 +325,14 @@
     // so hopefully it won't cause grief
     _createPopup(settings={}, config={}) {
       this.settings = settings;
-      let {title, data} = this.settings;
-      let content = this._generatePopupContent(title, data);
+      const { title, data, styleScope } = settings;
+      const content = this._generatePopupContent(title, data);
 
-      let defaultConfig = {
-        className: 'map-popup-data',
-        maxWidth: 400,
-        minWidth: 300
-      };
-      let composedConfig = {};
-      Object.assign(composedConfig, defaultConfig, config);
+      const className = `map-popup-data ${styleScope||''}`
+      const maxWidth = 400;
+      const minWidth = 300;
 
-      this.initialize(composedConfig);
+      this.initialize({ className, maxWidth, minWidth });
       this.setContent(content);
     }
 
@@ -376,8 +371,8 @@
 
     updateSettings(settings={}) {
       Object.assign(this.settings, settings);
-      let {title, data} = this.settings;
-      let content = this._generatePopupContent(title, data);
+      const { title, data } = this.settings;
+      const content = this._generatePopupContent(title, data);
 
       this.setContent(content);
       this.update();

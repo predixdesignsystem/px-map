@@ -24,7 +24,7 @@
     }
   },
   "suites": [
-    "test/px-map-test-fixture.html",
-    "test/px-map-custom-tests.js"
+    "test/px-map-root-fixture.html",
+    "test/px-map-popup-fixture.html"
   ]
 }
