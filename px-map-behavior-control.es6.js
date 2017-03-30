@@ -209,7 +209,7 @@
       },
 
       /**
-       * Enable this property to reverse the the scale's colors, making it
+       * Enable this property to reverse the scale's colors, making it
        * easier to read against a dark tile layer.
        *
        * @type {Boolean}
@@ -312,11 +312,11 @@
        * After the user's location is successfully found, the result will be
        * placed here. The object will have the following keys:
        *
-       *     * {Number} `lat` - User's found latitude
-       *     * {Number} `lng` - User's found longitude
-       *     * {Number} `timestamp` - Timestamp (UNIX format) for the location event
-       *     * {Number} `accuracy` - The accuracy margin of error in meters from the centerpoint
-       *     * {L.LatLngBouds} `bounds` - A bounding rectangle detailing the accuracy of the location
+       * - {Number} `lat` - User's found latitude
+       * - {Number} `lng` - User's found longitude
+       * - {Number} `timestamp` - Timestamp (UNIX format) for the location event
+       * - {Number} `accuracy` - The accuracy margin of error in meters from the centerpoint
+       * - {L.LatLngBouds} `bounds` - A bounding rectangle detailing the accuracy of the location
        *
        * @type {Object}
        */
@@ -387,7 +387,7 @@
       // of the bounds to its NorthWest extent. This is our accuracy.
       detail.accuracy = (evt.bounds.getCenter() && evt.bounds.getNorthWest()) ? evt.bounds.getCenter().distanceTo(evt.bounds.getNorthEast()) : null;
 
-      this.fire('px-map-control-locate-success', detail);
+      this.fire('px-map-control-locate-succeeded', detail);
 
       this.set('lastFoundLocation', detail);
       this.notifyPath('lastFoundLocation.*');
@@ -395,11 +395,11 @@
     /**
      * Fired after the user's location is successfully found.
      *
-     * @event px-map-control-locate-success
+     * @event px-map-control-locate-succeeded
      * @param {Object} detail
      * @param {Number} detail.lat - The user's found latitude
      * @param {Number} detail.lng - The user's found longitude
-     * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when the the location was found
+     * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when  the location was found
      * @param {L.LatLngBouds} [detail.bounds] - A custom Leaflet object describing the visible bounds of the map after moving to the user's location, if available
      * @param {Number} [detail.accuracy] - The margin of error of the accuracy in meters from its centerpoint to its maximum extent
      */
@@ -416,12 +416,12 @@
         message: evt.message || null
       };
 
-      this.fire('px-map-control-locate-error', detail);
+      this.fire('px-map-control-locate-failed', detail);
     },
     /**
      * Fired after the control fails to find the user's location.
      *
-     * @event px-map-control-locate-error
+     * @event px-map-control-locate-failed
      * @param {Object} detail
      * @param {String} detail.message - A message describing the reason for the failure
      */

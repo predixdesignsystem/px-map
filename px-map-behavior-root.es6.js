@@ -237,7 +237,7 @@
      * Enable the `fit-to-markers` attribute to automatically fit all markers as
      * they are added to the map.
      *
-     * @return {Boolean} - `true` if there were markers to fit, `false` if there were no markers to fit
+     * @return {Boolean} `true` if there were markers to fit, `false` if there were no markers to fit
      */
     fitMapToMarkers() {
       if (!this.elementInst || !this._knownMarkers || !this._knownMarkers.size) {
@@ -360,7 +360,7 @@
       /**
        * Set to disable dragging of the map with the mouse or by touch. Use to
        * restrict changing the map's visible area (e.g. for a static map) or
-       * to set up a map for being updated programatically (e.g. through regular
+       * to set up a map for being updated programmatically (e.g. through regular
        * responses from an API).
        *
        * @type {Boolean}
@@ -546,7 +546,7 @@
 
     /**
      * Called when the map itself is moved (either by user interaction or by
-     * some other method programatically setting geometry properties).
+     * some other method programmatically setting geometry properties).
      *
      * Syncs the new lat, lng, and zoom to the map's properties and notifies
      * out the result.
@@ -583,7 +583,6 @@
      * or programatically.
      *
      *   * {Object} detail - Contains the event details
-     *   * {Number} detail.lat - Latitude of the map centerpoint after moving
      *   * {Number} detail.lat - Latitude of the map centerpoint after moving
      *   * {Number} detail.lng - Longitude of the map centerpoint after moving
      *   * {Number} detail.zoom - Zoom level of the map after moving

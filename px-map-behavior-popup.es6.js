@@ -15,27 +15,6 @@
   PxMapBehavior.PopupImpl = {
     properties: {
       /**
-       * Will be `true` when the popup becomes visible, and `false` when the
-       * popup is not visible.
-       */
-      active: {
-        type: Boolean,
-        value: false,
-        readOnly: true
-      },
-
-      /**
-       * The name of a control or another element on the map that will handle
-       * this popup's content. If this attribute is provided, the popup will
-       * not open as box with a pointer over its parent when the parent is
-       * clicked. The popup will fire an event that should be captured above
-       * with its content to place into a control.
-       */
-      bindToControl: {
-        type: String
-      },
-
-      /**
        * If set to `true`, the popup will be automatically closed when the user
        * interacts with any control buttons (e.g. zoom buttons or locate button).
        * By default, the popup only closes when the user clicks the map.
@@ -100,9 +79,8 @@
        * description to a reasonable size to keep the popup from growing
        * too large.
        *
-       * To display more information, bind to the popup's
-       * `active` property for notifications on when this popup is shown
-       * and display additional information in the UI of your app.
+       * To display more information, bind to the popup's parent layer (e.g. a marker)
+       * tapped event and display more information in the UI of your application.
        *
        * @type {String}
        */
@@ -112,7 +90,7 @@
       },
 
       /**
-       * The URL for an image to place inside the popup. Use a small, square
+       * The URL for an image to be placed inside the popup. Use a small, square
        * thumbnail-style image (e.g. 75px by 75px).
        *
        * @type {String}

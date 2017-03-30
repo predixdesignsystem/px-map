@@ -27,8 +27,26 @@
       },
 
       /**
-       * A GeoJSON FeatureCollection object containing an array of Features with
-       * point data that will be represented as a marker.
+       * An object formatted as a GeoJSON FeatureCollection with one or many Features.
+       * Each feature should be a point that will be represented as a marker.
+       * See the `px-map-marker-group` API documentation page for an in-depth
+       * guide that explains how to configure your features.
+       *
+       * The root feature collection object must have the following keys/values:
+       *
+       * - {String} `type`: Must be 'FeatureCollection'
+       * - {Array}  `features`: An array of feature objects
+       *
+       * Each feature object in the collection must have the following key/values:
+       *
+       * - {String} `type`: Must be 'Feature'
+       * - {Number} `id`: A unique numeric ID. If the feature is changed, it should keep its ID. No other features in the collection should have the same ID.
+       * - {Object} `geometry`
+       * - {String} `geometry.type`: Must be 'Point'
+       * - {Array}  `geometry.coordinates`: a pair of coordinates in `[lng,lat]` order
+       * - {Object} `properties`
+       * - {Object} `properties.marker-icon`: Settings to configure a marker icon
+       * - {Object} `properties.marker-popup`: [OPTIONAL] Settings to configure a marker icon
        *
        * @type {Object}
        */
@@ -58,7 +76,7 @@
        *   "features" : [
        *     {
        *       "type": "Feature",
-       *       "id": "001",
+       *       "id": 001",
        *       "geometry": { ... },
        *       "properties": {
        *         "marker-icon": {
@@ -69,7 +87,7 @@
        *     },
        *     {
        *       "type": "Feature",
-       *       "id": "002",
+       *       "id": 002,
        *       "geometry": { ... },
        *       "properties": {
        *         "marker-icon": {
@@ -91,7 +109,7 @@
        * }
        * ```
        *
-       * The default `colorsByType` mapping is:
+       * @type {Object}
        */
       colorsByType: {
         type: Object,
@@ -105,6 +123,22 @@
         }
       },
 
+      /**
+       * Overrides the default icon creation function to allow drawing of custom
+       * cluster and marker icons. Note that if you replace these functions you
+       * should ensure your custom functions are very fast — these methods are
+       * called continuously as the user zooms through the map and clusters and
+       * markers are redrawn.
+       *
+       * Pass in an object with keys `cluster` or `marker` and values of functions.
+       * You can pass in one or both keys/values depending on which icon(s)
+       * you want to create.
+       *
+       * - The `cluster` function should accept one parameter, an `L.MarkerCluster` instance, and return a constructed `L.Icon` or `L.DivIcon` instance.
+       * - The `marker` function should accept one parameter, an Object with marker settings, and return a constructed `L.Marker` instance with an attached icon.
+       *
+       * @type {Object}
+       */
       iconFns: {
         type: Object,
         value: function(){
@@ -115,6 +149,32 @@
         }
       },
 
+      /**
+       * Allows advanced configurations of the cluster behaviors and styles. Note
+       * that the cluster comes pre-configured with settings that will work
+       * for most use cases; the `clusterConfig` allows those settings to be
+       * overriden but may cause unexpected behaviors when conflicting settings
+       * are used. Leave the default configuration (by not setting this attribute)
+       * if you're unsure of how to use it.
+       *
+       * The following settings are available:
+       *
+       * - {Boolean} `showCoverageOnHover`: [default=true] Shows the bounds of a cluster as a polygon when its icon is hovered
+       * - {Boolean} `zoomToBoundsOnClick`: [default=true] Zooms to bounds of a cluster when its icon is clicked
+       * - {Boolean} `spiderfyOnMaxZoom`: [default=true] Spiderfies the markers in a cluster when it is clicked at the max zoom level
+       * - {Boolean} `removeOutsideVisibleBounds`: [default=true] Removes cluster icons and markers when they are too far outside the visible map bounds
+       * - {Boolean} `animate`: [default=true] Animates cluster splitting, joining, zooming, and spiderfying
+       * - {Number} `disableClusteringAtZoom`: [default=undefined] If set, when the user zooms below this level markers will not be clustered (do not combine with `spiderfyOnMaxZoom`)
+       * - {Number} `maxClusterRadius`: [default=150] The maximum radius in pixels a cluster will cover from the central marker. Lower numbers make smaller clusters. Setting below the default may cause cluster icons to overlap.
+       * - {Object} `polygonOptions`: [default=150] Options passed to draw the cluster cover polygon
+       *   - {Boolean} `polygonOptions.stroke`: [default=true] If true the polygon will have a stroke line around the outside
+       *   - {String} `polygonOptions.color`: [default=--px-map-marker-group-cluster-polygon-stroke-color] Sets the stroke color, prefer setting with the style variable
+       *   - {String} `polygonOptions.fillColor`: [default=--px-map-marker-group-cluster-polygon-fill-color] Sets the fill color color, prefer setting with the style variable.
+       *   - {Number} `polygonOptions.fillOpacity`: [default=0.4] Sets the opacity of the polygon fill
+       * - {Object} `spiderLegPolylineOptions`: [default=undefined] Sets the style for the marker spiderfy legs, see [PolylineOptions](http://leafletjs.com/reference.html#polyline-options)
+       *
+       * @type {Object}
+       */
       clusterConfig: {
         type: Object
       }

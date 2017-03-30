@@ -134,9 +134,6 @@
       }
     },
 
-    /**
-     *
-     */
     getInstOptions() {
       const geometry = this.getLatLng();
       const config = {};
@@ -149,8 +146,8 @@
     // CUSTOM METHODS FOR MARKERS...
 
     /**
-     * Returns a `L.LatLng` object with an array of points in the format
-     * [latitude, longitude]. If either `lat` or `lng` are not defined,
+     * Returns the current latitude and longitude of the marker as an
+     * `L.LatLng` object. If either `lat` or `lng` are not defined,
      * returns undefined.
      *
      * @return {L.LatLng|undefined}
@@ -161,6 +158,7 @@
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...
+
     getMarkerIcon() {
       throw new Error('The `getMarkerIcon` method must be implemented.');
     },
@@ -252,10 +250,11 @@
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
        * the state of the thing it represents.
-       * - `important` is red
-       * - `warning` is orange
-       * - `info` is blue
-       * - `unknown` is gray
+       *
+       * - 'important' is red
+       * - 'warning' is orange
+       * - 'info' is blue
+       * - 'unknown' is gray
        *
        * @type {String}
        */
@@ -279,8 +278,16 @@
       },
 
       /**
-       * Replaces the symbol on iconSymbols.
-       * Accepts font awesome icons
+       * A string of CSS class names that will be set on the `<i></i>` element
+       * in the marker to draw its symbol. Use a fontawesome icon class
+       * (http://fontawesome.io/) or load your own icon font and define your
+       * own class.
+       *
+       * For example, this would set the marker's symbol to a briefcase icon:
+       *
+       *     'fa fa-briefcase'
+       *
+       * @type {String}
        */
       symbolClass: {
         type: String,
@@ -292,6 +299,7 @@
      * If this.markerIcon exist return the markerIcon.
      * If this.markerIcon doesn't exist create a new
      * markerIcon and return it.
+     *
      * @return {this.markerIcon}
      */
     getMarkerIcon() {
@@ -343,10 +351,11 @@
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
        * the state of the thing it represents.
-       * - `important` is red
-       * - `warning` is orange
-       * - `info` is blue
-       * - `unknown` is gray
+       *
+       * - 'important' is red
+       * - 'warning' is orange
+       * - 'info' is blue
+       * - 'unknown' is gray
        *
        * @type {String}
        */
