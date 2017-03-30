@@ -142,9 +142,11 @@
       // Bind custom events for this cluster. Events will be unbound automatically.
       const spiderifyFn = this._handleClusterSpiderify.bind(this);
       const unspiderifyFn = this._handleClusterUnspiderify.bind(this);
+      const markerTapFn = this._handleSingleMarkerTap.bind(this);
       this.bindEvents({
         'spiderfied' : spiderifyFn,
-        'unspiderfied' : unspiderifyFn
+        'unspiderfied' : unspiderifyFn,
+        'click' : markerTapFn
       });
 
       PxMapBehavior.LayerImpl.addInst.call(this, parent);
@@ -596,7 +598,100 @@
     _handleClusterUnspiderify(evt) {
       if (!evt || !evt.cluster || !evt.cluster._icon) return;
       evt.cluster._icon.style.visibility = 'visible';
-    }
+    },
+
+    /**
+     * When an individual marker (not a marker cluster) is clicked, if that
+     * marker has a popup attribute, bind a show a popup.
+     */
+    _handleSingleMarkerTap(evt) {
+      if (!evt || !evt.layer || !evt.layer.featureProperties || !evt.layer.featureProperties['marker-popup']) return;
+
+      this._bindAndOpenPopup(evt.layer);
+    },
+
+    _bindAndOpenPopup(marker) {
+      if (!marker || !marker.bindPopup || !marker.openPopup) return;
+
+      const popupSettings = this._featSettingsToProps(marker.featureProperties['marker-popup'], 'popup');
+      if (!popupSettings || !Object.keys(popupSettings).length) return;
+
+      const klassName = (popupSettings._Base && PxMap.hasOwnProperty(popupSettings._Base)) ? popupSettings._Base : 'InfoPopup';
+      const popup = new PxMap[klassName](popupSettings);
+
+      marker.bindPopup(popup).openPopup();
+      marker.__boundCloseFn = this._unbindAndClosePopup.bind(this, marker);
+      marker.on('popupclose', marker.__boundCloseFn);
+    },
+
+    _unbindAndClosePopup(marker) {
+      if (!marker || !marker.getPopup || !marker.getPopup()) return;
+
+      marker.off('popupclose', marker.__boundCloseFn);
+      marker.__boundCloseFn = null;
+      marker.closePopup().unbindPopup();
+    },
+
+    /**
+     * Takes an object harvested from a GeoJSON feature `properties` block and
+     * converts it into properties that can be passed to a constructor.
+     *
+     * For example, takes an object like this:
+     *
+     * ```
+     * {
+     *   "popup-base" : "data-popup",
+     *   "popup-title" : "Some title",
+     *   "popup-data" : { ... }
+     * }
+     * ```
+     *
+     * and returns an object like this:
+     *
+     * ```
+     * {
+     *   "_Base" : "DataPopup",
+     *   "title" : "Some title",
+     *   "data" : { ... }
+     * }
+     * ```
+     *
+     * Optionally, pass a prefix as a string to extract the correct properties.
+     * E.g. to extract "popup-title" to "title", pass the prefix "popup".
+     * If you pass no prefix param, everything that matches the dash case
+     * search `/[a-z]+\-(.*)/` will be returned
+     *
+     * Keys that match the pattern `*-base` will be converted from dash case to
+     * class case (e.g. 'data-popup' to 'PopupData') and returned with the `_Base`
+     * key to help call a constructor by reference.
+     *
+     * @param {Object} settings
+     * @param {String} [prefix]
+     * @return {Object}
+     */
+    _featSettingsToProps(settings, prefix) {
+      const keys = Object.keys(settings);
+      if (!keys.length) return undefined;
+
+      const settingsAsProps = {};
+      let i=0, len=keys.length, newKey;
+
+      for (; i<len; i++) {
+        // Check if it has the prefix
+        if (prefix && keys[i].substr(0, prefix.length) !== prefix) {
+          continue;
+        }
+        // If it's the base, classify it and set it as the `_Base` key
+        if (/^[A-Za-z]+\-base$/.test(keys[i])) {
+          settingsAsProps['_Base'] = this._strToKlassName(settings[keys[i]]);
+          continue;
+        }
+        newKey = keys[i].replace(/^[A-Za-z]+\-(.*)$/, "$1");
+        settingsAsProps[newKey] = settings[keys[i]];
+      }
+
+      return settingsAsProps;
+    },
   };
   /* Bind MarkerGroup behavior */
   /** @polymerBehavior */

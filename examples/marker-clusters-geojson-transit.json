@@ -16,6 +16,11 @@
           "icon-base": "static-icon",
           "icon-type": "warning",
           "icon-with-badge": true
+        },
+        "marker-popup" : {
+          "popup-base": "info-popup",
+          "popup-title": "Cabrillo National Monument",
+          "popup-description" : "Lorem ipsum dot sit amet, colloquas..."
         }
       },
       "id": "10001"
