@@ -54,7 +54,6 @@
        *
        *    * 'max' - the map will zoom to the lowest level that fits all markers (but not past the map's `maxZoom`)
        *    * 'min' - the map will zoom to the highest level that fits all markers (but not past the map's `minZoom`)
-       *    * 'none' - the map will not change its zoom level and will instead use the `zoom` property. This will center the map on the markers, but they may not all fit.
        *
        * @type {String}
        */
@@ -165,7 +164,7 @@
 
         if (bounds && bounds.isValid()) {
           let latLng = bounds.getCenter();
-          let zoom = this._getZoomLevelForFit(bounds, this.fitToMarkersZoom, this.zoom, this.elementInst);
+          let zoom = this._getZoomLevelForFit(bounds, this.fitToMarkersZoom, this.elementInst);
           this.elementInst.setView(latLng, zoom);
         }
       }, 10);
@@ -204,11 +203,10 @@
      *
      * @param {L.LatLngBounds} bounds
      * @param {String} fitSetting - see `fitToMarkersZoom` property for more details
-     * @param {Number} currentZoom
      * @param {L.Map} map
      * @return {Number}
      */
-    _getZoomLevelForFit(bounds, fitSetting, currentZoom, map) {
+    _getZoomLevelForFit(bounds, fitSetting, map) {
       if (fitSetting === 'min') {
         let zoom = map.getMinZoom() || 0;
         return zoom;
@@ -217,8 +215,6 @@
         let zoom = map.getBoundsZoom(bounds, true) - 1;
         return zoom;
       }
-
-      return currentZoom;
     },
 
     /**

@@ -263,16 +263,12 @@ function runCustomTests() {
           getBoundsZoom: sinon.stub().returns(12)
         };
         var fakeBounds = sinon.stub();
-        var CURRENT_ZOOM = 14;
 
-        var callWithMin = mapEl._getZoomLevelForFit(fakeBounds, 'min', CURRENT_ZOOM, fakeMap);
+        var callWithMin = mapEl._getZoomLevelForFit(fakeBounds, 'min', fakeMap);
         expect(callWithMin).to.eql(5); // should equal map.getMinZoom()
 
-        var callWithMax = mapEl._getZoomLevelForFit(fakeBounds, 'max', CURRENT_ZOOM, fakeMap);
+        var callWithMax = mapEl._getZoomLevelForFit(fakeBounds, 'max', fakeMap);
         expect(callWithMax).to.eql(11); // should equal map.getBoundsZoom() - 1
-
-        var callWithMax = mapEl._getZoomLevelForFit(fakeBounds, 'none', CURRENT_ZOOM, fakeMap);
-        expect(callWithMax).to.eql(CURRENT_ZOOM); // should equal current zoom (`15`)
       });
 
       it('corretly sets its view', function() {
