@@ -266,18 +266,6 @@
       },
 
       /**
-       * Shows a small notification badge on the icon that indicates there is
-       * some relevant information about the marker.
-       *
-       * @type {Object}
-       */
-      showBadge: {
-        type: Boolean,
-        value: true,
-        observer: '_updateMarkerIcon'
-      },
-
-      /**
        * A string of CSS class names that will be set on the `<i></i>` element
        * in the marker to draw its symbol. Use a fontawesome icon class
        * (http://fontawesome.io/) or load your own icon font and define your
@@ -328,7 +316,6 @@
     _getMarkerIconOptions() {
       return {
         type: this.type,
-        badge: this.showBadge,
         symbol: this.symbolClass,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
@@ -363,18 +350,6 @@
         type: String,
         reflectToAttribute: true,
         value: 'info',
-        observer: '_updateMarkerIcon'
-      },
-
-      /**
-       * Shows a small notification badge on the icon that indicates there is
-       * some relevant updated information about the marker.
-       *
-       * @type {Object}
-       */
-      showBadge: {
-        type: Boolean,
-        value: true,
         observer: '_updateMarkerIcon'
       }
     },
@@ -411,7 +386,6 @@
     _getMarkerIconOptions() {
       return {
         type: this.type || '',
-        badge: this.showBadge || false,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }

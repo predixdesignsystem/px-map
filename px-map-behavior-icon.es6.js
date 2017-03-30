@@ -19,10 +19,10 @@
     }
 
     createIcon(settings={}) {
-      // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false, styleScope } = settings;
+      // Extract `type` from settings with defaults
+      let { type='info', styleScope } = settings;
 
-      const className = this._generateStaticIconClasses(type, badge, styleScope);
+      const className = this._generateStaticIconClasses(type, styleScope);
 
       // Static options
       const html = `
@@ -48,13 +48,10 @@
       return L.divIcon(options);
     }
 
-    _generateStaticIconClasses(type, badge, styleScope) {
-      const classes = ['map-icon', 'map-icon-static'];
+    _generateStaticIconClasses(type, styleScope) {
+      const classes = ['map-icon', 'map-icon-static', 'map-icon-static--with-badge'];
       if (type && type.length) {
         classes.push(`map-icon-static--${type}`);
-      }
-      if (badge) {
-        classes.push(`map-icon-static--with-badge`);
       }
       if (styleScope) {
         classes.push(styleScope);
@@ -76,9 +73,8 @@
     }
 
     createIcon(settings={}) {
-      // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false, symbol='fa fa-bolt', styleScope } = settings;
-      const className = this._generateSymbolIconClasses(type, badge, styleScope);
+      let { type='info', symbol='fa fa-bolt', styleScope } = settings;
+      const className = this._generateSymbolIconClasses(type, styleScope);
 
       // Symbol options
       const html = `
@@ -108,13 +104,10 @@
       return L.divIcon(options);
     }
 
-    _generateSymbolIconClasses(type, badge, styleScope) {
-      const classes = ['map-icon', 'map-icon-symbol'];
+    _generateSymbolIconClasses(type, styleScope) {
+      const classes = ['map-icon', 'map-icon-symbol', 'map-icon-symbol--with-badge'];
       if (type && type.length) {
         classes.push(`map-icon-symbol--${type}`);
-      }
-      if (badge) {
-        classes.push(`map-icon-symbol--with-badge`);
       }
       if (styleScope) {
         classes.push(styleScope);

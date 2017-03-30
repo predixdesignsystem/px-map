@@ -42,7 +42,7 @@
       <div style="height:400px;width:600px;display:flex">
         <px-map zoom="12" flex-to-size>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-          <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info" show-badge>
+          <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info">
             <px-map-popup-data
               title="{{props.title.value}}"
               data="{{props.data.value}}">
@@ -153,7 +153,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map zoom=\"12\" flex-to-size><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"37.7673626\" lng=\"-121.9595048\" type=\"info\" show-badge>", "</px-map-marker-static></px-map>"]
+          value: ["<px-map zoom=\"12\" flex-to-size><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"37.7673626\" lng=\"-121.9595048\" type=\"info\">", "</px-map-marker-static></px-map>"]
         }
       }
     });

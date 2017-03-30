@@ -44,8 +44,7 @@
           <px-map-marker-static
             lat="{{props.lat.value}}"
             lng="{{props.lng.value}}"
-            type="{{props.type.value}}"
-            show-badge={{props.showBadge.value}}>
+            type="{{props.type.value}}">
           </px-map-marker-static>
         </px-map>
       </div>
@@ -160,12 +159,6 @@
           defaultValue: 'info',
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
-        },
-
-        showBadge: {
-          type: Boolean,
-          defaultValue: true,
-          inputType: 'toggle'
         },
 
         parentComponent: {
