@@ -323,10 +323,6 @@ function runCustomTests() {
 
         // Stub out Polymer.dom so it doesn't murder events when we try to normalize
         // It'll just give the events right back
-        var isAddedEvt = sinon.match(function(val) {
-          debugger;
-          return (typeof val === 'object') && val.hasOwnProperty('type') && (type === 'px-map-marker-added');
-        }, "isAddedEvt");
         var listenFn = sinon.stub(mapEl, 'listen');
         var dom = sinon.stub(Polymer, 'dom');
         dom.withArgs(sinon.match({type:'px-map-marker-added'}))

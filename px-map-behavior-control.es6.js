@@ -587,7 +587,6 @@
     }
 
     _fireZoomClickEvt(evt) {
-      debugger;
     }
   };
   /* Bind ZoomControl klass */
