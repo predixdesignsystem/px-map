@@ -1,3 +1,13 @@
+v1.2.0
+==================
+This release adds a new subcomponent that loads base layer tiles from the
+Bing Maps API. It handles authentication and communication with the API,
+making it simple to add Bing's aerial or road imagery to your map.
+
+## New features
+* Load tiles from the Bing Maps API with `px-map-tile-layer-bing`. See the new
+  component's API docs page for more information and a demo.
+
 v1.1.0
 ==================
 This is the first minor release since v1.0.0 and it has a lot of great fixes,

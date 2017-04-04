@@ -1,0 +1,164 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+
+<!-- Imports for this component -->
+<link rel="import" href="../px-map.html" />
+<link rel="import" href="../px-map-tile-layer-bing.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="px-map-tile-layer-bing-demo">
+  <template>
+  <style include="px-demo-styles" is="custom-style"></style>
+
+  <!-- Header -->
+  <px-demo-header
+      module-name="px-map-tile-layer-bing"
+      description="Loads base layer tiles from the Bing Maps API">
+  </px-demo-header>
+
+  <!-- Interactive -->
+  <px-demo-interactive>
+    <!-- Configs -->
+    <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+    <!-- Props -->
+    <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+    <!-- Component ---------------------------------------------------------->
+    <px-demo-component>
+      <div style="height:400px;width:600px;display:flex">
+        <px-map zoom="12" flex-to-size>
+          <!-- Do not use this key. It is for testing purposes only. It can and will be randomly reactivated. -->
+          <px-map-tile-layer-bing
+              key="At6zghXrsyAw8I5b9yFe2V_TSvy-xFrDP2kZhqqziFuyYDXW5EIHqGk7udIAPaCz"
+              imagery="{{props.imagery.value}}"
+              disable-attribution="{{props.disableAttribution.value}}">
+          </px-map-tile-layer-bing>
+        </px-map>
+      </div>
+    </px-demo-component>
+    <!-- END Component ------------------------------------------------------>
+
+    <px-demo-component-snippet
+        element-properties="{{props}}"
+        element-name="px-map-tile-layer-bing">
+    </px-demo-component-snippet>
+  </px-demo-interactive>
+
+  <!-- API Viewer -->
+  <px-demo-api-viewer
+    source="px-map-tile-layer-bing"
+    mark-private="[[apiMarkPrivate]]">
+  </px-demo-api-viewer>
+
+  <!-- Footer -->
+  <px-demo-footer></px-demo-footer>
+</template>
+</dom-module>
+
+  <script>
+    Polymer({
+      is: 'px-map-tile-layer-bing-demo',
+
+      properties: {
+
+        /**
+         * Note: The actual data/values for `props` are placed in `this.demoProps`
+         * to create a static reference that Polymer shouldn't overwrite.
+         *
+         * @property props
+         * @type {Object}
+         */
+        props: {
+          type: Object,
+          value: function(){ return this.demoProps; }
+        },
+
+        /**
+         * An array of pre-configured `props` that can be used to provide the user
+         * with a set of common examples. These configs will be made available
+         * as a set of tabs the user can click that will automatically change
+         * the `props` to specific values.
+         *
+         * @property configs
+         * @type {Array}
+         */
+        configs: {
+          type: Array,
+          value: function(){
+            return [
+              { configName: "Basic" }
+              ]
+          }
+        },
+
+        apiMarkPrivate: {
+          type: Array,
+          value: function() {
+            return [
+              "notifyInstReady",
+              "notifyInstReady",
+              "canAddInst",
+              "shouldAddInst",
+              "addInst",
+              "shouldRemoveInst",
+              "removeInst",
+              "shouldUpdateInst",
+              "updateInst",
+              "createInst",
+              "getInstOptions",
+              "bindEvents",
+              "unbindAllEvents",
+              "addProperties",
+              "extendObj",
+              "getShadyScope",
+              "isShadyScoped"
+            ]
+          }
+        }
+      },
+
+      /**
+       * A reference for `this.props`. Read the documentation there.
+       *
+       * @property demoProps
+       * @type {Object}
+       */
+      demoProps: {
+        key: {
+          type: String,
+          defaultValue: 'XXXXXXXXXXXXXXXXXXXXXXXXXXX',
+          inputType: 'text',
+          inputDisabled: true
+        },
+
+        imagery: {
+          type: String,
+          inputType: 'dropdown',
+          defaultValue: 'Aerial',
+          inputChoices: ['Aerial', 'AerialWithLabels', 'Road']
+        },
+
+        disableAttribution: {
+          type: Boolean,
+          inputType: 'toggle',
+          defaultValue: false
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size>", "</px-map>"]
+        }
+      }
+    });
+  </script>
