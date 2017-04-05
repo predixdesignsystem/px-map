@@ -40,7 +40,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map flex-to-size fit-to-markers>
+        <px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-marker-static lat="42.3518414" lng="-71.0500149" type="info">
             <px-map-popup-info title="{{props.title.value}}" description="{{props.description.value}}"></px-map-popup-info>
@@ -139,18 +139,18 @@
       demoProps: {
         title: {
           type: String,
-          defaultValue: 'General Electric HQ',
+          defaultValue: 'GE Innovation Point',
           inputType: 'text'
         },
 
         description: {
           type: String,
-          defaultValue: 'The move to the new GE Corporate headquarters will be completed by 2018.',
+          defaultValue: 'The new GE Corporate headquarters in Boston will be known as GE Innovation Point.',
           inputType: 'text'
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size fit-to-markers><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"42.3518414\" lng=\"-71.0500149\" type=\"info\">", "</px-map-marker-static></px-map>"]
+          value: ["<px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom><px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-marker-static lat=\"42.3518414\" lng=\"-71.0500149\" type=\"info\">", "</px-map-marker-static></px-map>"]
         }
       }
     });

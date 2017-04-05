@@ -40,7 +40,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map flex-to-size>
+        <px-map flex-to-size disable-scroll-zoom disable-touch-zoom>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-control-scale
             position="{{props.position.value}}"
@@ -181,11 +181,11 @@
          },
 
          parentComponent: {
-           value: ["<px-map flex-to-size>", "</px-map>"]
+           value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
          },
 
          siblingElement: {
-           value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
+           value: "<px-map-control-zoom position=\"bottomright\"></px-map-control-zoom><px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
          }
        }
      });
