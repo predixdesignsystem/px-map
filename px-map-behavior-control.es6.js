@@ -305,7 +305,8 @@
        * @type {Number}
        */
       moveMaxZoom: {
-        type: Number
+        type: Number,
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -354,6 +355,9 @@
     updateInst(lastOptions, nextOptions) {
       if (lastOptions.position !== nextOptions.position) {
         this.elementInst.setPosition(nextOptions.position);
+      }
+      if (lastOptions.moveMaxZoom !== nextOptions.moveMaxZoom) {
+        this.elementInst.setMoveMaxZoom(nextOptions.moveMaxZoom);
       }
     },
 
@@ -640,6 +644,20 @@
       L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
     }
 
+    /**
+     * Sets the max zoom level after location is found
+     *
+     * @param {Number|String} zoom
+     */
+    setMoveMaxZoom(zoom) {
+      if (typeof zoom === 'string' && zoom.length && !isNaN(zoom)) {
+        zoom = parseInt(zoom);
+      }
+      if (typeof zoom === 'number' && this.options.moveMaxZoom !== zoom) {
+        this.options.moveMaxZoom = zoom;
+      }
+    }
+
     on(...args) {
       if (!this._map) {
         return undefined;
@@ -670,7 +688,7 @@
       this.__locating = true;
       this._map.locate({
         setView: this.options.moveToLocation,
-        maxZoom: this.options.moveMaxZoon,
+        maxZoom: this.options.moveMaxZoom,
         timeout: this.options.locateTimeout
       });
       this._setLocatingState();
