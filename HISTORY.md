@@ -1,3 +1,8 @@
+v1.2.1
+==================
+## Bug fixes
+* Fixes `moveMaxZoom` attribute bug in `px-map-locate-control`, adds test
+
 v1.2.0
 ==================
 This release adds a new subcomponent that loads base layer tiles from the
