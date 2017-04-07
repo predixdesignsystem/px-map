@@ -38,7 +38,14 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="{{props.zoom.value}}" lat="{{props.lat.value}}" lng="{{props.lng.value}}" flex-to-size="{{props.flexToSize.value}}">
+        <px-map
+          zoom="{{props.zoom.value}}"
+          lat="{{props.lat.value}}"
+          lng="{{props.lng.value}}"
+          flex-to-size="{{props.flexToSize.value}}"
+          disable-scroll-zoom="{{props.disableScrollZoom.value}}"
+          disable-touch-zoom="{{props.disableScrollZoom.value}}"
+          disable-dragging="{{props.disableDragging.value}}">
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
         </px-map>
       </div>
@@ -157,6 +164,24 @@
           defaultValue: true,
           inputType: 'toggle',
           inputDisabled: true
+        },
+
+        disableScrollZoom: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        disableTouchZoom: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        disableDragging: {
+          type: Boolean,
+          defaultValue: false,
+          inputType: 'toggle'
         },
 
         lightDomContent: {

@@ -39,7 +39,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px; width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map zoom="12" flex-to-size disable-scroll-zoom disable-touch-zoom>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
         </px-map>
       </div>
@@ -139,12 +139,14 @@
           defaultValue: 37.7673626,
           inputType: 'text'
         },
+
         lng: {
           inputLabel: 'Longitude',
           type: Number,
           defaultValue: -121.9595048,
           inputType: 'text'
         },
+
         type: {
           inputLabel: 'Marker Type',
           type: String,
@@ -152,9 +154,18 @@
           inputType: 'dropdown',
           inputChoices: ['important', 'warning', 'info', 'unknown']
         },
+
         lightDomContent: {
           type: String,
           defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+        },
+
+        parentComponent: {
+          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+        },
+
+        siblingElement: {
+          value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
         }
       }
     });

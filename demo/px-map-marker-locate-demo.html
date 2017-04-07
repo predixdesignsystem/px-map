@@ -40,7 +40,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px; width:600px;display:flex">
-        <px-map zoom="15" fit-to-markers flex-to-size>
+        <px-map zoom="15" fit-to-markers flex-to-size disable-scroll-zoom disable-touch-zoom>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-marker-locate
             lat="{{props.lat.value}}"
@@ -161,7 +161,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map zoom=\"15\" fit-to-markers flex-to-size>", "</px-map>"]
+          value: ["<px-map zoom=\"15\" fit-to-markers flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
         },
 
         siblingElement: {

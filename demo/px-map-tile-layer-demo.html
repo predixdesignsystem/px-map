@@ -39,7 +39,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map zoom="12" flex-to-size disable-scroll-zoom disable-touch-zoom>
           <px-map-tile-layer url="{{props.url.value}}"></px-map-tile-layer>
         </px-map>
       </div>
@@ -144,7 +144,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size>", "</px-map>"]
+          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
         }
       }
     });

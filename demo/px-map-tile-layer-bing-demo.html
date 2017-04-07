@@ -38,7 +38,7 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="12" flex-to-size>
+        <px-map zoom="12" flex-to-size disable-scroll-zoom disable-touch-zoom>
           <!-- Do not use this key. It is for testing purposes only. It can and will be randomly reactivated. -->
           <px-map-tile-layer-bing
               key="At6zghXrsyAw8I5b9yFe2V_TSvy-xFrDP2kZhqqziFuyYDXW5EIHqGk7udIAPaCz"
@@ -157,7 +157,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size>", "</px-map>"]
+          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
         }
       }
     });
