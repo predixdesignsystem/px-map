@@ -1,3 +1,9 @@
+v1.2.2
+==================
+## Other changes
+* Adds `disableTouchZoom` and `disableScrollZoom` to demos to make it easier to
+  browse the demo site.
+
 v1.2.1
 ==================
 ## Bug fixes
