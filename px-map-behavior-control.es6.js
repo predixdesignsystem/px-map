@@ -299,7 +299,7 @@
 
       /**
        * The maximum zoom level to set when the map moves to the user's location.
-       * The `moveToLocation` attribute must be set for the map to move to the
+       * The `moveToLocation` attribute must also be set for the map to move to the
        * user's location after a location event.
        *
        * @type {Number}
