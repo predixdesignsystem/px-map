@@ -61,7 +61,17 @@
      * be added to their parent.
      */
     canAddInst() {
-      return (typeof this.lat === 'number') && (typeof this.lng === 'number');
+      return _canBeNum(this.lat) && _canBeNum(this.lng);
+    },
+
+    /**
+     * Returns true if this can be used as a number in L.latLng
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return (typeof val === 'number') || !isNaN(val);
     },
 
     // extends the layer `addInst` method to harvest and fire events when the
@@ -147,13 +157,13 @@
 
     /**
      * Returns the current latitude and longitude of the marker as an
-     * `L.LatLng` object. If either `lat` or `lng` are not defined,
-     * returns undefined.
+     * `L.LatLng` object. If either `lat` or `lng` is not defined or has an
+     * invalid value, returns undefined.
      *
      * @return {L.LatLng|undefined}
      */
     getLatLng() {
-      if (!this.lat || !this.lng) return undefined;
+      if (!this.lat || !this.lng || isNaN(this.lat) || isNaN(this.lng)) return undefined;
       return L.latLng(this.lat, this.lng);
     },
 
