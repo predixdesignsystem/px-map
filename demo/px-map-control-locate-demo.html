@@ -58,7 +58,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map-control-locate">
+        element-name="px-map-control-locate"
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-control-locate.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -177,7 +178,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         },
 
         siblingElement: {

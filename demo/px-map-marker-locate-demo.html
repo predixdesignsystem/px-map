@@ -55,7 +55,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map-marker-locate">
+        element-name="px-map-marker-locate"
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-marker-locate.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -162,7 +163,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map zoom=\"15\" fit-to-markers flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         },
 
         siblingElement: {
