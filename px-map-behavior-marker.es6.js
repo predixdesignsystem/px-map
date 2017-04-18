@@ -61,17 +61,24 @@
      * be added to their parent.
      */
     canAddInst() {
-      return _canBeNum(this.lat) && _canBeNum(this.lng);
+      return this.latLngIsValid(this.lat, this.lng);
     },
 
     /**
-     * Returns true if this can be used as a number in L.latLng
+     * Returns true if val can be used as a number in L.LatLng
      *
      * @param {*} val
      * @return {Boolean}
      */
     _canBeNum(val) {
-      return (typeof val === 'number') || !isNaN(val);
+      return !isNaN(val);
+    },
+
+    latLngIsValid(lat, lng) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      console.log(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
     },
 
     // extends the layer `addInst` method to harvest and fire events when the
@@ -134,9 +141,10 @@
         this.elementInst.setOpacity(0);
       }
       if (!geomWasDefined && geomIsDefined) {
+        this.elementInst.setLatLng(nextOptions.geometry);
         this.elementInst.setOpacity(1);
       }
-      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+      if (geomIsDifferent) {
         this.elementInst.setLatLng(nextOptions.geometry);
       }
       if (lastOptions.config.icon !== nextOptions.config.icon) {
@@ -163,8 +171,9 @@
      * @return {L.LatLng|undefined}
      */
     getLatLng() {
-      if (!this.lat || !this.lng || isNaN(this.lat) || isNaN(this.lng)) return undefined;
-      return L.latLng(this.lat, this.lng);
+      if (this.latLngIsValid(this.lat, this.lng)) {
+        return L.latLng(this.lat, this.lng);
+      }
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...

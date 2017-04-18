@@ -463,7 +463,6 @@
     },
 
     getInstOptions() {
-      if (isNaN(this.lat) || isNaN(this.lng)) return;
 
       const options = {};
 
