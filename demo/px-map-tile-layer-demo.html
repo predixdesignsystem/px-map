@@ -49,7 +49,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map-tile-layer">
+        element-name="px-map-tile-layer"
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -145,7 +146,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         }
       }
     });

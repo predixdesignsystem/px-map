@@ -54,7 +54,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map">
+        element-name="px-map"
+        links-includes='["px-map/px-map-tile-layer.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -182,6 +183,11 @@
           type: Boolean,
           defaultValue: false,
           inputType: 'toggle'
+        },
+
+        parentComponent: {
+          type: Array,
+          defaultValue: ['<div style="height:400px;width:600px;display:flex">','</div>']
         },
 
         lightDomContent: {
