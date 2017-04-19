@@ -420,13 +420,27 @@
     },
 
     attached() {
-      this.shouldAddInst();
-      this.addInst();
+      this.listen(this, 'px-map-layer-ready-to-add', 'shouldAddInst');
+      if (this.canAddInst()) {
+        this.fire('px-map-layer-ready-to-add');
+      }
     },
 
     detached() {
+      this.unlisten(this, 'px-map-layer-ready-to-add', 'shouldAddInst');
       this.shouldRemoveInst();
       this.removeInst();
+    },
+
+    shouldAddInst(evt) {
+      if (Polymer.dom(evt).rootTarget !== this) return;
+
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this);
+      this.addInst();
+    },
+
+    canAddInst() {
+      return this.latLngIsValid(this.lat, this.lng);
     },
 
     createInst(options) {
@@ -486,9 +500,10 @@
     },
 
     updateInst(lastOptions, nextOptions) {
-      if (lastOptions.center[0] !== nextOptions.center[0] ||
+      if ((this.latLngIsValid(nextOptions.center[0], nextOptions.center[1])) &&
+          (lastOptions.center[0] !== nextOptions.center[0] ||
           lastOptions.center[1] !== nextOptions.center[1] ||
-          lastOptions.zoom !== nextOptions.zoom) {
+          lastOptions.zoom !== nextOptions.zoom)) {
         this._updateMapView();
       }
 
@@ -535,7 +550,7 @@
         const {lat, lng} = this.elementInst.getCenter();
         const zoom = this.elementInst.getZoom();
 
-        if (this.latLngIsValid(this.lat, this.lng) && (this.lat !== lat || this.lng !== lng || this.zoom !== zoom)) {
+        if  (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
           this.elementInst.setView([this.lat,this.lng], this.zoom);
         }
       });
@@ -556,6 +571,7 @@
       if (isValid) return true;
       console.log(`PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      return false;
     },
 
     /**
