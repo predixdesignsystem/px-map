@@ -535,10 +535,27 @@
         const {lat, lng} = this.elementInst.getCenter();
         const zoom = this.elementInst.getZoom();
 
-        if (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
+        if (this.latLngIsValid(this.lat, this.lng) && (this.lat !== lat || this.lng !== lng || this.zoom !== zoom)) {
           this.elementInst.setView([this.lat,this.lng], this.zoom);
         }
       });
+    },
+
+    /**
+     * Returns true if val can be used as a number in L.LatLng
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return !isNaN(val);
+    },
+
+    latLngIsValid(lat, lng) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      console.log(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
     },
 
     /**
