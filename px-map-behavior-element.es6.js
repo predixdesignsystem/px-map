@@ -43,7 +43,7 @@
      */
     notifyInstReady(isReady=true) {
       if (!isReady) return false;
-      this.fire('px-map-layer-ready-to-add');
+      this.fire('px-map-element-ready-to-add');
       return true;
     },
 

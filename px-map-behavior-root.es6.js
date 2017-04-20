@@ -420,14 +420,14 @@
     },
 
     attached() {
-      this.listen(this, 'px-map-layer-ready-to-add', 'shouldAddInst');
+      this.listen(this, 'px-map-element-ready-to-add', 'shouldAddInst');
       if (this.canAddInst()) {
-        this.fire('px-map-layer-ready-to-add');
+        this.fire('px-map-element-ready-to-add');
       }
     },
 
     detached() {
-      this.unlisten(this, 'px-map-layer-ready-to-add', 'shouldAddInst');
+      this.unlisten(this, 'px-map-element-ready-to-add', 'shouldAddInst');
       this.shouldRemoveInst();
       this.removeInst();
     },

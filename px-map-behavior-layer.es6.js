@@ -93,7 +93,7 @@
   PxMapBehavior.ParentLayerImpl = {
     listeners: {
       'px-map-element-instance-created' : '_tryToAddAllChildren',
-      'px-map-layer-ready-to-add' : '_tryToAddOneChild'
+      'px-map-element-ready-to-add' : '_tryToAddOneChild'
     },
 
     created() {
