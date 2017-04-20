@@ -79,6 +79,7 @@
       if (isValid) return true;
       console.log(`PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      return false;
     },
 
     // extends the layer `addInst` method to harvest and fire events when the
