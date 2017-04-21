@@ -26,6 +26,7 @@
   "suites": [
     "test/px-map-root-fixture.html",
     "test/px-map-popup-fixture.html",
-    "test/px-map-control-fixture.html"
+    "test/px-map-control-fixture.html",
+    "test/px-map-marker-fixture.html"
   ]
 }

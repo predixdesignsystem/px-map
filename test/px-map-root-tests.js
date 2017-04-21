@@ -45,13 +45,28 @@ function runCustomTests() {
       expect(latLng.lng).to.equal(-121.9584131);
       expect(zoom).to.equal(10);
     });
+
+    it('determines that it can add an inst of L.Map if lat and lng are valid', function(){
+      mapEl.set('lat', 12);
+      mapEl.set('lng', 34);
+
+      expect(mapEl.canAddInst()).to.be.true;
+    });
   });
 
   describe('Setting the geometry properties on px-map', function() {
     var mapEl;
+    var sandbox;
 
     beforeEach(function() {
       mapEl = fixture('BasicMapFixture');
+      sandbox = sinon.sandbox.create();
+
+      sandbox.stub(window.console, "log");
+    });
+
+    afterEach(function() {
+      sandbox.restore();
     });
 
     it('updates its map view and doesn\'t clobber the property when `lat` is changed', function(done) {
@@ -103,6 +118,33 @@ function runCustomTests() {
       mapEl.set('lng', -13);
       mapEl.set('zoom', 14);
     });
+
+    it('validates whether a given value is a number', function () {
+      expect(mapEl._canBeNum(5)).to.be.true;
+      expect(mapEl._canBeNum(0)).to.be.true;
+      expect(mapEl._canBeNum("5")).to.be.true;
+      expect(mapEl._canBeNum("abc")).to.be.false;
+      expect(mapEl._canBeNum(NaN)).to.be.false;
+    });
+
+    it('validates whether given lat and lng values are valid', function () {
+      expect(mapEl.latLngIsValid(10,20)).to.be.true;
+      expect(mapEl.latLngIsValid("10","20")).to.be.true;
+      expect(mapEl.latLngIsValid("abc10","20")).to.be.false;
+      //expect(mapEl.latLngIsValid(10,"")).to.be.false;
+      //expect(mapEl.latLngIsValid("","")).to.be.false;
+    });
+
+    it('outputs a console log statement if the lat or lng is invalid', function() {
+      var invalidLatLng = mapEl.latLngIsValid("abc", 123);
+
+      sinon.assert.calledOnce(console.log);
+      sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${mapEl.is}. You must pass a valid number.`)
+    });
+
+
+
   });
 
   describe('px-map with fit-to-markers enabled', function() {
