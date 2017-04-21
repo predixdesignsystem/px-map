@@ -4,12 +4,20 @@ document.addEventListener("WebComponentsReady", function() {
 
 function runCustomTests() {
 
-  describe('PxMap.StaticMarker class', function() {
-    var markerInst;
+  describe('PxMapBehavior.Marker base', function() {
+    var markerEl;
     var sandbox;
 
+    before(function() {
+      // Create a stub for the Marker base behavior
+      Polymer({
+        is: 'px-map-marker-behavior-stub',
+        behaviors: [PxMapBehavior.Marker]
+      });
+    });
+
     beforeEach(function () {
-      markerInst = new L.marker();
+      markerEl = fixture('MarkerBehaviorFixture');
       sandbox = sinon.sandbox.create();
     });
 
@@ -17,15 +25,24 @@ function runCustomTests() {
       sandbox.restore();
     });
 
-    it('constructor creates a new `L.Marker` instance', function() {
-      expect(markerInst).to.be.an.instanceof(L.Marker);
+    it('validates whether a given input is a number', function () {
+      expect(markerEl._canBeNum(5)).to.be.true;
+      expect(markerEl._canBeNum(0)).to.be.true;
+      expect(markerEl._canBeNum("5")).to.be.true;
+      expect(markerEl._canBeNum("abc")).to.be.false;
+      expect(markerEl._canBeNum(NaN)).to.be.false;
+      expect(markerEl._canBeNum("")).to.be.false;
     });
 
-    it('sets the markers properties', function() {
-      markerInst.setLatLng([40, 30]);
-      expect(markerInst.properties.lat).to.equal(40);
+    it('validates whether given lat and lng values are valid', function () {
+      expect(markerEl.latLngIsValid(10,20)).to.be.true;
+      expect(markerEl.latLngIsValid("10","20")).to.be.true;
+      expect(markerEl.latLngIsValid("abc10","20")).to.be.false;
+      expect(markerEl.latLngIsValid(10,"")).to.be.false;
+      expect(markerEl.latLngIsValid("","")).to.be.false;
     });
 
-  });
+
+});
 
 }

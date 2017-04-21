@@ -119,20 +119,21 @@ function runCustomTests() {
       mapEl.set('zoom', 14);
     });
 
-    it('validates whether a given value is a number', function () {
+    it('validates whether a given input is a number', function () {
       expect(mapEl._canBeNum(5)).to.be.true;
       expect(mapEl._canBeNum(0)).to.be.true;
       expect(mapEl._canBeNum("5")).to.be.true;
       expect(mapEl._canBeNum("abc")).to.be.false;
       expect(mapEl._canBeNum(NaN)).to.be.false;
+      expect(mapEl._canBeNum("")).to.be.false;
     });
 
     it('validates whether given lat and lng values are valid', function () {
       expect(mapEl.latLngIsValid(10,20)).to.be.true;
       expect(mapEl.latLngIsValid("10","20")).to.be.true;
       expect(mapEl.latLngIsValid("abc10","20")).to.be.false;
-      //expect(mapEl.latLngIsValid(10,"")).to.be.false;
-      //expect(mapEl.latLngIsValid("","")).to.be.false;
+      expect(mapEl.latLngIsValid(10,"")).to.be.false;
+      expect(mapEl.latLngIsValid("","")).to.be.false;
     });
 
     it('outputs a console log statement if the lat or lng is invalid', function() {
@@ -141,6 +142,32 @@ function runCustomTests() {
       sinon.assert.calledOnce(console.log);
       sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${mapEl.is}. You must pass a valid number.`)
+    });
+
+    it('does not draw a map if we give it an invalid lat or lng value', function() {
+      var invalidLatLngMapEl = fixture('InvalidLatLngMapFixture');
+
+      expect(invalidLatLngMapEl.elementInst).to.be.null;
+    });
+
+    it('draws a map if a previously invalid lat or long becomes valid', function() {
+      var invalidLatLngMapEl = fixture('InvalidLatLngMapFixture');
+
+      invalidLatLngMapEl.setAttribute("lat", 12);
+      expect(invalidLatLngMapEl.elementInst).to.be.defined;
+    });
+
+    it('does not throw an error if the lat or lng value changes from valid to invalid', function() {
+      var validLatLngMapEl = fixture('ValidLatLngMapFixture');
+      var error;
+
+      try {
+        validLatLngMapEl.setAttribute("lat", "abc");
+      }
+      catch (err) {
+        error = err;
+      }
+      expect(error).to.be.undefined;
     });
 
 

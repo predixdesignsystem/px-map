@@ -71,7 +71,7 @@
      * @return {Boolean}
      */
     _canBeNum(val) {
-      return !isNaN(val);
+      return (!isNaN(val) && val !== "");
     },
 
     latLngIsValid(lat, lng) {

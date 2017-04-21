@@ -39,5 +39,18 @@
         </px-map>
       </template>
     </test-fixture>
+
+    <test-fixture id="InvalidLatLngMapFixture">
+      <template>
+        <px-map style="width:100px; height:100px;" lat="abc" lng="123"></px-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ValidLatLngMapFixture">
+      <template>
+        <px-map style="width:100px; height:100px;" lat="34" lng="123"></px-map>
+      </template>
+    </test-fixture>
+
   </body>
 </html>
