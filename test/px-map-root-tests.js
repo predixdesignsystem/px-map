@@ -170,8 +170,6 @@ function runCustomTests() {
       expect(error).to.be.undefined;
     });
 
-
-
   });
 
   describe('px-map with fit-to-markers enabled', function() {
