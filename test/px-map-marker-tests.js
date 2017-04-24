@@ -16,6 +16,11 @@ function runCustomTests() {
         is: 'px-map-marker-behavior-stub',
         behaviors: [PxMapBehavior.Marker]
       });
+
+      Polymer({
+        is: 'px-map-layer-parent-behavior-stub',
+        behaviors: [PxMapBehavior.Element, PxMapBehavior.ParentLayer]
+      });
     });
 
     beforeEach(function () {
@@ -47,7 +52,6 @@ function runCustomTests() {
     it('outputs a console log statement if the lat or lng is invalid', function() {
       var invalidLatLng = markerEl.latLngIsValid("abc", 123);
 
-      //sinon.assert.calledOnce(console.log);
       sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${markerEl.is}. You must pass a valid number.`)
     });
@@ -55,8 +59,25 @@ function runCustomTests() {
     it('does not draw a marker if either the lat or lng value is invalid', function() {
       var invalidLatLngMarkerEl = fixture('InvalidLatLngMarkerFixture');
 
-      expect(invalidLatLngMarkerEl.elementInst).to.be.null;
+      expect(invalidLatLngMarkerEl.canAddInst()).to.be.false;
     });
+
+    it ('hides a marker if its previously valid lat/lng value becomes invalid', function(done) {
+      var validFixtureStub = fixture('ValidLatLngMarkerFixture');
+      var validMarkerEl = validFixtureStub.querySelector('px-map-marker-behavior-stub');
+      //do something with this tomorrow
+      var addFn = PxMapBehavior.ParentLayerImpl._attachLayerChild.call();
+
+      var canAddInstSpy = sinon.spy(validMarkerEl, 'canAddInst');
+      setTimeout(function() {
+        expect(canAddInstSpy).to.have.been.calledOnce;
+        done();
+      }, 1000);
+
+    });
+
+    // it ('shows a marker if its previously invalid lat/lng value becomes valid', function() {
+    // });
 
 
 });
