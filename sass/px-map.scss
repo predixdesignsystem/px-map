@@ -362,7 +362,9 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
  ******************************************************************************/
 
  /* GENERIC: Info box generic styles, can be placed in multiple containers */
-
+.map-box-info {
+  @extend %clearfix;
+}
 // Style for the title, which is a text tag
 .leaflet-popup-content {
   .map-box-info__title {
