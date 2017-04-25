@@ -37,17 +37,20 @@
 
     <test-fixture id="InvalidLatLngMarkerFixture">
       <template>
-        <px-map-marker-behavior-stub lat="abc" lng=123></px-map-marker-behavior-stub>
+        <px-map style="height: 400px; width: 400px;">
+          <px-map-marker-behavior-stub lat="abc" lng=123></px-map-marker-behavior-stub>
+        </px-map>
       </template>
     </test-fixture>
 
     <test-fixture id="ValidLatLngMarkerFixture">
       <template>
-        <px-map-layer-parent-behavior-stub>
+        <px-map style="height: 400px; width: 400px;">
           <px-map-marker-behavior-stub lat="34" lng=123></px-map-marker-behavior-stub>
-        </px-map-layer-parent-behavior-stub>
+        </px-map>
       </template>
     </test-fixture>
+
 
   </body>
 </html>

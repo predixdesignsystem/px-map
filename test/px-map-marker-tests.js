@@ -6,9 +6,7 @@ function runCustomTests() {
 
   describe('PxMapBehavior.Marker base', function() {
     var markerEl;
-    var sandbox = sinon.sandbox.create();;
-
-    sandbox.stub(window.console, "log");
+    var logFn;
 
     before(function() {
       // Create a stub for the Marker base behavior
@@ -26,6 +24,7 @@ function runCustomTests() {
     beforeEach(function () {
       markerEl = fixture('MarkerBehaviorFixture');
       sandbox = sinon.sandbox.create();
+      logFn = sandbox.stub(window.console, "log");
     });
 
     afterEach(function () {
@@ -52,33 +51,44 @@ function runCustomTests() {
     it('outputs a console log statement if the lat or lng is invalid', function() {
       var invalidLatLng = markerEl.latLngIsValid("abc", 123);
 
-      sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
-        You entered an invalid \`lat\` or \`lng\` attribute for ${markerEl.is}. You must pass a valid number.`)
+      expect(logFn).to.have.been.calledWithExactly(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${markerEl.is}. You must pass a valid number.`);
     });
 
     it('does not draw a marker if either the lat or lng value is invalid', function() {
-      var invalidLatLngMarkerEl = fixture('InvalidLatLngMarkerFixture');
+      var invalidFixtureStub = fixture('InvalidLatLngMarkerFixture');
+      var invalidLatLngMarkerEl = invalidFixtureStub.querySelector('px-map-marker-behavior-stub');
 
       expect(invalidLatLngMarkerEl.canAddInst()).to.be.false;
     });
 
-    it ('hides a marker if its previously valid lat/lng value becomes invalid', function(done) {
+    it ('hides a marker if its previously valid lat/lng becomes invalid, and then shows it if the lat/lng becomes valid again', function(done) {
       var validFixtureStub = fixture('ValidLatLngMarkerFixture');
       var validMarkerEl = validFixtureStub.querySelector('px-map-marker-behavior-stub');
-      //do something with this tomorrow
-      var addFn = PxMapBehavior.ParentLayerImpl._attachLayerChild.call();
+      validMarkerEl.getMarkerIcon = function() {
+        return L.divIcon();
+      };
 
-      var canAddInstSpy = sinon.spy(validMarkerEl, 'canAddInst');
+      var setOpacityFn;
+
       setTimeout(function() {
-        expect(canAddInstSpy).to.have.been.calledOnce;
+        expect(validMarkerEl.elementInst._map).to.be.an.instanceof(L.Map);
+        setOpacityFn = sinon.spy(validMarkerEl.elementInst, 'setOpacity');
+        validMarkerEl.setAttribute("lat", "abc");
+      }, 400);
+
+      setTimeout(function() {
+        expect(setOpacityFn).to.have.been.calledOnce;
+        expect(setOpacityFn).to.have.been.calledWithExactly(0);
+        validMarkerEl.setAttribute("lat", "12");
+      }, 600);
+
+      setTimeout(function() {
+        expect(setOpacityFn).to.have.been.calledTwice;
+        expect(setOpacityFn).to.have.been.calledWithExactly(1);
         done();
-      }, 1000);
-
+      }, 800);
     });
-
-    // it ('shows a marker if its previously invalid lat/lng value becomes valid', function() {
-    // });
-
 
 });
 
