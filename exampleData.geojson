@@ -1,0 +1,3296 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313462",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0125259025193025,
+          52.2476976291884
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313463",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0117907755658328,
+          52.2479930059678
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313464",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0111051442872368,
+          52.2483302728085
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313465",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0132807815169141,
+          52.2474216658350
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313466",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0140312738140467,
+          52.2471412315641
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313467",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0147877014069698,
+          52.2468668774904
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313468",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0155895725047118,
+          52.2466464396410
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313469",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0164598156281538,
+          52.2467206944686
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313470",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0171018665256221,
+          52.2470888370094
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313471",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0175721145147894,
+          52.2475443906393
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313472",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0180276398270785,
+          52.2480055442435
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313473",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0184760997487013,
+          52.2484692986699
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313474",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0189404735375927,
+          52.2489271233991
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313475",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0195197547532192,
+          52.2493326174603
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313476",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0202735161381514,
+          52.2496097500400
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313477",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0211478713677326,
+          52.2496630932955
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313478",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0220024734093145,
+          52.2495377416634
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313479",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0227341905780159,
+          52.2492391673727
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313480",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0234842225353818,
+          52.2489582491308
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313481",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0242762668043345,
+          52.2487247836946
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313482",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0251104362257611,
+          52.2485553671780
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313483",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0259669681733192,
+          52.2484351327528
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313484",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0269080582821839,
+          52.2483809057102
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313485",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0277716109180479,
+          52.2484804143472
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313486",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0285609607798816,
+          52.2487172919626
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313487",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0292512052426218,
+          52.2490509924786
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313488",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0298793414633341,
+          52.2494963563461
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313489",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0302171446773055,
+          52.2499942054261
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313490",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0303749577150050,
+          52.2505247325967
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313491",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0303302465733053,
+          52.2510633288720
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313492",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0300715849486987,
+          52.2515787281264
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313493",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0296809312717809,
+          52.2520617957851
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313494",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0292410791367902,
+          52.2525286683163
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313495",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0287668458008654,
+          52.2529826872393
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313496",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0282024442606698,
+          52.2533960368624
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313497",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0275372950548714,
+          52.2537484682234
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313498",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0268062868756272,
+          52.2540477609827
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313499",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0260758496824388,
+          52.2543475788380
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313500",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0252821601763601,
+          52.2545790695787
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313501",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0244616285437391,
+          52.2547721167222
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313502",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0236457129359201,
+          52.2549724162802
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313508",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0228259563402718,
+          52.2551667064931
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313509",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0219462924205792,
+          52.2551595218598
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313510",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0211301057479237,
+          52.2553594128841
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313511",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0203575485440794,
+          52.2556164496651
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313512",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0195246192865490,
+          52.2557883907697
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313513",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0187258670631425,
+          52.2560132606297
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313514",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0179124190063926,
+          52.2562173264498
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313515",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0170447162171243,
+          52.2563027408586
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313516",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0162351989124590,
+          52.2560928719948
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313517",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0156566301623826,
+          52.2556869540545
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313518",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0151834193060121,
+          52.2552325225361
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313519",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0147648968166486,
+          52.2547583180071
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313520",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0143164673522922,
+          52.2542945222886
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313521",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0138719826638793,
+          52.2538292998384
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313522",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0134272914229318,
+          52.2533641601907
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313523",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0129762383720335,
+          52.2529013303649
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313524",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0125369871492769,
+          52.2524342513374
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313525",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0122096610101250,
+          52.2519337646764
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313526",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0120153472814899,
+          52.2514078202782
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313527",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0116930776906369,
+          52.2509061040487
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313528",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0111966679162034,
+          52.2504611158733
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313529",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0107327457377525,
+          52.2500031186446
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313530",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0102951043350747,
+          52.2495354734673
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313531",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0102480682153925,
+          52.2491294141388
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ313532",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0105720533739621,
+          52.2486731020794
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665570",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0150638479777380,
+          52.2545441564116
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665571",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0157138811060468,
+          52.2542421025797
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665572",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0165018437146015,
+          52.2538455592115
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665573",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0172356398503613,
+          52.2534741869354
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665574",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0178856428827511,
+          52.2531721303816
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665575",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0162275414162603,
+          52.2545921748534
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ665576",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0166857218158608,
+          52.2549383371545
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687213",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0125784307342646,
+          52.2512465481359
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687214",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0128230102736630,
+          52.2515913672552
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687215",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0130602921130088,
+          52.2518590259187
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687216",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0130979976056489,
+          52.2510901246385
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687217",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0134562345513060,
+          52.2508263731939
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687218",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0139354475764344,
+          52.2514083475630
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687219",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0145193202174783,
+          52.2512954199544
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687220",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0139696560667618,
+          52.2506185276573
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687222",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0134791086671265,
+          52.2498141369960
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687223",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0128192091830015,
+          52.2499893472848
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687224",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0146623842440469,
+          52.2502413166079
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687225",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0143726734471233,
+          52.2496583594351
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687226",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0151332425080967,
+          52.2507790183665
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687227",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0126401925952247,
+          52.2509246052376
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687228",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0123493270813717,
+          52.2505688674858
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "swrefVrecordVdatasetZelectricVcollectionZed_poleVkeysZ687229",
+      "properties": {
+        "External Name": "Pole",
+        "Status": "Existing",
+        "Usage": "Primary",
+        "Number": "unset",
+        "Owner Type": "Company Owned",
+        "Owner Name": "Electric Utility",
+        "Asset ID": "unset",
+        "Date Installed": "unset",
+        "Material": "Wood",
+        "Location Description": "unset",
+        "Remarks": "unset",
+        "Pole Structure": "unset",
+        "Type": "unset",
+        "Height": "40 Feet",
+        "Frame Type": "unset",
+        "Class": "0",
+        "Treatment": "Creosote",
+        "Reinforcement Type": "unset",
+        "Receptacle": "unset",
+        "Reduced Level": "unset",
+        "Strength": "",
+        "Depth": "unset",
+        "Date Manufactured": "unset",
+        "Date Removed": "unset"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0119681032707509,
+          52.2506620285185
+          ]
+      }
+    }]}
