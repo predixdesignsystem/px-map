@@ -1,3 +1,8 @@
+v1.2.4
+===================
+## Bug fixes
+* Fixes a bug that causes popups to collapse when their content is too short
+
 v1.2.3
 ==================
 ## Bug fixes
