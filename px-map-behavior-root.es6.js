@@ -91,6 +91,8 @@
      * Bind listeners on remove to keep the known markers map updated.
      */
     _handleMarkerAdded(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
 
       if (localEvt.rootTarget && localEvt.rootTarget.elementInst && localEvt.event.detail.latLng) {
@@ -107,6 +109,8 @@
      * Unbind listeners so the element can be cleaned up.
      */
     _handleMarkerRemoved(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
@@ -123,6 +127,8 @@
      * Bind listeners on remove to keep the known markers map updated.
      */
     _handleMarkerGroupUpdated(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
@@ -143,6 +149,8 @@
      * Unbind listeners so the element can be cleaned up.
      */
     _handleMarkerGroupRemoved(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
