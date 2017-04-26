@@ -41,10 +41,8 @@
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
         <px-map zoom="12" flex-to-size disable-touch-zoom lat="52.2352" lng="0.1127">
-          <px-map-tile-layer url="{{props.url.value}}"></px-map-tile-layer>
-          <px-map-vector-layer data='
-            {"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}
-          '></px-map-vector-layer>
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-vector-layer data='{{props.demoData.data}}' feature-style='{"color": "#3E87E8"}' show-feature-properties></px-map-vector-layer>
         </px-map>
       </div>
     </px-demo-component>
@@ -135,6 +133,7 @@
         }
       },
 
+      //This is loading the exampleData.geojson file onto the vector layer by hooking into the components ready event.
       ready: function() {
         const client = new XMLHttpRequest();
         client.open('GET', '/exampleData.geojson');
@@ -155,14 +154,19 @@
        * @type {Object}
        */
       demoProps: {
-        url: {
+        data: {
           type: String,
-          defaultValue: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          defaultValue: '{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}',
           inputType: 'text'
         },
 
+        showFeatureProperties: {
+          type: Boolean,
+          value: true
+        },
+
         parentComponent: {
-          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-touch-zoom>', '</px-map></div>']
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-touch-zoom><px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer> ', '</px-map></div>']
         }
       }
     });

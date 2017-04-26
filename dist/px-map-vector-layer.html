@@ -9,12 +9,12 @@
 <link rel="import" href="px-map-behavior-vector-layer.html">
 
 <!--
-This subcomponent provides a vector layer for a px-map.
+This subcomponent provides a vector layer for a px-map. The vector layer only accepts geoJson formatted data.
 
 ### Usage
 
     <px-map>
-      <px-map-vector-layer data=<px-map-vector-layer data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'></px-map-vector-layer>
+      <px-map-vector-layer data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'></px-map-vector-layer>
     </px-map>
 
 @element px-map-vector-layer
