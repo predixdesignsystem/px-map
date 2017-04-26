@@ -672,8 +672,8 @@
       this._bindAndOpenPopup(evt.layer);
     },
 
-    _handleSingleMarkerDoubleTap() {
-      const latLng = this.getLatLng();
+    _handleSingleMarkerDoubleTap(evt) {
+      const latLng = L.latLng(evt.layer.getLatLng());
       const {lat, lng} = latLng;
       const detail = {
         latLng: latLng,
