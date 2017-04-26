@@ -247,8 +247,9 @@
 
       const maxWidth = 400;
       const minWidth = 300;
+      const maxHeight = 300;
 
-      this.initialize({ className, maxWidth, minWidth });
+      this.initialize({ className, maxWidth, minWidth, maxHeight });
       this.setContent(content);
     }
 
@@ -312,8 +313,9 @@
       const className = `map-popup-data ${styleScope||''}`
       const maxWidth = 400;
       const minWidth = 300;
+      const maxHeight = 300;
 
-      this.initialize({ className, maxWidth, minWidth });
+      this.initialize({ className, maxWidth, minWidth, maxHeight });
       this.setContent(content);
     }
 

@@ -203,10 +203,12 @@
       const spiderifyFn = this._handleClusterSpiderify.bind(this);
       const unspiderifyFn = this._handleClusterUnspiderify.bind(this);
       const markerTapFn = this._handleSingleMarkerTap.bind(this);
+      const markerDoubleTapFn = this._handleSingleMarkerDoubleTap.bind(this);
       this.bindEvents({
         'spiderfied' : spiderifyFn,
         'unspiderfied' : unspiderifyFn,
-        'click' : markerTapFn
+        'click' : markerTapFn,
+        'dblclick' : markerDoubleTapFn
       });
 
       PxMapBehavior.LayerImpl.addInst.call(this, parent);
@@ -669,6 +671,27 @@
 
       this._bindAndOpenPopup(evt.layer);
     },
+
+    _handleSingleMarkerDoubleTap() {
+      const latLng = this.getLatLng();
+      const {lat, lng} = latLng;
+      const detail = {
+        latLng: latLng,
+        lat: lat,
+        lng: lng
+      };
+      this.fire('px-map-marker-group-double-tapped', detail);
+    },
+    /**
+     * Fired when the marker is double clicked or tapped by the user.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the marker
+     *   * {Number} detail.lng - Longitude of the marker
+     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-group-double-tapped
+     */
 
     _bindAndOpenPopup(marker) {
       if (!marker || !marker.bindPopup || !marker.openPopup) return;
