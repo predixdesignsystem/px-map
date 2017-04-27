@@ -39,7 +39,7 @@
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
-      <div style="height:400px;width:600px;display:flex">
+      <div style="height:600px;width:800px;display:flex">
         <px-map zoom="12" flex-to-size disable-touch-zoom lat="52.2352" lng="0.1127">
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-vector-layer data='{{props.demoData.data}}' feature-style='{"color": "#3E87E8"}' show-feature-properties></px-map-vector-layer>
@@ -157,6 +157,12 @@
         data: {
           type: String,
           defaultValue: '{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}',
+          inputType: 'text'
+        },
+
+        featureStyle:{
+          type: String,
+          defaultValue: '{"color": "#3E87E8"}',
           inputType: 'text'
         },
 

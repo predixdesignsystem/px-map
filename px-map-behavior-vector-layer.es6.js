@@ -35,45 +35,72 @@
       },
 
       /**
-       * An property that if set will show a popover containing all the feature properties when the feature is clicked
+       * A boolean that if set will show a popover containing all the feature properties when the feature is clicked
        *
        * @type {Boolean}
        */
       showFeatureProperties: {
         type: Boolean,
         value: false
+      },
+
+      /**
+       * A boolean that if set will allow a blank vector layer to be created
+       *
+       * @type {Boolean}
+       */
+      blankLayer: {
+        type: Boolean,
+        value: false
       }
     },
 
     canAddInst() {
-      return (typeof this.data === 'string') && this.data.length;
+      return ((typeof this.data === 'string') && this.data.length) || this.blankLayer;
     },
 
     createInst(options) {
-      return L.geoJson(JSON.parse(options.data), {
-        pointToLayer: function(feature, latlng) {
+      let featureData;
+      options.data ? featureData = JSON.parse(options.data) : featureData = null;
+
+      let geojsonLayer = L.geoJson(featureData, {
+        pointToLayer: function (feature, latlng) {
+          if(!options.featureStyle) options.featureStyle = {};
+
           return new L.CircleMarker(latlng, {
-            radius: options.featureStyle.radius           || 5,
-            color: options.featureStyle.color             || '#3E87E8', //primary-blue,
-            fillColor: options.featureStyle.fillColor     || '#88BDE6', //$dv-light-blue
-            weight: options.featureStyle.weight           || 2,
-            opacity: options.featureStyle.opacity         || 1,
+            radius: options.featureStyle.radius || 5,
+            color: options.featureStyle.color || '#3E87E8', //primary-blue,
+            fillColor: options.featureStyle.fillColor || '#88BDE6', //$dv-light-blue
+            weight: options.featureStyle.weight || 2,
+            opacity: options.featureStyle.opacity || 1,
             fillOpacity: options.featureStyle.fillOpacity || 0.4
           })
         },
         onEachFeature: (feature, layer) => {
-          if(!this.showFeatureProperties) return;
+          if (!this.showFeatureProperties) return;
           let popupString = '';
 
-          Object.keys(feature.properties).forEach( function(value) {
-            if(feature.properties[value] && feature.properties[value] !== 'unset') {
-              popupString += value + ' : ' + feature.properties[value] +  '<br>';
+          Object.keys(feature.properties).forEach(function (value) {
+            if (feature.properties[value] && feature.properties[value] !== 'unset') {
+              popupString += `${value} : ${feature.properties[value]} <br>`;
             }
           });
 
-          layer.bindPopup(popupString);
+          let popoverHTML = `<p style="font-weight: bold">Feature Properties</p> <div>${popupString}</div>`;
+          layer.bindPopup(popoverHTML);
+
+          layer.on({
+            mouseover: function (e) {
+              e.target.setStyle({color: 'red'});
+            },
+            mouseout: function (e) {
+              geojsonLayer.resetStyle(e.target);
+            }
+          });
         }
       });
+
+      return geojsonLayer;
     },
 
     updateInst(lastOptions, nextOptions) {
@@ -86,7 +113,9 @@
     getInstOptions() {
       return {
         data: this.data,
-        featureStyle: this.featureStyle
+        featureStyle: this.featureStyle,
+        showFeatureProperties: this.showFeatureProperties,
+        blankLayer: this.blankLayer
       };
     }
   };
