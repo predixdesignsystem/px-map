@@ -680,7 +680,7 @@
         lat: lat,
         lng: lng
       };
-      this.fire('px-map-marker-group-double-clicked', detail);
+      this.fire('px-map-marker-group-marker-double-clicked', detail);
     },
     /**
      * Fired when an individual marker is double clicked by the user. Not fired when a marker cluster is double clicked.
@@ -691,7 +691,7 @@
      *   * {Number} detail.lng - Longitude of the marker
      *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
      *
-     * @event px-map-marker-group-double-clicked
+     * @event px-map-marker-group-marker-double-clicked
      */
 
     _bindAndOpenPopup(marker) {
