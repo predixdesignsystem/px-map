@@ -136,7 +136,7 @@
       //This is loading the exampleData.geojson file onto the vector layer by hooking into the components ready event.
       ready: function() {
         const client = new XMLHttpRequest();
-        client.open('GET', '/exampleData.geojson');
+        client.open('GET', '/test/exampleData.geojson');
         client.onreadystatechange = function() {
           if (client.readyState > 3) {
             if (client.status === 200) {
