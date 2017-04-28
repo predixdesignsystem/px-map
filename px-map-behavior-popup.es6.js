@@ -245,7 +245,10 @@
       const content = this._generatePopupContent(title, description, imgSrc);
       const className = `map-popup-info ${styleScope||''}`
 
-      this.initialize({ className });
+      const maxWidth = 400;
+      const minWidth = 300;
+
+      this.initialize({ className, maxWidth, minWidth });
       this.setContent(content);
     }
 

@@ -1,3 +1,26 @@
+v1.2.5
+===================
+## Bug fixes
+* Allows developers to force the px-map-tile-layer URL to be decoded if a
+  browser behavior encodes it (#86).
+
+v1.2.4
+===================
+## Bug fixes
+* Fixes a bug that causes popups to collapse when their content is too short
+
+v1.2.3
+==================
+## Bug fixes
+* Adds a default minZoom and maxZoom for map to fix a bug where marker group
+  permanently fails if it attaches before a tile layer and no minZoom
+  and maxZoom are defined (https://github.com/PredixDev/px-map/issues/76).
+  This bug seems to be related to a limitation in the underlying library
+  we use for marker group. See this issue, which seems to have solved a related
+  bug in the past: https://github.com/Leaflet/Leaflet.markercluster/issues/198.
+  It's possible a regression in Leaflet.markercluster caused this bug to
+  happen again — this may require future investigation.
+
 v1.2.2
 ==================
 ## Other changes

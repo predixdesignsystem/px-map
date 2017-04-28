@@ -26,6 +26,7 @@
   // The inner container holding the popup content
   .leaflet-popup-content {
     margin: 0;
+    hyphens: auto;
   }
   // Hide the close button
   .leaflet-popup-close-button {

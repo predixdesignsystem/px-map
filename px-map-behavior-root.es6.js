@@ -494,8 +494,8 @@
       options.crs = this.crs || L.CRS.EPSG3857;
       options.center = [this.lat, this.lng];
       options.zoom = this.zoom;
-      options.minZoom = this.minZoom || undefined;
-      options.maxZoom = this.maxZoom || undefined;
+      options.minZoom = this.minZoom || 0;
+      options.maxZoom = this.maxZoom || 18;
       options.maxBounds = this.maxBounds || undefined;
 
       options.dragging = !this.disableDragging;

@@ -25,6 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-marker-static"
+      parent-name="px-map"
       description="The px-map-marker-static subcomponent creates a static marker at a given location on the map.">
   </px-demo-header>
 
@@ -53,7 +54,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map-marker-static">
+        element-name="px-map-marker-static"
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-marker-static.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -162,7 +164,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         },
 
         siblingElement: {

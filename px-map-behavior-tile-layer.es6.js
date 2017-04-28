@@ -31,6 +31,20 @@
       url: {
         type: String,
         observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Forces the component to call decodeURI on the `url` attribute before
+       * passing it to the tile service. Use this if your `url` is getting
+       * encoded by the browser before requests are sent (this can happen if
+       * you set the URL attribute with a string instead of data binding).
+       *
+       * @type {Boolean}
+       */
+      decodeUrl: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst'
       }
     },
 
@@ -50,7 +64,7 @@
 
     getInstOptions() {
       return {
-        url: this.url
+        url: this.decodeUrl ? decodeURI(this.url) : this.url
       };
     }
   };

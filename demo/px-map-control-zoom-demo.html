@@ -25,6 +25,7 @@
   <!-- Header -->
   <px-demo-header
       module-name="px-map-control-zoom"
+      parent-name="px-map"
       description="The px-map-control-zoom subcomponent places zoom controls in a corner of the map selected by the user.">
   </px-demo-header>
 
@@ -49,7 +50,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map-control-zoom">
+        element-name="px-map-control-zoom"
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-control-zoom.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -142,7 +144,7 @@
         },
 
         parentComponent: {
-          value: ["<px-map flex-to-size disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+          value: ['<div style="height:400px;width:600px;display:flex"><px-map flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         },
 
         siblingElement: {
