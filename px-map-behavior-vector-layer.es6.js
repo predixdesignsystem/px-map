@@ -88,15 +88,6 @@
 
           let popoverHTML = `<p style="font-weight: bold">Feature Properties</p> <div>${popupString}</div>`;
           layer.bindPopup(popoverHTML);
-
-          layer.on({
-            mouseover: function (e) {
-              e.target.setStyle({color: 'red'});
-            },
-            mouseout: function (e) {
-              geojsonLayer.resetStyle(e.target);
-            }
-          });
         }
       });
 
