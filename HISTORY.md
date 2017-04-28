@@ -1,3 +1,9 @@
+v1.2.5
+===================
+## Bug fixes
+* Allows developers to force the px-map-tile-layer URL to be decoded if a
+  browser behavior encodes it (#86).
+
 v1.2.4
 ===================
 ## Bug fixes
