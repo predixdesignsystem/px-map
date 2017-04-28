@@ -76,7 +76,6 @@
     canAddInst() {
       return true;
     }
-
   };
   /* Bind Layer behavior */
   /** @polymerBehavior */

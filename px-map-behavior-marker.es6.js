@@ -74,6 +74,14 @@
       return (!isNaN(val) && val !== "");
     },
 
+    /**
+     * Returns true if lat and lng are valid values that can be used to set a
+     * marker's location. Prints an error if values are invalid.
+     *
+     * @param {Number} lat
+     * @param {Number} lng
+     * @return {Boolean}
+     */
     latLngIsValid(lat, lng) {
       var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
       if (isValid) return true;
