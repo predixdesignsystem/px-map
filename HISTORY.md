@@ -1,3 +1,9 @@
+v1.2.6
+===================
+## Bug fixes
+* Validates that lat and lng are valid numbers and handles invalid values
+  gracefully (#54). Adds tests.
+
 v1.2.5
 ===================
 ## Bug fixes
