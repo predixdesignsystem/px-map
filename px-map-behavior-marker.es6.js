@@ -61,7 +61,33 @@
      * be added to their parent.
      */
     canAddInst() {
-      return (typeof this.lat === 'number') && (typeof this.lng === 'number');
+      return this.latLngIsValid(this.lat, this.lng);
+    },
+
+    /**
+     * Returns true if val can be used as a number in L.LatLng
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return (!isNaN(val) && val !== "");
+    },
+
+    /**
+     * Returns true if lat and lng are valid values that can be used to set a
+     * marker's location. Prints an error if values are invalid.
+     *
+     * @param {Number} lat
+     * @param {Number} lng
+     * @return {Boolean}
+     */
+    latLngIsValid(lat, lng) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      console.log(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      return false;
     },
 
     // extends the layer `addInst` method to harvest and fire events when the
@@ -124,9 +150,10 @@
         this.elementInst.setOpacity(0);
       }
       if (!geomWasDefined && geomIsDefined) {
+        this.elementInst.setLatLng(nextOptions.geometry);
         this.elementInst.setOpacity(1);
       }
-      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+      if (geomIsDifferent) {
         this.elementInst.setLatLng(nextOptions.geometry);
       }
       if (lastOptions.config.icon !== nextOptions.config.icon) {
@@ -147,14 +174,15 @@
 
     /**
      * Returns the current latitude and longitude of the marker as an
-     * `L.LatLng` object. If either `lat` or `lng` are not defined,
-     * returns undefined.
+     * `L.LatLng` object. If either `lat` or `lng` is not defined or has an
+     * invalid value, returns undefined.
      *
      * @return {L.LatLng|undefined}
      */
     getLatLng() {
-      if (!this.lat || !this.lng) return undefined;
-      return L.latLng(this.lat, this.lng);
+      if (this.latLngIsValid(this.lat, this.lng)) {
+        return L.latLng(this.lat, this.lng);
+      }
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...
@@ -171,33 +199,33 @@
      */
     _handleMarkerAdded() {
       const latLng = this.getLatLng();
-      const {lat, lng} = latLng;
-      const detail = {
-        latLng: latLng,
-        lat: lat,
-        lng: lng
-      };
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
       this.fire('px-map-marker-added', detail);
     },
     /**
      * Fired when the marker is attached to a parent layer (e.g. the map).
      *
      *   * {Object} detail - Contains the event details
-     *   * {Number} detail.lat - Latitude of the marker
-     *   * {Number} detail.lng - Longitude of the marker
-     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
      *
      * @event px-map-marker-added
      */
 
     _handleMarkerRemoved() {
       const latLng = this.getLatLng();
-      const {lat, lng} = latLng;
-      const detail = {
-        latLng: latLng,
-        lat: lat,
-        lng: lng
-      };
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
       this.fire('px-map-marker-removed', detail);
     },
     /**
@@ -205,30 +233,30 @@
      * removed from the DOM.
      *
      *   * {Object} detail - Contains the event details
-     *   * {Number} detail.lat - Latitude of the marker before removal
-     *   * {Number} detail.lng - Longitude of the marker before removal
-     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *   * {Number|undefined} detail.lat - Latitude of the marker before removal
+     *   * {Number|undefined} detail.lng - Longitude of the marker before removal
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
      *
      * @event px-map-marker-removed
      */
 
     _handleMarkerTapped() {
       const latLng = this.getLatLng();
-      const {lat, lng} = latLng;
-      const detail = {
-        latLng: latLng,
-        lat: lat,
-        lng: lng
-      };
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
       this.fire('px-map-marker-tapped', detail);
     }
     /**
      * Fired when the marker is clicked or tapped by the user.
      *
      *   * {Object} detail - Contains the event details
-     *   * {Number} detail.lat - Latitude of the marker
-     *   * {Number} detail.lng - Longitude of the marker
-     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
      *
      * @event px-map-marker-tapped
      */
@@ -452,22 +480,20 @@
       const geomIsDifferent = (geomWasDefined && geomIsDefined &&
         (lastOptions.geometry.lat !== nextOptions.geometry.lat || lastOptions.geometry.lng !== nextOptions.geometry.lng)
       );
-      // If LatLng was previously defined and now is not, hide the markers
       if (geomWasDefined && !geomIsDefined) {
         this.markerBaseIcon.setStyle({ opacity: 0, fillOpacity: 0 });
         this.markerAccuracyIcon.setStyle({ opacity: 0, fillOpacity: 0 });
       }
-      // If LatLng has changed or if it was just defined, set the new LatLng
-      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+      if (!geomWasDefined && geomIsDefined) {
         this.markerBaseIcon.setLatLng(nextOptions.geometry);
         this.markerAccuracyIcon.setLatLng(nextOptions.geometry);
-      }
-      // If LatLng was just defined, ensure the markers are shown
-      if (lastOptions && (!geomWasDefined && geomIsDefined)) {
         this.markerBaseIcon.setStyle(nextOptions.baseConfig);
         this.markerAccuracyIcon.setStyle(nextOptions.accuracyConfig);
       }
-
+      if (geomIsDifferent) {
+        this.markerBaseIcon.setLatLng(nextOptions.geometry);
+        this.markerAccuracyIcon.setLatLng(nextOptions.geometry);
+      }
       if (lastOptions.accuracyRadius !== nextOptions.accuracyRadius) {
         this.markerAccuracyIcon.setRadius(nextOptions.accuracyRadius);
       }

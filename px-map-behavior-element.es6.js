@@ -26,6 +26,27 @@
       this.elementInst = null;
     },
 
+    attached() {
+      this.__elAttached = true;
+    },
+
+    detached() {
+      this.__elAttached = false;
+    },
+
+    /**
+     * If this element's instance is ready to create and add to its parent,
+     * fires an event the parent will catch.
+     *
+     * @param {Boolean} isReady - If `true` instance parent will be notified
+     * @return {Boolean} - If `true` the parent was notified
+     */
+    notifyInstReady(isReady=true) {
+      if (!isReady) return false;
+      this.fire('px-map-element-ready-to-add');
+      return true;
+    },
+
     shouldAddInst() {
       // Create the instance, if it doesn't already exist
       if (!this.elementInst) {

@@ -1,3 +1,20 @@
+v1.2.6
+===================
+## Bug fixes
+* Validates that lat and lng are valid numbers and handles invalid values
+  gracefully (#54). Adds tests.
+
+v1.2.5
+===================
+## Bug fixes
+* Allows developers to force the px-map-tile-layer URL to be decoded if a
+  browser behavior encodes it (#86).
+
+v1.2.4
+===================
+## Bug fixes
+* Fixes a bug that causes popups to collapse when their content is too short
+
 v1.2.3
 ==================
 ## Bug fixes

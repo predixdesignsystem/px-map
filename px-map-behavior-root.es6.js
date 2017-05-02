@@ -91,6 +91,8 @@
      * Bind listeners on remove to keep the known markers map updated.
      */
     _handleMarkerAdded(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
 
       if (localEvt.rootTarget && localEvt.rootTarget.elementInst && localEvt.event.detail.latLng) {
@@ -107,6 +109,8 @@
      * Unbind listeners so the element can be cleaned up.
      */
     _handleMarkerRemoved(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
@@ -123,6 +127,8 @@
      * Bind listeners on remove to keep the known markers map updated.
      */
     _handleMarkerGroupUpdated(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
@@ -143,6 +149,8 @@
      * Unbind listeners so the element can be cleaned up.
      */
     _handleMarkerGroupRemoved(evt) {
+      if (!this._knownMarkers) return;
+
       const localEvt = Polymer.dom(evt);
       const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
 
@@ -420,13 +428,27 @@
     },
 
     attached() {
-      this.shouldAddInst();
-      this.addInst();
+      this.listen(this, 'px-map-element-ready-to-add', 'shouldAddInst');
+      if (this.canAddInst()) {
+        this.fire('px-map-element-ready-to-add');
+      }
     },
 
     detached() {
+      this.unlisten(this, 'px-map-element-ready-to-add', 'shouldAddInst');
       this.shouldRemoveInst();
       this.removeInst();
+    },
+
+    shouldAddInst(evt) {
+      if (Polymer.dom(evt).rootTarget !== this) return;
+
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this);
+      this.addInst();
+    },
+
+    canAddInst() {
+      return this.latLngIsValid(this.lat, this.lng);
     },
 
     createInst(options) {
@@ -485,9 +507,10 @@
     },
 
     updateInst(lastOptions, nextOptions) {
-      if (lastOptions.center[0] !== nextOptions.center[0] ||
+      if ((this.latLngIsValid(nextOptions.center[0], nextOptions.center[1])) &&
+          (lastOptions.center[0] !== nextOptions.center[0] ||
           lastOptions.center[1] !== nextOptions.center[1] ||
-          lastOptions.zoom !== nextOptions.zoom) {
+          lastOptions.zoom !== nextOptions.zoom)) {
         this._updateMapView();
       }
 
@@ -538,6 +561,32 @@
           this.elementInst.setView([this.lat,this.lng], this.zoom);
         }
       });
+    },
+
+    /**
+     * Returns true if val can be used as a number in L.LatLng
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return (!isNaN(val) && val !== "");
+    },
+
+    /**
+     * Returns true if lat and lng are valid values that can be used to set a
+     * map's position. Prints an error if values are invalid.
+     *
+     * @param {Number} lat
+     * @param {Number} lng
+     * @return {Boolean}
+     */
+    latLngIsValid(lat, lng) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      console.log(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      return false;
     },
 
     /**

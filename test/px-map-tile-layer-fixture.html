@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Component Test : Fixture for px-map</title>
+    <title>Web Component Test : Fixture for px-map-tile-layer</title>
 
     <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
@@ -15,9 +15,9 @@
     <!-- px-theme is needed for WCT to run without errors -->
     <link rel="import" href="../bower_components/px-theme/px-theme-styles.html" />
     <!-- Load local components -->
-    <link rel="import" href="../px-map.html" />
+    <link rel="import" href="../px-map-tile-layer.html" />
     <!-- This script link will contain the generated script stub for custom, developer-added test cases -->
-    <script src="px-map-root-tests.js"></script>
+    <script src="px-map-tile-layer-tests.js"></script>
 
     <script src="../../test-fixture/test-fixture-mocha.js"></script>
     <link href="../../test-fixture/test-fixture.html" rel="import">
@@ -26,31 +26,10 @@
   <body>
     <style include="px-theme-styles" is="custom-style"></style>
 
-    <test-fixture id="BasicMapFixture">
+    <test-fixture id="TileLayerEncodedUrlFixture">
       <template>
-        <px-map style="width:100px; height:100px;"></px-map>
+        <px-map-tile-layer url="https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png" decode-url></px-map-tile-layer>
       </template>
     </test-fixture>
-
-    <test-fixture id="FitMarkersMapFixture">
-      <template>
-        <px-map style="width:300px; height:500px;" fit-to-markers>
-          <px-magic-stub-el></px-magic-stub-el>
-        </px-map>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="InvalidLatLngMapFixture">
-      <template>
-        <px-map style="width:100px; height:100px;" lat="abc" lng="123"></px-map>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="ValidLatLngMapFixture">
-      <template>
-        <px-map style="width:100px; height:100px;" lat="34" lng="123"></px-map>
-      </template>
-    </test-fixture>
-
   </body>
 </html>

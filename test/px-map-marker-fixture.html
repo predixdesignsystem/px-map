@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Web Component Test : Fixture for px-map</title>
+    <title>Web Component Test : Fixture for px-map-marker</title>
 
     <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
     <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
@@ -16,8 +16,9 @@
     <link rel="import" href="../bower_components/px-theme/px-theme-styles.html" />
     <!-- Load local components -->
     <link rel="import" href="../px-map.html" />
+    <link rel="import" href="../px-map-marker-static.html" />
     <!-- This script link will contain the generated script stub for custom, developer-added test cases -->
-    <script src="px-map-root-tests.js"></script>
+    <script src="px-map-marker-tests.js"></script>
 
     <script src="../../test-fixture/test-fixture-mocha.js"></script>
     <link href="../../test-fixture/test-fixture.html" rel="import">
@@ -26,31 +27,30 @@
   <body>
     <style include="px-theme-styles" is="custom-style"></style>
 
-    <test-fixture id="BasicMapFixture">
+    <!-- [Test fixtures go here] -->
+
+    <test-fixture id="MarkerBehaviorFixture">
       <template>
-        <px-map style="width:100px; height:100px;"></px-map>
+        <px-map-marker-behavior-stub></px-map-marker-behavior-stub>
       </template>
     </test-fixture>
 
-    <test-fixture id="FitMarkersMapFixture">
+    <test-fixture id="InvalidLatLngMarkerFixture">
       <template>
-        <px-map style="width:300px; height:500px;" fit-to-markers>
-          <px-magic-stub-el></px-magic-stub-el>
+        <px-map style="height: 400px; width: 400px;">
+          <px-map-marker-behavior-stub lat="abc" lng=123></px-map-marker-behavior-stub>
         </px-map>
       </template>
     </test-fixture>
 
-    <test-fixture id="InvalidLatLngMapFixture">
+    <test-fixture id="ValidLatLngMarkerFixture">
       <template>
-        <px-map style="width:100px; height:100px;" lat="abc" lng="123"></px-map>
+        <px-map style="height: 400px; width: 400px;">
+          <px-map-marker-behavior-stub lat="34" lng=123></px-map-marker-behavior-stub>
+        </px-map>
       </template>
     </test-fixture>
 
-    <test-fixture id="ValidLatLngMapFixture">
-      <template>
-        <px-map style="width:100px; height:100px;" lat="34" lng="123"></px-map>
-      </template>
-    </test-fixture>
 
   </body>
 </html>
