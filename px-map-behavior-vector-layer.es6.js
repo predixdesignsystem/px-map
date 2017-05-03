@@ -67,7 +67,7 @@
         pointToLayer: (feature, latlng) => {
           const featureProperties = feature.properties.style || {};
           const attributeProperties = options.featureStyle;
-          const style = this.getStyle(feature, featureProperties, attributeProperties);
+          const style = this._getStyle(feature, featureProperties, attributeProperties);
 
           return new L.CircleMarker(latlng, style);
         },
@@ -99,14 +99,14 @@
           const featureProperties = feature.properties.style || {};
           const attributeProperties = options.featureStyle;
 
-          return this.getStyle(feature, featureProperties, attributeProperties);
+          return this._getStyle(feature, featureProperties, attributeProperties);
         }
       });
 
       return geojsonLayer;
     },
 
-    getStyle(feature, featureProperties, attributeProperties) {
+    _getStyle(feature, featureProperties, attributeProperties) {
       return {
         radius: featureProperties.radius           || attributeProperties.radius      || 5,
         color: featureProperties.color             || attributeProperties.color       || '#3E87E8', //primary-blue,
