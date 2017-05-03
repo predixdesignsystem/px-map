@@ -21,8 +21,7 @@
        */
       data: {
         type: Object,
-        observer: 'shouldUpdateInst',
-        reflectToAttribute: true
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -32,7 +31,7 @@
        */
       featureStyle: {
         type: Object,
-        value: null
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -61,12 +60,10 @@
     },
 
     createInst(options) {
-      if(!options.featureStyle) options.featureStyle = {};
-
       let geojsonLayer = L.geoJson(options.data, {
         pointToLayer: (feature, latlng) => {
           const featureProperties = feature.properties.style || {};
-          const attributeProperties = options.featureStyle;
+          const attributeProperties = options.featureStyle || {};
           const style = this.getStyle(feature, featureProperties, attributeProperties);
 
           return new L.CircleMarker(latlng, style);
@@ -97,7 +94,7 @@
 
         style: (feature) => {
           const featureProperties = feature.properties.style || {};
-          const attributeProperties = options.featureStyle;
+          const attributeProperties = options.featureStyle || {};
 
           return this.getStyle(feature, featureProperties, attributeProperties);
         }
