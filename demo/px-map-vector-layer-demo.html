@@ -112,7 +112,6 @@
           value: function() {
             return [
               "notifyInstReady",
-              "notifyInstReady",
               "canAddInst",
               "shouldAddInst",
               "addInst",
@@ -121,6 +120,7 @@
               "shouldUpdateInst",
               "updateInst",
               "createInst",
+              "getStyle",
               "getInstOptions",
               "bindEvents",
               "unbindAllEvents",
@@ -140,7 +140,7 @@
         client.onreadystatechange = function() {
           if (client.readyState > 3) {
             if (client.status === 200) {
-              document.querySelector('px-map-vector-layer').data = JSON.parse(client.responseText);
+              document.querySelector('px-map-vector-layer').setAttribute('data', client.responseText);
             }
           }
         };
