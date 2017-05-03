@@ -72,16 +72,14 @@
         onEachFeature: (feature, layer) => {
           if (!this.showFeatureProperties) return;
 
-          const popupData = Object.keys(feature.properties).reduce((accum, key) => {
-            if (key === 'style'){ return accum } // Filters out `feature.properties.style`.
+          // Filter keys to remove info that should not be displayed in a popup.
+          // If no keys remain, do not bind a popup.
+          const popupDataKeys = Object.keys(feature.properties).filter(key => feature.properties.hasOwnProperty(key) && feature.properties[key] !== 'unset' && key !== 'style');
+          if (!popupDataKeys.length) return;
 
-            if(feature.properties[key] && feature.properties[key] !== 'unset') {
-              accum[key] = feature.properties[key];
-              return accum;
-            }
-            else {
-              return accum;
-            }
+          const popupData = Object.keys(feature.properties).reduce((accum, key) => {
+            accum[key] = feature.properties[key];
+            return accum;
           }, {});
 
           const popup = new PxMap.DataPopup({
