@@ -9,6 +9,7 @@ function runCustomTests() {
     let noAttributesFixture;
     let blankLayerFixture;
     let justDataFixture;
+    let featureStylesFixture;
     let sandbox;
 
     beforeEach(function () {
@@ -16,6 +17,7 @@ function runCustomTests() {
       noAttributesFixture = fixture('VectorLayerFixtureNoAttributes');
       blankLayerFixture = fixture('BlankVectorLayerFixture');
       justDataFixture = fixture('VectorLayerFixtureOnlyData');
+      featureStylesFixture = fixture('VectorLayerFixtureFeatureStyles');
       sandbox = sinon.sandbox.create();
     });
 
@@ -69,15 +71,26 @@ function runCustomTests() {
     });
 
     it('adds data to the map through attributes (via `data=` and `feature-style=`)', function(done) {
-      const dataString = '{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}';
+      const dataObject = {"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]};
 
       setTimeout(function(){
         const vectorLayerInstance = vectorLayerFixture.querySelector('px-map-vector-layer').elementInst;
         const vectorLayerOptions = vectorLayerFixture.querySelector('px-map-vector-layer').getInstOptions();
 
         expect(vectorLayerOptions).to.be.an('object');
-        expect(vectorLayerOptions).to.have.property('data').that.eql(dataString);
+        expect(vectorLayerOptions).to.have.property('data');
+        expect(JSON.stringify(vectorLayerOptions.data)).to.eql(JSON.stringify(dataObject));
         expect(vectorLayerOptions).to.have.property('featureStyle').that.eql({"color": "green"});
+        done();
+      }, 10);
+    });
+
+    it('uses a features properties style if it exists', function(done) {
+      setTimeout(function() {
+        const vectorLayerInstance = featureStylesFixture.querySelector('px-map-vector-layer').elementInst;
+        const layerStyle = vectorLayerInstance.getLayers()[0].options;
+
+        expect(layerStyle).to.have.property('color').that.eql('#ff0000');
         done();
       }, 10);
     });

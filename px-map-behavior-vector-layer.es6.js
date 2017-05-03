@@ -15,13 +15,14 @@
   PxMapBehavior.VectorLayerImpl = {
     properties: {
       /**
-       * A string that will be contain the geojson:
+       * An object that will contain the geojson data to display:
        *
-       * @type {String}
+       * @type {Object}
        */
       data: {
-        type: String,
-        observer: 'shouldUpdateInst'
+        type: Object,
+        observer: 'shouldUpdateInst',
+        reflectToAttribute: true
       },
 
       /**
@@ -56,48 +57,75 @@
     },
 
     canAddInst() {
-      return ((typeof this.data === 'string') && this.data.length) || this.blankLayer;
+      return ((typeof this.data === 'object') && Object.keys(this.data).length) || this.blankLayer;
     },
 
     createInst(options) {
-      let featureData;
-      options.data ? featureData = JSON.parse(options.data) : featureData = null;
+      if(!options.featureStyle) options.featureStyle = {};
 
-      let geojsonLayer = L.geoJson(featureData, {
-        pointToLayer: function (feature, latlng) {
-          if(!options.featureStyle) options.featureStyle = {};
+      let geojsonLayer = L.geoJson(options.data, {
+        pointToLayer: (feature, latlng) => {
+          const featureProperties = feature.properties.style || {};
+          const attributeProperties = options.featureStyle;
+          const style = this.getStyle(feature, featureProperties, attributeProperties);
 
-          return new L.CircleMarker(latlng, {
-            radius: options.featureStyle.radius || 5,
-            color: options.featureStyle.color || '#3E87E8', //primary-blue,
-            fillColor: options.featureStyle.fillColor || '#88BDE6', //$dv-light-blue
-            weight: options.featureStyle.weight || 2,
-            opacity: options.featureStyle.opacity || 1,
-            fillOpacity: options.featureStyle.fillOpacity || 0.4
-          })
+          return new L.CircleMarker(latlng, style);
         },
+
         onEachFeature: (feature, layer) => {
           if (!this.showFeatureProperties) return;
-          let popupString = '';
 
-          Object.keys(feature.properties).forEach(function (value) {
-            if (feature.properties[value] && feature.properties[value] !== 'unset') {
-              popupString += `${value} : ${feature.properties[value]} <br>`;
+          const popupData = Object.keys(feature.properties).reduce((accum, key) => {
+            if (key === 'style'){ return accum } // Filters out `feature.properties.style`.
+
+            if(feature.properties[key] && feature.properties[key] !== 'unset') {
+              accum[key] = feature.properties[key];
+              return accum;
             }
+            else {
+              return accum;
+            }
+          }, {});
+
+          const popup = new PxMap.DataPopup({
+            title: 'Feature Properties',
+            data: popupData
           });
 
-          let popoverHTML = `<p style="font-weight: bold">Feature Properties</p> <div>${popupString}</div>`;
-          layer.bindPopup(popoverHTML);
+          layer.bindPopup(popup);
+        },
+
+        style: (feature) => {
+          const featureProperties = feature.properties.style || {};
+          const attributeProperties = options.featureStyle;
+
+          return this.getStyle(feature, featureProperties, attributeProperties);
         }
       });
 
       return geojsonLayer;
     },
 
+    getStyle(feature, featureProperties, attributeProperties) {
+      return {
+        radius: featureProperties.radius           || attributeProperties.radius      || 5,
+        color: featureProperties.color             || attributeProperties.color       || '#3E87E8', //primary-blue,
+        fillColor: featureProperties.fillColor     || attributeProperties.fillColor   || '#88BDE6', //$dv-light-blue
+        weight: featureProperties.weight           || attributeProperties.weight      || 2,
+        opacity: featureProperties.opacity         || attributeProperties.opacity     || 1,
+        fillOpacity: featureProperties.fillOpacity || attributeProperties.fillOpacity || 0.4
+      };
+    },
+
+    /*
+     * Update the instance if the new data is not the same as the old OR if the new style is not the same as the old.
+     * (stringifying is needed here to be able to do a deep equals check)
+     */
     updateInst(lastOptions, nextOptions) {
-      if (lastOptions.data !== nextOptions.data) {
+      if ((JSON.stringify(lastOptions.data) !== JSON.stringify(nextOptions.data)) ||
+         (JSON.stringify(lastOptions.featureStyle || {}) !== JSON.stringify(nextOptions.featureStyle || {}))) {
         this.elementInst.clearLayers();
-        this.elementInst.addData(JSON.parse(nextOptions.data));
+        this.elementInst.addData(nextOptions.data);
       }
     },
 
