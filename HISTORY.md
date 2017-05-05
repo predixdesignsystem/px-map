@@ -1,3 +1,8 @@
+v1.3.2
+===================
+## Other changes
+* Update documentation for px-map-popup-info
+
 v1.3.1
 ===================
 ## Other changes
