@@ -453,7 +453,11 @@
 
     createInst(options) {
       const mapEl = Polymer.dom(this.root).querySelector('#map');
-      return L.map(mapEl, options);
+      const mapInst = L.map(mapEl, options);
+      if (this.isShadyScoped()) {
+        mapInst.__addShadyScope = this.scopeSubtree.bind(this);
+      }
+      return mapInst;
     },
 
     addInst() {

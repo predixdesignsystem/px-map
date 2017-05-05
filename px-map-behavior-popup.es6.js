@@ -236,6 +236,58 @@
       return this;
     }
 
+    onAdd(map) {
+      if (map.__addShadyScope) {
+        // We need to monkey patch the node returned by `getPane().appendChild`
+        // so we can ensure that we apply the right CSS scope if we are in
+        // shady DOM. By doing this, we effectively wrap the node (which is
+        // fetched in the L.DivOverlay.onAdd method) in a function that scopes
+        // the child nodes before they are added to the map. If we don't do this,
+        // Leaflet will measure the popup before its CSS classes are applied and
+        // pan the map far too much to fit it. This is lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcPane = this.getPane();
+        var srcFn = srcPane.appendChild;
+        srcPane.appendChild = function(el) {
+          map.__addShadyScope(el, false);
+          Polymer.dom(srcPane).appendChild(el);
+        }
+      }
+
+      L.Popup.prototype.onAdd.call(this, map);
+
+      if (map.__addShadyScope) {
+        // Restore monkey patched function
+        srcPane.appendChild = srcFn;
+      }
+    }
+
+    _updateContent() {
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        // We need to monkey patch the srcNode's `innerHTML` setter to ensure
+        // that our popup is scoped before it is drawn if we are in shady DOM.
+        // If we don't do this, Leaflet will measure the popup before its CSS
+        // classes are applied and pan the map far too much to fit it.
+        // This is also lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcNode = this._contentNode;
+        var fakeNode = {
+          innerHTML: null
+        };
+        this._contentNode = fakeNode;
+      }
+
+      L.DivOverlay.prototype._updateContent.call(this);
+
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        if (typeof fakeNode.innerHTML === 'string') {
+          Polymer.dom(srcNode).innerHTML = fakeNode.innerHTML;
+        }
+        // Restore monkey patched function
+        this._contentNode = srcNode;
+      }
+    }
+
     // Note `createPopup` is an internet explorer native method, but deprecated
     // so hopefully it won't cause grief
     _createPopup(settings={}) {
@@ -300,6 +352,58 @@
       super();
       this._createPopup(settings);
       return this;
+    }
+
+    onAdd(map) {
+      if (map.__addShadyScope) {
+        // We need to monkey patch the node returned by `getPane().appendChild`
+        // so we can ensure that we apply the right CSS scope if we are in
+        // shady DOM. By doing this, we effectively wrap the node (which is
+        // fetched in the L.DivOverlay.onAdd method) in a function that scopes
+        // the child nodes before they are added to the map. If we don't do this,
+        // Leaflet will measure the popup before its CSS classes are applied and
+        // pan the map far too much to fit it. This is lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcPane = this.getPane();
+        var srcFn = srcPane.appendChild;
+        srcPane.appendChild = function(el) {
+          map.__addShadyScope(el, false);
+          Polymer.dom(srcPane).appendChild(el);
+        }
+      }
+
+      L.Popup.prototype.onAdd.call(this, map);
+
+      if (map.__addShadyScope) {
+        // Restore monkey patched function
+        srcPane.appendChild = srcFn;
+      }
+    }
+
+    _updateContent() {
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        // We need to monkey patch the srcNode's `innerHTML` setter to ensure
+        // that our popup is scoped before it is drawn if we are in shady DOM.
+        // If we don't do this, Leaflet will measure the popup before its CSS
+        // classes are applied and pan the map far too much to fit it.
+        // This is also lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcNode = this._contentNode;
+        var fakeNode = {
+          innerHTML: null
+        };
+        this._contentNode = fakeNode;
+      }
+
+      L.DivOverlay.prototype._updateContent.call(this);
+
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        if (typeof fakeNode.innerHTML === 'string') {
+          Polymer.dom(srcNode).innerHTML = fakeNode.innerHTML;
+        }
+        // Restore monkey patched function
+        this._contentNode = srcNode;
+      }
     }
 
     // Note `createPopup` is an internet explorer native method, but deprecated
