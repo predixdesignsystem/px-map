@@ -29,6 +29,6 @@
     "test/px-map-control-fixture.html",
     "test/px-map-marker-fixture.html",
     "test/px-map-tile-layer-fixture.html",
-    "test/px-map-vector-layer-fixture.html"
+    "test/px-map-layer-geojson-fixture.html"
   ]
 }

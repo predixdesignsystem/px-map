@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Layer GeoJSON (World Countries)</title>
+
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../polymer/polymer-mini.html" />
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html" />
+  <link rel="import" href="../px-map-tile-layer.html" />
+  <link rel="import" href="../px-map-layer-geojson.html" />
+  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+</head>
+
+<style>
+  .wrap {
+    display: flex;
+    height: 100vh;
+  }
+</style>
+<body>
+  <section class="wrap">
+    <template is="dom-bind">
+      <iron-ajax url="layer-geojson-countries.json" last-response="{{geoJSON}}" auto></iron-ajax>
+
+      <px-map flex-to-size zoom="5" lng="0.11278152465820314" lat="52.23526420307733">
+        <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+        <px-map-layer-geojson
+            data="{{geoJSON}}"
+            feature-style='{"color": "red", "fillColor": "pink", "fillOpacity": "0.2"}'
+            show-feature-properties>
+        </px-map-layer-geojson>
+      </px-map>
+    </template>
+  </section>
+</body>
+</html>
