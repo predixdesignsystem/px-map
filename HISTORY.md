@@ -1,3 +1,8 @@
+v1.3.1
+===================
+## Other changes
+* Remove extraneous demo config for px-map-layer-geojson
+
 v1.3.0
 ===================
 ## New features
