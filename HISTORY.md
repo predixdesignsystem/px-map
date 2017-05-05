@@ -1,3 +1,20 @@
+v1.3.0
+===================
+## New features
+* We're excited to add the `px-map-layer-geojson` subcomponent in this release.
+  Thanks to Dave Fox and his team at GE Energy Connections for this contribution.
+  The new component can draw GeoJSON geometries as vector shapes on the map.
+  The component allows for complex, feature-level styling. It should be very
+  helpful for anyone looking to draw additional feature/asset types with px-map.
+
+## Bug fixes
+* A bug that caused data popups to pan the map wildly when they were opened has
+  been fixed. This bug was only present in shady DOM.
+
+## Bug fixes
+* Validates that lat and lng are valid numbers and handles invalid values
+  gracefully (#54). Adds tests.
+
 v1.2.6
 ===================
 ## Bug fixes
