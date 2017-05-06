@@ -2,8 +2,8 @@ v1.4.0
 ===================
 ## Major bug fix
 * Update to import d3 library using px-d3-imports instead of pxd3 to prevent
-* Px.d3 from being undefined when called in px-map-marker group. Be sure to
-* test that d3 is imported in your app before using this version in production.
+  Px.d3 from being undefined when called in px-map-marker group. Be sure to
+  test that d3 is imported in your app before using this version in production.
 
 v1.3.2
 ===================
