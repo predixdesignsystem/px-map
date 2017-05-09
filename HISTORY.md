@@ -1,3 +1,8 @@
+v1.4.1
+===================
+## Other changes
+* Remove mapbox tile layer example. Please do not use this tile layer in production.
+
 v1.4.0
 ===================
 ## Major bug fix
