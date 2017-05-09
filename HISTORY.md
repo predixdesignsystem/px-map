@@ -1,3 +1,11 @@
+v1.4.1
+===================
+## Bug fixes
+* Removes a stray debugger statement from `px-map-layer-geojson`
+
+## Other changes
+* Fix documentation data loading issue for `px-map-layer-gejson`
+
 v1.4.0
 ===================
 ## Major bug fix
