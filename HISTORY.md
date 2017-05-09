@@ -1,3 +1,8 @@
+v1.4.4
+===================
+## Bug fixes
+* Ensures data popups are not shown if the popup has no data
+
 v1.4.3
 ===================
 ## New features
