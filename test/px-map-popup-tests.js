@@ -369,10 +369,12 @@ function runCustomTests() {
       popupEl.elementInst = elementInst;
 
       var lastOptions = { title: 'Old title', data: {'Old':'Data'} };
+      lastOptions.dataHash = JSON.stringify(lastOptions.data);
       var nextOptions = { title: 'A new title', data: {'New':'Data'} };
+      nextOptions.dataHash = JSON.stringify(nextOptions.data);
       popupEl.updateInst(lastOptions, nextOptions);
 
-      expect(elementInst.updateSettings).to.have.been.calledWithMatch(nextOptions);
+      expect(elementInst.updateSettings).to.have.been.calledWithMatch({ title: 'A new title', data: {'New':'Data'} });
     });
   });
 

@@ -173,6 +173,10 @@
       }
     },
 
+    canAddInst() {
+      return this.data && typeof this.data === 'object' && Object.keys(this.data).length;
+    },
+
     createInst(options) {
       return new PxMap.DataPopup(options);
     },
@@ -183,7 +187,7 @@
       if (lastOptions.title !== nextOptions.title) {
         updates.title = nextOptions.title;
       }
-      if (lastOptions.data !== nextOptions.data) {
+      if (lastOptions.dataHash !== nextOptions.dataHash) {
         updates.data = nextOptions.data;
       }
 
@@ -193,9 +197,11 @@
     },
 
     getInstOptions() {
+      let data = this._getValidData();
       return {
         title: this.title,
-        data: this._getValidData(),
+        data: data,
+        dataHash: JSON.stringify(data),
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     },
@@ -356,6 +362,11 @@
     }
 
     onAdd(map) {
+      // Don't open empty data popups
+      if (typeof this.settings.data !== 'object' || Object.keys(this.settings.data).length === 0) {
+        return;
+      }
+
       if (map.__addShadyScope) {
         // We need to monkey patch the node returned by `getPane().appendChild`
         // so we can ensure that we apply the right CSS scope if we are in
@@ -459,6 +470,10 @@
       Object.assign(this.settings, settings);
       const { title, data } = this.settings;
       const content = this._generatePopupContent(title, data);
+
+      if (this.isOpen() && Object.keys(data).length === 0) {
+        this._close();
+      }
 
       this.setContent(content);
       this.update();
