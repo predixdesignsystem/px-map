@@ -204,11 +204,13 @@
       const unspiderifyFn = this._handleClusterUnspiderify.bind(this);
       const markerTapFn = this._handleSingleMarkerTap.bind(this);
       const markerDoubleClickFn = this._handleSingleMarkerDoubleClick.bind(this);
+      const clusterTapFn = this._handleClusterTap.bind(this);
       this.bindEvents({
         'spiderfied' : spiderifyFn,
         'unspiderfied' : unspiderifyFn,
         'click' : markerTapFn,
-        'dblclick' : markerDoubleClickFn
+        'dblclick' : markerDoubleClickFn,
+        'clusterclick' : clusterTapFn
       });
 
       PxMapBehavior.LayerImpl.addInst.call(this, parent);
@@ -304,7 +306,7 @@
      * If any features are available, sends out the extend of their bounds.
      *
      *   * {Object} detail - Contains the event details
-     *   * {L.LatLng} detail.bounds - Custom Leaflet `LatLngBounds` bounds instance representing the total area covered by the features
+     *   * {L.LatLngBounds} detail.bounds - Custom Leaflet bounds instance representing the total area covered by the features
      *
      * @event px-map-marker-group-features-changed
      */
@@ -667,10 +669,33 @@
      * marker has a popup attribute, bind a show a popup.
      */
     _handleSingleMarkerTap(evt) {
-      if (!evt || !evt.layer || !evt.layer.featureProperties || !evt.layer.featureProperties['marker-popup']) return;
+      if (evt.layer && evt.layer.getLatLng() instanceof L.LatLng) {
+        const latLng = L.latLng(evt.layer.getLatLng());
+        const {lat, lng} = latLng;
+        const detail = {
+          latLng: latLng,
+          lat: lat,
+          lng: lng,
+          feature: evt.layer.featureProperties ? evt.layer.featureProperties : undefined
+        };
+        this.fire('px-map-marker-group-marker-tapped', detail);
+      }
 
-      this._bindAndOpenPopup(evt.layer);
+      if (evt.layer && evt.layer.featureProperties && evt.layer.featureProperties.hasOwnProperty('marker-popup')) {
+        this._bindAndOpenPopup(evt.layer);
+      }
     },
+    /**
+     * Fired when an individual marker (not a cluster) is tapped by the user.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number} detail.lat - Latitude of the marker
+     *   * {Number} detail.lng - Longitude of the marker
+     *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *   * {Object|undefined} detail.feature - Object containing the marker's GeoJSON source
+     *
+     * @event px-map-marker-group-marker-tapped
+     */
 
     _handleSingleMarkerDoubleClick(evt) {
       const latLng = L.latLng(evt.layer.getLatLng());
@@ -678,20 +703,45 @@
       const detail = {
         latLng: latLng,
         lat: lat,
-        lng: lng
+        lng: lng,
+        feature: evt.layer.featureProperties ? evt.layer.featureProperties : undefined
       };
       this.fire('px-map-marker-group-marker-double-clicked', detail);
     },
     /**
-     * Fired when an individual marker is double clicked by the user. Not fired when a marker cluster is double clicked.
+     * Fired when an individual marker (not a cluster) is double clicked by the user.
      * Note that this will only work on non-touch (e.g. desktop) devices. Touch (e.g. mobile) devices cannot respond to double click/tap events.
      *
      *   * {Object} detail - Contains the event details
      *   * {Number} detail.lat - Latitude of the marker
      *   * {Number} detail.lng - Longitude of the marker
      *   * {L.LatLng} detail.latLng - Custom Leaflet object containing the lat and lng
+     *   * {Object|undefined} detail.feature - Object containing the marker's GeoJSON source
      *
      * @event px-map-marker-group-marker-double-clicked
+     */
+
+    _handleClusterTap(evt) {
+      const latLngBounds = evt.layer.getBounds();
+      const markers = evt.layer.getAllChildMarkers();
+      const features = [];
+      for (let i=0; i<markers.length; i++) {
+        features.push(markers[i].featureProperties);
+      }
+      const detail = {
+        bounds: latLngBounds,
+        features: features
+      };
+      this.fire('px-map-marker-group-cluster-tapped', detail);
+    },
+    /**
+     * Fired when a cluster icon (not an individual marker) is tapped by the user.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {L.LatLngBounds} detail.bounds - Custom Leaflet bounds instance representing the total area covered by the features in this cluster
+     *   * {Array} detail.features - Array of features that are drawn as markers in this cluster
+     *
+     * @event px-map-marker-group-cluster-tapped
      */
 
     _bindAndOpenPopup(marker) {
