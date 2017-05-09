@@ -1,7 +1,15 @@
-v1.4.1
+v1.4.2
 ===================
 ## Other changes
 * Remove mapbox tile layer example. Please do not use this tile layer in production.
+
+v1.4.1
+===================
+## Bug fixes
+* Removes a stray debugger statement from `px-map-layer-geojson`
+
+## Other changes
+* Fix documentation data loading issue for `px-map-layer-gejson`
 
 v1.4.0
 ===================

@@ -1,6 +1,7 @@
 <!-- Common imports -->
 <link rel="import" href="../../polymer/polymer.html" />
 <link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+<link rel="import" href="../../iron-ajax/iron-ajax.html" />
 
 <!-- Common demo imports -->
 <link rel="import" href="../../px-demo/px-demo-header.html" />
@@ -37,12 +38,19 @@
     <!-- Props -->
     <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
+    <!-- Load GeoJSON from file -->
+    <iron-ajax url="px-map-layer-geojson-data.json" last-response="{{props.data.value}}" auto></iron-ajax>
+
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:600px;width:800px;display:flex">
         <px-map zoom="12" flex-to-size disable-touch-zoom lat="52.2352" lng="0.1127">
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-          <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "LineString","coordinates": [[0.11278152465820314,52.23526420307733],[0.113, 52.24]]}}]}' feature-style='{"color": "#3E87E8"}' show-feature-properties></px-map-layer-geojson>
+          <px-map-layer-geojson
+              data="{{props.data.value}}"
+              feature-style="{{props.featureStyle.value}}"
+              show-feature-properties="{{props.showFeatureProperties.value}}">
+          </px-map-layer-geojson>
         </px-map>
       </div>
     </px-demo-component>
@@ -129,20 +137,6 @@
         }
       },
 
-      //This is loading the exampleData.geojson file onto the vector layer by hooking into the components ready event.
-      ready: function() {
-        const client = new XMLHttpRequest();
-        client.open('GET', '/test/exampleData.geojson');
-        client.onreadystatechange = function() {
-          if (client.readyState > 3) {
-            if (client.status === 200) {
-              document.querySelector('px-map-layer-geojson').setAttribute('data', client.responseText);
-            }
-          }
-        };
-        client.send();
-      },
-
       /**
        * A reference for `this.props`. Read the documentation there.
        *
@@ -152,18 +146,20 @@
       demoProps: {
         data: {
           type: Object,
-          defaultValue: {"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "LineString","coordinates": [[0.11278152465820314,52.23526420307733],[0.113, 52.24]]}}]}
+          defaultValue: {},
+          inputType: 'code:JSON'
         },
 
         featureStyle:{
           type: String,
-          defaultValue: '{"color": "#3E87E8"}',
-          inputType: 'text'
+          defaultValue: {"color": "#3E87E8"},
+          inputType: 'code:JSON'
         },
 
         showFeatureProperties: {
           type: Boolean,
-          value: true
+          value: true,
+          inputType: 'toggle'
         },
 
         parentComponent: {

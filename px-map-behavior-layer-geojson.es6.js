@@ -305,7 +305,6 @@
      */
 
     _handleFeaturePopupClosed(evt) {
-      debugger;
       const detail = {};
       if (evt.target && evt.target.feature) {
         detail.feature = evt.target.feature;
