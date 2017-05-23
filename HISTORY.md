@@ -1,3 +1,10 @@
+v1.4.5
+===================
+## Other changes
+* Replace inuit-clearfix with px-clearfix-design
+* Update documentation for px-map-popup-info
+* Fix travis WCT version to v5.x.x
+
 v1.4.4
 ===================
 ## Bug fixes
