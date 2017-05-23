@@ -92,7 +92,9 @@
       /**
        * The URL for an image to be placed inside the popup. Use a small, square
        * thumbnail-style image (e.g. 75px by 75px). You may use any image type
-       * that you would put in an html <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">`<img>`</a> tag.
+       * that you would put in an html
+       * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+       * target="_blank">`<img>`</a> tag.
        *
        * @type {String}
        */
