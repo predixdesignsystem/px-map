@@ -101,11 +101,11 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   */
 :host {
   --internal-px-map-icon-unknown-color: $px-map-icon-unknown-color;
-  --internal-px-map-icon-info-color: $px-map-icon-info-color;
+  --internal-px-map-icon-info-color: #1479C9;
   --internal-px-map-icon-warning-color: $px-map-icon-warning-color;
   --internal-px-map-icon-important-color: $px-map-icon-important-color;
   --internal-px-map-icon-border-color: $px-map-icon-border-color;
-  --internal-px-map-icon-symbol-color: $px-map-icon-symbol-color;
+  --internal-px-map-icon-symbol-color: #E2E8ED;
 
   --internal-px-map-marker-group-cluster-polygon-stroke-color: $px-map-marker-group-cluster-polygon-stroke-color;
   --internal-px-map-marker-group-cluster-polygon-fill-color: $px-map-marker-group-cluster-polygon-fill-color;

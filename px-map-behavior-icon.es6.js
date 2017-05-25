@@ -73,17 +73,14 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', symbol='fa fa-bolt', styleScope } = settings;
+      let { type='info', iconClassName, iconName, iconSvg, styleScope } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
+      const iconHTML = this._generateIconHTML(iconClassName, iconName, iconSvg);
 
       // Symbol options
       const html = `
         <div class="map-icon-symbol__wrapper">
-          <i class="map-icon-symbol__body">
-            <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-              <i class="map-icon-symbol__symbol ${symbol}"></i>
-            </div>
-          </i>
+          ${iconHTML}
           <i class="map-icon-symbol__descender"></i>
           <i class="map-icon-symbol__badge"></i>
         </div>
@@ -113,6 +110,49 @@
         classes.push(styleScope);
       }
       return classes.join(' ');
+    }
+
+    _generateIconHTML(symbolClassName, iconName, iconSvg) {
+      if (typeof iconSvg === 'string' && iconSvg.length) {
+        return `
+          <div class="map-icon-symbol__body">
+            ${iconSvg}
+          </div>
+        `;
+      }
+      if (typeof iconName === 'string' && iconName.length) {
+        let iconNode = this._getSVGForIcon(iconName);
+        let iconHTML = this._asHTMLString(iconNode) || '';
+        return `
+          <div class="map-icon-symbol__body">
+            <div class="map-icon-symbol__symbol__container map-icon-symbol__symbol__container--svg flex flex--middle flex--center">
+              ${iconHTML}
+            </div>
+          </div>
+        `;
+      }
+      if (typeof symbolClassName === 'string' && symbolClassName.length) {
+        return `
+          <div class="map-icon-symbol__body">
+            <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+              <i class="map-icon-symbol__symbol ${symbolClassName}"></i>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    _getSVGForIcon(iconName) {
+      const [_iconSetName, _iconName] = iconName.split(':');
+      const iconDb = this._iconDb || Polymer.Base.create('iron-meta', {type:'iconset'});
+      const iconSet = iconDb.byKey(_iconSetName);
+      if (!iconSet) return;
+      return iconSet._cloneIcon(_iconName, false);
+    }
+
+    _asHTMLString(node) {
+      if (typeof node === 'string') return node;
+      if (node instanceof SVGElement) return node.outerHTML;
     }
   };
   /* Bind SymbolIcon klass */

@@ -32,7 +32,8 @@
     "px-theme": "^2.0.3",
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.3",
-    "leaflet-bing-tiles": "^1.0.0"
+    "leaflet-bing-tiles": "^1.0.0",
+    "px-polymer-font-awesome": "^2.0.0"
   },
   "devDependencies": {
     "px-clearfix-design": "^0.1.19",

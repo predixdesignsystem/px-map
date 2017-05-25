@@ -308,6 +308,36 @@
       symbolClass: {
         type: String,
         observer: '_updateMarkerIcon'
+      },
+
+      /**
+       * The name of the icon to use for the marker. This icon should registered
+       * on the page with an `iron-iconset` or `iron-iconset-svg`.
+       *
+       * For example, this would set the marker's symbol to an aircraft icon from
+       * the `px-icon-set`:
+       *
+       *     'px:aircraft'
+       *
+       * Using the `icon` attribute to set the marker's symbol will override
+       * the `symbolClass` attribute.
+       */
+      icon: {
+        type: String,
+        observer: '_updateMarkerIcon'
+      },
+
+      /**
+       * A raw, stringified `<svg>` HTML element that will be placed inside
+       * the marker. The SVG should be square and will automatically be scaled
+       * to fit in the center of the marker.
+       *
+       * Using the `iconSvg` attribute to set the marker's symbol will override
+       * the `iconSvg` and `symbolClass` attributes.
+       */
+      iconSvg: {
+        type: String,
+        observer: '_updateMarkerIcon'
       }
     },
 
@@ -344,7 +374,9 @@
     _getMarkerIconOptions() {
       return {
         type: this.type,
-        symbol: this.symbolClass,
+        iconClassName: this.symbolClass,
+        iconName: this.icon,
+        iconSvg: this.iconSvg,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
