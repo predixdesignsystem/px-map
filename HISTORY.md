@@ -1,3 +1,8 @@
+v1.4.6
+===================
+## Other changes
+* Fixes a property documentation typo
+
 v1.4.5
 ===================
 ## Other changes

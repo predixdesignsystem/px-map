@@ -52,7 +52,7 @@
        * - {String} `dashArray`: [default=null] Defines the stroke [dash pattern](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dasharray)
        * - {String} `dashOffset`: [default=null] Defines the [distance into the dash to start the dash](https://developer.mozilla.org/docs/Web/SVG/Attribute/stroke-dashoffset)
        *
-       * Note that styles can also0 be added to each feature individually (see
+       * Note that styles can also be added to each feature individually (see
        * the `data` attribute documentation). Styles defined on each feature will
        * override the `featureStyle`.
        *
