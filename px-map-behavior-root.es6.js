@@ -414,6 +414,19 @@
       },
 
       /**
+       * Set to disable the attribution control prefix
+       *
+       * This property is not dynamic and can only be set once when the map is
+       * first initialized.
+       *
+       * @type {Boolean}
+       */
+      disableAttributionPrefix: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
        * Uses flexbox to set the size of the map. Set the parent container
        * to use `display: flex;` in your CSS and the map will automatically
        * fill the container's available height and width.
@@ -454,6 +467,11 @@
     createInst(options) {
       const mapEl = Polymer.dom(this.root).querySelector('#map');
       const mapInst = L.map(mapEl, options);
+
+      if (options.disableAttributionPrefx) {
+        mapInst.attributionControl.options.prefix = false;
+      }
+
       if (this.isShadyScoped()) {
         mapInst.__addShadyScope = this.scopeSubtree.bind(this);
       }
@@ -506,6 +524,7 @@
       options.scrollWheelZoom = !this.disableScrollZoom;
       options.touchZoom = !this.disableTouchZoom;
       options.attributionControl = !this.disableAttribution;
+      options.disableAttributionPrefx = this.disableAttributionPrefix;
 
       return options;
     },
