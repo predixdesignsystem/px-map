@@ -414,16 +414,14 @@
       },
 
       /**
-       * Set to disable the attribution control prefix
+       * The HTML text shown before the attributions.
        *
-       * This property is not dynamic and can only be set once when the map is
-       * first initialized.
-       *
-       * @type {Boolean}
+       * @type {String}
        */
-      disableAttributionPrefix: {
-        type: Boolean,
-        value: false
+      attributionPrefix: {
+        type: String,
+        value: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>',
+        observer: 'shouldUpdateInst'
       },
 
       /**
@@ -468,9 +466,7 @@
       const mapEl = Polymer.dom(this.root).querySelector('#map');
       const mapInst = L.map(mapEl, options);
 
-      if (options.disableAttributionPrefx) {
-        mapInst.attributionControl.options.prefix = false;
-      }
+      mapInst.attributionControl.setPrefix(options.attributionPrefix);
 
       if (this.isShadyScoped()) {
         mapInst.__addShadyScope = this.scopeSubtree.bind(this);
@@ -524,7 +520,7 @@
       options.scrollWheelZoom = !this.disableScrollZoom;
       options.touchZoom = !this.disableTouchZoom;
       options.attributionControl = !this.disableAttribution;
-      options.disableAttributionPrefx = this.disableAttributionPrefix;
+      options.attributionPrefix = this.attributionPrefix;
 
       return options;
     },
@@ -566,6 +562,10 @@
       }
       if (lastOptions.touchZoom && !nextOptions.touchZoom) {
         this.elementInst.touchZoom.disable();
+      }
+
+      if (lastOptions.attributionPrefix !== nextOptions.attributionPrefix) {
+        this.elementInst.attributionControl.setPrefix(nextOptions.attributionPrefix);
       }
     },
 
