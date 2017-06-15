@@ -52,6 +52,11 @@ function runCustomTests() {
 
       expect(mapEl.canAddInst()).to.be.true;
     });
+
+    it('sets its default attribution prefix to the Leaflet prefix', function() {
+      var attributionNode = Polymer.dom(mapEl.root).querySelector('.leaflet-control-attribution');
+      expect(attributionNode.textContent).to.equal('Leaflet');
+    });
   });
 
   describe('Setting the geometry properties on px-map', function() {
@@ -170,6 +175,12 @@ function runCustomTests() {
       expect(error).to.be.undefined;
     });
 
+    it('updates its attribution predix when `attributionPredix` is changed', function() {
+      var attributionNode = Polymer.dom(mapEl.root).querySelector('.leaflet-control-attribution');
+      mapEl.attributionPrefix = '<a href="#">New Attribution</a>';
+
+      expect(attributionNode.textContent).to.equal('New Attribution');
+    });
   });
 
   describe('px-map with fit-to-markers enabled', function() {

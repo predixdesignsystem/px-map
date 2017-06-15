@@ -414,7 +414,12 @@
       },
 
       /**
-       * The HTML text shown before the attributions.
+       * Stringified HTML that will be used as the first item in your attribution
+       * list. Pass an <a> tag with a link to more information about your
+       * attribution source. Example: '<a href="https://example.com">Example</a>'
+       *
+       * Defaults to a link to the Leaflet.js library. If an empty string is
+       * passed ("") the prefix will be hidden.
        *
        * @type {String}
        */
