@@ -122,7 +122,9 @@
     },
 
     createInst(options) {
-      let geojsonLayer = L.geoJson(options.data, {
+      const styleAttributeProperties = this.getInstOptions().featureStyle;
+
+      const geojsonLayer = L.geoJson(options.data, {
         pointToLayer: (feature, latlng) => {
           const featureProperties = feature.properties.style || {};
           const attributeProperties = options.featureStyle;
@@ -138,9 +140,8 @@
 
         style: (feature) => {
           const featureProperties = feature.properties.style || {};
-          const attributeProperties = this.getInstOptions().featureStyle;
 
-          return this._getStyle(featureProperties, attributeProperties);
+          return this._getStyle(featureProperties, styleAttributeProperties);
         }
       });
 
