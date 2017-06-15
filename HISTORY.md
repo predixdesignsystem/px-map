@@ -1,3 +1,15 @@
+v1.5.0
+===================
+## New features
+* Adds the `attributionPrefix` attribute to `px-map`. You can now customize the
+  attribution prefix (replace the 'Leaflet' link) or turn the prefix off altogether.
+  Thanks to William Chang of GE Energy Connections for this contribution.
+
+## Other changes
+* Speeds up style configuration lookups in `px-map-layer-geojson` by memoizing
+  them at creation time and updating them when needed. Thanks to Dave Fox of
+  GE Energy Connections for this contribution.
+
 v1.4.6
 ===================
 ## Other changes
