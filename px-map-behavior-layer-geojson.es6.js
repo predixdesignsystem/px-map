@@ -205,7 +205,14 @@
         this.elementInst.clearLayers();
       }
       else if (Object.keys(nextOptions.data).length && (lastOptions.dataHash !== nextOptions.dataHash || lastOptions.featureStyleHash !== nextOptions.featureStyleHash)) {
+        const styleAttributeProperties = this.getInstOptions().featureStyle;
+
         this.elementInst.clearLayers();
+        this.elementInst.options.style = (feature) => {
+          const featureProperties = feature.properties.style || {};
+          return this._getStyle(featureProperties, styleAttributeProperties);
+        };
+
         this.elementInst.addData(nextOptions.data);
         if (nextOptions.showFeatureProperties) {
           this._bindFeaturePopups();
