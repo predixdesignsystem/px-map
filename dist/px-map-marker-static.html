@@ -48,6 +48,18 @@ You can place multiple markers on a px-map or within a px-map-layer-group:
       <px-map-marker-static lat="37.9654861" lng="-122.9706668" type="info"></px-map-marker-static>
     </px-map>
 
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default value
+----------------|-------------|--------------
+`--px-map-icon-unknown-color` | Marker color for 'unknown' type markers | $dv-light-gray
+`--px-map-icon-info-color` | Marker color for 'info' type markers | $primary-blue
+`--px-map-icon-warning-color` | Marker color for 'warning' type markers | $alert-orange
+`--px-map-icon-important-color` | Marker color for 'important' type markers | $alert-red
+`--px-map-icon-border-color` | Border color for map markers | $white
+`--px-map-icon-symbol-color` | Symbol color for map markers | $white
+
 @element px-map-marker-static
 @blurb Creates a static marker that can be attached to the map.
 @homepage index.html

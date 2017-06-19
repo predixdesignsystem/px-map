@@ -1,3 +1,7 @@
+v1.5.1
+===================
+* Document CSS variables (#91)
+
 v1.5.0
 ===================
 ## New features

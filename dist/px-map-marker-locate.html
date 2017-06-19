@@ -45,6 +45,16 @@ find and set the latitude and longitude of the marker to the user's current loca
       <px-map-marker-locate lat="{{location.lat}}" lng="{{location.lng}}" accuracy="{{location.accuracy}}"></px-map-marker-locate>
     </px-map>
 
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description | Default value
+----------------|-------------|--------------
+`--px-map-marker-locate-icon-color` | Color for the locate icon | $primary-blue
+`--px-map-marker-locate-icon-border-color` | Border color for the locate icon | $white
+`--px-map-marker-locate-icon-accuracy-color` | Color for the location accuracy ring | $black
+`--px-map-marker-locate-icon-accuracy-opacity` | Opacity for the location accuracy ring | 0.3
+
 @element px-map-marker-locate
 @blurb Creates a geolocation marker that can be attached to the map to show the user's current location
 @homepage index.html
