@@ -21,17 +21,13 @@
 // ...
 
 // Generic
-@import "px-normalize-design/_generic.normalize.scss";
+@import "px-normalize-design/_generic.normalize-mini.scss";
 @import "px-box-sizing-design/_generic.box-sizing.scss";
 @import "px-helpers-design/_generic.helpers.scss";
 
 // Base
-@import "px-typography-design/_base.typography.scss";
-@import "px-flexbox-design/_base.flexbox.scss";
-@import "px-viewport-design/_base.viewport.scss";
 
 // Meta
-@import "px-meta-buttons-design/_meta.buttons.scss";
 
 // Objects
 // ...
@@ -444,6 +440,3 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 
 
 // Trumps
-@import "px-clearfix-design/_trumps.clearfix.scss";
-@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
-@import "px-widths-responsive-design/_trumps.widths-responsive.scss";

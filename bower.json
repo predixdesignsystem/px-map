@@ -27,21 +27,19 @@
   ],
   "dependencies": {
     "app-localize-behavior": "^0.10.1",
-    "polymer": "^1.7.1",
+    "polymer": "^1.9.0",
     "px-d3-imports": "^1.0.0",
-    "px-theme": "^2.0.3",
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.3",
     "leaflet-bing-tiles": "^1.0.0"
   },
   "devDependencies": {
-    "px-clearfix-design": "^0.1.19",
-    "px-meta-buttons-design": "^0.6.2",
-    "px-layout-design": "^0.4.3",
-    "px-starter-kit-design": "^0.7.3",
-    "px-demo": "^1.4.5",
-    "px-typography-design": "^1.2.3",
+    "px-colors-design": "^1.0.0",
+    "px-normalize-design": "^1.0.0",
+    "px-box-sizing-design": "^1.0.0",
     "iron-ajax": "^1.4.3",
-    "px-code-editor": "^1.1.1"
+    "px-code-editor": "^2.0.0",
+    "px-theme": "^3.0.0",
+    "px-demo": "^2.0.0"
   }
 }
