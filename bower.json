@@ -43,5 +43,8 @@
     "px-typography-design": "^1.2.3",
     "iron-ajax": "^1.4.3",
     "px-code-editor": "^1.1.1"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.24"
   }
 }
