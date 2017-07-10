@@ -26,7 +26,7 @@
     ".editorconfig"
   ],
   "dependencies": {
-    "app-localize-behavior": "^0.10.1",
+    "app-localize-behavior": "^2.0.0",
     "polymer": "^1.7.1",
     "px-d3-imports": "^1.0.0",
     "px-theme": "^2.0.3",
