@@ -308,6 +308,20 @@
       symbolClass: {
         type: String,
         observer: '_updateMarkerIcon'
+      },
+
+      /**
+       * An svg icon from px-icon-set that will be displayed in a map marker
+       *
+       * For example, this would set the marker's symbol to an airplane icon:
+       *
+       *     'px:px-aircraft'
+       *
+       * @type {String}
+       */
+      icon: {
+        type: String,
+        observer: '_updateMarkerIcon'
       }
     },
 
@@ -345,6 +359,7 @@
       return {
         type: this.type,
         symbol: this.symbolClass,
+        icon: this.icon,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }

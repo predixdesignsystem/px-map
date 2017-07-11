@@ -73,21 +73,34 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', symbol='fa fa-bolt', styleScope } = settings;
+      let { type='info', symbol='fa fa-bolt', icon='px:px-aircraft', styleScope } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
 
-      // Symbol options
+      // Icon options
       const html = `
         <div class="map-icon-symbol__wrapper">
           <i class="map-icon-symbol__body">
             <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-              <i class="map-icon-symbol__symbol ${symbol}"></i>
+              <iron-icon icon$="${icon}"></iron-icon>
             </div>
           </i>
           <i class="map-icon-symbol__descender"></i>
           <i class="map-icon-symbol__badge"></i>
         </div>
       `;
+
+      // // Symbol options
+      // const html = `
+      //   <div class="map-icon-symbol__wrapper">
+      //     <i class="map-icon-symbol__body">
+      //       <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+      //         <i class="map-icon-symbol__symbol ${symbol}"></i>
+      //       </div>
+      //     </i>
+      //     <i class="map-icon-symbol__descender"></i>
+      //     <i class="map-icon-symbol__badge"></i>
+      //   </div>
+      // `;
       const iconSize = L.point(39,47);
       const iconAnchor = L.point(14.6, 46);
       const popupAnchor = L.point(1,-45);
