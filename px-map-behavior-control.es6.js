@@ -81,7 +81,16 @@
        */
       zoomInText: {
         type: String,
-        value: '<i class="fa fa-plus"></i>'
+        value: '<svg height="40" width="40"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red"/></svg>'
+      },
+      /**
+       * Sets the icon for the 'Zoom in' button.
+       *
+       * @type {String}
+       */
+      icon: {
+        type: String,
+        value: '<iron-icon icon="px:px-aircraft"></iron-icon>'
       },
 
       /**
@@ -156,6 +165,7 @@
       options.position = this.position;
       options.zoomInText = this.zoomInText;
       options.zoomOutText = this.zoomOutText;
+      // options.icon = this.icon;
 
       // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
       // cause the zoom control not to draw. Check if this.localize exists
