@@ -16,8 +16,8 @@
 // ICON BODY
 .map-icon-symbol__body {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: var(--internal-px-map-icon-info-color);
   border-radius: 100%;
   position: absolute;
@@ -33,8 +33,8 @@
   border-width: 11px 4px 0;
   border-color: var(--internal-px-map-icon-info-color) transparent transparent transparent;
   position: absolute;
-  left: 11px;
-  top: 27px;
+  left: 17px;
+  top: 37px;
 
   &:after {
     content: '';
