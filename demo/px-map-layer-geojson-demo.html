@@ -44,7 +44,12 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:600px;width:800px;display:flex">
-        <px-map zoom="12" flex-to-size disable-touch-zoom lat="52.2352" lng="0.1127">
+        <px-map zoom="12"
+                flex-to-size
+                disable-touch-zoom
+                lat="52.2352"
+                lng="0.1127"
+                attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-layer-geojson
               data="{{props.data.value}}"

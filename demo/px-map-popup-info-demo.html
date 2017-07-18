@@ -41,7 +41,12 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom>
+        <px-map
+          flex-to-size
+          fit-to-markers
+          disable-scroll-zoom
+          disable-touch-zoom
+          attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-marker-static lat="42.3518414" lng="-71.0500149" type="info">
             <px-map-popup-info title="{{props.title.value}}" description="{{props.description.value}}"></px-map-popup-info>
