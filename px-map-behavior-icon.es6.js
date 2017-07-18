@@ -73,24 +73,15 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', symbol='fa fa-bolt', icon='pxl:wind-turbine', styleScope, stroke='currentColor' } = settings;
+      let { type='info', icon='pxl:wind-turbine', styleScope, stroke='currentColor' } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
-
-      let symbolIcon;
-
-      if (icon != null && icon != '') {
-        symbolIcon = `<px-icon icon="${icon}" style="stroke:${stroke}; width:100%; height:100%; padding:3px;"></px-icon>`
-      }
-      else {
-        symbolIcon = `<i class="map-icon-symbol__symbol ${symbol}"></i>`
-      }
 
       // Icon/Symbol options
       const html = `
       <div class="map-icon-symbol__wrapper">
         <i class="map-icon-symbol__body">
           <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-            ${symbolIcon}
+            <px-icon icon="${icon}" style="stroke:${stroke}; width:100%; height:100%; padding:3px;"></px-icon>
           </div>
         </i>
         <i class="map-icon-symbol__descender"></i>
