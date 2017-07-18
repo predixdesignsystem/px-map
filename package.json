@@ -2,7 +2,7 @@
     "name": "px-map",
     "author": "General Electric",
     "description": "A lightweight framework for building interactive maps with web components",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "private": false,
     "extName": null,
     "repository": {

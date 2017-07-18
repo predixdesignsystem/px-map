@@ -1,3 +1,8 @@
+v1.5.2
+===================
+* Document choices for production tile services, add specific info on restrictions
+  of OpenStreetMap tile service.
+
 v1.5.1
 ===================
 * Document CSS variables (#91)
