@@ -47,7 +47,7 @@
             lat="{{props.lat.value}}"
             lng="{{props.lng.value}}"
             type="{{props.type.value}}"
-            symbol-class={{props.symbolClass.value}}>
+            icon={{props.icon.value}}>
         </px-map-marker-symbol>
         </px-map>
       </div>
@@ -165,9 +165,9 @@
           inputChoices: ['important', 'warning', 'info', 'unknown']
         },
 
-        symbolClass: {
+        icon: {
           type: String,
-          defaultValue: 'fa fa-briefcase',
+          defaultValue: 'px-obj:wind-turbine',
           inputType: 'text'
         },
 

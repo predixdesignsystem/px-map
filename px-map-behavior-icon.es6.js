@@ -73,7 +73,7 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', icon='pxl:wind-turbine', styleScope, stroke='currentColor' } = settings;
+      let { type='info', icon='px-obj:wind-turbine', styleScope, stroke='currentColor' } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
 
       // Icon/Symbol options
@@ -81,7 +81,7 @@
       <div class="map-icon-symbol__wrapper">
         <i class="map-icon-symbol__body">
           <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-            <px-icon icon="${icon}" style="stroke:${stroke}; width:100%; height:100%; padding:3px;"></px-icon>
+            <px-icon icon="${icon}" style="stroke:${stroke}; width:50%; height:50%; stroke-width:2px;"></px-icon>
           </div>
         </i>
         <i class="map-icon-symbol__descender"></i>

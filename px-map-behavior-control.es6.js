@@ -81,7 +81,7 @@
        */
       zoomInIcon: {
         type: String,
-        value: '<px-icon icon="pxl:alerts"></px-icon>'
+        value: '<px-icon icon="px-utl:add"></px-icon>'
       },
 
       /**
@@ -92,7 +92,7 @@
        */
       zoomOutIcon: {
         type: String,
-        value: '<px-icon icon="pxl:chat"></px-icon>'
+        value: '<px-icon icon="px-utl:chevron"></px-icon>'
       },
 
       /**
@@ -269,9 +269,9 @@
        *
        * @type {String}
        */
-      locateText: {
+      locateIcon: {
         type: String,
-        value: '<px-icon icon="pxl:phone"></px-icon>',
+        value: '<px-icon icon="px-utl:location"></px-icon>',
         observer: 'shouldUpdateInst'
       },
 
@@ -365,7 +365,7 @@
     getInstOptions() {
       return {
         position: this.position,
-        locateText: this.locateText,
+        locateIcon: this.locateIcon,
         locateTitle: this.locateTitle,
         moveToLocation: this.moveToLocation,
         moveMaxZoom: this.moveMaxZoom
@@ -606,7 +606,7 @@
       const defaultOptions = {
         position: 'bottomright',
         className: '',
-        locateText: '<px-icon icon="pxl:email"></px-icon>',
+        locateIcon: '<px-icon icon="px-utl:location"></px-icon>',
         locateTitle: 'Zoom to your location',
         locateTimeout: 10000,
         moveToLocation: true,
@@ -619,7 +619,7 @@
     onAdd(map) {
       const locateName = 'leaflet-control-locate';
       this.__container = L.DomUtil.create('div', `${locateName} leaflet-bar ${this.options.className}`);
-      this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
+      this.__locateButton = this._createButton(this.options.locateIcon, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
 
       /* Bind map events */
       L.DomEvent.on(map, 'locationfound', this._locationFound, this);
@@ -742,7 +742,7 @@
     _setReadyState() {
       if (!this.__locateButton || this.__locating) return;
 
-      this.__locateButton.innerHTML = this.options.locateText;
+      this.__locateButton.innerHTML = this.options.locateIcon;
       L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
       L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
 
