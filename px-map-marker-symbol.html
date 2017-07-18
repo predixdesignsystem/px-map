@@ -69,6 +69,11 @@ Custom property | Description | Default value
 
 <dom-module id="px-map-marker-symbol">
   <template>
+    <style>
+      :host {
+        --iron-icon-stroke-color: var(--px-map-marker-symbol-stroke, white);
+      }
+    </style>
     <content select="*"></content>
   </template>
 </dom-module>

@@ -73,34 +73,31 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', symbol='fa fa-bolt', icon='px:px-aircraft', styleScope } = settings;
+      let { type='info', symbol='fa fa-bolt', icon='pxl:wind-turbine', styleScope, stroke='currentColor' } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
 
-      // Icon options
+      let symbolIcon;
+
+      if (icon != null && icon != '') {
+        symbolIcon = `<px-icon icon="${icon}" style="stroke:${stroke}; width:100%; height:100%; padding:3px;"></px-icon>`
+      }
+      else {
+        symbolIcon = `<i class="map-icon-symbol__symbol ${symbol}"></i>`
+      }
+
+      // Icon/Symbol options
       const html = `
-        <div class="map-icon-symbol__wrapper">
-          <i class="map-icon-symbol__body">
-            <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-              <iron-icon icon$="${icon}"></iron-icon>
-            </div>
-          </i>
-          <i class="map-icon-symbol__descender"></i>
-          <i class="map-icon-symbol__badge"></i>
-        </div>
+      <div class="map-icon-symbol__wrapper">
+        <i class="map-icon-symbol__body">
+          <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+            ${symbolIcon}
+          </div>
+        </i>
+        <i class="map-icon-symbol__descender"></i>
+        <i class="map-icon-symbol__badge"></i>
+      </div>
       `;
 
-      // // Symbol options
-      // const html = `
-      //   <div class="map-icon-symbol__wrapper">
-      //     <i class="map-icon-symbol__body">
-      //       <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-      //         <i class="map-icon-symbol__symbol ${symbol}"></i>
-      //       </div>
-      //     </i>
-      //     <i class="map-icon-symbol__descender"></i>
-      //     <i class="map-icon-symbol__badge"></i>
-      //   </div>
-      // `;
       const iconSize = L.point(39,47);
       const iconAnchor = L.point(14.6, 46);
       const popupAnchor = L.point(1,-45);

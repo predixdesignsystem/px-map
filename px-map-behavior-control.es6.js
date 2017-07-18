@@ -79,18 +79,9 @@
        *
        * @type {String}
        */
-      zoomInText: {
+      zoomInIcon: {
         type: String,
-        value: '<svg height="40" width="40"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red"/></svg>'
-      },
-      /**
-       * Sets the icon for the 'Zoom in' button.
-       *
-       * @type {String}
-       */
-      icon: {
-        type: String,
-        value: '<iron-icon icon="px:px-aircraft"></iron-icon>'
+        value: '<px-icon icon="pxl:alerts"></px-icon>'
       },
 
       /**
@@ -99,9 +90,9 @@
        *
        * @type {String}
        */
-      zoomOutText: {
+      zoomOutIcon: {
         type: String,
-        value: '<i class="fa fa-minus"></i>'
+        value: '<px-icon icon="pxl:chat"></px-icon>'
       },
 
       /**
@@ -163,9 +154,9 @@
       const options = PxMapBehavior.ControlImpl.getInstOptions.call(this);
 
       options.position = this.position;
-      options.zoomInText = this.zoomInText;
-      options.zoomOutText = this.zoomOutText;
-      // options.icon = this.icon;
+
+      options.zoomInText = this.zoomInIcon;
+      options.zoomOutText = this.zoomOutIcon;
 
       // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
       // cause the zoom control not to draw. Check if this.localize exists
@@ -280,7 +271,7 @@
        */
       locateText: {
         type: String,
-        value: '<i class="fa fa-crosshairs"></i>',
+        value: '<px-icon icon="pxl:phone"></px-icon>',
         observer: 'shouldUpdateInst'
       },
 
@@ -615,7 +606,7 @@
       const defaultOptions = {
         position: 'bottomright',
         className: '',
-        locateText: '<i class="fa fa-crosshairs"></i>',
+        locateText: '<px-icon icon="pxl:email"></px-icon>',
         locateTitle: 'Zoom to your location',
         locateTimeout: 10000,
         moveToLocation: true,

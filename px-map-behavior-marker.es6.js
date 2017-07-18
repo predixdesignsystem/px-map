@@ -360,7 +360,8 @@
         type: this.type,
         symbol: this.symbolClass,
         icon: this.icon,
-        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined,
+        stroke: this.getComputedStyleValue("--iron-icon-stroke-color")
       };
     }
   };
