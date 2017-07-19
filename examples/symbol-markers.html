@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Map With Markers</title>
+
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../polymer/polymer-mini.html" />
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html" />
+  <link rel="import" href="../px-map-tile-layer.html" />
+  <link rel="import" href="../px-map-control-zoom.html" />
+  <link rel="import" href="../px-map-layer-group.html" />
+  <link rel="import" href="../px-map-marker-static.html" />
+  <link rel="import" href="../px-map-marker-symbol.html" />
+  <link rel="import" href="../px-map-popup-info.html" />
+  <link rel="import" href="../px-map-popup-data.html" />
+
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+
+  <link rel="import" href="../../iron-icons/maps-icons.html" />
+</head>
+
+<style is="custom-style">
+  /*:root {
+    --px-map-marker-symbol-fill: salmon;
+  }*/
+  body {
+    margin: 0;
+  }
+  .wrap {
+    display: flex;
+    width: 90vw;
+    height: 90vh;
+    margin: 5vh 5vw;
+  }
+  .google-icon{
+    --px-map-marker-symbol-stroke:none;
+    --px-map-marker-symbol-fill:white;
+
+  }
+</style>
+<body>
+  <section class="wrap">
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+
+      <px-map-layer-group name="BART Stations">
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="important" icon="maps:directions-bike" class="google-icon">
+          <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="38.0035" lng="-122.0247" type="info" icon="maps:subway" class="google-icon">
+          <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.9741" lng="-122.0282" type="warning" icon="maps:terrain" class="google-icon">
+          <px-map-popup-data title="BART: Concord" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.9269" lng="-122.0559" type="unknown" icon="maps:local-cafe" class="google-icon">
+          <px-map-popup-data title="BART: Pleasant Hill" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.9049" lng="-122.0671" type="unknown" icon="px-obj:airport">
+          <px-map-popup-data title="BART: Walnut Creek" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.8936" lng="-122.1259" type="info" icon="px-obj:airplane-engine">
+          <px-map-popup-data title="BART: Lafayette" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.8785" lng="-122.1833" type="warning" icon="px-obj:edge-box">
+          <px-map-popup-data title="BART: Orinda" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.8446" lng="-122.2516" type="important" icon="px-obj:truck">
+          <px-map-popup-data title="BART: Rockridge" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.8294" lng="-122.2660" type="info" icon="px-obj:manufacturing-line">
+          <px-map-popup-data title="BART: MacArthur" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+      </px-map-layer-group>
+    </px-map>
+  </section>
+</body>
+</html>

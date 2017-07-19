@@ -361,7 +361,10 @@
         symbol: this.symbolClass,
         icon: this.icon,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined,
-        stroke: this.getComputedStyleValue("--iron-icon-stroke-color")
+        stroke: this.getComputedStyleValue("--iron-icon-stroke-color"),
+        strokeWidth: this.getComputedStyleValue("--iron-icon-stroke-width"),
+        fill: this.getComputedStyleValue("--iron-icon-fill-color")
+
       };
     }
   };
