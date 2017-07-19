@@ -89,9 +89,9 @@
       </div>
       `;
 
-      const iconSize = L.point(39,47);
-      const iconAnchor = L.point(14.6, 46);
-      const popupAnchor = L.point(1,-45);
+      const iconSize = L.point(40,56);
+      const iconAnchor = L.point(19.6, 57);
+      const popupAnchor = L.point(1,-58);
 
       // Define the `divIcon` options
       const options = {
