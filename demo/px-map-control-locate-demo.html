@@ -47,7 +47,6 @@
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-control-locate
             position="{{props.position.value}}"
-            locate-text="{{props.locateText.value}}"
             locate-title="{{props.locateTitle.value}}"
             move-max-zoom="{{props.moveMaxZoom.value}}"
             move-to-location="{{props.moveToLocation.value}}">
@@ -150,13 +149,6 @@
           defaultValue: 'bottomright',
           inputType: 'dropdown',
           inputChoices: ['topleft', 'topright', 'bottomleft', 'bottomright']
-        },
-
-        locateText: {
-          inputLabel: 'Button Icon',
-          type: String,
-          defaultValue: '<px-icon icon="px-fea:microservice"></px-icon>',
-          inputType: 'text'
         },
 
         locateTitle: {

@@ -74,28 +74,6 @@
   PxMapBehavior.ZoomControlImpl = {
     properties: {
       /**
-       * Sets the icon for the 'Zoom in' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomInIcon: {
-        type: String,
-        value: '<px-icon icon="px-utl:add"></px-icon>'
-      },
-
-      /**
-       * Sets the icon for the 'Zoom out' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomOutIcon: {
-        type: String,
-        value: '<px-icon icon="px-utl:chevron"></px-icon>'
-      },
-
-      /**
        * A valid IETF language tag as a string that `app-localize-behavior` will
        * use to localize this component (see https://en.wikipedia.org/wiki/IETF_language_tag)
        * for a list of valid tags.
@@ -155,8 +133,8 @@
 
       options.position = this.position;
 
-      options.zoomInText = this.zoomInIcon;
-      options.zoomOutText = this.zoomOutIcon;
+      options.zoomInText = '<px-icon icon="px-utl:add"></px-icon>'
+      options.zoomOutText = '<px-icon icon="px-utl:chevron"></px-icon>'
 
       // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
       // cause the zoom control not to draw. Check if this.localize exists
@@ -265,17 +243,6 @@
   PxMapBehavior.LocateControlImpl = {
     properties: {
       /**
-       * A string of HTML that will set an icon to be used on the locate button.
-       *
-       * @type {String}
-       */
-      locateIcon: {
-        type: String,
-        value: '<px-icon icon="px-utl:location"></px-icon>',
-        observer: 'shouldUpdateInst'
-      },
-
-      /**
        * A title for the locate button. Will be used to inform users with
        * screen reading devices what the button does.
        *
@@ -365,7 +332,7 @@
     getInstOptions() {
       return {
         position: this.position,
-        locateIcon: this.locateIcon,
+        locateIcon: '<px-icon icon="px-utl:location"></px-icon>',
         locateTitle: this.locateTitle,
         moveToLocation: this.moveToLocation,
         moveMaxZoom: this.moveMaxZoom
