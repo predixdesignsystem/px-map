@@ -46,7 +46,6 @@ $px-map-icon-info-color:                            var(--px-map-icon-info-color
 $px-map-icon-warning-color:                         var(--px-map-icon-warning-color, orange);
 $px-map-icon-important-color:                       var(--px-map-icon-important-color, red);
 $px-map-icon-border-color:                          var(--px-map-icon-border-color, white);
-$px-map-icon-symbol-color:                          var(--px-map-icon-symbol-color, white);
 
 $px-map-marker-group-cluster-path-size:             var(--px-map-marker-group-cluster-path-size, 10px);
 $px-map-marker-group-cluster-font-size:             var(--px-map-marker-group-cluster-font-size, 15px);
@@ -105,7 +104,6 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   --internal-px-map-icon-warning-color: $px-map-icon-warning-color;
   --internal-px-map-icon-important-color: $px-map-icon-important-color;
   --internal-px-map-icon-border-color: $px-map-icon-border-color;
-  --internal-px-map-icon-symbol-color: $px-map-icon-symbol-color;
 
   --internal-px-map-marker-group-cluster-polygon-stroke-color: $px-map-marker-group-cluster-polygon-stroke-color;
   --internal-px-map-marker-group-cluster-polygon-fill-color: $px-map-marker-group-cluster-polygon-fill-color;

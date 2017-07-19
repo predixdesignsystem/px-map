@@ -294,28 +294,11 @@
       },
 
       /**
-       * A string of CSS class names that will be set on the `<i></i>` element
-       * in the marker to draw its symbol. Use a fontawesome icon class
-       * (http://fontawesome.io/) or load your own icon font and define your
-       * own class.
-       *
-       * For example, this would set the marker's symbol to a briefcase icon:
-       *
-       *     'fa fa-briefcase'
-       *
-       * @type {String}
-       */
-      symbolClass: {
-        type: String,
-        observer: '_updateMarkerIcon'
-      },
-
-      /**
        * An svg icon from px-icon-set that will be displayed in a map marker
        *
        * For example, this would set the marker's symbol to an airplane icon:
        *
-       *     'px:px-aircraft'
+       *     'px-obj:airplane'
        *
        * @type {String}
        */
