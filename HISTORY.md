@@ -1,3 +1,32 @@
+v2.0.0
+===================
+This is a major release and includes breaking changes.
+
+## Changes to existing APIs
+Updates all icons to take svg icons (e.g. px-icon, iron-icon) rather than an
+icon font (e.g. font-awesome).
+
+Components affected:
+
+* px-map-marker-symbol
+* px-map-marker-group
+* px-map-control-zoom
+* px-map-control-locate
+
+Changes:
+
+* The `symbolClass` attribute has been removed from `px-map-marker-symbol` and
+  replaced with the `icon` attribute. Replace all references to `symbolClass` in
+  your code with `icon`, and replace icon font icons with svg icons, either from
+  px-icon-set or from another svg icon set.
+* The `zoomInText` and `zoomOutText` attributes have been removed from
+  `px-map-control-zoom`. The zoom in and zoom out icons are no longer configurable.
+* The `locateText` attribute has been removed from `px-map-control-locate`. The
+  locate icon is no longer configurable.
+
+## Other changes
+* Updates colors and icons for the Predix Design System refresh.
+
 v1.5.1
 ===================
 * Document CSS variables (#91)
