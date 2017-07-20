@@ -13,8 +13,8 @@ This subcomponent places a marker on the map with an icon configurable by the us
 
 The marker can be used to show a point-of-interest or represent a physical asset.
 It can be configured to show an asset's state (through color) and updated
-when the asset's state changes. It can also be configured to show custom font
-awesome icons.
+when the asset's state changes. It can also be configured to show icons from
+px-icon-set or other svg icons (e.g. Google's iron-icon).
 
 Place a popup inside the `px-map-marker-symbol` to show data about the point
 to the user when they tap, hover over, or interact with the marker.
@@ -37,16 +37,36 @@ and automatically fit the marker in the view when the map is loaded:
 
     <px-map fit-to-markers>
       <px-map-layer-group name="Landmarks">
-        <px-map-marker-symbol lat="35.6654861" lng="139.7706668" symbol-class="fa fa-tint"></px-map-marker-symbol>
+        <px-map-marker-symbol lat="35.6654861" lng="139.7706668" icon="px-utl:camera"></px-map-marker-symbol>
       </px-map-layer-group>
     </px-map>
 
 You can place multiple markers on a px-map or within a px-map-layer-group:
 
     <px-map fit-to-markers>
-      <px-map-marker-symbol lat="37.7654861" lng="-122.8706668" symbol-class="fa fa-tint"></px-map-marker-symbol>
-      <px-map-marker-symbol lat="37.6654861" lng="-122.7706668" symbol-class="fa fa-briefcase"></px-map-marker-symbol>
-      <px-map-marker-symbol lat="37.9654861" lng="-122.9706668" symbol-class="fa fa-times"></px-map-marker-symbol>
+      <px-map-marker-symbol lat="37.7654861" lng="-122.8706668" icon="px-obj:airplane"></px-map-marker-symbol>
+      <px-map-marker-symbol lat="37.6654861" lng="-122.7706668" icon="px-obj:truck"></px-map-marker-symbol>
+      <px-map-marker-symbol lat="37.9654861" lng="-122.9706668" icon="px-obj:boiler"></px-map-marker-symbol>
+    </px-map>
+
+Use the `icon` attribute to add a custom icon to the marker. If nothing is
+specified for `icon`, the icon will default to a star (px-nav:favorite).
+
+    <px-map-marker-symbol lat="37.7654861" lng="-122.8706668" icon="px-obj:plant"></px-map-marker-symbol>
+
+Px-icons will work out of the box, but if you would like to style them or use an
+icon from an icon set other than px-icon-set, you can use the style variables
+listed in the Styling section below to set the icon's stroke color, stroke width,
+and fill color.
+
+    <style is="custom-style">
+      .custom-icon{
+      --px-map-marker-symbol-stroke:none;
+      --px-map-marker-symbol-fill:white;
+      }
+    </style>
+    <px-map fit-to-markers>
+      <px-map-marker-symbol lat="38" lng="-121" icon="maps:directions-bike" class="custom-icon">
     </px-map>
 
 ### Styling

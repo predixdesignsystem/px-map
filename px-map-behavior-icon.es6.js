@@ -73,7 +73,7 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', icon='px-obj:wind-turbine', styleScope, stroke='currentColor', fill='none', strokeWidth='2px'} = settings;
+      let { type='info', icon='px-nav:favorite', styleScope, stroke='currentColor', fill='none', strokeWidth='2px'} = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
 
       // Icon/Symbol options
