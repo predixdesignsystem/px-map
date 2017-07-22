@@ -332,7 +332,7 @@
     getInstOptions() {
       return {
         position: this.position,
-        locateIcon: '<px-icon icon="px-utl:location"></px-icon>',
+        locateIcon: '<px-icon icon="px-vis:crosshair"></px-icon>',
         locateTitle: this.locateTitle,
         moveToLocation: this.moveToLocation,
         moveMaxZoom: this.moveMaxZoom

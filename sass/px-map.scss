@@ -224,6 +224,10 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
 
   margin-bottom: $inuit-base-spacing-unit--tiny;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     background-color: $px-map-control-button-background-color--hover;
     color: $px-map-control-button-text-color--hover;
@@ -249,10 +253,7 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
     @extend %map-control-button;
     position: relative;
   }
-  a.leaflet-control-locate-button i {
-    position: relative;
-    top: 0.1rem;
-  }
+
   a.leaflet-control-locate-button {
     &.leaflet-control-locate-button--disabled {
       color: $px-map-control-button-text-color--disabled;
@@ -285,12 +286,6 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
     @extend %map-control-button--round;
     position: relative;
     border-radius: 100%;
-  }
-  a.leaflet-control-zoom-in i,
-  a.leaflet-control-zoom-out i {
-    position: relative;
-    left: -0.05rem;
-    top:.05rem;
   }
 }
 
