@@ -15,14 +15,23 @@ Components affected:
 
 Changes:
 
-* The `symbolClass` attribute has been removed from `px-map-marker-symbol` and
-  replaced with the `icon` attribute. Replace all references to `symbolClass` in
-  your code with `icon`, and replace icon font icons with svg icons, either from
-  px-icon-set or from another svg icon set.
-* The `zoomInText` and `zoomOutText` attributes have been removed from
-  `px-map-control-zoom`. The zoom in and zoom out icons are no longer configurable.
-* The `locateText` attribute has been removed from `px-map-control-locate`. The
-  locate icon is no longer configurable.
+* `px-map-marker-symbol`: The `symbol-class` attribute has been removed and
+  replaced with the `icon` attribute. Replace all references to `symbol-class`
+  and `symbolClass` in your code with `icon`. Replace icon font icons with svg
+  icons, either from px-icon-set or from another svg icon set.
+* `px-map-control-zoom`: The `zoom-in-text` and `zoom-out-text` attributes have
+  been removed. The zoom in and zoom out icons are no longer configurable.
+  Delete any references to these attributes in your code.
+* `px-map-control-locate`: The `locate-text` attribute has been removed. The
+  locate icon is no longer configurable. Delete any references to this attribute
+  in your code.
+
+See [px-icon-set](https://github.com/PredixDev/px-icon-set) to find new icons
+you can use to replace previous font-awesome icons.
+If you can't find the icons you need in px-icon-set, you can look at
+[iron-icons](https://www.webcomponents.org/element/PolymerElements/iron-icons).
+If you would like to define your own icons, look at
+[iron-iconset-svg](https://www.webcomponents.org/element/PolymerElements/iron-iconset-svg).
 
 ## Other changes
 * Updates colors and icons for the Predix Design System refresh.

@@ -1,0 +1,44 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../../polymer/polymer.html"/>
+
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-popup.html">
+
+<!--
+This subcomponent creates a popup that is displayed when a given marker is clicked
+by the user. The popup can contain a title and data table giving more information about
+the selected marker.
+
+The data should be provided as a JSON object consisting of a list of key-value pairs.
+
+### Usage
+
+    <px-map>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info">
+        <px-map-popup-data title="GE Digital" data='{ "Employees" : "2000", "Parking" : "Yes", "Snacks" : "Yes", "Gym" : "No" }'></px-map-popup-data>
+      </px-map-marker-static>
+    </px-map>
+
+@element px-map-popup-data
+@blurb ...
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map-popup-data">
+  <style>
+    :host { display: none }
+  </style>
+  <template></template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-map-popup-data',
+    behaviors: [PxMapBehavior.DataPopup]
+  });
+</script>

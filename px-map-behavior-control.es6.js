@@ -134,7 +134,7 @@
       options.position = this.position;
 
       options.zoomInText = '<px-icon icon="px-utl:add"></px-icon>'
-      options.zoomOutText = '<px-icon icon="px-utl:chevron"></px-icon>'
+      options.zoomOutText = '<px-icon icon="px-utl:remove"></px-icon>'
 
       // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
       // cause the zoom control not to draw. Check if this.localize exists

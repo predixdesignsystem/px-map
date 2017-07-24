@@ -1,0 +1,45 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../../polymer/polymer.html"/>
+
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-group.html">
+
+<!--
+This subcomponent allows the user to group related markers which can then be
+shown, hidden, or manipulated together.
+
+### Usage
+
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-layer-group name="Oakland Downtown BART Stations">
+        <px-map-marker-static lat="37.8079" lng="-122.2687"></px-map-marker-static>
+        <px-map-marker-static lat="37.8033" lng="-122.2719"></px-map-marker-static>
+        <px-map-marker-static lat="37.7970" lng="-122.2652"></px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
+
+@element px-map-layer-group
+@blurb ...
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map-layer-group">
+  <style>
+    :host { display: none }
+  </style>
+  <template>
+    <content select="*"></content>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-map-layer-group',
+    behaviors: [PxMapBehavior.LayerGroup]
+  });
+</script>

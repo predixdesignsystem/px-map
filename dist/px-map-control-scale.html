@@ -3,21 +3,25 @@
     siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
     'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
-<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../../polymer/polymer.html"/>
 
 <!-- Local dependencies -->
 <link rel="import" href="px-map-behavior-control.html">
 
 <!--
-The zoom control creates a set of buttons the user can tap to zoom in or out
-of the map.
+The scale control places a scale in the corner of the map in either imperial or
+metric units, or both.
 
 ### Usage
 
     <px-map>
       <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>
-      <px-map-control-zoom position="topright"></px-map-control-zoom>
+      <px-map-control-scale imperial-units position="bottomright"></px-map-control-scale>
     </px-map>
+
+You must specify at least one unit type for the scale or it will not be drawn.
+Set one or both of the `imperialUnits` or `metricUnits` attributes. Using
+both scales at the same time is supported.
 
 ### Ordering/stacking controls
 
@@ -37,32 +41,18 @@ control and a scale control:
 When the map draws, the zoom control will be on top of the scale control in the
 bottom right corner of the map.
 
-### Styling
-The following custom properties are available for styling:
-
-Custom property | Description
-:----------------|:-------------
-`--px-map-control-button-background-color` | Background color for the map control buttons
-`--px-map-control-button-text-color` | Text color for the map control buttons
-`--px-map-control-button-border-width` | Border width for the map control buttons
-`--px-map-control-button-border-color` | Border color for the map control buttons
-`--px-map-control-button-background-color--hover` | Background color for the map control buttons when hovered
-`--px-map-control-button-text-color--hover` | Text color for the map control buttons when hovered
-`--px-map-control-button-border-color--disabled` | Border color for the map control buttons when disabled
-`--px-map-control-button-text-color--disabled` | Text color for the map control buttons when disabled
-
-@element px-map-control-zoom
+@element px-map-control-scale
 @blurb ...
 @homepage index.html
 @demo index.html
 -->
 
-<dom-module id="px-map-control-zoom">
+<dom-module id="px-map-control-scale">
   <template></template>
 </dom-module>
 <script>
   Polymer({
-    is: 'px-map-control-zoom',
-    behaviors: [PxMapBehavior.ZoomControl]
+    is: 'px-map-control-scale',
+    behaviors: [PxMapBehavior.ScaleControl]
   });
 </script>
