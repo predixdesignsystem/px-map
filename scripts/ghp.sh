@@ -79,7 +79,7 @@ echo ${meta_temp/'COMPONENT_NAME'/$REPO_NAME} > index.html
 npm install bower -g
 bower cache clean
 # Install the repo and the dark-theme.
-bower install ${REPO_NAME} px-dark-theme px-dark-demo-theme
+bower install ${REPO_NAME} px-dark-theme px-dark-demo-theme --force-latest
 
 #copy the bower file into our root
 yes | cp ${REPO_NAME}/bower.json bower.json
@@ -92,7 +92,7 @@ bower install
 # ------------------------------------------------------------------------------
 
 # So, the leaflet repository installed through bower has a `docs/` directory
-# that apparentlty includes symlinks to things that don't exist. Or at least
+# that apparently includes symlinks to things that don't exist. Or at least
 # Github Pages thinks so, and fails to build the site because of it.
 # To allow us to build, we need to force remove the `leaflet/docs` directory.
 rm -rf leaflet/docs
@@ -123,8 +123,10 @@ rm -rf leaflet/docs
 # checkout a new orphan
 git checkout --orphan $TARGET_BRANCH
 
-git add -A .
-git commit -m "${GIT_COMMIT_MESSAGE}"
+git add -A . > /dev/null
+echo "git add done"
+git commit -m "${GIT_COMMIT_MESSAGE}" --quiet
+echo "git commit done"
 
 # Set git credentials (defined in settings above)
 git config user.name ${GIT_USER_NAME}
