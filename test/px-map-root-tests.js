@@ -57,6 +57,16 @@ function runCustomTests() {
       var attributionNode = Polymer.dom(mapEl.root).querySelector('.leaflet-control-attribution');
       expect(attributionNode.textContent).to.equal('Leaflet');
     });
+
+    it('does not throw an error when invalidateSize() method is called', function() {
+      var error;
+      try {
+        mapEl.invalidateSize();
+      } catch (err) {
+        error = err;
+      }
+      expect(error).to.be.undefined;
+    });
   });
 
   describe('Setting the geometry properties on px-map', function() {
