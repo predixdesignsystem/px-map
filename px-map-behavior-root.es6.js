@@ -575,8 +575,8 @@
     },
 
     /**
-     * Calls the Leaflet invalidateSize() method, which checks if the map container
-     * has changed size or visibility, and - if so - updates the map accordingly.
+     * Checks if the map container has changed size or visibility, and - if so -
+     * updates the map accordingly by refreshing the tile layer.
      */
     invalidateSize() {
       if (!this.elementInst) return;
