@@ -575,6 +575,16 @@
     },
 
     /**
+     * Calls the Leaflet invalidateSize() method, which checks if the map container
+     * has changed size or visibility, and - if so - updates the map accordingly.
+     */
+    invalidateSize() {
+      if (!this.elementInst) return;
+
+      this.elementInst.invalidateSize();
+    },
+
+    /**
      * Called when the `lat`, `lng`, or `zoom` properties are set or updated.
      * Sets the map view to the new values.
      */
