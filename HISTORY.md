@@ -1,3 +1,9 @@
+v1.5.3
+===================
+* Adds the `invalidateSize()` method to `px-map`, which can be used to check
+  whether the map container has changed size or visibility, and - if so - updates
+  the map accordingly by refreshing the tile layer.
+
 v1.5.2
 ===================
 * Document choices for production tile services, add specific info on restrictions
