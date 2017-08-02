@@ -23,7 +23,8 @@
     "HISTORY.md",
     "README.md",
     ".jshintrc",
-    ".editorconfig"
+    ".editorconfig",
+    "polymer.json"
   ],
   "dependencies": {
     "app-localize-behavior": "^2.0.0",
@@ -45,7 +46,8 @@
     "px-code-editor": "^2.0.0",
     "px-theme": "^3.0.0",
     "px-demo": "^2.0.0",
-    "iron-icons": "^2.0.0"
+    "iron-icons": "^2.0.0",
+    "web-component-tester": "^6.0.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.24",
