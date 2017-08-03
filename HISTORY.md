@@ -1,3 +1,13 @@
+v2.0.1
+===================
+* Adds the `--px-map-z-index` property to `px-map` which can be used to position
+  the map in the correct layer within your application. Note that the z-indices
+  of Leaflet layers exist in their own stacking context, and so are not affected
+  by the z-index set on px-map. Read more about the stacking context [here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context).
+* Adds the `invalidateSize()` method to `px-map`, which can be used to check
+  whether the map container has changed size or visibility, and - if so - updates
+  the map accordingly by refreshing the tile layer.
+
 v2.0.0
 ===================
 This is a major release and includes breaking changes.
