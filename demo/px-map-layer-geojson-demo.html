@@ -63,7 +63,8 @@
     <px-demo-component-snippet
         element-properties="{{props}}"
         element-name="px-map-layer-geojson"
-        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-layer-geojson.html"]'>
+        links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-layer-geojson.html"]'
+        suppress-property-values="[[suppressPropertyValues]]">
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -137,6 +138,12 @@
               "getShadyScope",
               "isShadyScoped"
             ]
+          }
+        },
+        suppressPropertyValues : {
+          type: Array,
+          value: function() {
+            return ["data"]
           }
         }
       },
