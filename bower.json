@@ -45,7 +45,7 @@
     "promise-polyfill": "polymerlabs/promise-polyfill#^2.0.1",
     "px-code-editor": "^2.0.0",
     "px-theme": "^3.0.0",
-    "px-demo": "^2.0.0",
+    "px-demo": "^2.3.0",
     "iron-icons": "^2.0.0",
     "web-component-tester": "^6.0.0"
   },
