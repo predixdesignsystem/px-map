@@ -8,6 +8,9 @@
   /* Ensures the behavior namespace is created */
   window.PxMapBehavior = (window.PxMapBehavior || {});
 
+  /* Ensures the klass namespace is created */
+  window.PxMap = (window.PxMap || {});
+
   /**
    *
    * @polymerBehavior PxMapBehavior.Marker
@@ -453,7 +456,7 @@
       // `CircleMarker` which draws the base blue dot, and an optional `Circle`
       // representing the accuracy of the location. They're combined together
       // in a `FeatureGroup` to ensure they share interactive bindings like popups.
-      this.markerBaseIcon = L.circleMarker(options.geometry, options.baseConfig);
+      this.markerBaseIcon = new CircleMarkerWithTitle(options.geometry, options.baseConfig);
       this.markerAccuracyIcon = L.circle(options.geometry, options.accuracyRadius, options.accuracyConfig);
       this.markerGroup = L.featureGroup([this.markerAccuracyIcon, this.markerBaseIcon]);
 
@@ -499,6 +502,9 @@
       if (lastOptions.accuracyRadius !== nextOptions.accuracyRadius) {
         this.markerAccuracyIcon.setRadius(nextOptions.accuracyRadius);
       }
+      if (lastOptions.baseConfig.title !== nextOptions.baseConfig.title) {
+        this.markerBaseIcon.setTitle(nextOptions.baseConfig.title);
+      }
     },
 
     /**
@@ -520,6 +526,7 @@
       baseConfig.fillColor = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-color');
       baseConfig.fillOpacity = 1;
       baseConfig.className = `map-marker-locate-base ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
+      baseConfig.title = (this.name || '');
 
       // Calculates the radius of the circle from the accuracy passed in and
       // the minimum size required to draw the base marker
@@ -543,4 +550,31 @@
     PxMapBehavior.Marker,
     PxMapBehavior.LocateMarkerImpl
   ];
+
+  const CircleMarkerWithTitle = L.CircleMarker.extend({
+    options: {
+      title: ''
+    },
+
+    setTitle: function (title) {
+      this.options.title = title || '';
+      if (this._path && this.options.title === '') {
+        this._path.innerHTML = '';
+      }
+      if (this._path && this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    },
+
+    onAdd: function() {
+      L.CircleMarker.prototype.onAdd.call(this);
+      if(this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    }
+  });
+
+  /* Bind CircleMarkerWithTitle klass */
+  PxMap.CircleMarkerWithTitle = CircleMarkerWithTitle;
+
 })();
