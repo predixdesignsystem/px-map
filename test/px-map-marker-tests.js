@@ -92,4 +92,58 @@ function runCustomTests() {
 
 });
 
+describe('px-map-marker-locate', function () {
+  var markerEl;
+  var markerOptions;
+  // var popupContent;
+  var sandbox;
+
+  beforeEach(function () {
+    markerEl = fixture('LocateMarkerWithNameFixture');
+    markerOptions = markerEl.getInstOptions();
+    markerInstance = markerEl.createInst(markerOptions);
+    // popupContent = popupInstance.getContent();
+    sandbox = sinon.sandbox.create();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
+
+  it('returns title property as configured through the `name` attribute (from `getInstOptions`)', function() {
+    expect(markerOptions.baseConfig).to.be.an('object');
+    expect(markerOptions.baseConfig).to.have.property('title').that.equals('i am a locate marker');
+  });
+
+  it('asks to update its title option when the `name` attribute is changed (with `shouldUpdateInst` observer)', function() {
+    var updateFn = sinon.spy(markerEl, 'shouldUpdateInst');
+    markerEl.set('name', 'A new name');
+
+    expect(updateFn).to.have.been.calledOnce;
+  });
+
+  it('updates title property when changed through the `name` attribute', function() {
+    markerEl.setAttribute('name', 'A new name');
+    setTimeout(function() {
+      expect(markerOptions.baseConfig).to.have.property('title').that.equals('A new name');
+      done();
+    }, 400);
+
+  });
+
+  // it('attempts to update its marker instance when the `name` attribute is changed (with `updateInst`)', function() {
+  //   // Create a fake `elementInst` to test whether `updateSettings` is called
+  //   var elementInst = {
+  //     updateInst: sinon.stub()
+  //   };
+  //   markerEl.elementInst = elementInst;
+  //
+  //   var lastOptions = { title: 'Old name'};
+  //   var nextOptions = { title: 'A new name'};
+  //   markerEl.updateInst(lastOptions, nextOptions);
+  //
+  //   expect(elementInst.updateInst).to.have.been.calledWithMatch(nextOptions);
+  // });
+});
+
 }
