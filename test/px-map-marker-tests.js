@@ -95,14 +95,12 @@ function runCustomTests() {
 describe('px-map-marker-locate', function () {
   var markerEl;
   var markerOptions;
-  // var popupContent;
   var sandbox;
 
   beforeEach(function () {
     markerEl = fixture('LocateMarkerWithNameFixture');
     markerOptions = markerEl.getInstOptions();
     markerInstance = markerEl.createInst(markerOptions);
-    // popupContent = popupInstance.getContent();
     sandbox = sinon.sandbox.create();
   });
 
@@ -122,28 +120,30 @@ describe('px-map-marker-locate', function () {
     expect(updateFn).to.have.been.calledOnce;
   });
 
-  it('updates title property when changed through the `name` attribute', function() {
+  it('updates title property when changed through the `name` attribute', function(done) {
     markerEl.setAttribute('name', 'A new name');
-    setTimeout(function() {
-      expect(markerOptions.baseConfig).to.have.property('title').that.equals('A new name');
+    flush(function() {
+      expect(markerEl.getInstOptions().baseConfig).to.have.property('title').that.equals('A new name');
       done();
-    }, 400);
+    });
 
   });
 
-  // it('attempts to update its marker instance when the `name` attribute is changed (with `updateInst`)', function() {
-  //   // Create a fake `elementInst` to test whether `updateSettings` is called
-  //   var elementInst = {
-  //     updateInst: sinon.stub()
-  //   };
-  //   markerEl.elementInst = elementInst;
-  //
-  //   var lastOptions = { title: 'Old name'};
-  //   var nextOptions = { title: 'A new name'};
-  //   markerEl.updateInst(lastOptions, nextOptions);
-  //
-  //   expect(elementInst.updateInst).to.have.been.calledWithMatch(nextOptions);
-  // });
+  it('puts the title tag into the path', function(done) {
+    flush(function() {
+      var layer;
+      var keys = Object.keys(markerInstance._layers);
+      for (i=0; i<keys.length; i++) {
+        if (markerInstance._layers[keys[i]].options.title) {
+          layer = markerInstance._layers[keys[i]];
+        }
+      }
+      expect(layer.options.title).to.equal("i am a locate marker");
+      var regex = /<title.*i am a locate marker<\/title>/
+      expect(regex.test(layer._path.innerHTML)).to.equal(true);
+    });
+  });
+
 });
 
 }
