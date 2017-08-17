@@ -93,14 +93,15 @@ function runCustomTests() {
 });
 
 describe('px-map-marker-locate', function () {
+  var locateMarkerFixture;
   var markerEl;
   var markerOptions;
   var sandbox;
 
   beforeEach(function () {
-    markerEl = fixture('LocateMarkerWithNameFixture');
+    locateMarkerFixture = fixture('LocateMarkerWithNameFixture');
+    markerEl = locateMarkerFixture.querySelector('px-map-marker-locate');
     markerOptions = markerEl.getInstOptions();
-    markerInstance = markerEl.createInst(markerOptions);
     sandbox = sinon.sandbox.create();
   });
 
@@ -126,14 +127,14 @@ describe('px-map-marker-locate', function () {
       expect(markerEl.getInstOptions().baseConfig).to.have.property('title').that.equals('A new name');
       done();
     });
-
   });
 
   it('puts the title tag into the path', function(done) {
     flush(function() {
+      var markerInstance = markerEl.elementInst;
       var layer;
       var keys = Object.keys(markerInstance._layers);
-      for (i=0; i<keys.length; i++) {
+      for (var i=0; i<keys.length; i++) {
         if (markerInstance._layers[keys[i]].options.title) {
           layer = markerInstance._layers[keys[i]];
         }
@@ -141,6 +142,7 @@ describe('px-map-marker-locate', function () {
       expect(layer.options.title).to.equal("i am a locate marker");
       var regex = /<title.*i am a locate marker<\/title>/
       expect(regex.test(layer._path.innerHTML)).to.equal(true);
+      done();
     });
   });
 
