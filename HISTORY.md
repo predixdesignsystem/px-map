@@ -1,3 +1,7 @@
+v2.1.1
+===================
+* Fix paths for px-map API viewer
+
 v2.1.0
 ===================
 * Adds the `--px-map-z-index` property to px-map which can be used to position
