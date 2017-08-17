@@ -45,9 +45,7 @@
 
       /**
        * A human-readable name for this layer group. If a tooltip is attached,
-       * this name will be shown on hover over the marker. If the map has a layer
-       * control panel, the user will click this name to show, hide, or
-       * manipulate this layer.
+       * this name will be shown on hover over the marker.
        *
        * @type {String}
        */
