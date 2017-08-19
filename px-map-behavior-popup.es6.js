@@ -26,7 +26,7 @@
     },
 
     addInst(parent) {
-      if (parent && parent.getPopup() !== this.elementInst) {
+      if (parent && parent.getPopup && (parent.getPopup() !== this.elementInst)) {
         parent.bindPopup(this.elementInst);
 
         // Bind custom events for this cluster. Events will be unbound automatically.

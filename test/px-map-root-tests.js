@@ -151,8 +151,8 @@ function runCustomTests() {
       expect(mapEl.latLngIsValid("","")).to.be.false;
     });
 
-    it('outputs a console log statement if the lat or lng is invalid', function() {
-      var invalidLatLng = mapEl.latLngIsValid("abc", 123);
+    it('outputs a console log statement if the lat or lng is invalid and `hideError` is set to false', function() {
+      var invalidLatLng = mapEl.latLngIsValid("abc", 123, false);
 
       sinon.assert.calledOnce(console.log);
       sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
