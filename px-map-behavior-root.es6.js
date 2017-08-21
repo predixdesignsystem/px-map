@@ -604,7 +604,7 @@
     },
 
     /**
-     * Returns true if val can be used as a number in L.LatLng
+     * Returns true if val can be used as a number in L.LatLng or zoom
      *
      * @param {*} val
      * @return {Boolean}
@@ -675,7 +675,7 @@
      *   * {Number} detail.lat - Latitude of the map centerpoint after moving
      *   * {Number} detail.lng - Longitude of the map centerpoint after moving
      *   * {Number} detail.zoom - Zoom level of the map after moving
-     *   * {L.LatLngBouds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
+     *   * {L.LatLngBounds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
      *
      * @event px-map-moved
      */
