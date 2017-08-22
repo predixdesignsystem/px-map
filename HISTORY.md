@@ -1,3 +1,7 @@
+v2.1.2
+===================
+* Add Object.assign polyfill
+
 v2.1.1
 ===================
 * Fix paths for px-map API viewer
