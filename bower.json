@@ -33,7 +33,8 @@
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.3",
     "leaflet-bing-tiles": "^1.0.0",
-    "px-icon-set": "^2.0.0"
+    "px-icon-set": "^2.0.0",
+    "px-app-helpers": "^1.3.0"
   },
   "devDependencies": {
     "px-clearfix-design": "^1.0.0",
