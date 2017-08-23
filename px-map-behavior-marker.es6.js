@@ -8,6 +8,9 @@
   /* Ensures the behavior namespace is created */
   window.PxMapBehavior = (window.PxMapBehavior || {});
 
+  /* Ensures the klass namespace is created */
+  window.PxMap = (window.PxMap || {});
+
   /**
    *
    * @polymerBehavior PxMapBehavior.Marker
@@ -42,9 +45,7 @@
 
       /**
        * A human-readable name for this layer group. If a tooltip is attached,
-       * this name will be shown on hover over the marker. If the map has a layer
-       * control panel, the user will click this name to show, hide, or
-       * manipulate this layer.
+       * this name will be shown on hover over the marker.
        *
        * @type {String}
        */
@@ -61,7 +62,7 @@
      * be added to their parent.
      */
     canAddInst() {
-      return this.latLngIsValid(this.lat, this.lng);
+      return this.latLngIsValid(this.lat, this.lng, true);
     },
 
     /**
@@ -76,17 +77,21 @@
 
     /**
      * Returns true if lat and lng are valid values that can be used to set a
-     * marker's location. Prints an error if values are invalid.
+     * marker's location. Prints an error if values are invalid (unless `hideError`
+     * is set to true).
      *
      * @param {Number} lat
      * @param {Number} lng
+     * @param {Boolean} hideError
      * @return {Boolean}
      */
-    latLngIsValid(lat, lng) {
+    latLngIsValid(lat, lng, hideError) {
       var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
       if (isValid) return true;
-      console.log(`PX-MAP CONFIGURATION ERROR:
+      if (!hideError) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      }
       return false;
     },
 
@@ -453,7 +458,7 @@
       // `CircleMarker` which draws the base blue dot, and an optional `Circle`
       // representing the accuracy of the location. They're combined together
       // in a `FeatureGroup` to ensure they share interactive bindings like popups.
-      this.markerBaseIcon = L.circleMarker(options.geometry, options.baseConfig);
+      this.markerBaseIcon = new CircleMarkerWithTitle(options.geometry, options.baseConfig);
       this.markerAccuracyIcon = L.circle(options.geometry, options.accuracyRadius, options.accuracyConfig);
       this.markerGroup = L.featureGroup([this.markerAccuracyIcon, this.markerBaseIcon]);
 
@@ -499,6 +504,9 @@
       if (lastOptions.accuracyRadius !== nextOptions.accuracyRadius) {
         this.markerAccuracyIcon.setRadius(nextOptions.accuracyRadius);
       }
+      if (lastOptions.baseConfig.title !== nextOptions.baseConfig.title) {
+        this.markerBaseIcon.setTitle(nextOptions.baseConfig.title);
+      }
     },
 
     /**
@@ -520,6 +528,7 @@
       baseConfig.fillColor = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-color');
       baseConfig.fillOpacity = 1;
       baseConfig.className = `map-marker-locate-base ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
+      baseConfig.title = (this.name || '');
 
       // Calculates the radius of the circle from the accuracy passed in and
       // the minimum size required to draw the base marker
@@ -543,4 +552,31 @@
     PxMapBehavior.Marker,
     PxMapBehavior.LocateMarkerImpl
   ];
+
+  const CircleMarkerWithTitle = L.CircleMarker.extend({
+    options: {
+      title: ''
+    },
+
+    setTitle: function (title) {
+      this.options.title = title || '';
+      if (this._path && this.options.title === '') {
+        this._path.innerHTML = '';
+      }
+      if (this._path && this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    },
+
+    onAdd: function() {
+      L.CircleMarker.prototype.onAdd.call(this);
+      if(this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    }
+  });
+
+  /* Bind CircleMarkerWithTitle klass */
+  PxMap.CircleMarkerWithTitle = CircleMarkerWithTitle;
+
 })();

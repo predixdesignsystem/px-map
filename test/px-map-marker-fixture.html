@@ -23,6 +23,7 @@
     <!-- Load local components -->
     <link rel="import" href="../px-map.html" />
     <link rel="import" href="../px-map-marker-static.html" />
+    <link rel="import" href="../px-map-marker-locate.html" />
     <!-- Load tests -->
     <script src="px-map-marker-tests.js"></script>
   </head>
@@ -54,6 +55,13 @@
       </template>
     </test-fixture>
 
+    <test-fixture id="LocateMarkerWithNameFixture">
+      <template>
+        <px-map style="height: 400px; width: 400px;">
+          <px-map-marker-locate name="i am a locate marker" lat="37" lng="122"></px-map-marker-locate>
+        </px-map>
+      </template>
+    </test-fixture>
 
   </body>
 </html>

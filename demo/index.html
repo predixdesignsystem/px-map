@@ -25,7 +25,11 @@
 <!-- Demo DOM module -->
 <dom-module id="local-element-demo">
   <template>
-    <style include="px-demo-styles" is="custom-style"></style>
+    <style include="px-demo-styles" is="custom-style">
+      :root {
+        --px-map-z-index: 1;
+      }
+    </style>
 
     <!-- Code Editor -->
     <px-demo-code-editor props="{{props}}"></px-demo-code-editor>

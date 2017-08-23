@@ -14,6 +14,7 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-marker-static.html" />
 <link rel="import" href="../px-map-popup-data.html" />
 
 <!-- Demo DOM module -->
@@ -43,6 +44,7 @@
         <px-map
           zoom="12"
           flex-to-size
+          fit-to-markers
           disable-scroll-zoom
           disable-touch-zoom
           attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
@@ -68,6 +70,7 @@
   <!-- API Viewer -->
   <px-demo-api-viewer
     source="px-map-popup-data"
+    api-source-file-path="px-map/px-map-api.json"
     mark-private="[[apiMarkPrivate]]">
   </px-demo-api-viewer>
 
@@ -159,7 +162,7 @@
         },
 
         parentComponent: {
-          value: ['<div style="height:400px;width:600px;display:flex"><px-map zoom="12" flex-to-size disable-scroll-zoom disable-touch-zoom><px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer><px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info">', '</px-map-marker-static></px-map>']
+          value: ['<div style="height:400px; width:600px; display:flex"><px-map zoom="12" flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom><px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer><px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info">', '</px-map-marker-static></px-map>']
         }
       }
     });

@@ -73,6 +73,13 @@ location using `<px-map-marker-static>`. To give users more information about
 each point, we add popups to both markers with the name and description of the
 place they represent using `<px-map-popup-info>`.
 
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description
+:----------------|:-------------
+`--px-map-z-index` | Configurable z-index to position `px-map` within your app
+
 ### What you can do with px-map
 
 Out of the box, `px-map` includes the basic things needed to draw and plot data
@@ -172,6 +179,7 @@ You can also use the px-map-tile-layer-bing component to load map tiles from the
         position: absolute;
         width: 100%;
         height: 100%;
+        z-index: var(--px-map-z-index, auto);
       }
       /* Use flex to resize */
       :host([flex-to-size]) {

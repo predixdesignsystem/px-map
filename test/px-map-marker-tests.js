@@ -92,4 +92,60 @@ function runCustomTests() {
 
 });
 
+describe('px-map-marker-locate', function () {
+  var locateMarkerFixture;
+  var markerEl;
+  var markerOptions;
+  var sandbox;
+
+  beforeEach(function () {
+    locateMarkerFixture = fixture('LocateMarkerWithNameFixture');
+    markerEl = locateMarkerFixture.querySelector('px-map-marker-locate');
+    markerOptions = markerEl.getInstOptions();
+    sandbox = sinon.sandbox.create();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
+
+  it('returns title property as configured through the `name` attribute (from `getInstOptions`)', function() {
+    expect(markerOptions.baseConfig).to.be.an('object');
+    expect(markerOptions.baseConfig).to.have.property('title').that.equals('i am a locate marker');
+  });
+
+  it('asks to update its title option when the `name` attribute is changed (with `shouldUpdateInst` observer)', function() {
+    var updateFn = sinon.spy(markerEl, 'shouldUpdateInst');
+    markerEl.set('name', 'A new name');
+
+    expect(updateFn).to.have.been.calledOnce;
+  });
+
+  it('updates title property when changed through the `name` attribute', function(done) {
+    markerEl.setAttribute('name', 'A new name');
+    flush(function() {
+      expect(markerEl.getInstOptions().baseConfig).to.have.property('title').that.equals('A new name');
+      done();
+    });
+  });
+
+  it('puts the title tag into the path', function(done) {
+    flush(function() {
+      var markerInstance = markerEl.elementInst;
+      var layer;
+      var keys = Object.keys(markerInstance._layers);
+      for (var i=0; i<keys.length; i++) {
+        if (markerInstance._layers[keys[i]].options.title) {
+          layer = markerInstance._layers[keys[i]];
+        }
+      }
+      expect(layer.options.title).to.equal("i am a locate marker");
+      var regex = /<title.*i am a locate marker<\/title>/
+      expect(regex.test(layer._path.innerHTML)).to.equal(true);
+      done();
+    });
+  });
+
+});
+
 }
