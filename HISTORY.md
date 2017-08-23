@@ -1,6 +1,15 @@
 v2.1.2
 ===================
-* Add Object.assign polyfill
+## Bug fixes
+* Add Object.assign polyfill for IE
+* Check that `zoom` is set before trying to draw the map
+* Check for `parent.getPopup` method before calling it in `addInst` for
+  `px-map-behavior-popup`
+
+## New features
+* Add title tag for `px-map-marker-locate`
+* Add `hideError` argument to `latLngIsValid` method so developer can choose to
+  hide the console error if lat or lng is invalid
 
 v2.1.1
 ===================
