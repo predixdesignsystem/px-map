@@ -74,50 +74,6 @@
   PxMapBehavior.ZoomControlImpl = {
     properties: {
       /**
-       * Sets the icon for the 'Zoom in' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomInText: {
-        type: String,
-        value: '<i class="fa fa-plus"></i>'
-      },
-
-      /**
-       * Sets the icon for the 'Zoom out' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomOutText: {
-        type: String,
-        value: '<i class="fa fa-minus"></i>'
-      },
-
-      /**
-       * Sets the hover text for the 'Zoom in' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomInTitle: {
-        type: String,
-        value: 'Zoom in'
-      },
-
-      /**
-       * Sets the hover text for the 'Zoom out' button.
-       * This is not dynamic and can only be set at run time.
-       *
-       * @type {String}
-       */
-      zoomOutTitle: {
-        type: String,
-        value: 'Zoom out'
-      },
-
-      /**
        * A valid IETF language tag as a string that `app-localize-behavior` will
        * use to localize this component (see https://en.wikipedia.org/wiki/IETF_language_tag)
        * for a list of valid tags.
@@ -176,15 +132,16 @@
       const options = PxMapBehavior.ControlImpl.getInstOptions.call(this);
 
       options.position = this.position;
-      options.zoomInText = this.zoomInText;
-      options.zoomOutText = this.zoomOutText;
+
+      options.zoomInText = '<px-icon icon="px-utl:add"></px-icon>'
+      options.zoomOutText = '<px-icon icon="px-utl:remove"></px-icon>'
 
       // @TODO: An import order issue with the `AppLocalizeBehavior` mixin can
       // cause the zoom control not to draw. Check if this.localize exists
       // and can be called before doing so.
       if (typeof this.localize === 'function') {
-        options.zoomInTitle = this.localize(this.zoomInTitle);
-        options.zoomInTitle =  this.localize(this.zoomOutTitle);
+        options.zoomInTitle = this.localize('Zoom in');
+        options.zoomOutTitle =  this.localize('Zoom out');
       }
 
       return options;
@@ -231,7 +188,7 @@
       },
 
       /**
-       * Enable this property to reverse the the scale's colors, making it
+       * Enable this property to reverse the scale's colors, making it
        * easier to read against a dark tile layer.
        *
        * @type {Boolean}
@@ -286,17 +243,6 @@
   PxMapBehavior.LocateControlImpl = {
     properties: {
       /**
-       * A string of HTML that will set an icon to be used on the locate button.
-       *
-       * @type {String}
-       */
-      locateText: {
-        type: String,
-        value: '<i class="fa fa-crosshairs"></i>',
-        observer: 'shouldUpdateInst'
-      },
-
-      /**
        * A title for the locate button. Will be used to inform users with
        * screen reading devices what the button does.
        *
@@ -321,24 +267,25 @@
 
       /**
        * The maximum zoom level to set when the map moves to the user's location.
-       * The `moveToLocation` attribute must be set for the map to move to the
+       * The `moveToLocation` attribute must also be set for the map to move to the
        * user's location after a location event.
        *
        * @type {Number}
        */
       moveMaxZoom: {
-        type: Number
+        type: Number,
+        observer: 'shouldUpdateInst'
       },
 
       /**
        * After the user's location is successfully found, the result will be
        * placed here. The object will have the following keys:
        *
-       *     * {Number} `lat` - User's found latitude
-       *     * {Number} `lng` - User's found longitude
-       *     * {Number} `timestamp` - Timestamp (UNIX format) for the location event
-       *     * {Number} `accuracy` - The accuracy margin of error in meters from the centerpoint
-       *     * {L.LatLngBouds} `bounds` - A bounding rectangle detailing the accuracy of the location
+       * - {Number} `lat` - User's found latitude
+       * - {Number} `lng` - User's found longitude
+       * - {Number} `timestamp` - Timestamp (UNIX format) for the location event
+       * - {Number} `accuracy` - The accuracy margin of error in meters from the centerpoint
+       * - {L.LatLngBouds} `bounds` - A bounding rectangle detailing the accuracy of the location
        *
        * @type {Object}
        */
@@ -377,12 +324,15 @@
       if (lastOptions.position !== nextOptions.position) {
         this.elementInst.setPosition(nextOptions.position);
       }
+      if (lastOptions.moveMaxZoom !== nextOptions.moveMaxZoom) {
+        this.elementInst.setMoveMaxZoom(nextOptions.moveMaxZoom);
+      }
     },
 
     getInstOptions() {
       return {
         position: this.position,
-        locateText: this.locateText,
+        locateIcon: '<px-icon icon="px-vis:crosshair"></px-icon>',
         locateTitle: this.locateTitle,
         moveToLocation: this.moveToLocation,
         moveMaxZoom: this.moveMaxZoom
@@ -409,7 +359,7 @@
       // of the bounds to its NorthWest extent. This is our accuracy.
       detail.accuracy = (evt.bounds.getCenter() && evt.bounds.getNorthWest()) ? evt.bounds.getCenter().distanceTo(evt.bounds.getNorthEast()) : null;
 
-      this.fire('px-map-control-locate-success', detail);
+      this.fire('px-map-control-locate-succeeded', detail);
 
       this.set('lastFoundLocation', detail);
       this.notifyPath('lastFoundLocation.*');
@@ -417,11 +367,11 @@
     /**
      * Fired after the user's location is successfully found.
      *
-     * @event px-map-control-locate-success
+     * @event px-map-control-locate-succeeded
      * @param {Object} detail
      * @param {Number} detail.lat - The user's found latitude
      * @param {Number} detail.lng - The user's found longitude
-     * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when the the location was found
+     * @param {Number} detail.timestamp - The UNIX formatted timestamp detailing when  the location was found
      * @param {L.LatLngBouds} [detail.bounds] - A custom Leaflet object describing the visible bounds of the map after moving to the user's location, if available
      * @param {Number} [detail.accuracy] - The margin of error of the accuracy in meters from its centerpoint to its maximum extent
      */
@@ -438,12 +388,12 @@
         message: evt.message || null
       };
 
-      this.fire('px-map-control-locate-error', detail);
+      this.fire('px-map-control-locate-failed', detail);
     },
     /**
      * Fired after the control fails to find the user's location.
      *
-     * @event px-map-control-locate-error
+     * @event px-map-control-locate-failed
      * @param {Object} detail
      * @param {String} detail.message - A message describing the reason for the failure
      */
@@ -456,12 +406,12 @@
     _handleLocationTap(evt) {
       if (!evt || evt.action !== 'locate') return;
 
-      this.fire('px-map-locate-button-tap');
+      this.fire('px-map-locate-button-tapped');
     }
     /**
      * Fired when the user clicks the locate button and initiates a location search.
      *
-     * @event px-map-locate-button-tap
+     * @event px-map-locate-button-tapped
      */
   };
   /* Bind LocateControl behavior */
@@ -609,7 +559,6 @@
     }
 
     _fireZoomClickEvt(evt) {
-      debugger;
     }
   };
   /* Bind ZoomControl klass */
@@ -624,7 +573,7 @@
       const defaultOptions = {
         position: 'bottomright',
         className: '',
-        locateText: '<i class="fa fa-crosshairs"></i>',
+        locateIcon: '<px-icon icon="px-utl:location"></px-icon>',
         locateTitle: 'Zoom to your location',
         locateTimeout: 10000,
         moveToLocation: true,
@@ -637,7 +586,7 @@
     onAdd(map) {
       const locateName = 'leaflet-control-locate';
       this.__container = L.DomUtil.create('div', `${locateName} leaflet-bar ${this.options.className}`);
-      this.__locateButton = this._createButton(this.options.locateText, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
+      this.__locateButton = this._createButton(this.options.locateIcon, this.options.locateTitle, 'leaflet-control-locate-button', this.__container);
 
       /* Bind map events */
       L.DomEvent.on(map, 'locationfound', this._locationFound, this);
@@ -661,6 +610,20 @@
       L.DomEvent.off(this.__locateButton, 'click', L.DomEvent.stop);
       L.DomEvent.off(this.__locateButton, 'click', this._locate, this);
       L.DomEvent.off(this.__locateButton, 'click', this._refocusOnMap, this);
+    }
+
+    /**
+     * Sets the max zoom level after location is found
+     *
+     * @param {Number|String} zoom
+     */
+    setMoveMaxZoom(zoom) {
+      if (typeof zoom === 'string' && zoom.length && !isNaN(zoom)) {
+        zoom = parseInt(zoom);
+      }
+      if (typeof zoom === 'number' && this.options.moveMaxZoom !== zoom) {
+        this.options.moveMaxZoom = zoom;
+      }
     }
 
     on(...args) {
@@ -693,7 +656,7 @@
       this.__locating = true;
       this._map.locate({
         setView: this.options.moveToLocation,
-        maxZoom: this.options.moveMaxZoon,
+        maxZoom: this.options.moveMaxZoom,
         timeout: this.options.locateTimeout
       });
       this._setLocatingState();
@@ -746,7 +709,7 @@
     _setReadyState() {
       if (!this.__locateButton || this.__locating) return;
 
-      this.__locateButton.innerHTML = this.options.locateText;
+      this.__locateButton.innerHTML = this.options.locateIcon;
       L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--locating');
       L.DomUtil.removeClass(this.__locateButton, 'leaflet-control-locate-button--error');
 

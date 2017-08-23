@@ -19,20 +19,22 @@
     }
 
     createIcon(settings={}) {
-      // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false, styleScope } = settings;
+      // Extract `type` from settings with defaults
+      let { type='info', styleScope } = settings;
 
-      const className = this._generateStaticIconClasses(type, badge, styleScope);
+      const className = this._generateStaticIconClasses(type, styleScope);
 
       // Static options
       const html = `
-        <i class="map-icon-static__body"></i>
-        <i class="map-icon-static__descender"></i>
-        <i class="map-icon-static__badge"></i>
+        <div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body"></i>
+          <i class="map-icon-static__descender"></i>
+          <i class="map-icon-static__badge"></i>
+        </div>
       `;
-      const iconSize = L.point(50,50);
-      const iconAnchor = L.point(9.8, 40.3);
-      const popupAnchor = L.point(1,-38);
+      const iconSize = L.point(23,31);
+      const iconAnchor = L.point(7.6, 31);
+      const popupAnchor = L.point(1,-31);
 
       // Define the `divIcon` options
       const options = {
@@ -46,13 +48,10 @@
       return L.divIcon(options);
     }
 
-    _generateStaticIconClasses(type, badge, styleScope) {
-      const classes = ['map-icon', 'map-icon-static'];
+    _generateStaticIconClasses(type, styleScope) {
+      const classes = ['map-icon', 'map-icon-static', 'map-icon-static--with-badge'];
       if (type && type.length) {
         classes.push(`map-icon-static--${type}`);
-      }
-      if (badge) {
-        classes.push(`map-icon-static--with-badge`);
       }
       if (styleScope) {
         classes.push(styleScope);
@@ -74,25 +73,25 @@
     }
 
     createIcon(settings={}) {
-      // Extract `type` and `badge` from settings with defaults
-      let { type='info', badge=false, symbol='fa fa-bolt', styleScope } = settings;
-      const className = this._generateSymbolIconClasses(type, badge, styleScope);
+      let { type='info', icon='px-nav:favorite', styleScope, stroke='currentColor', fill='none', strokeWidth='2px'} = settings;
+      const className = this._generateSymbolIconClasses(type, styleScope);
 
-      // Symbol options
+      // Icon/Symbol options
       const html = `
-        <div class="map-icon-symbol__wrapper">
-          <i class="map-icon-symbol__body">
-            <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
-              <i class="map-icon-symbol__symbol ${symbol}"></i>
-            </div>
-          </i>
-          <i class="map-icon-symbol__descender"></i>
-          <i class="map-icon-symbol__badge"></i>
-        </div>
+      <div class="map-icon-symbol__wrapper">
+        <i class="map-icon-symbol__body">
+          <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+            <px-icon icon="${icon}" style="stroke:${stroke}; fill:${fill}; width:100%; height:100%; stroke-width:${strokeWidth}"></px-icon>
+          </div>
+        </i>
+        <i class="map-icon-symbol__descender"></i>
+        <i class="map-icon-symbol__badge"></i>
+      </div>
       `;
-      const iconSize = L.point(55,66);
-      const iconAnchor = L.point(19.8, 65);
-      const popupAnchor = L.point(1,-38);
+
+      const iconSize = L.point(40,56);
+      const iconAnchor = L.point(19.6, 57);
+      const popupAnchor = L.point(1,-58);
 
       // Define the `divIcon` options
       const options = {
@@ -106,13 +105,10 @@
       return L.divIcon(options);
     }
 
-    _generateSymbolIconClasses(type, badge, styleScope) {
-      const classes = ['map-icon', 'map-icon-symbol'];
+    _generateSymbolIconClasses(type, styleScope) {
+      const classes = ['map-icon', 'map-icon-symbol', 'map-icon-symbol--with-badge'];
       if (type && type.length) {
         classes.push(`map-icon-symbol--${type}`);
-      }
-      if (badge) {
-        classes.push(`map-icon-symbol--with-badge`);
       }
       if (styleScope) {
         classes.push(styleScope);

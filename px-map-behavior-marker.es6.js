@@ -8,6 +8,9 @@
   /* Ensures the behavior namespace is created */
   window.PxMapBehavior = (window.PxMapBehavior || {});
 
+  /* Ensures the klass namespace is created */
+  window.PxMap = (window.PxMap || {});
+
   /**
    *
    * @polymerBehavior PxMapBehavior.Marker
@@ -42,9 +45,7 @@
 
       /**
        * A human-readable name for this layer group. If a tooltip is attached,
-       * this name will be shown on hover over the marker. If the map has a layer
-       * control panel, the user will click this name to show, hide, or
-       * manipulate this layer.
+       * this name will be shown on hover over the marker.
        *
        * @type {String}
        */
@@ -55,14 +56,69 @@
       }
     },
 
-    // DEFAULT METHODS FOR EVERY BASE ELEMENT...
     /**
      * Returns true if there is a valid latitude and longitude.
      * Used by child elements to determine if they are ready to
      * be added to their parent.
      */
     canAddInst() {
-      return (typeof this.lat === 'number') && (typeof this.lng === 'number');
+      return this.latLngIsValid(this.lat, this.lng, true);
+    },
+
+    /**
+     * Returns true if val can be used as a number in L.LatLng
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return (!isNaN(val) && val !== "");
+    },
+
+    /**
+     * Returns true if lat and lng are valid values that can be used to set a
+     * marker's location. Prints an error if values are invalid (unless `hideError`
+     * is set to true).
+     *
+     * @param {Number} lat
+     * @param {Number} lng
+     * @param {Boolean} hideError
+     * @return {Boolean}
+     */
+    latLngIsValid(lat, lng, hideError) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      if (!hideError) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      }
+      return false;
+    },
+
+    // extends the layer `addInst` method to harvest and fire events when the
+    // markers are added
+    addInst(parent) {
+      // Bind custom events. Events will be unbound automatically.
+      const addedFn = this._handleMarkerAdded.bind(this);
+      const removedFn = this._handleMarkerRemoved.bind(this);
+      const tapFn = this._handleMarkerTapped.bind(this);
+      this.bindEvents({
+        'add' : addedFn,
+        'remove' : removedFn,
+        'click' : tapFn
+      }, this.marker);
+
+      // Now call layer's add
+      PxMapBehavior.LayerImpl.addInst.call(this, parent);
+    },
+
+    removeInst(parent) {
+      // Fire the removed event. If the marker is removed after its events are
+      // cleaned up we'll never hit the `_handleMarkerRemoved` function.
+      this._handleMarkerRemoved();
+
+      // Now call layer's remove
+      PxMapBehavior.LayerImpl.removeInst.call(this, parent);
     },
 
     /**
@@ -99,9 +155,10 @@
         this.elementInst.setOpacity(0);
       }
       if (!geomWasDefined && geomIsDefined) {
+        this.elementInst.setLatLng(nextOptions.geometry);
         this.elementInst.setOpacity(1);
       }
-      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+      if (geomIsDifferent) {
         this.elementInst.setLatLng(nextOptions.geometry);
       }
       if (lastOptions.config.icon !== nextOptions.config.icon) {
@@ -109,9 +166,6 @@
       }
     },
 
-    /**
-     *
-     */
     getInstOptions() {
       const geometry = this.getLatLng();
       const config = {};
@@ -124,24 +178,93 @@
     // CUSTOM METHODS FOR MARKERS...
 
     /**
-     * Returns a `L.LatLng` object with an array of points in the format
-     * [latitude, longitude]. If either `lat` or `lng` are not defined,
-     * returns undefined.
+     * Returns the current latitude and longitude of the marker as an
+     * `L.LatLng` object. If either `lat` or `lng` is not defined or has an
+     * invalid value, returns undefined.
      *
      * @return {L.LatLng|undefined}
      */
     getLatLng() {
-      if (!this.lat || !this.lng) return undefined;
-      return L.latLng(this.lat, this.lng);
+      if (this.latLngIsValid(this.lat, this.lng)) {
+        return L.latLng(this.lat, this.lng);
+      }
     },
 
     // SHOULD BE IMPLEMENTED WHEN EXTENDING...
-    /**
-     * Throws error: 'The `getMarkerIcon` method must be implemented.'
-     */
+
     getMarkerIcon() {
       throw new Error('The `getMarkerIcon` method must be implemented.');
+    },
+
+
+    // HANDLE EVENTS...
+
+    /**
+     * Called when the marker is added to a layer instance.
+     */
+    _handleMarkerAdded() {
+      const latLng = this.getLatLng();
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
+      this.fire('px-map-marker-added', detail);
+    },
+    /**
+     * Fired when the marker is attached to a parent layer (e.g. the map).
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-added
+     */
+
+    _handleMarkerRemoved() {
+      const latLng = this.getLatLng();
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
+      this.fire('px-map-marker-removed', detail);
+    },
+    /**
+     * Fired when the marker is detached to a parent layer (e.g. the map) and
+     * removed from the DOM.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number|undefined} detail.lat - Latitude of the marker before removal
+     *   * {Number|undefined} detail.lng - Longitude of the marker before removal
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-removed
+     */
+
+    _handleMarkerTapped() {
+      const latLng = this.getLatLng();
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
+      this.fire('px-map-marker-tapped', detail);
     }
+    /**
+     * Fired when the marker is clicked or tapped by the user.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-tapped
+     */
   };
   /* Bind Marker behavior */
   /** @polymerBehavior */
@@ -160,10 +283,11 @@
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
        * the state of the thing it represents.
-       * - `important` is red
-       * - `warning` is orange
-       * - `info` is blue
-       * - `unknown` is gray
+       *
+       * - 'important' is red
+       * - 'warning' is orange
+       * - 'info' is blue
+       * - 'unknown' is gray
        *
        * @type {String}
        */
@@ -175,22 +299,15 @@
       },
 
       /**
-       * Shows a small notification badge on the icon that indicates there is
-       * some relevant information about the marker.
+       * An svg icon from px-icon-set that will be displayed in a map marker
        *
-       * @type {Object}
+       * For example, this would set the marker's symbol to an airplane icon:
+       *
+       *     'px-obj:airplane'
+       *
+       * @type {String}
        */
-      showBadge: {
-        type: Boolean,
-        value: true,
-        observer: '_updateMarkerIcon'
-      },
-
-      /**
-       * Replaces the symbol on iconSymbols.
-       * Accepts font awesome icons
-       */
-      symbolClass: {
+      icon: {
         type: String,
         observer: '_updateMarkerIcon'
       }
@@ -200,6 +317,7 @@
      * If this.markerIcon exist return the markerIcon.
      * If this.markerIcon doesn't exist create a new
      * markerIcon and return it.
+     *
      * @return {this.markerIcon}
      */
     getMarkerIcon() {
@@ -228,9 +346,13 @@
     _getMarkerIconOptions() {
       return {
         type: this.type,
-        badge: this.showBadge,
         symbol: this.symbolClass,
-        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
+        icon: this.icon,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined,
+        stroke: this.getComputedStyleValue("--iron-icon-stroke-color"),
+        strokeWidth: this.getComputedStyleValue("--iron-icon-stroke-width"),
+        fill: this.getComputedStyleValue("--iron-icon-fill-color")
+
       };
     }
   };
@@ -251,10 +373,11 @@
       /**
        * The visual type of the marker. Sets the color of the marker to indicate
        * the state of the thing it represents.
-       * - `important` is red
-       * - `warning` is orange
-       * - `info` is blue
-       * - `unknown` is gray
+       *
+       * - 'important' is red
+       * - 'warning' is orange
+       * - 'info' is blue
+       * - 'unknown' is gray
        *
        * @type {String}
        */
@@ -262,18 +385,6 @@
         type: String,
         reflectToAttribute: true,
         value: 'info',
-        observer: '_updateMarkerIcon'
-      },
-
-      /**
-       * Shows a small notification badge on the icon that indicates there is
-       * some relevant updated information about the marker.
-       *
-       * @type {Object}
-       */
-      showBadge: {
-        type: Boolean,
-        value: true,
         observer: '_updateMarkerIcon'
       }
     },
@@ -310,7 +421,6 @@
     _getMarkerIconOptions() {
       return {
         type: this.type || '',
-        badge: this.showBadge || false,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
@@ -348,7 +458,7 @@
       // `CircleMarker` which draws the base blue dot, and an optional `Circle`
       // representing the accuracy of the location. They're combined together
       // in a `FeatureGroup` to ensure they share interactive bindings like popups.
-      this.markerBaseIcon = L.circleMarker(options.geometry, options.baseConfig);
+      this.markerBaseIcon = new CircleMarkerWithTitle(options.geometry, options.baseConfig);
       this.markerAccuracyIcon = L.circle(options.geometry, options.accuracyRadius, options.accuracyConfig);
       this.markerGroup = L.featureGroup([this.markerAccuracyIcon, this.markerBaseIcon]);
 
@@ -377,24 +487,25 @@
       const geomIsDifferent = (geomWasDefined && geomIsDefined &&
         (lastOptions.geometry.lat !== nextOptions.geometry.lat || lastOptions.geometry.lng !== nextOptions.geometry.lng)
       );
-      // If LatLng was previously defined and now is not, hide the markers
       if (geomWasDefined && !geomIsDefined) {
         this.markerBaseIcon.setStyle({ opacity: 0, fillOpacity: 0 });
         this.markerAccuracyIcon.setStyle({ opacity: 0, fillOpacity: 0 });
       }
-      // If LatLng has changed or if it was just defined, set the new LatLng
-      if (geomIsDifferent || (!geomWasDefined && geomIsDefined)) {
+      if (!geomWasDefined && geomIsDefined) {
         this.markerBaseIcon.setLatLng(nextOptions.geometry);
         this.markerAccuracyIcon.setLatLng(nextOptions.geometry);
-      }
-      // If LatLng was just defined, ensure the markers are shown
-      if (lastOptions && (!geomWasDefined && geomIsDefined)) {
         this.markerBaseIcon.setStyle(nextOptions.baseConfig);
         this.markerAccuracyIcon.setStyle(nextOptions.accuracyConfig);
       }
-
+      if (geomIsDifferent) {
+        this.markerBaseIcon.setLatLng(nextOptions.geometry);
+        this.markerAccuracyIcon.setLatLng(nextOptions.geometry);
+      }
       if (lastOptions.accuracyRadius !== nextOptions.accuracyRadius) {
         this.markerAccuracyIcon.setRadius(nextOptions.accuracyRadius);
+      }
+      if (lastOptions.baseConfig.title !== nextOptions.baseConfig.title) {
+        this.markerBaseIcon.setTitle(nextOptions.baseConfig.title);
       }
     },
 
@@ -417,6 +528,7 @@
       baseConfig.fillColor = this.getComputedStyleValue('--internal-px-map-marker-locate-icon-color');
       baseConfig.fillOpacity = 1;
       baseConfig.className = `map-marker-locate-base ${this.isShadyScoped() ? this.getShadyScope() : ''}`;
+      baseConfig.title = (this.name || '');
 
       // Calculates the radius of the circle from the accuracy passed in and
       // the minimum size required to draw the base marker
@@ -440,4 +552,31 @@
     PxMapBehavior.Marker,
     PxMapBehavior.LocateMarkerImpl
   ];
+
+  const CircleMarkerWithTitle = L.CircleMarker.extend({
+    options: {
+      title: ''
+    },
+
+    setTitle: function (title) {
+      this.options.title = title || '';
+      if (this._path && this.options.title === '') {
+        this._path.innerHTML = '';
+      }
+      if (this._path && this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    },
+
+    onAdd: function() {
+      L.CircleMarker.prototype.onAdd.call(this);
+      if(this.options.title !== '') {
+        this._path.innerHTML = `<title>${this.options.title}</title>`;
+      }
+    }
+  });
+
+  /* Bind CircleMarkerWithTitle klass */
+  PxMap.CircleMarkerWithTitle = CircleMarkerWithTitle;
+
 })();

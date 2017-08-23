@@ -18,7 +18,6 @@
     // a parent that it is ready
 
     attached() {
-      this.__elAttached = true;
       this.notifyInstReady(this.canAddInst());
     },
 
@@ -26,7 +25,6 @@
     // removed from the parent
 
     detached() {
-      this.__elAttached = false;
       this.shouldRemoveInst();
     },
 
@@ -42,7 +40,7 @@
     },
 
     shouldRemoveInst(parent) {
-      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
+      PxMapBehavior.ElementImpl.shouldRemoveInst.call(this, parent);
 
       if (this.elementInst) {
         this.removeInst(parent ? parent : undefined);
@@ -77,19 +75,6 @@
      */
     canAddInst() {
       return true;
-    },
-
-    /**
-     * If this element's instance is ready to create and add to its parent,
-     * fires an event the parent will catch.
-     *
-     * @param {Boolean} isReady - If `true` instance parent will be notified
-     * @return {Boolean} - If `true` the parent was notified
-     */
-    notifyInstReady(isReady=true) {
-      if (!isReady) return false;
-      this.fire('px-map-layer-ready-to-add');
-      return true;
     }
   };
   /* Bind Layer behavior */
@@ -107,7 +92,7 @@
   PxMapBehavior.ParentLayerImpl = {
     listeners: {
       'px-map-element-instance-created' : '_tryToAddAllChildren',
-      'px-map-layer-ready-to-add' : '_tryToAddOneChild'
+      'px-map-element-ready-to-add' : '_tryToAddOneChild'
     },
 
     created() {

@@ -1,5 +1,6 @@
 {
   "verbose": false,
+  "compile": "auto",
   "plugins": {
     "local": {
       "browsers": [
@@ -19,12 +20,20 @@
           "browserName": "safari",
           "platform": "OS X 10.11",
           "version": "10"
+        },
+        {
+          "browserName": "firefox",
+          "platform": "OS X 10.11"
         }
       ]
     }
   },
   "suites": [
-    "test/px-map-test-fixture.html",
-    "test/px-map-custom-tests.js"
+    "test/px-map-root-fixture.html",
+    "test/px-map-popup-fixture.html",
+    "test/px-map-control-fixture.html",
+    "test/px-map-marker-fixture.html",
+    "test/px-map-tile-layer-fixture.html",
+    "test/px-map-layer-geojson-fixture.html"
   ]
 }

@@ -1,6 +1,5 @@
 <!-- Common imports -->
 <link rel="import" href="../../polymer/polymer.html" />
-<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
 
 <!-- Common demo imports -->
 <link rel="import" href="../../px-demo/px-demo-header.html" />
@@ -15,6 +14,15 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-control-zoom.html" />
+<link rel="import" href="../px-map-control-scale.html" />
+<link rel="import" href="../px-map-control-locate.html" />
+<link rel="import" href="../px-map-marker-static.html" />
+<link rel="import" href="../px-map-marker-symbol.html" />
+<link rel="import" href="../px-map-marker-locate.html" />
+<link rel="import" href="../px-map-layer-group.html" />
+<link rel="import" href="../px-map-popup-info.html" />
+<link rel="import" href="../px-map-popup-data.html" />
 
 <!-- Demo DOM module -->
 <dom-module id="px-map-demo">
@@ -39,7 +47,15 @@
     <template is="dom-if" if="{{_selectedConfigIs(chosenConfig.configName, 'Basic')}}" restamp>
       <px-demo-component>
         <div style="height:400px;width:600px;display:flex">
-          <px-map zoom="{{props.zoom.value}}" lat="{{props.lat.value}}" lng="{{props.lng.value}}" flex-to-size="{{props.flexToSize.value}}" fit-to-markers="{{props.fitToMarkers.value}}">
+          <px-map
+            zoom="{{props.zoom.value}}"
+            lat="{{props.lat.value}}"
+            lng="{{props.lng.value}}"
+            flex-to-size="{{props.flexToSize.value}}"
+            disable-scroll-zoom="{{props.disableScrollZoom.value}}"
+            disable-touch-zoom="{{props.disableScrollZoom.value}}"
+            disable-dragging="{{props.disableDragging.value}}"
+            attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
             <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           </px-map>
         </div>
@@ -49,7 +65,16 @@
   <template is="dom-if" if="{{_selectedConfigIs(chosenConfig.configName, 'Advanced')}}" restamp>
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map zoom="{{props.zoom.value}}" lat="{{props.lat.value}}" lng="{{props.lng.value}}" flex-to-size="{{props.flexToSize.value}}" fit-to-markers="{{props.fitToMarkers.value}}">
+        <px-map
+          fit-to-markers
+          zoom="{{props.zoom.value}}"
+          lat="{{props.lat.value}}"
+          lng="{{props.lng.value}}"
+          flex-to-size="{{props.flexToSize.value}}"
+          disable-scroll-zoom="{{props.disableScrollZoom.value}}"
+          disable-touch-zoom="{{props.disableScrollZoom.value}}"
+          disable-dragging="{{props.disableDragging.value}}"
+          attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
 
           <px-map-control-zoom position="topright"></px-map-control-zoom>
@@ -85,7 +110,7 @@
             </px-map-marker-static>
           </px-map-layer-group>
 
-          <px-map-marker-symbol lat="37.7650467" lng="-122.4218885" type="info" symbol-class="fa fa-subway">
+          <px-map-marker-symbol lat="37.7650579" lng="-122.4218937" type="info" icon="px-obj:train">
             <px-map-popup-info title="BART: 16th St. Mission"></px-map-popup-info>
           </px-map-marker-symbol>
 
@@ -97,7 +122,8 @@
 
     <px-demo-component-snippet
         element-properties="{{props}}"
-        element-name="px-map">
+        element-name="px-map"
+        links-includes='["px-map/px-map-tile-layer.html"]'>
     </px-demo-component-snippet>
   </px-demo-interactive>
 
@@ -214,15 +240,32 @@
           inputDisabled: true
         },
 
-        fitToMarkers: {
+        disableScrollZoom: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        disableTouchZoom: {
+          type: Boolean,
+          defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        disableDragging: {
           type: Boolean,
           defaultValue: false,
           inputType: 'toggle'
         },
 
+        parentComponent: {
+          type: Array,
+          defaultValue: ['<div style="height:400px; width:600px; display:flex">','</div>']
+        },
+
         lightDomContent: {
           type: String,
-          defaultValue: '<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\">'
+          defaultValue: '<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer>'
         }
       },
 

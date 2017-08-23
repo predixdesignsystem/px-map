@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Component Test : Fixture for px-map</title>
+
+    <!-- COMMON TEST IMPORTS -->
+    <!-- Loads webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <!-- Load web-component-tester's browser.js test runner -->
+    <script src="../../web-component-tester/browser.js"></script>
+    <!-- Load Polymer -->
+    <link rel="import" href="../../polymer/polymer.html"/>
+    <!-- Retain this link for px-theme.html -->
+    <!-- px-theme is needed for WCT to run without errors -->
+    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <!-- Load test helpers -->
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../test-fixture/test-fixture.html"/>
+
+    <!-- LOCAL IMPORTS -->
+    <!-- Load local components -->
+    <link rel="import" href="../px-map.html" />
+    <!-- Load tests -->
+    <script src="px-map-root-tests.js"></script>
+  </head>
+
+  <body>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <test-fixture id="BasicMapFixture">
+      <template>
+        <px-map style="width:100px; height:100px;"></px-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="FitMarkersMapFixture">
+      <template>
+        <px-map style="width:300px; height:500px;" fit-to-markers>
+          <px-magic-stub-el></px-magic-stub-el>
+        </px-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="InvalidLatLngMapFixture">
+      <template>
+        <px-map style="width:100px; height:100px;" lat="abc" lng="123"></px-map>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ValidLatLngMapFixture">
+      <template>
+        <px-map style="width:100px; height:100px;" lat="34" lng="123"></px-map>
+      </template>
+    </test-fixture>
+
+  </body>
+</html>

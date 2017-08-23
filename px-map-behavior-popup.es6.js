@@ -15,27 +15,6 @@
   PxMapBehavior.PopupImpl = {
     properties: {
       /**
-       * Will be `true` when the popup becomes visible, and `false` when the
-       * popup is not visible.
-       */
-      active: {
-        type: Boolean,
-        value: false,
-        readOnly: true
-      },
-
-      /**
-       * The name of a control or another element on the map that will handle
-       * this popup's content. If this attribute is provided, the popup will
-       * not open as box with a pointer over its parent when the parent is
-       * clicked. The popup will fire an event that should be captured above
-       * with its content to place into a control.
-       */
-      bindToControl: {
-        type: String
-      },
-
-      /**
        * If set to `true`, the popup will be automatically closed when the user
        * interacts with any control buttons (e.g. zoom buttons or locate button).
        * By default, the popup only closes when the user clicks the map.
@@ -47,7 +26,7 @@
     },
 
     addInst(parent) {
-      if (parent && parent.getPopup() !== this.elementInst) {
+      if (parent && parent.getPopup && (parent.getPopup() !== this.elementInst)) {
         parent.bindPopup(this.elementInst);
 
         // Bind custom events for this cluster. Events will be unbound automatically.
@@ -100,9 +79,8 @@
        * description to a reasonable size to keep the popup from growing
        * too large.
        *
-       * To display more information, bind to the popup's
-       * `active` property for notifications on when this popup is shown
-       * and display additional information in the UI of your app.
+       * To display more information, bind to the popup's parent layer (e.g. a marker)
+       * tapped event and display more information in the UI of your application.
        *
        * @type {String}
        */
@@ -112,8 +90,11 @@
       },
 
       /**
-       * The URL for an image to place inside the popup. Use a small, square
-       * thumbnail-style image (e.g. 75px by 75px).
+       * The URL for an image to be placed inside the popup. Use a small, square
+       * thumbnail-style image (e.g. 75px by 75px). You may use any image type
+       * that you would put in an html
+       * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"
+       * target="_blank">`<img>`</a> tag.
        *
        * @type {String}
        */
@@ -149,7 +130,8 @@
       return {
         title: this.title,
         description: this.description,
-        imgSrc: this.imgSrc
+        imgSrc: this.imgSrc,
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     }
   };
@@ -193,6 +175,10 @@
       }
     },
 
+    canAddInst() {
+      return this.data && typeof this.data === 'object' && Object.keys(this.data).length;
+    },
+
     createInst(options) {
       return new PxMap.DataPopup(options);
     },
@@ -203,7 +189,7 @@
       if (lastOptions.title !== nextOptions.title) {
         updates.title = nextOptions.title;
       }
-      if (lastOptions.data !== nextOptions.data) {
+      if (lastOptions.dataHash !== nextOptions.dataHash) {
         updates.data = nextOptions.data;
       }
 
@@ -213,9 +199,12 @@
     },
 
     getInstOptions() {
+      let data = this._getValidData();
       return {
         title: this.title,
-        data: this._getValidData()
+        data: data,
+        dataHash: JSON.stringify(data),
+        styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
     },
 
@@ -250,26 +239,77 @@
    * @class PxMap.InfoPopup
    */
   class InfoPopup extends L.Popup {
-    constructor(settings={}, config={}) {
+    constructor(settings={}) {
       super();
-      this._createPopup(settings, config);
+      this._createPopup(settings);
       return this;
+    }
+
+    onAdd(map) {
+      if (map.__addShadyScope) {
+        // We need to monkey patch the node returned by `getPane().appendChild`
+        // so we can ensure that we apply the right CSS scope if we are in
+        // shady DOM. By doing this, we effectively wrap the node (which is
+        // fetched in the L.DivOverlay.onAdd method) in a function that scopes
+        // the child nodes before they are added to the map. If we don't do this,
+        // Leaflet will measure the popup before its CSS classes are applied and
+        // pan the map far too much to fit it. This is lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcPane = this.getPane();
+        var srcFn = srcPane.appendChild;
+        srcPane.appendChild = function(el) {
+          map.__addShadyScope(el, false);
+          Polymer.dom(srcPane).appendChild(el);
+        }
+      }
+
+      L.Popup.prototype.onAdd.call(this, map);
+
+      if (map.__addShadyScope) {
+        // Restore monkey patched function
+        srcPane.appendChild = srcFn;
+      }
+    }
+
+    _updateContent() {
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        // We need to monkey patch the srcNode's `innerHTML` setter to ensure
+        // that our popup is scoped before it is drawn if we are in shady DOM.
+        // If we don't do this, Leaflet will measure the popup before its CSS
+        // classes are applied and pan the map far too much to fit it.
+        // This is also lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcNode = this._contentNode;
+        var fakeNode = {
+          innerHTML: null
+        };
+        this._contentNode = fakeNode;
+      }
+
+      L.DivOverlay.prototype._updateContent.call(this);
+
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        if (typeof fakeNode.innerHTML === 'string') {
+          Polymer.dom(srcNode).innerHTML = fakeNode.innerHTML;
+        }
+        // Restore monkey patched function
+        this._contentNode = srcNode;
+      }
     }
 
     // Note `createPopup` is an internet explorer native method, but deprecated
     // so hopefully it won't cause grief
-    _createPopup(settings={}, config={}) {
+    _createPopup(settings={}) {
+      // Assign settings and create content
       this.settings = settings;
-      let {title, description, imgSrc} = settings;
-      let content = this._generatePopupContent(title, description, imgSrc);
+      const { title, description, imgSrc, styleScope } = settings;
+      const content = this._generatePopupContent(title, description, imgSrc);
+      const className = `map-popup-info ${styleScope||''}`
 
-      let defaultConfig = {
-        className: 'map-popup-info'
-      };
-      let composedConfig = {};
-      Object.assign(composedConfig, defaultConfig, config);
+      const maxWidth = 400;
+      const minWidth = 300;
 
-      this.initialize(composedConfig);
+      this.initialize({ className, maxWidth, minWidth });
       this.setContent(content);
     }
 
@@ -302,8 +342,9 @@
 
     updateSettings(settings={}) {
       Object.assign(this.settings, settings);
-      let {title, description, imgSrc} = this.settings;
-      let content = this._generatePopupContent(title, description, imgSrc);
+      const { title, description, imgSrc, styleScope } = this.settings;
+      const content = this._generatePopupContent(title, description, imgSrc);
+
       this.setContent(content);
       this.update();
     }
@@ -316,28 +357,81 @@
    * @class PxMap.DataPopup
    */
   class DataPopup extends L.Popup {
-    constructor(settings={}, config={}) {
+    constructor(settings={}) {
       super();
-      this._createPopup(settings, config);
+      this._createPopup(settings);
       return this;
+    }
+
+    onAdd(map) {
+      // Don't open empty data popups
+      if (typeof this.settings.data !== 'object' || Object.keys(this.settings.data).length === 0) {
+        return;
+      }
+
+      if (map.__addShadyScope) {
+        // We need to monkey patch the node returned by `getPane().appendChild`
+        // so we can ensure that we apply the right CSS scope if we are in
+        // shady DOM. By doing this, we effectively wrap the node (which is
+        // fetched in the L.DivOverlay.onAdd method) in a function that scopes
+        // the child nodes before they are added to the map. If we don't do this,
+        // Leaflet will measure the popup before its CSS classes are applied and
+        // pan the map far too much to fit it. This is lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcPane = this.getPane();
+        var srcFn = srcPane.appendChild;
+        srcPane.appendChild = function(el) {
+          map.__addShadyScope(el, false);
+          Polymer.dom(srcPane).appendChild(el);
+        }
+      }
+
+      L.Popup.prototype.onAdd.call(this, map);
+
+      if (map.__addShadyScope) {
+        // Restore monkey patched function
+        srcPane.appendChild = srcFn;
+      }
+    }
+
+    _updateContent() {
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        // We need to monkey patch the srcNode's `innerHTML` setter to ensure
+        // that our popup is scoped before it is drawn if we are in shady DOM.
+        // If we don't do this, Leaflet will measure the popup before its CSS
+        // classes are applied and pan the map far too much to fit it.
+        // This is also lame. :(
+        // @TODO: Remove when shady DOM support is deprecated
+        var srcNode = this._contentNode;
+        var fakeNode = {
+          innerHTML: null
+        };
+        this._contentNode = fakeNode;
+      }
+
+      L.DivOverlay.prototype._updateContent.call(this);
+
+      if (this._map && this._map.__addShadyScope && this._content.length) {
+        if (typeof fakeNode.innerHTML === 'string') {
+          Polymer.dom(srcNode).innerHTML = fakeNode.innerHTML;
+        }
+        // Restore monkey patched function
+        this._contentNode = srcNode;
+      }
     }
 
     // Note `createPopup` is an internet explorer native method, but deprecated
     // so hopefully it won't cause grief
     _createPopup(settings={}, config={}) {
       this.settings = settings;
-      let {title, data} = this.settings;
-      let content = this._generatePopupContent(title, data);
+      const { title, data, styleScope } = settings;
+      const content = this._generatePopupContent(title, data);
 
-      let defaultConfig = {
-        className: 'map-popup-data',
-        maxWidth: 400,
-        minWidth: 300
-      };
-      let composedConfig = {};
-      Object.assign(composedConfig, defaultConfig, config);
+      const className = `map-popup-data ${styleScope||''}`
+      const maxWidth = 400;
+      const minWidth = 300;
 
-      this.initialize(composedConfig);
+      this.initialize({ className, maxWidth, minWidth });
       this.setContent(content);
     }
 
@@ -376,8 +470,12 @@
 
     updateSettings(settings={}) {
       Object.assign(this.settings, settings);
-      let {title, data} = this.settings;
-      let content = this._generatePopupContent(title, data);
+      const { title, data } = this.settings;
+      const content = this._generatePopupContent(title, data);
+
+      if (this.isOpen() && Object.keys(data).length === 0) {
+        this._close();
+      }
 
       this.setContent(content);
       this.update();

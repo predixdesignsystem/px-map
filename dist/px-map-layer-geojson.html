@@ -1,0 +1,57 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../../polymer/polymer.html"/>
+
+<!-- Load required PxMapBehaviors -->
+<link rel="import" href="px-map-behavior-layer-geojson.html">
+
+<!--
+This subcomponent draws GeoJSON features as vectors on the map. Use it to draw
+common shapes like points, lines, polygons, circles, and rectangles (see the
+`data` attribute documentation for more info on what can be drawn).
+The layer only accepts valid GeoJSON formatted data — sending in invalid data
+that does not conform to the [GeoJSON spec](http://geojson.org/geojson-spec.html)
+will cause the layer to fail and not draw.
+
+### Usage
+
+    <px-map>
+      <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'>
+    </px-map-layer-geojson>
+    </px-map>
+
+#### Styling features
+
+There are two ways to style the features that the layer draws. To style all the
+features for the entire layer, use the `featureStyle` attribute. To style each
+feature individually, add a `style` object to the feature's `properties`.
+See the API documentation below for instructions on what style options are
+available.
+
+#### Displaying feature properties
+
+Enable the `showFeatureProperties` attribute to show a popup with feature properties
+when the user taps on a feature. This is a useful way to show relevant information
+about each feature.
+
+@element px-map-layer-geojson
+@blurb Draws GeoJSON features as vectors on a map
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-map-layer-geojson">
+  <style>
+    :host { display: none }
+  </style>
+  <template></template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-map-layer-geojson',
+    behaviors: [PxMapBehavior.GeoJSONLayer]
+  });
+</script>

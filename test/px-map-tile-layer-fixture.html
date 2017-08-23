@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Component Test : Fixture for px-map-tile-layer</title>
+
+    <!-- COMMON TEST IMPORTS -->
+    <!-- Loads webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <!-- Load web-component-tester's browser.js test runner -->
+    <script src="../../web-component-tester/browser.js"></script>
+    <!-- Load Polymer -->
+    <link rel="import" href="../../polymer/polymer.html"/>
+    <!-- Retain this link for px-theme.html -->
+    <!-- px-theme is needed for WCT to run without errors -->
+    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <!-- Load test helpers -->
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../test-fixture/test-fixture.html"/>
+
+    <!-- LOCAL IMPORTS -->
+    <!-- Load local components -->
+    <link rel="import" href="../px-map-tile-layer.html" />
+    <!-- Load tests -->
+    <script src="px-map-tile-layer-tests.js"></script>
+  </head>
+
+  <body>
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <test-fixture id="TileLayerEncodedUrlFixture">
+      <template>
+        <px-map-tile-layer url="https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png" decode-url></px-map-tile-layer>
+      </template>
+    </test-fixture>
+  </body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Marker Clusters</title>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../../polymer/polymer-mini.html" />
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html" />
+  <link rel="import" href="../px-map-tile-layer.html" />
+  <link rel="import" href="../px-map-control-zoom.html" />
+  <link rel="import" href="../px-map-marker-group.html" />
+
+  <!-- Uncomment for `dist/` versions -->
+  <!-- <link rel="import" href="../dist/px-map.html" />
+  <link rel="import" href="../dist/px-map-tile-layer.html" />
+  <link rel="import" href="../dist/px-map-control-zoom.html" />
+  <link rel="import" href="../dist/px-map-marker-group.html" /> -->
+
+  <!-- Importing for the demo only... -->
+  <!-- <link rel="import" href="../../iron-ajax/iron-ajax.html"/> -->
+</head>
+
+<style>
+  body {
+    margin: 0;
+  }
+  .wrap {
+    display: flex;
+    width: 90vw;
+    height: 90vh;
+    margin: 5vh 5vw;
+  }
+</style>
+<body>
+  <section class="wrap">
+    <template is="dom-bind">
+
+      <px-map fit-to-markers flex-to-size on-px-map-moved="mapMove">
+        <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+        <px-map-control-zoom position="bottomright"></px-map-control-zoom>
+
+        <!-- Data-bind the output of the iron-ajax call `geoJSON` to the marker group's `data` attribute -->
+        <px-map-marker-group name="Places" data="{{geoJSON}}"></px-map-marker-group>
+      </px-map>
+    </template>
+  </section>
+  <script>
+    var tmpl = document.querySelector('template[is=dom-bind]');
+
+    document.addEventListener('WebComponentsReady', function() {
+      var featCollection = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.24042573",
+                "32.67445793"
+              ]
+            },
+            "properties": {
+              "title": "Cabrillo National Monument",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Cabrillo National Monument",
+                "popup-data": {
+                  "LAT": "32.67445793",
+                  "LNG": "-117.24042573",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10001"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.27618677",
+                "32.83957829"
+              ]
+            },
+            "properties": {
+              "title": "Pearl St & Draper Av",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "info",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Pearl St & Draper Av",
+                "popup-data": {
+                  "LAT": "32.83957829",
+                  "LNG": "-117.27618677",
+                  "STATE": "info"
+                }
+              }
+            },
+            "id": "10003"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.2738099",
+                "32.84012848"
+              ]
+            },
+            "properties": {
+              "title": "Pearl St & Fay Av",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Pearl St & Fay Av",
+                "popup-data": {
+                  "LAT": "32.84012848",
+                  "LNG": "-117.2738099",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10004"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.26867322",
+                "32.8458467"
+              ]
+            },
+            "properties": {
+              "title": "Torrey Pines Rd & Exchange Pl",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "important",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Torrey Pines Rd & Exchange Pl",
+                "popup-data": {
+                  "LAT": "32.8458467",
+                  "LNG": "-117.26867322",
+                  "STATE": "important"
+                }
+              }
+            },
+            "id": "10006"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.26175158",
+                "32.84931178"
+              ]
+            },
+            "properties": {
+              "title": "Torrey Pines Rd & Hillside Dr",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Torrey Pines Rd & Hillside Dr",
+                "popup-data": {
+                  "LAT": "32.84931178",
+                  "LNG": "-117.26175158",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10007"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.24825013",
+                "32.79810093"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Everts St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Everts St",
+                "popup-data": {
+                  "LAT": "32.79810093",
+                  "LNG": "-117.24825013",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10011"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.24583394",
+                "32.79652904"
+              ]
+            },
+            "properties": {
+              "title": "Grand Av & Fanuel St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Grand Av & Fanuel St",
+                "popup-data": {
+                  "LAT": "32.79652904",
+                  "LNG": "-117.24583394",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10012"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.24277358",
+                "32.79929398"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Haines St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "info",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Haines St",
+                "popup-data": {
+                  "LAT": "32.79929398",
+                  "LNG": "-117.24277358",
+                  "STATE": "info"
+                }
+              }
+            },
+            "id": "10013"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.24120249",
+                "32.79965017"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Ingraham St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "important",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Ingraham St",
+                "popup-data": {
+                  "LAT": "32.79965017",
+                  "LNG": "-117.24120249",
+                  "STATE": "important"
+                }
+              }
+            },
+            "id": "10015"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.23906319",
+                "32.80012359"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Jewell St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Jewell St",
+                "popup-data": {
+                  "LAT": "32.80012359",
+                  "LNG": "-117.23906319",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10016"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.23574899",
+                "32.74506671"
+              ]
+            },
+            "properties": {
+              "title": "Voltaire St & Mendocino St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Voltaire St & Mendocino St",
+                "popup-data": {
+                  "LAT": "32.74506671",
+                  "LNG": "-117.23574899",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10020"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.23556667",
+                "32.80087716"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Lamont St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Lamont St",
+                "popup-data": {
+                  "LAT": "32.80087716",
+                  "LNG": "-117.23556667",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10023"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.23353563",
+                "32.74286905"
+              ]
+            },
+            "properties": {
+              "title": "Voltaire St & San Clemente St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Voltaire St & San Clemente St",
+                "popup-data": {
+                  "LAT": "32.74286905",
+                  "LNG": "-117.23353563",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10024"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.23174882",
+                "32.8017129"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Noyes St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Noyes St",
+                "popup-data": {
+                  "LAT": "32.8017129",
+                  "LNG": "-117.23174882",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10025"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22970402",
+                "32.73814733"
+              ]
+            },
+            "properties": {
+              "title": "Chatsworth Bl & Tennyson St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Chatsworth Bl & Tennyson St",
+                "popup-data": {
+                  "LAT": "32.73814733",
+                  "LNG": "-117.22970402",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10026"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22929493",
+                "32.74025595"
+              ]
+            },
+            "properties": {
+              "title": "Voltaire St & Poinsettia Dr",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Voltaire St & Poinsettia Dr",
+                "popup-data": {
+                  "LAT": "32.74025595",
+                  "LNG": "-117.22929493",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10027"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22673314",
+                "32.75266115"
+              ]
+            },
+            "properties": {
+              "title": "West Point Loma Bl & Adrian St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "West Point Loma Bl & Adrian St",
+                "popup-data": {
+                  "LAT": "32.75266115",
+                  "LNG": "-117.22673314",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10029"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.2265353",
+                "32.72894288"
+              ]
+            },
+            "properties": {
+              "title": "Nimitz Bl & Rosecrans St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Nimitz Bl & Rosecrans St",
+                "popup-data": {
+                  "LAT": "32.72894288",
+                  "LNG": "-117.2265353",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10031"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22584945",
+                "32.80091313"
+              ]
+            },
+            "properties": {
+              "title": "Grand Av & Culver St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "info",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Grand Av & Culver St",
+                "popup-data": {
+                  "LAT": "32.80091313",
+                  "LNG": "-117.22584945",
+                  "STATE": "info"
+                }
+              }
+            },
+            "id": "10032"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22407745",
+                "32.75340225"
+              ]
+            },
+            "properties": {
+              "title": "West Point Loma Bl & Loma Riviera Dr",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "West Point Loma Bl & Loma Riviera Dr",
+                "popup-data": {
+                  "LAT": "32.75340225",
+                  "LNG": "-117.22407745",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10033"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22518324",
+                "32.86829317"
+              ]
+            },
+            "properties": {
+              "title": "Nobel Dr & Lebon Dr",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "unknown",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Nobel Dr & Lebon Dr",
+                "popup-data": {
+                  "LAT": "32.86829317",
+                  "LNG": "-117.22518324",
+                  "STATE": "unknown"
+                }
+              }
+            },
+            "id": "10034"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                "-117.22121375",
+                "32.805504"
+              ]
+            },
+            "properties": {
+              "title": "Garnet Av & Bond St",
+              "marker-icon": {
+                "icon-base": "static-icon",
+                "icon-type": "warning",
+                
+              },
+              "marker-popup": {
+                "popup-base": "data-popup",
+                "popup-title": "Garnet Av & Bond St",
+                "popup-data": {
+                  "LAT": "32.805504",
+                  "LNG": "-117.22121375",
+                  "STATE": "warning"
+                }
+              }
+            },
+            "id": "10036"
+          }
+        ]
+      };
+      var tmpl = document.querySelector('template[is=dom-bind]');
+      tmpl.mapMove = function(evt) {
+        var markers = Polymer.dom(evt).rootTarget.getVisibleMarkers();
+        console.log('There are ' + markers.length + ' markers visible on the map.');
+      }
+      tmpl.set('geoJSON', featCollection);
+    });
+  </script>
+</body>
+</html>

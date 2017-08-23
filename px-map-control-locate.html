@@ -32,6 +32,22 @@ how your app must be configured to use it: https://developer.mozilla.org/en-US/d
 When the user taps on the button in the example above, the map will automatically
 set its center to the user's detected location (if it is successfully found).
 
+### Drop a marker on the user's location
+
+Use this marker together with the `px-map-marker-locate` component to automatically
+drop a marker at the latitude and longitude of user's current location:
+
+    <px-map lat="12" lng="13" zoom="15">
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+
+      <px-map-control-locate last-found-location="{{location}}" move-to-location position="bottomright"></px-map-control-locate>
+      <px-map-marker-locate lat="{{location.lat}}" lng="{{location.lng}}" accuracy="{{location.accuracy}}"></px-map-marker-locate>
+    </px-map>
+
+Data-binding to the `lastFoundLocation` attribute and listening for changes is
+a useful way to update the state of your app or other map components with the
+user's current location.
+
 ### Handling location events and failure
 
 If your app doesn't meet the requirements for the user's browser to respond to the
@@ -52,6 +68,20 @@ failure and notify the user:
         // do something with `evt.message` to notify the user ...
       });
     </script>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description
+:----------------|:-------------
+`--px-map-control-button-background-color` | Background color for the map control buttons
+`--px-map-control-button-text-color` | Text color for the map control buttons
+`--px-map-control-button-border-width` | Border width for the map control buttons
+`--px-map-control-button-border-color` | Border color for the map control buttons
+`--px-map-control-button-background-color--hover` | Background color for the map control buttons when hovered
+`--px-map-control-button-text-color--hover` | Text color for the map control buttons when hovered
+`--px-map-control-button-border-color--disabled` | Border color for the map control buttons when disabled
+`--px-map-control-button-text-color--disabled` | Text color for the map control buttons when disabled
 
 @element px-map-control-locate
 @blurb ...

@@ -10,6 +10,251 @@
 
   /**
    *
+   * @polymerBehavior PxMapBehavior.TrackMarkers
+   */
+  PxMapBehavior.TrackMarkersImpl = {
+    properties: {
+      /**
+       * Updates the visible bounds of the map to fit all markers as they are
+       * added. Markers are continuously monitored for changes, and any new
+       * markers added late in the map's lifecycle (e.g. markers created
+       * dynamically long after the map is loaded) will trigger an additional
+       * resize of the map if they are not within its current visible bounds.
+       *
+       * This attribute is dynamic. To stop map resizes after some amount of time,
+       * disable this attribute.
+       *
+       *
+       * @type {Object}
+       */
+      fitToMarkers: {
+        type: Boolean,
+        value: false,
+        observer: '_fitMapToMarkersIfSet'
+      },
+
+      /**
+       * Optional setting that only works if `fitToMarkers` is enabled. Adds a
+       * padding between the edges of the map and the visible markers shown.
+       * Set to a percentage value (e.g. `0.25` for 25%). Defaults to 15%, setting
+       * to a lower value will lead to some large markers potentially not fitting
+       * on the map.
+       *
+       * @type {Number}
+       */
+      fitToMarkersPadding: {
+        type: Number,
+        value: 0.15
+      },
+
+      /**
+       * Optional setting that only works if `fitToMarkers` is enabled. Determines
+       * how the map will calculate its zoom level when fitting markers.
+       * Choose from the following options (default is 'max'):
+       *
+       *    * 'max' - the map will zoom to the lowest level that fits all markers (but not past the map's `maxZoom`)
+       *    * 'min' - the map will zoom to the highest level that fits all markers (but not past the map's `minZoom`)
+       *
+       * @type {String}
+       */
+      fitToMarkersZoom: {
+        type: String,
+        value: 'max'
+      }
+    },
+
+    addInst(parent) {
+      this.listen(this, 'px-map-marker-added', '_handleMarkerAdded');
+      this.listen(this, 'px-map-marker-group-features-changed', '_handleMarkerGroupUpdated');
+
+      this._knownMarkers = (this._knownMarkers || new Map());
+
+      PxMapBehavior.LeafletRootImpl.addInst.call(this);
+    },
+
+    removeInst(parent) {
+      this.unlisten(this, 'px-map-marker-added', '_handleMarkerAdded');
+      this.unlisten(this, 'px-map-marker-group-features-changed', '_handleMarkerGroupUpdated');
+
+      if (this._knownMarkers && this._knownMarkers instanceof Map) {
+        this._knownMarkers.clear();
+      }
+      this._knownMarkers = null;
+
+      PxMapBehavior.LeafletRootImpl.removeInst.call(this);
+    },
+
+    /**
+     * When an individual marker is added, record its location in the known markers
+     * map and ask the map to fit it later.
+     *
+     * Bind listeners on remove to keep the known markers map updated.
+     */
+    _handleMarkerAdded(evt) {
+      if (!this._knownMarkers) return;
+
+      const localEvt = Polymer.dom(evt);
+
+      if (localEvt.rootTarget && localEvt.rootTarget.elementInst && localEvt.event.detail.latLng) {
+        this._knownMarkers.set(localEvt.rootTarget.elementInst, localEvt.event.detail.latLng);
+        this.listen(localEvt.rootTarget, 'px-map-marker-removed', '_handleMarkerRemoved');
+        this._fitMapToMarkersIfSet();
+      }
+    },
+
+    /**
+     * When an individual marker is removed, delete it from the known markers
+     * map and stop. Don't ask the map to refit its bounds.
+     *
+     * Unbind listeners so the element can be cleaned up.
+     */
+    _handleMarkerRemoved(evt) {
+      if (!this._knownMarkers) return;
+
+      const localEvt = Polymer.dom(evt);
+      const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
+
+      if (knownMarker) {
+        this.unlisten(localEvt.rootTarget, 'px-map-marker-removed', '_handleMarkerRemoved');
+        this._knownMarkers.delete(localEvt.rootTarget.elementInst);
+      }
+    },
+
+    /**
+     * When marker groups are updated, set their new bounds in the known markers
+     * map. We don't need to worry about whether we've seen them before.
+     *
+     * Bind listeners on remove to keep the known markers map updated.
+     */
+    _handleMarkerGroupUpdated(evt) {
+      if (!this._knownMarkers) return;
+
+      const localEvt = Polymer.dom(evt);
+      const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
+
+      if (localEvt.rootTarget && localEvt.rootTarget.elementInst) {
+        if (!knownMarker) {
+          this.listen(localEvt.rootTarget, 'px-map-marker-group-removed', '_handleMarkerGroupRemoved');
+        }
+
+        this._knownMarkers.set(localEvt.rootTarget.elementInst, localEvt.event.detail.bounds);
+        this._fitMapToMarkersIfSet();
+      }
+    },
+
+    /**
+     * When marker groups are removed, delete their bounds from the known markers
+     * map and stop. Don't ask the map to refit its bounds.
+     *
+     * Unbind listeners so the element can be cleaned up.
+     */
+    _handleMarkerGroupRemoved(evt) {
+      if (!this._knownMarkers) return;
+
+      const localEvt = Polymer.dom(evt);
+      const knownMarker = this._knownMarkers.has(localEvt.rootTarget.elementInst || null);
+
+      if (knownMarker) {
+        this.unlisten(localEvt.rootTarget, 'px-map-marker-group-removed', '_handleMarkerGroupRemoved');
+        this._knownMarkers.delete(localEvt.rootTarget.elementInst);
+      }
+    },
+
+    /**
+     * Debounced function that iterates over the known markers map and fits the
+     * visible bounds of the map.
+     */
+    _fitMapToMarkers() {
+      this.debounce('fit-map-to-bounds', function() {
+        if (!this._knownMarkers || !this._knownMarkers.size) return;
+
+        const bounds = this._markersToBoundsWithPadding(this._knownMarkers, this.fitToMarkersPadding);
+
+        if (bounds && bounds.isValid()) {
+          let latLng = bounds.getCenter();
+          let zoom = this._getZoomLevelForFit(bounds, this.fitToMarkersZoom, this.elementInst);
+          this.elementInst.setView(latLng, zoom);
+        }
+      }, 10);
+    },
+
+    /**
+     * Takes a Map of known markers with values representing the marker's geometry
+     * as a `L.LatLng` or `L.LatLngBounds` instance and creates a bounds object
+     * that encompasses all the markers. Optionally pads the bounds by a percentage
+     * with the `padding` param.
+     *
+     * @param {Map} markersMap
+     * @param {Number} [padding]
+     * @return {L.LatLngBounds}
+     */
+    _markersToBoundsWithPadding(markersMap, padding) {
+      if (!markersMap || !markersMap.size) return;
+
+      let bounds = L.latLngBounds();
+      for (let value of markersMap.values()) {
+        if (value instanceof L.LatLng || value instanceof L.LatLngBounds) {
+          bounds.extend(value);
+        }
+      }
+
+      if (bounds.isValid() && (typeof padding === 'number')) {
+        bounds = bounds.pad(padding);
+      }
+
+      return bounds;
+    },
+
+    /**
+     * Takes a bounds, fit setting, zoom level, and map instance, and returns a
+     * new zoom level for the map.
+     *
+     * @param {L.LatLngBounds} bounds
+     * @param {String} fitSetting - see `fitToMarkersZoom` property for more details
+     * @param {L.Map} map
+     * @return {Number}
+     */
+    _getZoomLevelForFit(bounds, fitSetting, map) {
+      if (fitSetting === 'min') {
+        let zoom = map.getMinZoom() || 0;
+        return zoom;
+      }
+      if (fitSetting === 'max') {
+        let zoom = map.getBoundsZoom(bounds, true) - 1;
+        return zoom;
+      }
+    },
+
+    /**
+     * Called when the `fitToMarkers` attribute is updated. If it is set to true
+     * and a map is set, call the internal `_fitMapToMarkers` method.
+     */
+    _fitMapToMarkersIfSet() {
+      if (!this.elementInst || !this.fitToMarkers) return;
+      this._fitMapToMarkers();
+    },
+
+    /**
+     * Sets the map's visible bounds (latitude, longitude, and zoom) to fit all
+     * attached markers in a single view.
+     *
+     * Enable the `fit-to-markers` attribute to automatically fit all markers as
+     * they are added to the map.
+     *
+     * @return {Boolean} `true` if there were markers to fit, `false` if there were no markers to fit
+     */
+    fitMapToMarkers() {
+      if (!this.elementInst || !this._knownMarkers || !this._knownMarkers.size) {
+        return false;
+      }
+
+      this._fitMapToMarkers();
+      return true;
+    }
+  };
+
+  /**
+   *
    * @polymerBehavior PxMapBehavior.LeafletRoot
    */
   PxMapBehavior.LeafletRootImpl = {
@@ -119,7 +364,7 @@
       /**
        * Set to disable dragging of the map with the mouse or by touch. Use to
        * restrict changing the map's visible area (e.g. for a static map) or
-       * to set up a map for being updated programatically (e.g. through regular
+       * to set up a map for being updated programmatically (e.g. through regular
        * responses from an API).
        *
        * @type {Boolean}
@@ -168,25 +413,21 @@
         value: false
       },
 
-      // ---------------------------------------------------------------------
-      // ENABLES FEATURES THAT CHANGE THE MAP BEHAVIOR
-      // ---------------------------------------------------------------------
-
       /**
-       * Automatically changes the visible bounds of the map to fit all
-       * markers placed on it.
+       * Stringified HTML that will be used as the first item in your attribution
+       * list. Pass an <a> tag with a link to more information about your
+       * attribution source. Example: '<a href="https://example.com">Example</a>'
        *
-       * @type {Object}
+       * Defaults to a link to the Leaflet.js library. If an empty string is
+       * passed ("") the prefix will be hidden.
+       *
+       * @type {String}
        */
-      fitToMarkers: {
-        type: Boolean,
-        value: false,
-        observer: '_fitMapToMarkersIfConfigured'
+      attributionPrefix: {
+        type: String,
+        value: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>',
+        observer: 'shouldUpdateInst'
       },
-
-      // ---------------------------------------------------------------------
-      // TELL THE MAP HOW TO RESIZE
-      // ---------------------------------------------------------------------
 
       /**
        * Uses flexbox to set the size of the map. Set the parent container
@@ -203,18 +444,41 @@
     },
 
     attached() {
-      this.shouldAddInst();
-      this.addInst();
+      this.listen(this, 'px-map-element-ready-to-add', 'shouldAddInst');
+      if (this.canAddInst()) {
+        this.fire('px-map-element-ready-to-add');
+      }
     },
 
     detached() {
+      this.unlisten(this, 'px-map-element-ready-to-add', 'shouldAddInst');
       this.shouldRemoveInst();
       this.removeInst();
     },
 
+    shouldAddInst(evt) {
+      if (Polymer.dom(evt).rootTarget !== this) return;
+
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this);
+      this.addInst();
+    },
+
+    canAddInst() {
+      if (typeof this.zoom !== 'undefined' && this._canBeNum(this.zoom)) {
+        return this.latLngIsValid(this.lat, this.lng, true);
+      }
+    },
+
     createInst(options) {
       const mapEl = Polymer.dom(this.root).querySelector('#map');
-      return L.map(mapEl, options);
+      const mapInst = L.map(mapEl, options);
+
+      mapInst.attributionControl.setPrefix(options.attributionPrefix);
+
+      if (this.isShadyScoped()) {
+        mapInst.__addShadyScope = this.scopeSubtree.bind(this);
+      }
+      return mapInst;
     },
 
     addInst() {
@@ -236,9 +500,6 @@
         'zoomstart' : zoomStartFn,
         'zoomend' : zoomEndFn
       });
-
-      this.listen(this, 'px-map-marker-add', '_fitMapToMarkersIfConfigured');
-      this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkersIfConfigured');
     },
 
     removeInst() {
@@ -246,9 +507,6 @@
       if (this.isShadyScoped()) {
         this.scopeSubtree(this.$.map, false);
       }
-
-      this.unlisten(this, 'px-map-marker-add', '_fitMapToMarkersIfConfigured');
-      this.listen(this, 'px-map-marker-group-add', '_fitMapToMarkersIfConfigured');
     },
 
     getInstOptions() {
@@ -261,22 +519,24 @@
       options.crs = this.crs || L.CRS.EPSG3857;
       options.center = [this.lat, this.lng];
       options.zoom = this.zoom;
-      options.minZoom = this.minZoom || undefined;
-      options.maxZoom = this.maxZoom || undefined;
+      options.minZoom = this.minZoom || 0;
+      options.maxZoom = this.maxZoom || 18;
       options.maxBounds = this.maxBounds || undefined;
 
       options.dragging = !this.disableDragging;
       options.scrollWheelZoom = !this.disableScrollZoom;
       options.touchZoom = !this.disableTouchZoom;
       options.attributionControl = !this.disableAttribution;
+      options.attributionPrefix = this.attributionPrefix;
 
       return options;
     },
 
     updateInst(lastOptions, nextOptions) {
-      if (lastOptions.center[0] !== nextOptions.center[0] ||
+      if ((this.latLngIsValid(nextOptions.center[0], nextOptions.center[1])) &&
+          (lastOptions.center[0] !== nextOptions.center[0] ||
           lastOptions.center[1] !== nextOptions.center[1] ||
-          lastOptions.zoom !== nextOptions.zoom) {
+          lastOptions.zoom !== nextOptions.zoom)) {
         this._updateMapView();
       }
 
@@ -284,10 +544,10 @@
         this.setMaxZoom(nextOptions.maxZoom);
       }
       if (lastOptions.minZoom !== nextOptions.minZoom && !isNaN(nextOptions.minZoom)) {
-        this.setMaxZoom(nextOptions.minZoom);
+        this.setMinZoom(nextOptions.minZoom);
       }
       if (lastOptions.maxBounds !== nextOptions.maxBounds && !isNaN(nextOptions.maxBounds)) {
-        this.setMaxZoom(nextOptions.maxBounds);
+        this.setMaxBounds(nextOptions.maxBounds);
       }
 
       if (!lastOptions.dragging && nextOptions.dragging) {
@@ -310,77 +570,76 @@
       if (lastOptions.touchZoom && !nextOptions.touchZoom) {
         this.elementInst.touchZoom.disable();
       }
-    },
 
-    /**
-     * Iterates over all attached markers and pans/zooms the map to fit all
-     * markers within the visible bounds.
-     *
-     * Set the `fit-map-to-markers` attribute to automatically fit all markers
-     * as they are added to the map.
-     */
-    fitMapToMarkers() {
-      if (this.elementInst) {
-        this.debounce('fit-map-to-markers', this._fitBounds, 1);
+      if (lastOptions.attributionPrefix !== nextOptions.attributionPrefix) {
+        this.elementInst.attributionControl.setPrefix(nextOptions.attributionPrefix);
       }
     },
 
     /**
-     * Internal method that calls `fitMapToMarkers` only if the `fit-map-to-markers`
-     * attribute is set. Ensures we don't call the method internally unless
-     * the map is configured to do so.
+     * Checks if the map container has changed size or visibility, and - if so -
+     * updates the map accordingly by refreshing the tile layer.
      */
-    _fitMapToMarkersIfConfigured() {
-      if (this.fitMapToMarkers) {
-        this.fitMapToMarkers();
-      }
+    invalidateSize() {
+      if (!this.elementInst) return;
+
+      this.elementInst.invalidateSize();
     },
 
     /**
-     * Gets the bounds of all markers. If the bounds object is empty, retries
-     * once in the event that markers didn't have enough time to render.
-     *
-     * @param {Boolean} isRetry - If true, this is the second try and the function shouldn't be tried again. Allow the function to call this method on itself.
+     * Called when the `lat`, `lng`, or `zoom` properties are set or updated.
+     * Sets the map view to the new values.
      */
-    _fitBounds(isRetry) {
-      const bounds = this._getAllMarkerGeoms();
-      const boundsAreNotValid = (!bounds.isValid || !bounds.isValid());
-      if (boundsAreNotValid && !isRetry) {
-        return setTimeout(this._fitBounds.bind(this), 0);
-      }
-      if (!boundsAreNotValid) {
-        this.elementInst.fitBounds(bounds);
-      }
-    },
+    _updateMapView() {
+      if (!this.elementInst) return;
 
-    /**
-     * Iterates over all markers attached to the map and returns an array of
-     * <L.LatLng> instances with the geometry.
-     *
-     * @return {Array}
-     */
-    _getAllMarkerGeoms() {
-      // Create a new bounds and extend with the map center point
-      let bounds = new L.LatLngBounds();
+      this.debounce('update-map-view', function() {
+        const {lat, lng} = this.elementInst.getCenter();
+        const zoom = this.elementInst.getZoom();
 
-      // Loop over the layers
-      this.elementInst.eachLayer((layer) => {
-        // Most markers should have an `isMarker` static property defined as `true`
-        // and a `getLatLng` method
-        if (layer.isMarker && layer.getLatLng) {
-          let markerGeom = layer.getLatLng();
-          bounds.extend(markerGeom);
-        }
-
-        // Markers in a cluster have a `layer._markerCluster` property
-        if (layer._markerCluster && layer.getBounds) {
-          let clusterBounds = layer.getBounds();
-          bounds.extend(clusterBounds);
+        if (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
+          this.elementInst.setView([this.lat,this.lng], this.zoom);
         }
       });
-      return bounds;
     },
 
+    /**
+     * Returns true if val can be used as a number in L.LatLng or zoom
+     *
+     * @param {*} val
+     * @return {Boolean}
+     */
+    _canBeNum(val) {
+      return (!isNaN(val) && val !== "");
+    },
+
+    /**
+     * Returns true if lat and lng are valid values that can be used to set a
+     * map's position. Prints an error if values are invalid (unless `hideError`
+     * is set to true).
+     *
+     * @param {Number} lat
+     * @param {Number} lng
+     * @param {Boolean} hideError
+     * @return {Boolean}
+     */
+    latLngIsValid(lat, lng, hideError) {
+      var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
+      if (isValid) return true;
+      if (!hideError) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+          You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      }
+      return false;
+    },
+
+    /**
+     * Called when the map itself is moved (either by user interaction or by
+     * some other method programmatically setting geometry properties).
+     *
+     * Syncs the new lat, lng, and zoom to the map's properties and notifies
+     * out the result.
+     */
     _handleMapMove() {
       if (this.__isZooming) {
         this.__onZoomEnd = this._handleMapMove.bind(this);
@@ -414,10 +673,9 @@
      *
      *   * {Object} detail - Contains the event details
      *   * {Number} detail.lat - Latitude of the map centerpoint after moving
-     *   * {Number} detail.lat - Latitude of the map centerpoint after moving
      *   * {Number} detail.lng - Longitude of the map centerpoint after moving
      *   * {Number} detail.zoom - Zoom level of the map after moving
-     *   * {L.LatLngBouds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
+     *   * {L.LatLngBounds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
      *
      * @event px-map-moved
      */
@@ -434,29 +692,12 @@
      * Sets an internal boolean that allows us to wait before handling any map
      * movements until the zoom animation is over.
      */
-   _handleZoomEnd() {
-     this.__isZooming = false;
-     if (typeof this.__onZoomEnd === 'function') {
-       this.__onZoomEnd();
-       this.__onZoomEnd = null;
-     }
-   },
-
-    /**
-     * Called when the `lat`, `lng`, or `zoom` is set or updated. Sets the active
-     * map center to the new values.
-     */
-    _updateMapView() {
-      if (!this.elementInst) return;
-
-      this.debounce('update-map-view', function() {
-        const {lat, lng} = this.elementInst.getCenter();
-        const zoom = this.elementInst.getZoom();
-
-        if (this.lat !== lat || this.lng !== lng || this.zoom !== zoom) {
-          this.elementInst.setView([this.lat,this.lng], this.zoom);
-        }
-      });
+    _handleZoomEnd() {
+      this.__isZooming = false;
+      if (typeof this.__onZoomEnd === 'function') {
+        this.__onZoomEnd();
+        this.__onZoomEnd = null;
+      }
     },
 
     /**
@@ -508,6 +749,7 @@
   PxMapBehavior.LeafletRoot = [
     PxMapBehavior.Element,
     PxMapBehavior.ParentLayer,
-    PxMapBehavior.LeafletRootImpl
+    PxMapBehavior.LeafletRootImpl,
+    PxMapBehavior.TrackMarkersImpl
   ];
 })();

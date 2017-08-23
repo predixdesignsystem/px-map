@@ -4,6 +4,8 @@
   .leaflet-popup-content-wrapper {
     border: 1px solid var(--internal-px-map-popup-content-wrapper-border);
     border-radius: 0;
+    background-color: var(--px-map-popup-content-wrapper-background-color, white);
+    color: var(--px-map-popup-content-wrapper-text-color, black);
   }
   // To set a border color on the content wrapper, we need to position a psuedo
   // after element that is the same color as the popup background to make it look
@@ -11,20 +13,23 @@
   .leaflet-popup-content-wrapper:after {
     content: '';
     position: absolute;
-    background-color: $white; //TODO create style variable
-    height: 4px;
-    width: 19px;
+    height: 0px;
+    width: 0px;
     left: 50%;
-    margin-left: -9px;
-    border-radius: 5px;
+    margin-left: -11px;
+    border-width: 11px 11px 0px;
+    border-style: solid;
+    border-color: var(--px-map-popup-content-wrapper-background-color, white) transparent transparent transparent;
   }
   // Add the border to the 'tip' pointer
   .leaflet-popup-tip {
     border: 1px solid var(--internal-px-map-popup-content-wrapper-border);
+    background-color: var(--px-map-popup-content-wrapper-background-color, white);
   }
   // The inner container holding the popup content
   .leaflet-popup-content {
     margin: 0;
+    hyphens: auto;
   }
   // Hide the close button
   .leaflet-popup-close-button {
