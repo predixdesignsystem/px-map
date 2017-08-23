@@ -14,6 +14,7 @@
 <!-- Imports for this component -->
 <link rel="import" href="../px-map.html" />
 <link rel="import" href="../px-map-tile-layer.html" />
+<link rel="import" href="../px-map-marker-static.html" />
 <link rel="import" href="../px-map-layer-group.html" />
 
 <!-- Demo DOM module -->
@@ -39,11 +40,12 @@
     <!-- Component ---------------------------------------------------------->
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
-        <px-map fit-to-markers
-                flex-to-size
-                disable-scroll-zoom
-                disable-touch-zoom
-                attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
+        <px-map
+          flex-to-size
+          fit-to-markers
+          disable-scroll-zoom
+          disable-touch-zoom
+          attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
           <px-map-layer-group name="{{props.name.value}}">
             <px-map-marker-static lat="37.8079" lng="-122.2687"></px-map-marker-static>
@@ -146,12 +148,12 @@
       demoProps: {
         name: {
           type: String,
-          defaultValue: 'Oakland Downtown BART',
+          defaultValue: 'Oakland Downtown BART Stations',
           inputType: 'text'
         },
 
         parentComponent: {
-          value: ['<div style="height:400px; width:600px; display:flex"><px-map fit-to-markers flex-to-size disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
+          value: ['<div style="height:400px; width:600px; display:flex"><px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom>', '</px-map></div>']
         },
 
         siblingElement: {
