@@ -155,8 +155,14 @@ function runCustomTests() {
       var invalidLatLng = mapEl.latLngIsValid("abc", 123, false);
 
       sinon.assert.calledOnce(console.log);
-      sinon.assert.calledWithExactly(console.log, `PX-MAP CONFIGURATION ERROR:
-        You entered an invalid \`lat\` or \`lng\` attribute for ${mapEl.is}. You must pass a valid number.`)
+      sinon.assert.match(console.log.args[0][0].replace(/\s+/g, ''), `PX-MAP CONFIGURATION ERROR:
+        You entered an invalid \`lat\` or \`lng\` attribute for ${mapEl.is}. You must pass a valid number.`.replace(/\s+/g, ''));
+    });
+
+    it('does not output a console log statement if the lat or lng is invalid and `hideError` is set to true', function() {
+      var invalidLatLng = mapEl.latLngIsValid("abc", 123, true);
+
+      sinon.assert.notCalled(console.log);
     });
 
     it('does not draw a map if we give it an invalid lat or lng value', function() {
