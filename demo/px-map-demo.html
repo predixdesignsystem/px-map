@@ -66,11 +66,11 @@
     <px-demo-component>
       <div style="height:400px;width:600px;display:flex">
         <px-map
-          fit-to-markers
           zoom="{{props.zoom.value}}"
           lat="{{props.lat.value}}"
           lng="{{props.lng.value}}"
           flex-to-size="{{props.flexToSize.value}}"
+          fit-to-markers="{{props.fitToMarkers.value}}"
           disable-scroll-zoom="{{props.disableScrollZoom.value}}"
           disable-touch-zoom="{{props.disableScrollZoom.value}}"
           disable-dragging="{{props.disableDragging.value}}"
@@ -238,6 +238,13 @@
           defaultValue: true,
           inputType: 'toggle',
           inputDisabled: true
+        },
+
+        fitToMarkers: {
+          type: Boolean,
+          defaultValue: false,
+          inputType: 'toggle',
+          inputDisabled: false
         },
 
         disableScrollZoom: {
