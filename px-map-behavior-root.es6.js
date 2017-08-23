@@ -464,7 +464,9 @@
     },
 
     canAddInst() {
-      return this.latLngIsValid(this.lat, this.lng);
+      if (typeof this.zoom !== 'undefined' && this._canBeNum(this.zoom)) {
+        return this.latLngIsValid(this.lat, this.lng, true);
+      }
     },
 
     createInst(options) {
@@ -602,7 +604,7 @@
     },
 
     /**
-     * Returns true if val can be used as a number in L.LatLng
+     * Returns true if val can be used as a number in L.LatLng or zoom
      *
      * @param {*} val
      * @return {Boolean}
@@ -613,17 +615,21 @@
 
     /**
      * Returns true if lat and lng are valid values that can be used to set a
-     * map's position. Prints an error if values are invalid.
+     * map's position. Prints an error if values are invalid (unless `hideError`
+     * is set to true).
      *
      * @param {Number} lat
      * @param {Number} lng
+     * @param {Boolean} hideError
      * @return {Boolean}
      */
-    latLngIsValid(lat, lng) {
+    latLngIsValid(lat, lng, hideError) {
       var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
       if (isValid) return true;
-      console.log(`PX-MAP CONFIGURATION ERROR:
-        You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      if (!hideError) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
+          You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      }
       return false;
     },
 
@@ -669,7 +675,7 @@
      *   * {Number} detail.lat - Latitude of the map centerpoint after moving
      *   * {Number} detail.lng - Longitude of the map centerpoint after moving
      *   * {Number} detail.zoom - Zoom level of the map after moving
-     *   * {L.LatLngBouds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
+     *   * {L.LatLngBounds} detail.bounds - Custom Leaflet object describing the visible bounds of the map as a rectangle
      *
      * @event px-map-moved
      */

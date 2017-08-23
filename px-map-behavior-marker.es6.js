@@ -62,7 +62,7 @@
      * be added to their parent.
      */
     canAddInst() {
-      return this.latLngIsValid(this.lat, this.lng);
+      return this.latLngIsValid(this.lat, this.lng, true);
     },
 
     /**
@@ -77,17 +77,21 @@
 
     /**
      * Returns true if lat and lng are valid values that can be used to set a
-     * marker's location. Prints an error if values are invalid.
+     * marker's location. Prints an error if values are invalid (unless `hideError`
+     * is set to true).
      *
      * @param {Number} lat
      * @param {Number} lng
+     * @param {Boolean} hideError
      * @return {Boolean}
      */
-    latLngIsValid(lat, lng) {
+    latLngIsValid(lat, lng, hideError) {
       var isValid = (typeof lat !== 'undefined' && this._canBeNum(lat)) && (typeof lng !== 'undefined' && this._canBeNum(lng));
       if (isValid) return true;
-      console.log(`PX-MAP CONFIGURATION ERROR:
+      if (!hideError) {
+        console.log(`PX-MAP CONFIGURATION ERROR:
         You entered an invalid \`lat\` or \`lng\` attribute for ${this.is}. You must pass a valid number.`);
+      }
       return false;
     },
 
