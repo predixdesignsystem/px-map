@@ -651,6 +651,12 @@
       // Otherwise, attempt to convert the feature's 'icon-base' to a klass name
       // and call the constructor for that klass
       const klassName = this._strToKlassName(options.base);
+
+      // Add `color` entry to the options Object if this is a custom marker
+      let customTypeArray = options.type.split('-');
+      if (customTypeArray[0] === "custom") {
+        options.color = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+      }
       return new PxMap[klassName](options);
     },
 
