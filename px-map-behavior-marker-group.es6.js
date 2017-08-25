@@ -365,8 +365,20 @@
 
       // Count markers and group by type
       const types = this._indexClusterMarkersByType(markers);
+
       // Get the colors for each type
-      const colors = this.colorsByType;
+      let colors = this.colorsByType;
+
+      let customTypeArray;
+
+      // If the marker is of type `custom-n`, add that color to the previously
+      // defined colors object
+      for (var key of Object.keys(types)) {
+        customTypeArray = key.split('-');
+        if (customTypeArray[0] === "custom") {
+          colors[key] = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+        }
+      }
 
       // Get the container size for this count
       const containerSize = this._getClusterIconSize(count);
