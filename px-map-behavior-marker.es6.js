@@ -400,6 +400,7 @@
         const options = this._getMarkerIconOptions();
         this.markerIcon = new PxMap.StaticIcon(options);
       }
+
       return this.markerIcon;
     },
 
@@ -419,10 +420,18 @@
      *
      */
     _getMarkerIconOptions() {
-      return {
+      let options = {
         type: this.type || '',
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
+
+      const customTypeArray = this.type.split('-');
+
+      if (customTypeArray[0] === "custom") {
+        options.color = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+      }
+
+      return options;
     }
   };
   /* Bind StaticMarker behavior */

@@ -20,16 +20,24 @@
 
     createIcon(settings={}) {
       // Extract `type` from settings with defaults
-      let { type='info', styleScope } = settings;
+      let { type='info', styleScope, color } = settings;
 
       const className = this._generateStaticIconClasses(type, styleScope);
+
+      let customStyleBackground = '';
+      let customStyleBorder = '';
+
+      if (color) {
+        customStyleBackground = `background-color: ${color};`;
+        customStyleBorder = `border-color: ${color} transparent transparent;`;
+      }
 
       // Static options
       const html = `
         <div class="map-icon-static__wrapper">
-          <i class="map-icon-static__body"></i>
-          <i class="map-icon-static__descender"></i>
-          <i class="map-icon-static__badge"></i>
+          <i class="map-icon-static__body" style="${customStyleBackground}"></i>
+          <i class="map-icon-static__descender" style="${customStyleBorder}"></i>
+          <i class="map-icon-static__badge" style="${customStyleBackground}"></i>
         </div>
       `;
       const iconSize = L.point(23,31);
