@@ -373,7 +373,7 @@
 
       // If the marker is of type `custom-n`, add that color to the previously
       // defined colors object
-      for (var key of Object.keys(types)) {
+      for (let key of Object.keys(types)) {
         customTypeArray = key.split('-');
         if (customTypeArray[0] === "custom") {
           colors[key] = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
