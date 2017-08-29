@@ -90,18 +90,74 @@ function runCustomTests() {
       }, 800);
     });
 
-});
+  });
 
-describe('px-map-marker-locate', function () {
-  var locateMarkerFixture;
-  var markerEl;
-  var markerOptions;
-  var sandbox;
+  describe('px-map-marker-locate', function () {
+    var locateMarkerFixture;
+    var markerEl;
+    var markerOptions;
+    var sandbox;
+
+    beforeEach(function () {
+      locateMarkerFixture = fixture('LocateMarkerWithNameFixture');
+      markerEl = locateMarkerFixture.querySelector('px-map-marker-locate');
+      markerOptions = markerEl.getInstOptions();
+      sandbox = sinon.sandbox.create();
+    });
+
+    afterEach(function () {
+      sandbox.restore();
+    });
+
+    it('returns title property as configured through the `name` attribute (from `getInstOptions`)', function() {
+      expect(markerOptions.baseConfig).to.be.an('object');
+      expect(markerOptions.baseConfig).to.have.property('title').that.equals('i am a locate marker');
+    });
+
+    it('asks to update its title option when the `name` attribute is changed (with `shouldUpdateInst` observer)', function() {
+      var updateFn = sinon.spy(markerEl, 'shouldUpdateInst');
+      markerEl.set('name', 'A new name');
+
+      expect(updateFn).to.have.been.calledOnce;
+    });
+
+    it('updates title property when changed through the `name` attribute', function(done) {
+      markerEl.setAttribute('name', 'A new name');
+      flush(function() {
+        expect(markerEl.getInstOptions().baseConfig).to.have.property('title').that.equals('A new name');
+        done();
+      });
+    });
+
+    it('puts the title tag into the path', function(done) {
+      flush(function() {
+        var markerInstance = markerEl.elementInst;
+        var layer;
+        var keys = Object.keys(markerInstance._layers);
+        for (var i=0; i<keys.length; i++) {
+          if (markerInstance._layers[keys[i]].options.title) {
+            layer = markerInstance._layers[keys[i]];
+          }
+        }
+        expect(layer.options.title).to.equal("i am a locate marker");
+        var regex = /<title.*i am a locate marker<\/title>/
+        expect(regex.test(layer._path.innerHTML)).to.equal(true);
+        done();
+      });
+    });
+
+  });
+
+  describe('px-map-marker-static with custom type', function () {
+    var customMarkerFixture;
+    var markerEl;
+    var markerOptions;
+    var markerClasses;
+    var sandbox;
 
   beforeEach(function () {
-    locateMarkerFixture = fixture('LocateMarkerWithNameFixture');
-    markerEl = locateMarkerFixture.querySelector('px-map-marker-locate');
-    markerOptions = markerEl.getInstOptions();
+    customMarkerFixture = fixture('StaticMarkerCustomTypeFixture');
+    markerEl = customMarkerFixture.querySelector('px-map-marker-static');
     sandbox = sinon.sandbox.create();
   });
 
@@ -109,43 +165,113 @@ describe('px-map-marker-locate', function () {
     sandbox.restore();
   });
 
-  it('returns title property as configured through the `name` attribute (from `getInstOptions`)', function() {
-    expect(markerOptions.baseConfig).to.be.an('object');
-    expect(markerOptions.baseConfig).to.have.property('title').that.equals('i am a locate marker');
+  it('adds custom styles to icon html', function() {
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    console.log(markerHtml);
+    // expect(markerHtml.includes(`<div class="map-icon-static__wrapper">
+    //       <i class="map-icon-static__body" style="background-color: salmon;"></i>
+    //       <i class="map-icon-static__descender" style="border-color: salmon transparent transparent;"></i>
+    //       <i class="map-icon-static__badge" style="background-color: salmon;"></i>
+    //     </div>`)).to.equal(true);
+    sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body" style="background-color: salmon;"></i>
+          <i class="map-icon-static__descender" style="border-color: salmon transparent transparent;"></i>
+          <i class="map-icon-static__badge" style="background-color: salmon;"></i>
+        </div>`));
   });
 
-  it('asks to update its title option when the `name` attribute is changed (with `shouldUpdateInst` observer)', function() {
-    var updateFn = sinon.spy(markerEl, 'shouldUpdateInst');
-    markerEl.set('name', 'A new name');
-
-    expect(updateFn).to.have.been.calledOnce;
+  it('updates style attributes when the icon type is changed', function() {
+    markerEl.setAttribute("type", "custom-1");
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body" style="background-color: hotpink;"></i>
+          <i class="map-icon-static__descender" style="border-color: hotpink transparent transparent;"></i>
+          <i class="map-icon-static__badge" style="background-color: hotpink;"></i>
+        </div>`));
   });
 
-  it('updates title property when changed through the `name` attribute', function(done) {
-    markerEl.setAttribute('name', 'A new name');
-    flush(function() {
-      expect(markerEl.getInstOptions().baseConfig).to.have.property('title').that.equals('A new name');
-      done();
-    });
+  it('removes custom styles when set to one of the default types', function() {
+    markerEl.setAttribute("type", "info");
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body" style=""></i>
+          <i class="map-icon-static__descender" style=""></i>
+          <i class="map-icon-static__badge" style=""></i>
+        </div>`));
   });
 
-  it('puts the title tag into the path', function(done) {
-    flush(function() {
-      var markerInstance = markerEl.elementInst;
-      var layer;
-      var keys = Object.keys(markerInstance._layers);
-      for (var i=0; i<keys.length; i++) {
-        if (markerInstance._layers[keys[i]].options.title) {
-          layer = markerInstance._layers[keys[i]];
-        }
-      }
-      expect(layer.options.title).to.equal("i am a locate marker");
-      var regex = /<title.*i am a locate marker<\/title>/
-      expect(regex.test(layer._path.innerHTML)).to.equal(true);
-      done();
-    });
   });
 
-});
+  describe('px-map-marker-symbol with custom type', function () {
+    var customMarkerFixture;
+    var markerEl;
+    var markerOptions;
+    var markerClasses;
+    var sandbox;
+
+  beforeEach(function () {
+    customMarkerFixture = fixture('SymbolMarkerCustomTypeFixture');
+    markerEl = customMarkerFixture.querySelector('px-map-marker-symbol');
+    sandbox = sinon.sandbox.create();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
+  });
+
+  it('adds custom styles to icon html', function() {
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    console.log(markerHtml);
+    // expect(markerHtml.includes(`<div class="map-icon-symbol__wrapper">
+    //       <i class="map-icon-symbol__body" style="background-color: salmon;"></i>
+    //       <i class="map-icon-symbol__descender" style="border-color: salmon transparent transparent;"></i>
+    //       <i class="map-icon-symbol__badge" style="background-color: salmon;"></i>
+    //     </div>`)).to.equal(true);
+    sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+        <i class="map-icon-symbol__body" style="background-color: salmon;">
+          <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+            <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
+          </div>
+        </i>
+        <i class="map-icon-symbol__descender" style="border-color: salmon transparent transparent;"></i>
+        <i class="map-icon-symbol__badge" style="background-color: salmon;"></i>
+      </div>`));
+  });
+
+  it('updates style attributes when the icon type is changed', function() {
+    markerEl.setAttribute("type", "custom-1");
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+        <i class="map-icon-symbol__body" style="background-color: hotpink;">
+          <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+            <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
+          </div>
+        </i>
+        <i class="map-icon-symbol__descender" style="border-color: hotpink transparent transparent;"></i>
+        <i class="map-icon-symbol__badge" style="background-color: hotpink;"></i>
+      </div>`));
+  });
+
+  it('removes custom styles when set to one of the default types', function() {
+    markerEl.setAttribute("type", "info");
+    markerOptions = markerEl.getInstOptions();
+    markerHtml = markerOptions.config.icon.options.html;
+    sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+        <i class="map-icon-symbol__body" style="">
+          <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
+            <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
+          </div>
+        </i>
+        <i class="map-icon-symbol__descender" style=""></i>
+        <i class="map-icon-symbol__badge" style=""></i>
+      </div>`));
+  });
+
+  });
 
 }
