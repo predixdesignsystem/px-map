@@ -352,6 +352,26 @@
       return this.data;
     },
 
+    created: function() {
+      var updateFn = this.updateStyles;
+      this.updateStyles = this._handleStylesUpdated.bind(this);
+      this._updateStylesFn = updateFn;
+    },
+
+    _handleStylesUpdated: function() {
+      for (let key of Object.keys(types)) {
+        customTypeArray = key.split('-');
+        if (customTypeArray[0] === "custom") {
+          var customStyle = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+          if (customStyle) {
+            colors[key] = customStyle;
+          }
+        }
+      }
+
+      this._updateStylesFn();
+    },
+
     _createClusterIcon(cluster) {
       // If the developer supplies a `iconFns.cluster` function, pass the options
       // to that function and return the result.
@@ -375,7 +395,7 @@
       // defined colors object
       for (let key of Object.keys(types)) {
         customTypeArray = key.split('-');
-        if (customTypeArray[0] === "custom") {
+        if (customTypeArray[0] === "custom" && (!colors.hasOwnProperty(key) || colors[key] === 'undefined')) {
           colors[key] = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
         }
       }
