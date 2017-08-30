@@ -359,13 +359,22 @@
     },
 
     _handleStylesUpdated: function() {
-      for (let key of Object.keys(types)) {
-        customTypeArray = key.split('-');
-        if (customTypeArray[0] === "custom") {
-          var customStyle = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
-          if (customStyle) {
-            colors[key] = customStyle;
+      if (this.colorsByType) {
+        let newColorsByType = Object.assign({}, this.colorsByType)
+        let colors = Object.keys(newColorsByType);
+        let changed = false;
+        for (let key of colors) {
+          if (key.slice(0,7) === 'custom-') {
+            let customStyleVar = this.getComputedStyleValue(`--px-map-color-${key}`);
+            if (customStyleVar !== "" && customStyleVar !== newColorsByType[key]) {
+              newColorsByType[key] = customStyleVar;
+              changed = true;
+            }
           }
+        }
+        if (changed) {
+          this.colorsByType = newColorsByType;
+          this.update();
         }
       }
 
@@ -389,14 +398,11 @@
       // Get the colors for each type
       let colors = this.colorsByType;
 
-      let customTypeArray;
-
       // If the marker is of type `custom-n`, add that color to the previously
       // defined colors object
       for (let key of Object.keys(types)) {
-        customTypeArray = key.split('-');
-        if (customTypeArray[0] === "custom" && (!colors.hasOwnProperty(key) || colors[key] === 'undefined')) {
-          colors[key] = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+        if (key.slice(0,7) === "custom-" && (!colors.hasOwnProperty(key) || colors[key] === 'undefined')) {
+          colors[key] = this.getComputedStyleValue(`--px-map-color-${key}`);
         }
       }
 
@@ -673,9 +679,8 @@
       const klassName = this._strToKlassName(options.base);
 
       // Add `color` entry to the options Object if this is a custom marker
-      let customTypeArray = options.type.split('-');
-      if (customTypeArray[0] === "custom") {
-        options.color = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+      if (options.type.slice(0,7) === "custom-") {
+        options.color = this.getComputedStyleValue(`--px-map-color-${options.type}`);
       }
       return new PxMap[klassName](options);
     },

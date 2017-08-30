@@ -354,10 +354,8 @@
         fill: this.getComputedStyleValue("--iron-icon-fill-color")
       };
 
-      const customTypeArray = this.type.split('-');
-
-      if (customTypeArray[0] === "custom") {
-        options.color = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+      if (this.type.slice(0,7) === "custom-") {
+        options.color = this.getComputedStyleValue(`--px-map-color-${this.type}`);
       }
 
       return options;
@@ -432,10 +430,8 @@
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
 
-      const customTypeArray = this.type.split('-');
-
-      if (customTypeArray[0] === "custom") {
-        options.color = this.getComputedStyleValue(`--px-map-custom-color-${customTypeArray[1]}`);
+      if (this.type.slice(0,7) === "custom-") {
+        options.color = this.getComputedStyleValue(`--px-map-color-${this.type}`);
       }
 
       return options;
