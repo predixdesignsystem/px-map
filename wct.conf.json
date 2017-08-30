@@ -33,6 +33,7 @@
     "test/px-map-popup-fixture.html",
     "test/px-map-control-fixture.html",
     "test/px-map-marker-fixture.html",
+    "test/px-map-marker-group-fixture.html",
     "test/px-map-tile-layer-fixture.html",
     "test/px-map-layer-geojson-fixture.html"
   ]
