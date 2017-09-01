@@ -31,25 +31,18 @@
   <body>
     <style include="px-theme-styles" is="custom-style"></style>
     <style is="custom-style">
-    :root {
-      --px-map-color-custom-0 : salmon;
-      --px-map-color-custom-1 : hotpink;
-      --px-map-color-custom-2 : orchid;
-    }
+      :root {
+        --px-map-color-custom-0 : salmon;
+        --px-map-color-custom-1 : hotpink;
+        --px-map-color-custom-2 : orchid;
+      }
     </style>
-
-    <!-- [Test fixtures go here] -->
-
-    <!-- <test-fixture id="MarkerBehaviorFixture">
-      <template>
-        <px-map-marker-behavior-stub></px-map-marker-behavior-stub>
-      </template>
-    </test-fixture> -->
 
     <test-fixture id="CustomTypeMarkerGroupFixture">
       <template>
-        <px-map style="height: 400px; width: 400px;">
-          <px-map-marker-group name="Plaques" data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.24042573","32.67445793"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.27618677","32.83957829"]},"properties":{"title":"PearlSt&DraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlSt&FayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'></px-map-marker-group>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques" data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
         </px-map>
       </template>
     </test-fixture>
