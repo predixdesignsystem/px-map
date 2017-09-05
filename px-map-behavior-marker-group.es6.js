@@ -68,44 +68,14 @@
        * - "warning" : "--px-map-marker-group-info-color" (default: yellow)
        * - "important" : "--px-map-marker-group-info-color" (default: red)
        *
-       * Example #1 - FeatureCollection for `data`:
-       *
-       * ```
-       * {
-       *   "type" : "FeatureCollection",
-       *   "features" : [
-       *     {
-       *       "type": "Feature",
-       *       "id": 001",
-       *       "geometry": { ... },
-       *       "properties": {
-       *         "marker-icon": {
-       *           "icon-base": "StaticIcon",
-       *           "icon-type": "info"
-       *         }
-       *       }
-       *     },
-       *     {
-       *       "type": "Feature",
-       *       "id": 002,
-       *       "geometry": { ... },
-       *       "properties": {
-       *         "marker-icon": {
-       *           "icon-base": "StaticIcon",
-       *           "icon-type": "warning"
-       *         }
-       *       }
-       *     }
-       *   ]
-       * }
-       * ```
-       *
        * Example #1 - `colorsByType` object
        *
        * ```
        * {
        *   "info" : "blue",
-       *   "warning" : "red"
+       *   "warning" : "yellow"
+       *   "important" : "red"
+       *   "unknown" : "gray"
        * }
        * ```
        *
