@@ -621,6 +621,12 @@
       const iconSettings = (feature.properties['marker-icon']) ? this._extractMarkerIconSettings(feature.properties['marker-icon']) : {};
       iconSettings.base = iconSettings.base || 'static-icon';
       iconSettings.type = iconSettings.type || 'info';
+
+      // Add `color` entry to iconSettings if this is a custom marker
+      if (iconSettings.type.slice(0,7) === "custom-") {
+        iconSettings.color = this.getComputedStyleValue(`--px-map-color-${iconSettings.type}`);
+      }
+
       const icon = this._createMarkerIcon(iconSettings);
       marker.setIcon(icon);
 
@@ -678,10 +684,6 @@
       // and call the constructor for that klass
       const klassName = this._strToKlassName(options.base);
 
-      // Add `color` entry to the options Object if this is a custom marker
-      if (options.type.slice(0,7) === "custom-") {
-        options.color = this.getComputedStyleValue(`--px-map-color-${options.type}`);
-      }
       return new PxMap[klassName](options);
     },
 

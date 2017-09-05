@@ -3,6 +3,41 @@ document.addEventListener("WebComponentsReady", function() {
 });
 
 function runCustomTests() {
+
+  describe ('PxMapBehavior.MarkerGroup base', function() {
+    var markerGroup;
+    var sandbox;
+
+    before(function() {
+      // Create a stub for the MarkerGroup base behavior
+      Polymer({
+        is: 'px-map-marker-group-behavior-stub',
+        behaviors: [PxMapBehavior.MarkerGroup]
+      });
+    });
+
+    beforeEach(function() {
+      markerGroup = fixture('MarkerGroupBehaviorFixture');
+      sandbox = sinon.sandbox.create();
+    });
+
+    afterEach(function () {
+      sandbox.restore();
+    });
+
+    it('correctly colors individual custom type markers that are created as part of a marker group', function() {
+      var feature = {"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84013845"]},"properties":{"marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10001"}
+      var markerEl = markerGroup._createMarker(feature);
+      var markerHtml = markerEl.options.icon.options.html;
+      sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+          <i class="map-icon-static__body" style="background-color: salmon;"></i>
+          <i class="map-icon-static__descender" style="border-color: salmon transparent transparent;"></i>
+          <i class="map-icon-static__badge" style="background-color: salmon;"></i>
+        </div>`));
+    });
+
+  });
+
   describe('px-map-marker-group with custom types', function () {
     var customMarkerGroupFixture;
     var markerGroup;
@@ -25,15 +60,6 @@ function runCustomTests() {
         expect(keys.includes('custom-0')).to.equal(true);
         expect(keys.includes('custom-1')).to.equal(true);
         expect(keys.includes('custom-2')).to.equal(true);
-        done();
-      }, 2000);
-    });
-
-    it('sends custom cluster colors down to individual markers', function(done) {
-      setTimeout(function() {
-        // do something to make _createMarkerIcon be called with a custom icon type
-        // check that when _createMarkerIcon is called, options is updated with
-        // the custom color of the icon
         done();
       }, 2000);
     });
