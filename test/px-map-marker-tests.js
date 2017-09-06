@@ -168,33 +168,33 @@ function runCustomTests() {
     it('adds custom styles to icon html', function() {
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style="background-color: salmon;"></i>
             <i class="map-icon-static__descender" style="border-color: salmon transparent transparent;"></i>
             <i class="map-icon-static__badge" style="background-color: salmon;"></i>
-          </div>`));
+          </div>`).replace(/\s+/g, ''));
     });
 
     it('updates style attributes when the icon type is changed', function() {
       markerEl.setAttribute("type", "custom-1");
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style="background-color: hotpink;"></i>
             <i class="map-icon-static__descender" style="border-color: hotpink transparent transparent;"></i>
             <i class="map-icon-static__badge" style="background-color: hotpink;"></i>
-          </div>`));
+          </div>`).replace(/\s+/g, ''));
     });
 
     it('removes custom styles when set to one of the default types', function() {
       markerEl.setAttribute("type", "info");
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-static__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style=""></i>
             <i class="map-icon-static__descender" style=""></i>
             <i class="map-icon-static__badge" style=""></i>
-          </div>`));
+          </div>`).replace(/\s+/g, ''));
     });
 
   });
@@ -219,7 +219,7 @@ function runCustomTests() {
     it('adds custom styles to icon html', function() {
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-symbol__wrapper">
           <i class="map-icon-symbol__body" style="background-color: salmon;">
             <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
               <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
@@ -227,14 +227,14 @@ function runCustomTests() {
           </i>
           <i class="map-icon-symbol__descender" style="border-color: salmon transparent transparent;"></i>
           <i class="map-icon-symbol__badge" style="background-color: salmon;"></i>
-        </div>`));
+        </div>`).replace(/\s+/g, ''));
     });
 
     it('updates style attributes when the icon type is changed', function() {
       markerEl.setAttribute("type", "custom-1");
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-symbol__wrapper">
           <i class="map-icon-symbol__body" style="background-color: hotpink;">
             <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
               <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
@@ -242,14 +242,14 @@ function runCustomTests() {
           </i>
           <i class="map-icon-symbol__descender" style="border-color: hotpink transparent transparent;"></i>
           <i class="map-icon-symbol__badge" style="background-color: hotpink;"></i>
-        </div>`));
+        </div>`).replace(/\s+/g, ''));
     });
 
     it('removes custom styles when set to one of the default types', function() {
       markerEl.setAttribute("type", "info");
       markerOptions = markerEl.getInstOptions();
       markerHtml = markerOptions.config.icon.options.html;
-      sinon.assert.match(markerHtml, (`<div class="map-icon-symbol__wrapper">
+      sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-symbol__wrapper">
           <i class="map-icon-symbol__body" style="">
             <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
               <px-icon icon="px-nav:favorite" style="stroke:white; fill:none; width:100%; height:100%; stroke-width:2px"></px-icon>
@@ -257,7 +257,7 @@ function runCustomTests() {
           </i>
           <i class="map-icon-symbol__descender" style=""></i>
           <i class="map-icon-symbol__badge" style=""></i>
-        </div>`));
+        </div>`).replace(/\s+/g, ''));
     });
 
   });
