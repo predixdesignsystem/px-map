@@ -29,29 +29,244 @@
   </head>
 
   <body>
-    <style include="px-theme-styles" is="custom-style"></style>
-    <style is="custom-style">
-      :root {
-        --px-map-color-custom-0 : salmon;
-        --px-map-color-custom-1 : hotpink;
-        --px-map-color-custom-2 : orchid;
-      }
-    </style>
 
-    <test-fixture id="MarkerGroupBehaviorFixture">
-      <template>
-        <px-map-marker-group-behavior-stub></px-map-marker-group-behavior-stub>
-      </template>
-    </test-fixture>
-
-    <test-fixture id="CustomTypeMarkerGroupFixture">
+    <!-- <test-fixture id="CustomTypeMarkerGroupFixture">
       <template>
         <px-map style="height: 400px; width: 400px;" fit-to-markers>
           <px-map-marker-group name="Plaques" data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
           </px-map-marker-group>
         </px-map>
       </template>
+    </test-fixture> -->
+
+    <!-- MarkerClusterWithDefaultColors -->
+
+    <test-fixture id="MarkerClusterWithDefaultColors">
+      <template>
+        <px-map-marker-cluster-default-colors></px-map-marker-cluster-default-colors>
+      </template>
     </test-fixture>
+
+    <dom-module id="px-map-marker-cluster-default-colors">
+      <template>
+        <px-map style="height: 400px; width: 400px;" lat="32.8" lng="-117.4" zoom="10">
+          <px-map-marker-group name="Plaques" data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.3738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.4738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"warning"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"unknown"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.5738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"important"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-marker-cluster-default-colors' });
+    </script>
+
+    <!-- MarkerClusterWithCSSVars -->
+
+    <test-fixture id="MarkerClusterWithCSSVars">
+      <template>
+        <px-map-marker-cluster-css-vars></px-map-marker-cluster-css-vars>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-marker-cluster-css-vars">
+      <template>
+        <style>
+          :host {
+            --px-map-color-custom-0  : tomato;
+            --px-map-color-custom-1  : olive;
+            --px-map-color-custom-2  : cornflowerblue;
+            --px-map-icon-info-color : crimson;
+          }
+        </style>
+        <px-map style="height: 400px; width: 400px;" lat="32.8" lng="-117.4" zoom="10">
+          <px-map-marker-group name="Plaques" data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.3738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.4738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.5738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-marker-cluster-css-vars' });
+    </script>
+
+    <!-- MarkerClusterWithColorsByType -->
+
+    <test-fixture id="MarkerClusterWithColorsByType">
+      <template>
+        <px-map-marker-cluster-colors-by-type></px-map-marker-cluster-colors-by-type>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-marker-cluster-colors-by-type">
+      <template>
+        <px-map style="height: 400px; width: 400px;" lat="32.8" lng="-117.4" zoom="10">
+          <px-map-marker-group name="Plaques"
+          colors-by-type='{"custom-0" :"red", "custom-1" : "orange", "custom-2" : "yellow", "info" : "green"}' data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.3738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.4738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.5738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-marker-cluster-colors-by-type' });
+    </script>
+
+    <!-- MarkerClusterWithCSSVarsAndColorsByType -->
+
+    <test-fixture id="MarkerClusterWithCSSVarsAndColorsByType">
+      <template>
+        <px-map-marker-cluster-css-vars-and-colors-by-type></px-map-marker-cluster-css-vars-and-colors-by-type>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-marker-cluster-css-vars-and-colors-by-type">
+      <template>
+        <style>
+          :host {
+            --px-map-color-custom-0  : orchid;
+            --px-map-color-custom-1  : hotpink;
+          }
+        </style>
+        <px-map style="height: 400px; width: 400px;" lat="32.8" lng="-117.4" zoom="10">
+          <px-map-marker-group name="Plaques"
+          colors-by-type='{"custom-2" : "salmon", "info" : "darkturquoise"}' data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.3738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.4738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.5738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-marker-cluster-css-vars-and-colors-by-type' });
+    </script>
+
+    <!-- MarkerGroupWithDefaultColors -->
+
+    <test-fixture id="MarkerGroupWithDefaultColors">
+      <template>
+        <px-map-style-test-default-colors></px-map-style-test-default-colors>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-style-test-default-colors">
+      <template>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques"
+          cluster-config='{"disableClusteringAtZoom":"1"}' data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"warning"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"unknown"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"important"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-style-test-default-colors' });
+    </script>
+
+    <!-- MarkerGroupWithCSSVars -->
+
+    <test-fixture id="MarkerGroupWithCSSVars">
+      <template>
+        <px-map-style-test-css-vars></px-map-style-test-css-vars>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-style-test-css-vars">
+      <template>
+        <style>
+          :host {
+            --px-map-color-custom-0  : salmon;
+            --px-map-color-custom-1  : hotpink;
+            --px-map-color-custom-2  : orchid;
+            --px-map-icon-info-color : darkturquoise;
+          }
+        </style>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques"
+          cluster-config='{"disableClusteringAtZoom":"1"}' data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-style-test-css-vars' });
+    </script>
+
+    <!-- MarkerGroupWithColorsByType -->
+
+    <test-fixture id="MarkerGroupWithColorsByType">
+      <template>
+        <px-map-style-test-colors-by-type></px-map-style-test-colors-by-type>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-style-test-colors-by-type">
+      <template>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques"
+          cluster-config='{"disableClusteringAtZoom":"1"}'
+          colors-by-type='{"custom-0":"red", "custom-1":"orange", "custom-2":"yellow", "info":"green"}'
+          data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-style-test-colors-by-type' });
+    </script>
+
+    <!-- MarkerGroupWithColorsByTypeAndCSSVars -->
+
+    <test-fixture id="MarkerGroupWithColorsByTypeAndCSSVars">
+      <template>
+        <px-map-style-test-colors-by-type-and-css-vars></px-map-style-test-colors-by-type-and-css-vars>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-style-test-colors-by-type-and-css-vars">
+      <template>
+        <style>
+          :host {
+            --px-map-color-custom-0  : tomato;
+            --px-map-color-custom-1  : olive;
+            --px-map-color-custom-2  : cornflowerblue;
+            --px-map-icon-info-color : crimson;
+          }
+        </style>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques"
+          cluster-config='{"disableClusteringAtZoom":"1"}'
+          colors-by-type='{"custom-2":"chocolate", "info":"honeydew", "warning":"lime"}'
+          data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"warning"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10777"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-style-test-colors-by-type-and-css-vars' });
+    </script>
+
+    <!-- MarkerGroupWithCSSVarsUpdated -->
+
+    <test-fixture id="MarkerGroupWithCSSVarsUpdated">
+      <template>
+        <px-map-style-test-css-vars-updated></px-map-style-test-css-vars-updated>
+      </template>
+    </test-fixture>
+
+    <dom-module id="px-map-style-test-css-vars-updated">
+      <template>
+        <style>
+          :host {
+            --px-map-color-custom-0  : salmon;
+            --px-map-color-custom-1  : hotpink;
+            --px-map-color-custom-2  : orchid;
+            --px-map-icon-info-color : darkturquoise;
+          }
+        </style>
+        <px-map style="height: 400px; width: 400px;" fit-to-markers>
+          <px-map-marker-group name="Plaques"
+          cluster-config='{"disableClusteringAtZoom":"1"}' data='{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"info"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10523"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012849"]},"properties":{"title":"CabrilloNationalMonument","marker-icon":{"icon-base":"static-icon","icon-type":"custom-1"},"marker-popup":{"popup-base":"info-popup","popup-title":"CabrilloNationalMonument","popup-description":"Loremipsumdotsitamet,colloquas..."}},"id":"10001"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738098","32.84012848"]},"properties":{"title":"PearlStDraperAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-2"}},"id":"10003"},{"type":"Feature","geometry":{"type":"Point","coordinates":["-117.2738099","32.84012848"]},"properties":{"title":"PearlStFayAv","marker-icon":{"icon-base":"static-icon","icon-type":"custom-0"}},"id":"10004"}]}'>
+          </px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-module>
+    <script type="text/javascript">
+      Polymer({ is: 'px-map-style-test-css-vars-updated' });
+    </script>
 
   </body>
 </html>

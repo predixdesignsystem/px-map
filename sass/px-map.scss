@@ -81,10 +81,10 @@ $px-map-data-box-border-color__left:                var(--px-map-data-box-border
 
 $px-map-popup-content-wrapper-border:               var(--px-map-popup-content-wrapper-border, gray);
 
-$px-map-marker-locate-icon-color: var(--px-map-marker-locate-icon-color, blue);
-$px-map-marker-locate-icon-border-color: var(--px-map-marker-locate-icon-border-color, white);
-$px-map-marker-locate-icon-accuracy-color: var(--px-map-marker-locate-icon-accuracy-color, black);
-$px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-accuracy-opacity, 0.3);
+$px-map-marker-locate-icon-color:                   var(--px-map-marker-locate-icon-color, blue);
+$px-map-marker-locate-icon-border-color:            var(--px-map-marker-locate-icon-border-color, white);
+$px-map-marker-locate-icon-accuracy-color:          var(--px-map-marker-locate-icon-accuracy-color, black);
+$px-map-marker-locate-icon-accuracy-opacity:        var(--px-map-marker-locate-icon-accuracy-opacity, 0.3);
 
 /**
   * Internal css variables
@@ -116,6 +116,108 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   --internal-px-map-marker-locate-icon-accuracy-opacity: $px-map-marker-locate-icon-accuracy-opacity;
 
   --internal-px-map-popup-content-wrapper-border: $px-map-popup-content-wrapper-border;
+
+  --internal-px-map-color-custom-0   : var(--px-map-color-custom-0);
+  --internal-px-map-color-custom-1   : var(--px-map-color-custom-1);
+  --internal-px-map-color-custom-2   : var(--px-map-color-custom-2);
+  --internal-px-map-color-custom-3   : var(--px-map-color-custom-3);
+  --internal-px-map-color-custom-4   : var(--px-map-color-custom-4);
+  --internal-px-map-color-custom-5   : var(--px-map-color-custom-5);
+  --internal-px-map-color-custom-6   : var(--px-map-color-custom-6);
+  --internal-px-map-color-custom-7   : var(--px-map-color-custom-7);
+  --internal-px-map-color-custom-8   : var(--px-map-color-custom-8);
+  --internal-px-map-color-custom-9   : var(--px-map-color-custom-9);
+  --internal-px-map-color-custom-10  : var(--px-map-color-custom-10);
+  --internal-px-map-color-custom-11  : var(--px-map-color-custom-11);
+  --internal-px-map-color-custom-12  : var(--px-map-color-custom-12);
+  --internal-px-map-color-custom-13  : var(--px-map-color-custom-13);
+  --internal-px-map-color-custom-14  : var(--px-map-color-custom-14);
+  --internal-px-map-color-custom-15  : var(--px-map-color-custom-15);
+  --internal-px-map-color-custom-16  : var(--px-map-color-custom-16);
+  --internal-px-map-color-custom-17  : var(--px-map-color-custom-17);
+  --internal-px-map-color-custom-18  : var(--px-map-color-custom-18);
+  --internal-px-map-color-custom-19  : var(--px-map-color-custom-19);
+  --internal-px-map-color-custom-20  : var(--px-map-color-custom-20);
+  --internal-px-map-color-custom-21  : var(--px-map-color-custom-21);
+  --internal-px-map-color-custom-22  : var(--px-map-color-custom-22);
+  --internal-px-map-color-custom-23  : var(--px-map-color-custom-23);
+  --internal-px-map-color-custom-24  : var(--px-map-color-custom-24);
+  --internal-px-map-color-custom-25  : var(--px-map-color-custom-25);
+  --internal-px-map-color-custom-26  : var(--px-map-color-custom-26);
+  --internal-px-map-color-custom-27  : var(--px-map-color-custom-27);
+  --internal-px-map-color-custom-28  : var(--px-map-color-custom-28);
+  --internal-px-map-color-custom-29  : var(--px-map-color-custom-29);
+  --internal-px-map-color-custom-30  : var(--px-map-color-custom-30);
+  --internal-px-map-color-custom-31  : var(--px-map-color-custom-31);
+  --internal-px-map-color-custom-32  : var(--px-map-color-custom-32);
+  --internal-px-map-color-custom-33  : var(--px-map-color-custom-33);
+  --internal-px-map-color-custom-34  : var(--px-map-color-custom-34);
+  --internal-px-map-color-custom-35  : var(--px-map-color-custom-35);
+  --internal-px-map-color-custom-36  : var(--px-map-color-custom-36);
+  --internal-px-map-color-custom-37  : var(--px-map-color-custom-37);
+  --internal-px-map-color-custom-38  : var(--px-map-color-custom-38);
+  --internal-px-map-color-custom-39  : var(--px-map-color-custom-39);
+  --internal-px-map-color-custom-40  : var(--px-map-color-custom-40);
+  --internal-px-map-color-custom-41  : var(--px-map-color-custom-41);
+  --internal-px-map-color-custom-42  : var(--px-map-color-custom-42);
+  --internal-px-map-color-custom-43  : var(--px-map-color-custom-43);
+  --internal-px-map-color-custom-44  : var(--px-map-color-custom-44);
+  --internal-px-map-color-custom-45  : var(--px-map-color-custom-45);
+  --internal-px-map-color-custom-46  : var(--px-map-color-custom-46);
+  --internal-px-map-color-custom-47  : var(--px-map-color-custom-47);
+  --internal-px-map-color-custom-48  : var(--px-map-color-custom-48);
+  --internal-px-map-color-custom-49  : var(--px-map-color-custom-49);
+  --internal-px-map-color-custom-50  : var(--px-map-color-custom-50);
+  --internal-px-map-color-custom-51  : var(--px-map-color-custom-51);
+  --internal-px-map-color-custom-52  : var(--px-map-color-custom-52);
+  --internal-px-map-color-custom-53  : var(--px-map-color-custom-53);
+  --internal-px-map-color-custom-54  : var(--px-map-color-custom-54);
+  --internal-px-map-color-custom-55  : var(--px-map-color-custom-55);
+  --internal-px-map-color-custom-56  : var(--px-map-color-custom-56);
+  --internal-px-map-color-custom-57  : var(--px-map-color-custom-57);
+  --internal-px-map-color-custom-58  : var(--px-map-color-custom-58);
+  --internal-px-map-color-custom-59  : var(--px-map-color-custom-59);
+  --internal-px-map-color-custom-60  : var(--px-map-color-custom-60);
+  --internal-px-map-color-custom-61  : var(--px-map-color-custom-61);
+  --internal-px-map-color-custom-62  : var(--px-map-color-custom-62);
+  --internal-px-map-color-custom-63  : var(--px-map-color-custom-63);
+  --internal-px-map-color-custom-64  : var(--px-map-color-custom-64);
+  --internal-px-map-color-custom-65  : var(--px-map-color-custom-65);
+  --internal-px-map-color-custom-66  : var(--px-map-color-custom-66);
+  --internal-px-map-color-custom-67  : var(--px-map-color-custom-67);
+  --internal-px-map-color-custom-68  : var(--px-map-color-custom-68);
+  --internal-px-map-color-custom-69  : var(--px-map-color-custom-69);
+  --internal-px-map-color-custom-70  : var(--px-map-color-custom-70);
+  --internal-px-map-color-custom-71  : var(--px-map-color-custom-71);
+  --internal-px-map-color-custom-72  : var(--px-map-color-custom-72);
+  --internal-px-map-color-custom-73  : var(--px-map-color-custom-73);
+  --internal-px-map-color-custom-74  : var(--px-map-color-custom-74);
+  --internal-px-map-color-custom-75  : var(--px-map-color-custom-75);
+  --internal-px-map-color-custom-76  : var(--px-map-color-custom-76);
+  --internal-px-map-color-custom-77  : var(--px-map-color-custom-77);
+  --internal-px-map-color-custom-78  : var(--px-map-color-custom-78);
+  --internal-px-map-color-custom-79  : var(--px-map-color-custom-79);
+  --internal-px-map-color-custom-80  : var(--px-map-color-custom-80);
+  --internal-px-map-color-custom-81  : var(--px-map-color-custom-81);
+  --internal-px-map-color-custom-82  : var(--px-map-color-custom-82);
+  --internal-px-map-color-custom-83  : var(--px-map-color-custom-83);
+  --internal-px-map-color-custom-84  : var(--px-map-color-custom-84);
+  --internal-px-map-color-custom-85  : var(--px-map-color-custom-85);
+  --internal-px-map-color-custom-86  : var(--px-map-color-custom-86);
+  --internal-px-map-color-custom-87  : var(--px-map-color-custom-87);
+  --internal-px-map-color-custom-88  : var(--px-map-color-custom-88);
+  --internal-px-map-color-custom-89  : var(--px-map-color-custom-89);
+  --internal-px-map-color-custom-90  : var(--px-map-color-custom-90);
+  --internal-px-map-color-custom-91  : var(--px-map-color-custom-91);
+  --internal-px-map-color-custom-92  : var(--px-map-color-custom-92);
+  --internal-px-map-color-custom-93  : var(--px-map-color-custom-93);
+  --internal-px-map-color-custom-94  : var(--px-map-color-custom-94);
+  --internal-px-map-color-custom-95  : var(--px-map-color-custom-95);
+  --internal-px-map-color-custom-96  : var(--px-map-color-custom-96);
+  --internal-px-map-color-custom-97  : var(--px-map-color-custom-97);
+  --internal-px-map-color-custom-98  : var(--px-map-color-custom-98);
+  --internal-px-map-color-custom-99  : var(--px-map-color-custom-99);
+  --internal-px-map-color-custom-100 : var(--px-map-color-custom-100);
 }
 
 /*

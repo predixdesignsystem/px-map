@@ -37,7 +37,7 @@
         <div class="map-icon-static__wrapper">
           <i class="map-icon-static__body" style="${customStyleBackground}"></i>
           <i class="map-icon-static__descender" style="${customStyleBorder}"></i>
-          <i class="map-icon-static__badge" style="${customStyleBackground}"></i>
+          <i class="map-icon-static__badge"></i>
         </div>
       `;
       const iconSize = L.point(23,31);
@@ -101,7 +101,7 @@
           </div>
         </i>
         <i class="map-icon-symbol__descender" style="${customStyleBorder}"></i>
-        <i class="map-icon-symbol__badge" style="${customStyleBackground}"></i>
+        <i class="map-icon-symbol__badge"></i>
       </div>
       `;
 

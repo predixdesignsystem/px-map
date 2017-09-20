@@ -171,7 +171,7 @@ function runCustomTests() {
       sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style="background-color: salmon;"></i>
             <i class="map-icon-static__descender" style="border-color: salmon transparent transparent;"></i>
-            <i class="map-icon-static__badge" style="background-color: salmon;"></i>
+            <i class="map-icon-static__badge"></i>
           </div>`).replace(/\s+/g, ''));
     });
 
@@ -182,7 +182,7 @@ function runCustomTests() {
       sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style="background-color: hotpink;"></i>
             <i class="map-icon-static__descender" style="border-color: hotpink transparent transparent;"></i>
-            <i class="map-icon-static__badge" style="background-color: hotpink;"></i>
+            <i class="map-icon-static__badge"></i>
           </div>`).replace(/\s+/g, ''));
     });
 
@@ -193,7 +193,7 @@ function runCustomTests() {
       sinon.assert.match(markerHtml.replace(/\s+/g, ''), (`<div class="map-icon-static__wrapper">
             <i class="map-icon-static__body" style=""></i>
             <i class="map-icon-static__descender" style=""></i>
-            <i class="map-icon-static__badge" style=""></i>
+            <i class="map-icon-static__badge"></i>
           </div>`).replace(/\s+/g, ''));
     });
 
@@ -226,7 +226,7 @@ function runCustomTests() {
             </div>
           </i>
           <i class="map-icon-symbol__descender" style="border-color: salmon transparent transparent;"></i>
-          <i class="map-icon-symbol__badge" style="background-color: salmon;"></i>
+          <i class="map-icon-symbol__badge"></i>
         </div>`).replace(/\s+/g, ''));
     });
 
@@ -241,7 +241,7 @@ function runCustomTests() {
             </div>
           </i>
           <i class="map-icon-symbol__descender" style="border-color: hotpink transparent transparent;"></i>
-          <i class="map-icon-symbol__badge" style="background-color: hotpink;"></i>
+          <i class="map-icon-symbol__badge"></i>
         </div>`).replace(/\s+/g, ''));
     });
 
@@ -256,7 +256,7 @@ function runCustomTests() {
             </div>
           </i>
           <i class="map-icon-symbol__descender" style=""></i>
-          <i class="map-icon-symbol__badge" style=""></i>
+          <i class="map-icon-symbol__badge"></i>
         </div>`).replace(/\s+/g, ''));
     });
 
