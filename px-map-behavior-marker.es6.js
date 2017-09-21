@@ -288,6 +288,9 @@
        * - 'warning' is orange
        * - 'info' is blue
        * - 'unknown' is gray
+       * - 'custom-n' is a custom color defined by the developer. Custom types
+       * may be defined from 'custom-0' through 'custom-100' and must be defined
+       * consecutively with no breaks between numbers.
        *
        * @type {String}
        */
@@ -383,6 +386,9 @@
        * - 'warning' is orange
        * - 'info' is blue
        * - 'unknown' is gray
+       * - 'custom-n' is a custom color defined by the developer. Custom types
+       * may be defined from 'custom-0' through 'custom-100' and must be defined
+       * consecutively with no breaks between numbers.
        *
        * @type {String}
        */

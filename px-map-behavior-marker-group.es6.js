@@ -74,19 +74,31 @@
        * feature in the FeatureCollection you pass into the `data` attribute.
        *
        * By default, the available types are:
-       * - "unknown" : "--px-map-marker-group-unknown-color" (default: gray)
-       * - "info" : "--px-map-marker-group-info-color" (default: blue)
-       * - "warning" : "--px-map-marker-group-info-color" (default: orange)
-       * - "important" : "--px-map-marker-group-info-color" (default: red)
+       * - "unknown" : "--px-map-icon-unknown-color" (default: gray)
+       * - "info" : "--px-map-icon-info-color" (default: blue)
+       * - "warning" : "--px-map-icon-warning-color" (default: orange)
+       * - "important" : "--px-map-icon-important-color" (default: red)
+       * - "custom-n" : "--px-map-color-custom-n" (default: n/a)
        *
        * Example #1 - `colorsByType` object
        *
        * ```
        * {
        *   "info" : "blue",
-       *   "warning" : "orange"
-       *   "important" : "red"
+       *   "warning" : "orange",
+       *   "important" : "red",
        *   "unknown" : "gray"
+       * }
+       * ```
+       *
+       * Example #2 - `colorsByType` object with custom types
+       *
+       * ```
+       * {
+       *   "info" : "blue",
+       *   "custom-0" : "salmon",
+       *   "custom-1" : "lime",
+       *   "custom-2" : "crimson"
        * }
        * ```
        *
