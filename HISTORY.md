@@ -1,6 +1,10 @@
+v2.1.4
+===================
+* Fix demo for `px-map-layer-geojson`
+
 v2.1.3
 ===================
-* fix docs
+* Fix docs
 
 v2.1.2
 ===================
@@ -18,8 +22,6 @@ v2.1.2
 v2.1.1
 ===================
 * Fix paths for px-map API viewer
-=======
-v2.1.1
 
 v2.1.0
 ===================
@@ -124,7 +126,7 @@ v1.4.1
 * Removes a stray debugger statement from `px-map-layer-geojson`
 
 ## Other changes
-* Fix documentation data loading issue for `px-map-layer-gejson`
+* Fix documentation data loading issue for `px-map-layer-geojson`
 
 v1.4.0
 ===================
