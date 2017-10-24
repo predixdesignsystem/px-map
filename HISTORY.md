@@ -1,3 +1,7 @@
+v2.1.5
+===================
+* Make custer icon container `box-sizing:border-bo`x to fix layout issue
+
 v2.1.4
 ===================
 * Fix demo for `px-map-layer-geojson`
