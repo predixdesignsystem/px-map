@@ -152,6 +152,7 @@ $px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-acc
   background: $px-map-marker-group-cluster-background-color;
   display: block;
   position: relative;
+  box-sizing: border-box;
 }
 .map-icon-cluster__svg {
   display: block;
