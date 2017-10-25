@@ -1,6 +1,11 @@
+v2.2.0
+===================
+* Expose the `disableDoubleClickZoom` property to allow the developer to disable
+* zooming on double click
+
 v2.1.5
 ===================
-* Make custer icon container `box-sizing:border-bo`x to fix layout issue
+* Make cluster icon container `box-sizing:border-box` to fix layout issue
 
 v2.1.4
 ===================
