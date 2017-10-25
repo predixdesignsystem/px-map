@@ -33,7 +33,7 @@
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.3",
     "leaflet-bing-tiles": "^1.0.0",
-    "leaflet-google-tiles": "https://github.com/ge-smallworld/leaflet-google-layer.git",
+    "leaflet-google-tiles": "ge-smallworld/leaflet-google-layer.git#^1.0.0",
     "px-icon-set": "^2.0.0",
     "px-app-helpers": "^1.3.0"
   },

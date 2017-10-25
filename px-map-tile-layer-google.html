@@ -70,6 +70,9 @@ If you do not provide an API key, the map will not load any tiles.
       /**
        * A region identifier representing the physical location of the user to whom
        * the tiles are shown.
+       * Google Maps applies a default bias for application behavior towards the United States.
+       * If you want to alter your application to serve different map tiles you can override
+       * this default behavior by specifying a region.
        * Accepts Unicode region subtag identifiers which (generally) have a one-to-one
        * mapping to country code Top-Level Domains (ccTLDs).
        */
@@ -82,6 +85,7 @@ If you do not provide an API key, the map will not load any tiles.
       /**
        * A Common Locale Data Repository language identifier indicating the
        * language information on the tiles should be presented in.
+       * For a list of supported languages, see: https://developers.google.com/maps/faq#languagesupport
        */
       language: {
         type: String,
@@ -96,7 +100,7 @@ If you do not provide an API key, the map will not load any tiles.
        */
       mapStyle: {
         type: Array,
-        value: [],
+        value: function() {return [];},
         observer: 'shouldUpdateInst'
       }
     },
@@ -122,7 +126,7 @@ If you do not provide an API key, the map will not load any tiles.
       if (lastOptions.region !== nextOptions.region) {
         this.elementInst.setRegion(nextOptions.region);
       }
-      if (lastOptions.mapStyle !== nextOptions.mapStyle) {
+      if (lastOptions.mapStyleHash !== nextOptions.mapStyleHash) {
         this.elementInst.setMapStyle(nextOptions.mapStyle);
       }
     },
@@ -133,7 +137,8 @@ If you do not provide an API key, the map will not load any tiles.
         imagery: this.imagery,
         language: this.language,
         region: this.region,
-        mapStyle: this.mapStyle
+        mapStyle: this.mapStyle,
+        mapStyleHash: JSON.stringify(this.mapStyle || [])
       };
     }
   });
