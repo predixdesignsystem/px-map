@@ -583,6 +583,13 @@
         this.elementInst.touchZoom.disable();
       }
 
+      if (!lastOptions.doubleClickZoom && nextOptions.doubleClickZoom) {
+        this.elementInst.doubleClickZoom.enable();
+      }
+      if (lastOptions.doubleClickZoom && !nextOptions.doubleClickZoom) {
+        this.elementInst.doubleClickZoom.disable();
+      }
+
       if (lastOptions.attributionPrefix !== nextOptions.attributionPrefix) {
         this.elementInst.attributionControl.setPrefix(nextOptions.attributionPrefix);
       }
