@@ -2,7 +2,7 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-- stable
+- 8.7
 branches:
   except:
   - gh-pages
