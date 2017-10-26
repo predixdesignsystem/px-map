@@ -69,6 +69,29 @@ function runCustomTests() {
     });
   });
 
+  describe('Basic px-map with all zooming disabled', function () {
+    var mapEl;
+
+    beforeEach(function() {
+      mapEl = fixture('DisableZoomMapFixture');
+    });
+
+    it('has scroll wheel zoom disabled', function() {
+      var scrollZoom = mapEl.elementInst.options.scrollWheelZoom;
+      expect(scrollZoom).to.be.false;
+    });
+
+    it('has touch zoom disabled', function() {
+      var touchZoom = mapEl.elementInst.options.touchZoom;
+      expect(touchZoom).to.be.false;
+    });
+
+    it('has double click zoom disabled', function() {
+      var doubleClickZoom = mapEl.elementInst.options.doubleClickZoom;
+      expect(doubleClickZoom).to.be.false;
+    });
+});
+
   describe('Setting the geometry properties on px-map', function() {
     var mapEl;
     var sandbox;

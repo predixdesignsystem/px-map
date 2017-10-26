@@ -43,7 +43,8 @@
           lng="{{props.lng.value}}"
           flex-to-size="{{props.flexToSize.value}}"
           disable-scroll-zoom="{{props.disableScrollZoom.value}}"
-          disable-touch-zoom="{{props.disableScrollZoom.value}}"
+          disable-touch-zoom="{{props.disableTouchZoom.value}}"
+          disable-double-click-zoom="{{props.disableDoubleClickZoom.value}}"
           disable-dragging="{{props.disableDragging.value}}"
           attribution-prefix='<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap contributors</a>'>
           <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
@@ -176,6 +177,12 @@
         disableTouchZoom: {
           type: Boolean,
           defaultValue: true,
+          inputType: 'toggle'
+        },
+
+        disableDoubleClickZoom: {
+          type: Boolean,
+          defaultValue: false,
           inputType: 'toggle'
         },
 

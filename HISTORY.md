@@ -1,3 +1,12 @@
+v2.2.0
+===================
+* Expose the `disableDoubleClickZoom` property to allow the developer to disable
+* zooming on double click
+
+v2.1.5
+===================
+* Make cluster icon container `box-sizing:border-box` to fix layout issue
+
 v2.1.4
 ===================
 * Fix demo for `px-map-layer-geojson`

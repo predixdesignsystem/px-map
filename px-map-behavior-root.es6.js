@@ -400,6 +400,17 @@
       },
 
       /**
+       * Set to disable zooming on double-click.
+       *
+       * @type {Boolean}
+       */
+      disableDoubleClickZoom: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst'
+      },
+
+      /**
        * Set to disable the attribution control, which can be used to show the
        * source of tile layers or other data overlays.
        *
@@ -526,6 +537,7 @@
       options.dragging = !this.disableDragging;
       options.scrollWheelZoom = !this.disableScrollZoom;
       options.touchZoom = !this.disableTouchZoom;
+      options.doubleClickZoom = !this.disableDoubleClickZoom;
       options.attributionControl = !this.disableAttribution;
       options.attributionPrefix = this.attributionPrefix;
 
@@ -569,6 +581,13 @@
       }
       if (lastOptions.touchZoom && !nextOptions.touchZoom) {
         this.elementInst.touchZoom.disable();
+      }
+
+      if (!lastOptions.doubleClickZoom && nextOptions.doubleClickZoom) {
+        this.elementInst.doubleClickZoom.enable();
+      }
+      if (lastOptions.doubleClickZoom && !nextOptions.doubleClickZoom) {
+        this.elementInst.doubleClickZoom.disable();
       }
 
       if (lastOptions.attributionPrefix !== nextOptions.attributionPrefix) {
