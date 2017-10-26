@@ -7,6 +7,18 @@ function runCustomTests() {
   describe('px-map-marker-group colors', function () {
     var sandbox;
 
+    before(function () {
+      Polymer({ is: 'px-map-marker-cluster-default-colors' });
+      Polymer({ is: 'px-map-marker-cluster-css-vars' });
+      Polymer({ is: 'px-map-marker-cluster-colors-by-type' });
+      Polymer({ is: 'px-map-marker-cluster-css-vars-and-colors-by-type' });
+      Polymer({ is: 'px-map-style-test-default-colors' });
+      Polymer({ is: 'px-map-style-test-css-vars' });
+      Polymer({ is: 'px-map-style-test-colors-by-type' });
+      Polymer({ is: 'px-map-style-test-colors-by-type-and-css-vars' });
+      Polymer({ is: 'px-map-style-test-css-vars-updated' });
+    });
+
     beforeEach(function () {
       sandbox = sinon.sandbox.create();
     });
