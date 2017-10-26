@@ -1,19 +1,33 @@
+v2.3.0
+===================
+## New features
+* We're adding the new `px-map-tile-layer-google` subcomponent in this release.
+  Thanks to Ollie Sims as his team for this contribution. Teams using px-map
+  can now choose from a variety of tile providers, including Google, Bing,
+  and any provider that exposes an x/y/z API.
+
 v2.2.0
 ===================
+## New features
 * Expose the `disableDoubleClickZoom` property to allow the developer to disable
-* zooming on double click
+  zooming on double click for mouse or touch input.
 
 v2.1.5
 ===================
-* Make cluster icon container `box-sizing:border-box` to fix layout issue
+## Bug fixes
+* Set the cluster icon container to use the box-sizing border-box model to
+  determine how to size itself. Fixes a bug that happened when the cluster icon
+  inherited box-sizing context-box from the app, causing the icon to look broken.
 
 v2.1.4
 ===================
-* Fix demo for `px-map-layer-geojson`
+## Bug fixes
+* Fix misc. bugs in demo for `px-map-layer-geojson`
 
 v2.1.3
 ===================
-* Fix docs
+## Other changes
+* Fix wording in documentation
 
 v2.1.2
 ===================
@@ -30,10 +44,12 @@ v2.1.2
 
 v2.1.1
 ===================
+## Bug fixes
 * Fix paths for px-map API viewer
 
 v2.1.0
 ===================
+## New features
 * Adds the `--px-map-z-index` property to px-map which can be used to position
   the map in the correct layer within your application. Note that the z-indices
   of Leaflet layers exist in their own stacking context, and so are not affected
@@ -82,11 +98,13 @@ If you would like to define your own icons, look at
 
 v1.5.2
 ===================
+## Bug fixes
 * Document choices for production tile services, add specific info on restrictions
   of OpenStreetMap tile service.
 
 v1.5.1
 ===================
+## Other changes
 * Document CSS variables (#91)
 
 v1.5.0
