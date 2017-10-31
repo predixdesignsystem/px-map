@@ -1,3 +1,24 @@
+v3.0.0
+===================
+This is a major release and includes new features and breaking changes.
+
+## Important breaking changes
+* The px-map code is written in ES6 format, and in previous versions the code
+  was shipped in transpiled format in the `dist/` directory. This built code has
+  been deleted. If you were relying on it you should switch over to use the
+  `px-map/px-map-*.html` files directly instead of `px-map/dist/px-map-*.html`.
+  If you need to transpile the px-map code for older browsers, you should do so
+  as part of your app's build process. See the [Transpile ES6 guide on the
+  Predix Design System website](https://www.predix-ui.com/#/develop/transpile)
+  for guidance on how to implement this in your build system.
+
+## New features
+* All px-map marker colors can now be set in a fully dynamic, customizable way.
+  This allows developers to set up to 100 custom colors for markers, which is
+  especially valuable for marker group visualizations with custom asset types.
+  See the documentation in px-map-marker-* documentation pages for more info
+  on using this new feature.
+
 v2.1.2
 ===================
 ## Bug fixes
