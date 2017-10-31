@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Simple WMS Tile Layer</title>
+
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../polymer/polymer-mini.html" />
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html" />
+  <link rel="import" href="../px-map-tile-layer-wms.html" />
+</head>
+
+<style>
+  .wrap {
+    display: flex;
+    height: 100vh;
+  }
+</style>
+<body>
+  <section class="wrap">
+    <px-map zoom="10" flex-to-size>
+      <!-- Simple WMS example -->
+      <px-map-tile-layer-wms
+          url="https://demo.boundlessgeo.com/geoserver/ows?"
+          layers="ne:ne"
+          attribution="Map data © Boundless Geo">
+      </px-map-tile-layer-wms>
+
+      <!-- NOAA WMS meteorology example -->
+      <!-- <px-map-tile-layer-wms
+          url="https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_imagery_time/MapServer/WMSServer?"
+          layers="1"
+          format="image/png"
+          attribution="Map data courtesy NOAA">
+      </px-map-tile-layer-wms> -->
+    </px-map>
+  </section>
+</body>
+</html>
