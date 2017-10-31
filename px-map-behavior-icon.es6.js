@@ -20,15 +20,23 @@
 
     createIcon(settings={}) {
       // Extract `type` from settings with defaults
-      let { type='info', styleScope } = settings;
+      let { type='info', styleScope, color } = settings;
 
       const className = this._generateStaticIconClasses(type, styleScope);
+
+      let customStyleBackground = '';
+      let customStyleBorder = '';
+
+      if (color) {
+        customStyleBackground = `background-color: ${color};`;
+        customStyleBorder = `border-color: ${color} transparent transparent;`;
+      }
 
       // Static options
       const html = `
         <div class="map-icon-static__wrapper">
-          <i class="map-icon-static__body"></i>
-          <i class="map-icon-static__descender"></i>
+          <i class="map-icon-static__body" style="${customStyleBackground}"></i>
+          <i class="map-icon-static__descender" style="${customStyleBorder}"></i>
           <i class="map-icon-static__badge"></i>
         </div>
       `;
@@ -73,18 +81,26 @@
     }
 
     createIcon(settings={}) {
-      let { type='info', icon='px-nav:favorite', styleScope, stroke='currentColor', fill='none', strokeWidth='2px'} = settings;
+      let { type='info', icon='px-nav:favorite', styleScope, stroke='currentColor', fill='none', strokeWidth='2px', color } = settings;
       const className = this._generateSymbolIconClasses(type, styleScope);
+
+      let customStyleBackground = '';
+      let customStyleBorder = '';
+
+      if (color) {
+        customStyleBackground = `background-color: ${color};`;
+        customStyleBorder = `border-color: ${color} transparent transparent;`;
+      }
 
       // Icon/Symbol options
       const html = `
       <div class="map-icon-symbol__wrapper">
-        <i class="map-icon-symbol__body">
+        <i class="map-icon-symbol__body" style="${customStyleBackground}">
           <div class="map-icon-symbol__symbol--container flex flex--middle flex--center">
             <px-icon icon="${icon}" style="stroke:${stroke}; fill:${fill}; width:100%; height:100%; stroke-width:${strokeWidth}"></px-icon>
           </div>
         </i>
-        <i class="map-icon-symbol__descender"></i>
+        <i class="map-icon-symbol__descender" style="${customStyleBorder}"></i>
         <i class="map-icon-symbol__badge"></i>
       </div>
       `;

@@ -56,6 +56,17 @@
       },
 
       /**
+       * Internal representation of the colorsByType object. See `_calculateColorsByType`.
+       * @type {Object}
+       */
+      _colorsByType: {
+        type: Object,
+        value: function() {
+          return {};
+        }
+      },
+
+      /**
        * An object mapping categories of icons to their respective colors. Each
        * key should be a string representing the name of an `icon-type` to
        * a valid CSS color value (e.g. hex color, `rgb()` color). Set the
@@ -63,49 +74,31 @@
        * feature in the FeatureCollection you pass into the `data` attribute.
        *
        * By default, the available types are:
-       * - "unknown" : "--px-map-marker-group-unknown-color" (default: gray)
-       * - "info" : "--px-map-marker-group-info-color" (default: blue)
-       * - "warning" : "--px-map-marker-group-info-color" (default: yellow)
-       * - "important" : "--px-map-marker-group-info-color" (default: red)
-       *
-       * Example #1 - FeatureCollection for `data`:
-       *
-       * ```
-       * {
-       *   "type" : "FeatureCollection",
-       *   "features" : [
-       *     {
-       *       "type": "Feature",
-       *       "id": 001",
-       *       "geometry": { ... },
-       *       "properties": {
-       *         "marker-icon": {
-       *           "icon-base": "StaticIcon",
-       *           "icon-type": "info"
-       *         }
-       *       }
-       *     },
-       *     {
-       *       "type": "Feature",
-       *       "id": 002,
-       *       "geometry": { ... },
-       *       "properties": {
-       *         "marker-icon": {
-       *           "icon-base": "StaticIcon",
-       *           "icon-type": "warning"
-       *         }
-       *       }
-       *     }
-       *   ]
-       * }
-       * ```
+       * - "unknown" : "--px-map-icon-unknown-color" (default: gray)
+       * - "info" : "--px-map-icon-info-color" (default: blue)
+       * - "warning" : "--px-map-icon-warning-color" (default: orange)
+       * - "important" : "--px-map-icon-important-color" (default: red)
+       * - "custom-n" : "--px-map-color-custom-n" (default: n/a)
        *
        * Example #1 - `colorsByType` object
        *
        * ```
        * {
        *   "info" : "blue",
-       *   "warning" : "red"
+       *   "warning" : "orange",
+       *   "important" : "red",
+       *   "unknown" : "gray"
+       * }
+       * ```
+       *
+       * Example #2 - `colorsByType` object with custom types
+       *
+       * ```
+       * {
+       *   "info" : "blue",
+       *   "custom-0" : "salmon",
+       *   "custom-1" : "lime",
+       *   "custom-2" : "crimson"
        * }
        * ```
        *
@@ -114,13 +107,9 @@
       colorsByType: {
         type: Object,
         value: function(){
-          return {
-            "unknown" : this.getComputedStyleValue('--internal-px-map-icon-unknown-color'),
-            "info" : this.getComputedStyleValue('--internal-px-map-icon-info-color'),
-            "warning" : this.getComputedStyleValue('--internal-px-map-icon-warning-color'),
-            "important" : this.getComputedStyleValue('--internal-px-map-icon-important-color')
-          }
-        }
+          return {};
+        },
+        observer: '_calculateColorsByType'
       },
 
       /**
@@ -194,6 +183,16 @@
       const {data} = this.getInstOptions();
       const features = this._syncDataWithMarkers(data.features, this.elementInst);
       this._notifyNewFeatures(features);
+    },
+
+    /**
+     * Skips the smart diffing system that only updates markers when their
+     * feature properties have changed. Forces a redraw of all markers
+     */
+    redraw() {
+      if (!this.elementInst) return;
+      this._clearAllMarkersAndData(this.elementInst);
+      this.update();
     },
 
     // INSTANCE METHODS
@@ -352,6 +351,24 @@
       return this.data;
     },
 
+    created: function() {
+      var updateFn = this.updateStyles;
+      this.updateStyles = this._handleStylesUpdated.bind(this);
+      this._updateStylesFn = updateFn;
+    },
+
+    /**
+     * Proxies the default `updateStyles` function provided by Polymer. When the
+     * `updateStyles` function is run we know the colors for markers may have
+     * been changed (e.g. by setting new CSS custom properties). We allow
+     * the update to happen then get the colors for the markers again. If
+     * any colors are changed from the last draw, we redraw the markers.
+     */
+    _handleStylesUpdated: function() {
+      this._updateStylesFn();
+      this._calculateColorsByType(this.colorsByType);
+    },
+
     _createClusterIcon(cluster) {
       // If the developer supplies a `iconFns.cluster` function, pass the options
       // to that function and return the result.
@@ -365,8 +382,9 @@
 
       // Count markers and group by type
       const types = this._indexClusterMarkersByType(markers);
+
       // Get the colors for each type
-      const colors = this.colorsByType;
+      let colors = this._colorsByType;
 
       // Get the container size for this count
       const containerSize = this._getClusterIconSize(count);
@@ -386,6 +404,60 @@
       };
 
       return new PxMap.ClusterIcon(options);
+    },
+
+    /**
+     * Calculates the colors for the marker icons and clusters. The following
+     * things are read and applied:
+     *
+     * 1. `colorsByType` property/attribute set by the developer
+     * ...OVERRIDES...
+     * 2. CSS custom properties decoded into an object (from `_getAllIconColors`),
+     *    includes default colors
+     *
+     * If called again later when colors are updated, checks if the colors
+     * have changed and redraws all markers to pick up the changes.
+     *
+     * @param  {Object} publicColorsByType
+     */
+    _calculateColorsByType: function(publicColorsByType) {
+      var newColorsByType = Object.assign({}, this._getAllIconColors(), publicColorsByType || {});
+      var lastColorsByTypeStringified = JSON.stringify(this._colorsByType);
+      if (JSON.stringify(newColorsByType) !== lastColorsByTypeStringified) {
+        this._colorsByType = newColorsByType;
+        if (lastColorsByTypeStringified !== '{}') {
+          // If the last colorsByType was not empty, this isn't the first time
+          // we set the colors. We should redraw to force all the clusters
+          // to pick up their new colors. We want to guard against doing
+          // this the first time colorsByType is set so we don't waste a bunch
+          // of time drawing the markers then throw it away and redraw them.
+          this.redraw();
+        }
+      }
+    },
+
+    /**
+     * Creates and returns a `colors` object from CSS custom properties. If the
+     * developer does not set any of the CSS properties, a default color will
+     * be used for the four standard icon types.
+     *
+     * @return {Object}
+     */
+    _getAllIconColors: function() {
+      var colors = {};
+      colors.info = this.getComputedStyleValue('--internal-px-map-icon-info-color');
+      colors.warning = this.getComputedStyleValue('--internal-px-map-icon-warning-color');
+      colors.important = this.getComputedStyleValue('--internal-px-map-icon-important-color');
+      colors.unknown = this.getComputedStyleValue('--internal-px-map-icon-unknown-color');
+      let customColor;
+      for (let i=0; i<101; i++) {
+        customColor = this.getComputedStyleValue(`--px-map-color-custom-${i}`);
+        if (!customColor || customColor === "") {
+          break;
+        }
+        colors[`custom-${i}`] = customColor;
+      }
+      return colors;
     },
 
     _getStyleValueAsNum(styleValName) {
@@ -435,6 +507,17 @@
         }
         return types;
       }, {});
+    },
+
+    /**
+     * Clears all markers and clusters from the marker group. Clears out the
+     * cached `_features` and `_markers` values so that `_syncDataWithMarkers`
+     * will treat all data as new and redraw it the next time it is called.
+     */
+    _clearAllMarkersAndData: function(clusterInst) {
+      clusterInst.clearLayers();
+      this._features = null;
+      this._markers = null;
     },
 
     /**
@@ -583,6 +666,9 @@
       const iconSettings = (feature.properties['marker-icon']) ? this._extractMarkerIconSettings(feature.properties['marker-icon']) : {};
       iconSettings.base = iconSettings.base || 'static-icon';
       iconSettings.type = iconSettings.type || 'info';
+
+      iconSettings.color = this._colorsByType[iconSettings.type] || 'black';
+
       const icon = this._createMarkerIcon(iconSettings);
       marker.setIcon(icon);
 
@@ -639,6 +725,7 @@
       // Otherwise, attempt to convert the feature's 'icon-base' to a klass name
       // and call the constructor for that klass
       const klassName = this._strToKlassName(options.base);
+
       return new PxMap[klassName](options);
     },
 

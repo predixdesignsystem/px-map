@@ -288,6 +288,9 @@
        * - 'warning' is orange
        * - 'info' is blue
        * - 'unknown' is gray
+       * - 'custom-n' is a custom color defined by the developer. Custom types
+       * may be defined from 'custom-0' through 'custom-100' and must be defined
+       * consecutively with no breaks between numbers.
        *
        * @type {String}
        */
@@ -344,7 +347,7 @@
      *
      */
     _getMarkerIconOptions() {
-      return {
+      let options = {
         type: this.type,
         symbol: this.symbolClass,
         icon: this.icon,
@@ -352,8 +355,13 @@
         stroke: this.getComputedStyleValue("--iron-icon-stroke-color"),
         strokeWidth: this.getComputedStyleValue("--iron-icon-stroke-width"),
         fill: this.getComputedStyleValue("--iron-icon-fill-color")
-
       };
+
+      if (this.type.slice(0,7) === "custom-") {
+        options.color = this.getComputedStyleValue(`--px-map-color-${this.type}`);
+      }
+
+      return options;
     }
   };
 
@@ -378,6 +386,9 @@
        * - 'warning' is orange
        * - 'info' is blue
        * - 'unknown' is gray
+       * - 'custom-n' is a custom color defined by the developer. Custom types
+       * may be defined from 'custom-0' through 'custom-100' and must be defined
+       * consecutively with no breaks between numbers.
        *
        * @type {String}
        */
@@ -400,6 +411,7 @@
         const options = this._getMarkerIconOptions();
         this.markerIcon = new PxMap.StaticIcon(options);
       }
+
       return this.markerIcon;
     },
 
@@ -419,10 +431,16 @@
      *
      */
     _getMarkerIconOptions() {
-      return {
+      let options = {
         type: this.type || '',
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
       };
+
+      if (this.type.slice(0,7) === "custom-") {
+        options.color = this.getComputedStyleValue(`--px-map-color-${this.type}`);
+      }
+
+      return options;
     }
   };
   /* Bind StaticMarker behavior */

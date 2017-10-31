@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Custom Marker Colors</title>
+
+  <script src="../webcomponentsjs/webcomponents.min.js"></script>
+  <link rel="import" href="../polymer/polymer-mini.html" />
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html" />
+  <link rel="import" href="../px-map-tile-layer.html" />
+  <link rel="import" href="../px-map-layer-group.html" />
+  <link rel="import" href="../px-map-marker-symbol.html" />
+  <link rel="import" href="../px-map-marker-static.html" />
+  <link rel="import" href="../px-map-popup-data.html" />
+
+  <link rel="import" href="../../iron-icons/maps-icons.html" />
+  <style is="custom-style">
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      width: 90vw;
+      height: 90vh;
+      margin: 5vh 5vw;
+    }
+    :root {
+      --px-map-color-custom-0 : red;
+    }
+    px-map * {
+      --px-map-color-custom-0 : salmon;
+      --px-map-color-custom-1 : hotpink;
+      --px-map-color-custom-2 : lime;
+      --px-map-color-custom-3 : cornflowerblue;
+    }
+    .special-icon {
+      --px-map-color-custom-3 : purple;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="wrap">
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-layer-group name="BART Stations">
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="custom-0" icon="px-obj:truck">
+          <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-static lat="38.0035" lng="-122.0247" type="custom-1">
+          <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9741" lng="-122.0282" type="custom-2">
+          <px-map-popup-data title="BART: Concord" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9269" lng="-122.0559" type="custom-3">
+          <px-map-popup-data title="BART: Pleasant Hill" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9049" lng="-122.0671" type="custom-3" class="special-icon">
+          <px-map-popup-data title="BART: Walnut Creek" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
+  </section>
+</body>
+</html>

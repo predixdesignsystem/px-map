@@ -81,10 +81,10 @@ $px-map-data-box-border-color__left:                var(--px-map-data-box-border
 
 $px-map-popup-content-wrapper-border:               var(--px-map-popup-content-wrapper-border, gray);
 
-$px-map-marker-locate-icon-color: var(--px-map-marker-locate-icon-color, blue);
-$px-map-marker-locate-icon-border-color: var(--px-map-marker-locate-icon-border-color, white);
-$px-map-marker-locate-icon-accuracy-color: var(--px-map-marker-locate-icon-accuracy-color, black);
-$px-map-marker-locate-icon-accuracy-opacity: var(--px-map-marker-locate-icon-accuracy-opacity, 0.3);
+$px-map-marker-locate-icon-color:                   var(--px-map-marker-locate-icon-color, blue);
+$px-map-marker-locate-icon-border-color:            var(--px-map-marker-locate-icon-border-color, white);
+$px-map-marker-locate-icon-accuracy-color:          var(--px-map-marker-locate-icon-accuracy-color, black);
+$px-map-marker-locate-icon-accuracy-opacity:        var(--px-map-marker-locate-icon-accuracy-opacity, 0.3);
 
 /**
   * Internal css variables
