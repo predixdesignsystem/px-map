@@ -1,3 +1,8 @@
+v3.0.1
+===================
+## Other changes
+* Fix path to API source file for px-map-tile-layer-google demo
+
 v3.0.0
 ===================
 This is a major release and includes new features and breaking changes.
