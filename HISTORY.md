@@ -1,5 +1,9 @@
 v3.0.1
 ===================
+## New features
+* Adds the `px-map-tile-layer-wms` layer to support querying WMS services to
+  request base tile images
+
 ## Other changes
 * Fix path to API source file for px-map-tile-layer-google demo
 
