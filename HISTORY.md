@@ -1,3 +1,7 @@
+v3.0.2
+===================
+* Remove broken import from demo page.
+
 v3.0.1
 ===================
 ## New features
