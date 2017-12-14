@@ -32,13 +32,13 @@
   <!-- Interactive -->
   <px-demo-interactive>
     <!-- Configs -->
-    <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+    <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
     <!-- Props -->
-    <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+    <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
     <!-- Component ---------------------------------------------------------->
-    <px-demo-component>
+    <px-demo-component slot="px-demo-component">
       <div style="height:400px; width:600px;display:flex">
         <px-map
           zoom="12"
@@ -59,7 +59,7 @@
     </px-demo-component>
     <!-- END Component ------------------------------------------------------>
 
-    <px-demo-component-snippet
+    <px-demo-component-snippet slot="px-demo-component-snippet"
         element-properties="{{props}}"
         element-name="px-map-marker-symbol"
         links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-marker-symbol.html"]'>

@@ -31,13 +31,13 @@
   <!-- Interactive -->
   <px-demo-interactive>
     <!-- Configs -->
-    <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+    <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
     <!-- Props -->
-    <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+    <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
     <!-- Component ---------------------------------------------------------->
-    <px-demo-component>
+    <px-demo-component slot="px-demo-component">
       <div style="height:400px;width:600px;display:flex">
         <px-map zoom="12" flex-to-size disable-scroll-zoom disable-touch-zoom>
           <!-- Do not use this key. It is for testing purposes only. It can and will be randomly reactivated. -->
@@ -51,7 +51,7 @@
     </px-demo-component>
     <!-- END Component ------------------------------------------------------>
 
-    <px-demo-component-snippet
+    <px-demo-component-snippet slot="px-demo-component-snippet"
         element-properties="{{props}}"
         element-name="px-map-tile-layer-bing">
     </px-demo-component-snippet>

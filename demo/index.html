@@ -27,14 +27,13 @@
 <dom-module id="local-element-demo">
   <template>
     <style include="px-demo-styles" is="custom-style">
-      :root {
+      html {
         --px-map-z-index: 1;
       }
     </style>
 
     <!-- Demo list/view change entrypoint -->
     <px-demo-collection demos="{{demos}}"></px-demo-collection>
-
   </template>
 </dom-module>
 <script>

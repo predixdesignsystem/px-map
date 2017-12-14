@@ -33,15 +33,15 @@
   <!-- Interactive -->
   <px-demo-interactive>
     <!-- Configs -->
-    <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+    <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
     <!-- Props -->
-    <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+    <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
-    <px-demo-code-editor props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
+    <px-demo-code-editor slot="px-demo-code-editor" props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
 
     <!-- Component ---------------------------------------------------------->
-    <px-demo-component>
+    <px-demo-component slot="px-demo-component">
       <div style="height:400px;width:600px;display:flex">
         <px-map
           flex-to-size
@@ -56,7 +56,7 @@
     </px-demo-component>
     <!-- END Component ------------------------------------------------------>
 
-    <px-demo-component-snippet
+    <px-demo-component-snippet slot="px-demo-component-snippet"
         element-properties="{{props}}"
         element-name="px-map-marker-group"
         links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-marker-group.html","px-d3-imports/px-polygit-imports-d3.html"]'>

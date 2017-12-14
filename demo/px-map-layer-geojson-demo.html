@@ -34,18 +34,18 @@
   <!-- Interactive -->
   <px-demo-interactive>
     <!-- Configs -->
-    <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+    <px-demo-configs slot="px-demo-configs" configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
 
     <!-- Props -->
-    <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+    <px-demo-props slot="px-demo-props" props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
 
-    <px-demo-code-editor props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
+    <px-demo-code-editor slot="px-demo-code-editor" props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
 
     <!-- Load GeoJSON from file -->
     <iron-ajax url="px-map-layer-geojson-data.json" last-response="{{props.data.value}}" auto></iron-ajax>
 
     <!-- Component ---------------------------------------------------------->
-    <px-demo-component>
+    <px-demo-component slot="px-demo-component">
       <div style="height:600px;width:800px;display:flex">
         <px-map zoom="14"
                 flex-to-size
@@ -64,7 +64,7 @@
     </px-demo-component>
     <!-- END Component ------------------------------------------------------>
 
-    <px-demo-component-snippet
+    <px-demo-component-snippet slot="px-demo-component-snippet"
         element-properties="{{props}}"
         element-name="px-map-layer-geojson"
         links-includes='["px-map/px-map.html","px-map/px-map-tile-layer.html","px-map/px-map-layer-geojson.html"]'
