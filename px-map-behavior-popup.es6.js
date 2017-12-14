@@ -246,7 +246,7 @@
     }
 
     onAdd(map) {
-      if (map.__addShadyScope) {
+      if (map.__addShadyScope && !Polymer.Element) {
         // We need to monkey patch the node returned by `getPane().appendChild`
         // so we can ensure that we apply the right CSS scope if we are in
         // shady DOM. By doing this, we effectively wrap the node (which is
@@ -259,13 +259,14 @@
         var srcFn = srcPane.appendChild;
         srcPane.appendChild = function(el) {
           map.__addShadyScope(el, false);
-          Polymer.dom(srcPane).appendChild(el);
+          let d = Polymer.dom(srcPane);
+          d.appendChild(el);
         }
       }
 
       L.Popup.prototype.onAdd.call(this, map);
 
-      if (map.__addShadyScope) {
+      if (map.__addShadyScope && !Polymer.Element) {
         // Restore monkey patched function
         srcPane.appendChild = srcFn;
       }
@@ -369,7 +370,7 @@
         return;
       }
 
-      if (map.__addShadyScope) {
+      if (map.__addShadyScope && !Polymer.Element) {
         // We need to monkey patch the node returned by `getPane().appendChild`
         // so we can ensure that we apply the right CSS scope if we are in
         // shady DOM. By doing this, we effectively wrap the node (which is
@@ -388,7 +389,7 @@
 
       L.Popup.prototype.onAdd.call(this, map);
 
-      if (map.__addShadyScope) {
+      if (map.__addShadyScope && !Polymer.Element) {
         // Restore monkey patched function
         srcPane.appendChild = srcFn;
       }
