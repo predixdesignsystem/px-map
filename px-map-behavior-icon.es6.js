@@ -224,7 +224,7 @@
       const pathTmpl = (pathData, pathIndex) => `<path d="${arcPathGeneratorFn(pathData)}" fill="${colorsArray[pathIndex]}" opacity="1"></path>`;
 
       return `
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="${chartSize}" height="${chartSize}">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="none" viewBox="0 0 ${chartSize} ${chartSize}">
             <g transform="translate(${radius}, ${radius})">
                 ${pathListTmpl(arcData)}
             </g>
