@@ -134,9 +134,9 @@
       const children = this.getEffectiveChildren();
       if (!children || !children.length) return;
 
-      for (let child of children) {
+      children.forEach(child => {
         this._attachLayerChild(child);
-      }
+      });
     },
 
     _attachLayerChild(childEl) {
@@ -152,9 +152,9 @@
       const children = this.getEffectiveChildren();
       if (!children || !children.length) return;
 
-      for (let child of children) {
+      children.forEach(child => {
         this._detachLayerChild(child);
-      }
+      });
     },
 
     _detachLayerChild(childEl) {

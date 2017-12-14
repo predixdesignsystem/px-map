@@ -133,26 +133,27 @@
       const boundEvts = this.__instEvents;
       const boundEvtEls = this.__instEventsElementsMap;
 
-      for (let evtName in evts) {
+      let evtNames = Object.keys(evts);
+      evtNames.forEach(evtName => {
         let evtReference = {name: evtName, fn: evts[evtName]};
         el.on(evtReference.name, evtReference.fn);
         boundEvts.push(evtReference);
         boundEvtEls.set(evtReference, el);
-      }
+      });
     },
 
     unbindAllEvents(boundEvts, boundEvtEls) {
       if (!boundEvts || !boundEvts.length || !boundEvtEls) return;
 
-      for (let evt of boundEvts) {
+      boundEvts.forEach(evt => {
         let el = boundEvtEls.get(evt);
-        if (!el || !el.off) continue;
+        if (!el || !el.off) return;
 
         let {name, fn} = evt;
         el.off(name, fn);
 
         boundEvtEls.delete(evt);
-      }
+      });
     },
 
     /**

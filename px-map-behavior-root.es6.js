@@ -192,11 +192,11 @@
       if (!markersMap || !markersMap.size) return;
 
       let bounds = L.latLngBounds();
-      for (let value of markersMap.values()) {
+      markersMap.forEach(value => {
         if (value instanceof L.LatLng || value instanceof L.LatLngBounds) {
           bounds.extend(value);
         }
-      }
+      });
 
       if (bounds.isValid() && (typeof padding === 'number')) {
         bounds = bounds.pad(padding);
