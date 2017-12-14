@@ -28,14 +28,14 @@
   ],
   "dependencies": {
     "app-localize-behavior": "^2.0.0",
-    "polymer": "^1.9.0",
+    "polymer": "#1.9 - 2",
     "px-d3-imports": "^2.0.0",
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.3",
     "leaflet-bing-tiles": "^1.0.0",
     "leaflet-google-tiles": "ge-smallworld/leaflet-google-layer#^1.0.0",
     "px-icon-set": "^2.0.0",
-    "px-app-helpers": "^1.3.0"
+    "px-app-helpers": "^2.0.0"
   },
   "devDependencies": {
     "px-clearfix-design": "^1.0.0",
@@ -45,14 +45,25 @@
     "px-typography-design": "^2.0.0",
     "iron-ajax": "^2.0.0",
     "promise-polyfill": "polymerlabs/promise-polyfill#^2.0.1",
-    "px-code-editor": "^2.0.0",
     "px-theme": "^3.0.0",
-    "px-demo": "^2.3.0",
+    "px-demo": "^3.0.0",
     "iron-icons": "^2.0.0",
-    "web-component-tester": "^6.0.0"
+    "web-component-tester": "^6.3.0"
   },
   "resolutions": {
-    "webcomponentsjs": "^0.7.24",
-    "promise-polyfill": "^2.0.0"
+    "webcomponentsjs": "^1.0.0"
+  },
+  "variants": {
+    "1.x": {
+      "dependencies": {
+        "polymer": "^1.9.0"
+      },
+      "devDependencies": {
+        "web-component-tester": "^5.0.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7.0"
+      }
+    }
   }
 }

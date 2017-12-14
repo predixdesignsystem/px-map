@@ -1,0 +1,4104 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "`px-map` is a lightweight framework for building interactive maps with web\ncomponents and Polymer. The framework includes a base mapping component\n(`<px-map>`) that can be used with many different subcomponents to solve\ncommon mapping UI problems, like plotting geographic data.\n\n### Usage\n\n#### Example: Basic map\n\nBelow is a simple example with little configuration that will display a map\ncentered on Tokyo, Japan:\n\n    <px-map lat=\"35.6895\" lng=\"139.6917\" zoom=\"12\" style=\"width: 500px; height: 300px;\">\n      <px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer>\n      <px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>\n    </px-map>\n\nThis example uses the `<px-map>` base component to draw a map and center it on\na specific location when it first loads.\n\nIf we stopped there and didn't add any subcomponents, the map would load, draw itself,\nand center on Tokyo, but we would only see a gray background. The map needs a\nbase layer — some underlying imagery that shows road networks or satellite imagery\nor terrain information. In this example, we use the `<px-map-tile-layer>` subcomponent\nto load imagery from an OpenStreetMap tile layer service showing the road network\nand other points of interest.\n\nFinally, we use the `<px-map-control-zoom>` subcomponent to add a zoom control\nthat lets the user click or tap buttons to zoom in and out of the map.\n\n#### Example: Visualizing geospatial data\n\nPlotting geospatial data on the map is easy — just choose the right subcomponent\nto show the information you have. For example, we can plot two points-of-interest\nin Tokyo using static markers:\n\n    <px-map fit-to-markers style=\"width: 500px; height: 300px;\">\n      <px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer>\n      <px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>\n\n      <px-map-layer-group name=\"Landmarks\">\n        <px-map-marker-static lat=\"35.6763976\" lng=\"35.6763976\">\n          <px-map-popup-info title=\"Meiji Jingu\" description=\"Shinto shrine dedicated to the Emperor Meiji and Empress Shoken.\"></px-map-popup-info>\n        </px-map-marker-static>\n        <px-map-marker-static lat=\"35.6654861\" lng=\"139.7706668\">\n          <px-map-popup-info title=\"Tsukiji Market\" description=\"Sprawling wholesale fish market with an array of seafood & viewing areas for a popular tuna auction.\"></px-map-popup-info>\n        </px-map-marker-static>\n      </px-map-layer-group>\n    </px-map>\n\nThis example sets up a `<px-map>` base component that will automatically set its\nlocation and zoom level to fit the markers we added. It adds a basic tile layer\n(`<px-map-tile-layer>`) and zoom control (`<px-map-zoom-control>`).\n\nTo plot related points of interest, we use the `<px-map-layer-group>` and give\nit a descriptive name. We add markers with geographic data that describes their\nlocation using `<px-map-marker-static>`. To give users more information about\neach point, we add popups to both markers with the name and description of the\nplace they represent using `<px-map-popup-info>`.\n\n### Styling\nThe following custom properties are available for styling:\n\nCustom property | Description\n:----------------|:-------------\n`--px-map-z-index` | Configurable z-index to position `px-map` within your app\n\n### What you can do with px-map\n\nOut of the box, `px-map` includes the basic things needed to draw and plot data\non an interactive map. It is also extensible — development teams are encouraged\nto build their own subcomponents that add features needed for their application.\n\nThe following components are available:\n\nBase map\n\n- `<px-map>`: Draws the underlying map, sets location/zoom and notifies updates when the user interacts with the map, enables and disables interactions, orchestrates subcomponents\n\nTile layers\n\n- `<px-map-tile-layer>`: Calls a tile service API to fetch underlying tile images for the map\n\nOverlay/visualization layers\n\n- `<px-map-layer-group>`: Groups related overlays together to allow for bulk interactions (e.g. hide all in the group)\n- `<px-map-marker-static>`: Creates a marker that shows the state of a point/asset (e.g. with color)\n- `<px-map-marker-symbol>`: Creates a marker with an icon that shows the state of a point/asset\n- `<px-map-marker-locate>`: Creates a marker that represents the user's location\n- `<px-map-marker-group>`: Draws many markers in clusters, useful for visualizing thousands of points that can be dynamically updated\n\nUI components\n\n- `<px-map-popup-info>`: Binds a popup that can include text or an image to markers\n- `<px-map-popup-data>`: Binds a popup that can include text and key/value data to markers\n\nControls\n\n- `<px-map-control-zoom>`: Adds zoom buttons the user can tap to zoom in or out\n- `<px-map-control-scale>`: Adds a scale that shows the distance of an area on the map in miles/kilometers\n- `<px-map-control-locate>`: Adds a button the user can tap to locate themselves on the map and center the map on their location\n\nThe current major release (v1.X) is focused on providing essential controls,\ntile layer API support, and on plotting point-based data (e.g. markers) and\nupdating the point data in real time. Support for drawing lines, polygons, and\nother geospatial data representations hasn't been added to the framework and will\nrequire some extensions if needed. New subcomponents will be added over time.\n\n### What's under the hood\n\nThe current major release of `px-map` uses the open source Leaflet library to\nsupport displaying a map with base tiles and geospatial overlays. Future iterations of\nthe component may offer the ability to use a different library in place of\nLeaflet, while keeping the same basic API.\n\n### Choosing a tile server\n\nMost px-map demos use the OpenStreetMap public tile service to serve map tiles\n(e.g. `https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`) with the px-map-tile-layer\nsubcomponent. This tile service is used for demo purposes only. You should not use\nthis tile service for production applications; you will need to implement or\npurchase your own tile service.\n\nThe [OpenStreetMap Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/)\ndetails specific restrictions for developers using their public tile service.\nThese restrictions include the following provision: \"Heavy use (e.g. distributing\nan app that uses tiles from openstreetmap.org) is forbidden without prior\npermission\". If you choose to use the OpenStreetMap service for demos or development,\nyou should likely replace the service URLs when your app is shipped to production.\n\nThe following list of companies provide tile service APIs that may be free or\npaid and should be compatible with the px-map-tile-layer (note that these are\nnot endorsed, but just offered as options):\n\n<ul>\n  <li>[Mapbox](https://www.mapbox.com/help/how-mapbox-data-works/)</li>\n  <li>[Carto](https://carto.com/location-data-services/basemaps/)</li>\n  <li>[Mapzen](https://mapzen.com/products/maps/)</li>\n</ul>\n\nYou can also use the px-map-tile-layer-bing component to load map tiles from the Bing API.",
+      "summary": "",
+      "path": "px-map.html",
+      "properties": [
+        {
+          "name": "crs",
+          "type": "L.CRS",
+          "description": "The coordinate reference system to use when projecting geographic points\ninto pixel coordinates. Can only be set once before the map is first\ninitialized. If you don't know what this is, do not set it and the map\nwill revert to the most common web mapping projection (EPSG3857).",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 269,
+              "column": 6
+            },
+            "end": {
+              "line": 271,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "lat",
+          "type": "number",
+          "description": "The latitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 280,
+              "column": 6
+            },
+            "end": {
+              "line": 285,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "37.7672375",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "lng",
+          "type": "number",
+          "description": "The longitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 294,
+              "column": 6
+            },
+            "end": {
+              "line": 299,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "-121.9584131",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "zoom",
+          "type": "number",
+          "description": "The zoom level of the active map. Can be used to set or update\nthe zoom level of the map, or read from after the user changes the\nmap zoom level to an updated value.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 308,
+              "column": 6
+            },
+            "end": {
+              "line": 313,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "10",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "maxZoom",
+          "type": "number",
+          "description": "The maximum zoom level for the active map (the furthest the user can\nzoom in). Setting it at the map level will take precedence over the\nmax zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmax zoom directly on your tile layer.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 324,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "minZoom",
+          "type": "number",
+          "description": "The minimum zoom level for the active map (the furthest the user can\nzoom out). Setting it at the map level will take precedence over the\nmin zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmin zoom directly on your tile layer.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 338,
+              "column": 6
+            },
+            "end": {
+              "line": 341,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "maxBounds",
+          "type": "Array",
+          "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 358,
+              "column": 6
+            },
+            "end": {
+              "line": 361,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disableDragging",
+          "type": "boolean",
+          "description": "Set to disable dragging of the map with the mouse or by touch. Use to\nrestrict changing the map's visible area (e.g. for a static map) or\nto set up a map for being updated programmatically (e.g. through regular\nresponses from an API).",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 371,
+              "column": 6
+            },
+            "end": {
+              "line": 375,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disableScrollZoom",
+          "type": "boolean",
+          "description": "Set to disable zooming with the scroll wheel. Useful if you have a map\nthat takes up the full width of a page and want to allow the user to\nscroll/swipe past without getting stuck in a zoom-in-zoom-out loop.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 384,
+              "column": 6
+            },
+            "end": {
+              "line": 388,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disableTouchZoom",
+          "type": "boolean",
+          "description": "Set to disable the two-finger zoom gesture on touch devices.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 395,
+              "column": 6
+            },
+            "end": {
+              "line": 399,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disableDoubleClickZoom",
+          "type": "boolean",
+          "description": "Set to disable zooming on double-click.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 406,
+              "column": 6
+            },
+            "end": {
+              "line": 410,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disableAttribution",
+          "type": "boolean",
+          "description": "Set to disable the attribution control, which can be used to show the\nsource of tile layers or other data overlays.\n\nThis property is not dynamic and can only be set once when the map is\nfirst initialized.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 421,
+              "column": 6
+            },
+            "end": {
+              "line": 424,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "attributionPrefix",
+          "type": "string",
+          "description": "Stringified HTML that will be used as the first item in your attribution\nlist. Pass an <a> tag with a link to more information about your\nattribution source. Example: '<a href=\"https://example.com\">Example</a>'\n\nDefaults to a link to the Leaflet.js library. If an empty string is\npassed (\"\") the prefix will be hidden.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 436,
+              "column": 6
+            },
+            "end": {
+              "line": 440,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\""
+            }
+          },
+          "defaultValue": "\"<a href=\\\"http://leafletjs.com\\\" title=\\\"A JS library for interactive maps\\\">Leaflet</a>\"",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "flexToSize",
+          "type": "boolean",
+          "description": "Uses flexbox to set the size of the map. Set the parent container\nto use `display: flex;` in your CSS and the map will automatically\nfill the container's available height and width.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 449,
+              "column": 6
+            },
+            "end": {
+              "line": 453,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        }
+      ],
+      "methods": [
+        {
+          "name": "beforeRegister",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 15,
+              "column": 4
+            },
+            "end": {
+              "line": 26,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "attached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 456,
+              "column": 4
+            },
+            "end": {
+              "line": 461,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 463,
+              "column": 4
+            },
+            "end": {
+              "line": 467,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "notifyInstReady",
+          "description": "If this element's instance is ready to create and add to its parent,\nfires an event the parent will catch.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 43,
+              "column": 4
+            },
+            "end": {
+              "line": 47,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "isReady",
+              "type": "Boolean",
+              "defaultValue": "true",
+              "description": "If `true` instance parent will be notified"
+            }
+          ],
+          "return": {
+            "type": "Boolean",
+            "desc": "If `true` the parent was notified"
+          },
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "shouldAddInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 469,
+              "column": 4
+            },
+            "end": {
+              "line": 474,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "evt"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "shouldRemoveInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 61,
+              "column": 4
+            },
+            "end": {
+              "line": 65,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "shouldUpdateInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 70,
+              "column": 4
+            },
+            "end": {
+              "line": 84,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "createInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 482,
+              "column": 4
+            },
+            "end": {
+              "line": 492,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "options"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "updateInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 546,
+              "column": 4
+            },
+            "end": {
+              "line": 595,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "lastOptions"
+            },
+            {
+              "name": "nextOptions"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "getInstOptions",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 522,
+              "column": 4
+            },
+            "end": {
+              "line": 544,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "addInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 494,
+              "column": 4
+            },
+            "end": {
+              "line": 513,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "removeInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 515,
+              "column": 4
+            },
+            "end": {
+              "line": 520,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "extendObj",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 110,
+              "column": 4
+            },
+            "end": {
+              "line": 116,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "obj"
+            },
+            {
+              "name": "properties",
+              "rest": true
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "addProperties",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 118,
+              "column": 4
+            },
+            "end": {
+              "line": 124,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "properties",
+              "rest": true
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "bindEvents",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 126,
+              "column": 4
+            },
+            "end": {
+              "line": 141,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "evts"
+            },
+            {
+              "name": "target"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "unbindAllEvents",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 143,
+              "column": 4
+            },
+            "end": {
+              "line": 155,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "boundEvts"
+            },
+            {
+              "name": "boundEvtEls"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "isShadyScoped",
+          "description": "If this component is being drawn in Shady DOM, returns true. Used to\nensure the shady DOM scope classes are applied when we make DOM\ntransactions that can't be reviewed by the scopeSubtree observer\nin the root `px-map` component that is the parent of all elements.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 165,
+              "column": 4
+            },
+            "end": {
+              "line": 167,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "return": {
+            "type": "Boolean"
+          },
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "getShadyScope",
+          "description": "Returns the stringified shady DOM scope classes. Useful for ensuring they're\napplied during DOM transactions that can't be reviewed by the scopeSubtree\nobserver in the root `px-map` component that is the parent of all elements.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-element.es6.js",
+            "start": {
+              "line": 176,
+              "column": 4
+            },
+            "end": {
+              "line": 178,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "return": {
+            "type": "String",
+            "desc": "A list of CSS classes separated by spaces"
+          },
+          "inheritedFrom": "PxMapBehavior.Element"
+        },
+        {
+          "name": "created",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 97,
+              "column": 4
+            },
+            "end": {
+              "line": 100,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_tryToAddAllChildren",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 108,
+              "column": 4
+            },
+            "end": {
+              "line": 116,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "evt"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_tryToAddOneChild",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 118,
+              "column": 4
+            },
+            "end": {
+              "line": 130,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "evt"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_attachLayerChildren",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 132,
+              "column": 4
+            },
+            "end": {
+              "line": 139,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_attachLayerChild",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 141,
+              "column": 4
+            },
+            "end": {
+              "line": 146,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "childEl"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_detachLayerChildren",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 150,
+              "column": 4
+            },
+            "end": {
+              "line": 157,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "_detachLayerChild",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-layer.es6.js",
+            "start": {
+              "line": 159,
+              "column": 4
+            },
+            "end": {
+              "line": 164,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "childEl"
+            }
+          ],
+          "inheritedFrom": "PxMapBehavior.ParentLayer"
+        },
+        {
+          "name": "canAddInst",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 476,
+              "column": 4
+            },
+            "end": {
+              "line": 480,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "invalidateSize",
+          "description": "Checks if the map container has changed size or visibility, and - if so -\nupdates the map accordingly by refreshing the tile layer.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 601,
+              "column": 4
+            },
+            "end": {
+              "line": 605,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_updateMapView",
+          "description": "Called when the `lat`, `lng`, or `zoom` properties are set or updated.\nSets the map view to the new values.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 611,
+              "column": 4
+            },
+            "end": {
+              "line": 622,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_canBeNum",
+          "description": "Returns true if val can be used as a number in L.LatLng or zoom",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 630,
+              "column": 4
+            },
+            "end": {
+              "line": 632,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "val",
+              "type": "*"
+            }
+          ],
+          "return": {
+            "type": "Boolean"
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "latLngIsValid",
+          "description": "Returns true if lat and lng are valid values that can be used to set a\nmap's position. Prints an error if values are invalid (unless `hideError`\nis set to true).",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 644,
+              "column": 4
+            },
+            "end": {
+              "line": 652,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "lat",
+              "type": "Number"
+            },
+            {
+              "name": "lng",
+              "type": "Number"
+            },
+            {
+              "name": "hideError",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "type": "Boolean"
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_handleMapMove",
+          "description": "Called when the map itself is moved (either by user interaction or by\nsome other method programmatically setting geometry properties).\n\nSyncs the new lat, lng, and zoom to the map's properties and notifies\nout the result.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 661,
+              "column": 4
+            },
+            "end": {
+              "line": 687,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_handleZoomStart",
+          "description": "Sets an internal boolean that allows us to wait before handling any map\nmovements until the zoom animation is over.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 705,
+              "column": 4
+            },
+            "end": {
+              "line": 707,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_handleZoomEnd",
+          "description": "Sets an internal boolean that allows us to wait before handling any map\nmovements until the zoom animation is over.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 713,
+              "column": 4
+            },
+            "end": {
+              "line": 719,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "getVisibleMarkers",
+          "description": "Iterates over all markers attached to the map and returns an array of markers\nthat are within the visible bounds. Use to discover which markers the\nuser can currently see and change/filter the state of your app.\n\nThis is an expensive operation, particularly for maps with many markers\n(e.g. in a marker group). Only call it when necessary.\n\nTo get continuous updates on which markers are visible, attach a\n`px-map-moved` event listener to this element and call this method\nafter each moved event.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 735,
+              "column": 4
+            },
+            "end": {
+              "line": 763,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "return": {
+            "type": "Array"
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 197,
+          "column": 10
+        },
+        "end": {
+          "line": 200,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "crs",
+          "description": "The coordinate reference system to use when projecting geographic points\ninto pixel coordinates. Can only be set once before the map is first\ninitialized. If you don't know what this is, do not set it and the map\nwill revert to the most common web mapping projection (EPSG3857).",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 269,
+              "column": 6
+            },
+            "end": {
+              "line": 271,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "L.CRS",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "lat",
+          "description": "The latitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 280,
+              "column": 6
+            },
+            "end": {
+              "line": 285,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "lng",
+          "description": "The longitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 294,
+              "column": 6
+            },
+            "end": {
+              "line": 299,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "zoom",
+          "description": "The zoom level of the active map. Can be used to set or update\nthe zoom level of the map, or read from after the user changes the\nmap zoom level to an updated value.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 308,
+              "column": 6
+            },
+            "end": {
+              "line": 313,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "max-zoom",
+          "description": "The maximum zoom level for the active map (the furthest the user can\nzoom in). Setting it at the map level will take precedence over the\nmax zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmax zoom directly on your tile layer.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 324,
+              "column": 6
+            },
+            "end": {
+              "line": 327,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "min-zoom",
+          "description": "The minimum zoom level for the active map (the furthest the user can\nzoom out). Setting it at the map level will take precedence over the\nmin zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmin zoom directly on your tile layer.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 338,
+              "column": 6
+            },
+            "end": {
+              "line": 341,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "number",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "max-bounds",
+          "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 358,
+              "column": 6
+            },
+            "end": {
+              "line": 361,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "Array",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disable-dragging",
+          "description": "Set to disable dragging of the map with the mouse or by touch. Use to\nrestrict changing the map's visible area (e.g. for a static map) or\nto set up a map for being updated programmatically (e.g. through regular\nresponses from an API).",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 371,
+              "column": 6
+            },
+            "end": {
+              "line": 375,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disable-scroll-zoom",
+          "description": "Set to disable zooming with the scroll wheel. Useful if you have a map\nthat takes up the full width of a page and want to allow the user to\nscroll/swipe past without getting stuck in a zoom-in-zoom-out loop.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 384,
+              "column": 6
+            },
+            "end": {
+              "line": 388,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disable-touch-zoom",
+          "description": "Set to disable the two-finger zoom gesture on touch devices.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 395,
+              "column": 6
+            },
+            "end": {
+              "line": 399,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disable-double-click-zoom",
+          "description": "Set to disable zooming on double-click.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 406,
+              "column": 6
+            },
+            "end": {
+              "line": 410,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "disable-attribution",
+          "description": "Set to disable the attribution control, which can be used to show the\nsource of tile layers or other data overlays.\n\nThis property is not dynamic and can only be set once when the map is\nfirst initialized.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 421,
+              "column": 6
+            },
+            "end": {
+              "line": 424,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "attribution-prefix",
+          "description": "Stringified HTML that will be used as the first item in your attribution\nlist. Pass an <a> tag with a link to more information about your\nattribution source. Example: '<a href=\"https://example.com\">Example</a>'\n\nDefaults to a link to the Leaflet.js library. If an empty string is\npassed (\"\") the prefix will be hidden.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 436,
+              "column": 6
+            },
+            "end": {
+              "line": 440,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "string",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "flex-to-size",
+          "description": "Uses flexbox to set the size of the map. Set the parent container\nto use `display: flex;` in your CSS and the map will automatically\nfill the container's available height and width.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 449,
+              "column": 6
+            },
+            "end": {
+              "line": 453,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        }
+      ],
+      "events": [
+        {
+          "type": "CustomEvent",
+          "name": "px-map-moved",
+          "description": "px-map-moved",
+          "metadata": {},
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "lat-changed",
+          "description": "Fired when the `lat` property changes.",
+          "metadata": {},
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "lng-changed",
+          "description": "Fired when the `lng` property changes.",
+          "metadata": {},
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "type": "CustomEvent",
+          "name": "zoom-changed",
+          "description": "Fired when the `zoom` property changes.",
+          "metadata": {},
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        }
+      ],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [
+        {
+          "description": "",
+          "name": "",
+          "range": {
+            "file": "px-map.html",
+            "start": {
+              "line": 193,
+              "column": 4
+            },
+            "end": {
+              "line": 193,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "tagname": "px-map"
+    }
+  ],
+  "metadata": {
+    "polymer": {
+      "behaviors": [
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-map-behavior-element.es6.js",
+          "properties": [],
+          "methods": [
+            {
+              "name": "beforeRegister",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 15,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "attached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 28,
+                  "column": 4
+                },
+                "end": {
+                  "line": 30,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "detached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 32,
+                  "column": 4
+                },
+                "end": {
+                  "line": 34,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "notifyInstReady",
+              "description": "If this element's instance is ready to create and add to its parent,\nfires an event the parent will catch.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 43,
+                  "column": 4
+                },
+                "end": {
+                  "line": 47,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "isReady",
+                  "type": "Boolean",
+                  "defaultValue": "true",
+                  "description": "If `true` instance parent will be notified"
+                }
+              ],
+              "return": {
+                "type": "Boolean",
+                "desc": "If `true` the parent was notified"
+              }
+            },
+            {
+              "name": "shouldAddInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 49,
+                  "column": 4
+                },
+                "end": {
+                  "line": 59,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "shouldRemoveInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 61,
+                  "column": 4
+                },
+                "end": {
+                  "line": 65,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "shouldUpdateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 70,
+                  "column": 4
+                },
+                "end": {
+                  "line": 84,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "createInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 88,
+                  "column": 4
+                },
+                "end": {
+                  "line": 90,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "updateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 92,
+                  "column": 4
+                },
+                "end": {
+                  "line": 94,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "getInstOptions",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 96,
+                  "column": 4
+                },
+                "end": {
+                  "line": 98,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "addInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 100,
+                  "column": 4
+                },
+                "end": {
+                  "line": 102,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "removeInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 104,
+                  "column": 4
+                },
+                "end": {
+                  "line": 106,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "extendObj",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 110,
+                  "column": 4
+                },
+                "end": {
+                  "line": 116,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "obj"
+                },
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ]
+            },
+            {
+              "name": "addProperties",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 118,
+                  "column": 4
+                },
+                "end": {
+                  "line": 124,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ]
+            },
+            {
+              "name": "bindEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 126,
+                  "column": 4
+                },
+                "end": {
+                  "line": 141,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evts"
+                },
+                {
+                  "name": "target"
+                }
+              ]
+            },
+            {
+              "name": "unbindAllEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 143,
+                  "column": 4
+                },
+                "end": {
+                  "line": 155,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "boundEvts"
+                },
+                {
+                  "name": "boundEvtEls"
+                }
+              ]
+            },
+            {
+              "name": "isShadyScoped",
+              "description": "If this component is being drawn in Shady DOM, returns true. Used to\nensure the shady DOM scope classes are applied when we make DOM\ntransactions that can't be reviewed by the scopeSubtree observer\nin the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 165,
+                  "column": 4
+                },
+                "end": {
+                  "line": 167,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "Boolean"
+              }
+            },
+            {
+              "name": "getShadyScope",
+              "description": "Returns the stringified shady DOM scope classes. Useful for ensuring they're\napplied during DOM transactions that can't be reviewed by the scopeSubtree\nobserver in the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 176,
+                  "column": 4
+                },
+                "end": {
+                  "line": 178,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "String",
+                "desc": "A list of CSS classes separated by spaces"
+              }
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 14,
+              "column": 2
+            },
+            "end": {
+              "line": 179,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxMapBehavior.Element",
+          "attributes": [],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-map-behavior-layer.es6.js",
+          "properties": [],
+          "methods": [
+            {
+              "name": "beforeRegister",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 15,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "attached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 19,
+                  "column": 4
+                },
+                "end": {
+                  "line": 21,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "detached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 26,
+                  "column": 4
+                },
+                "end": {
+                  "line": 28,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "notifyInstReady",
+              "description": "If this element's instance is ready to create and add to its parent,\nfires an event the parent will catch.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 43,
+                  "column": 4
+                },
+                "end": {
+                  "line": 47,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "isReady",
+                  "type": "Boolean",
+                  "defaultValue": "true",
+                  "description": "If `true` instance parent will be notified"
+                }
+              ],
+              "return": {
+                "type": "Boolean",
+                "desc": "If `true` the parent was notified"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "shouldAddInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 33,
+                  "column": 4
+                },
+                "end": {
+                  "line": 39,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "shouldRemoveInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 41,
+                  "column": 4
+                },
+                "end": {
+                  "line": 47,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "shouldUpdateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 70,
+                  "column": 4
+                },
+                "end": {
+                  "line": 84,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "createInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 88,
+                  "column": 4
+                },
+                "end": {
+                  "line": 90,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "updateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 92,
+                  "column": 4
+                },
+                "end": {
+                  "line": 94,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "getInstOptions",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 96,
+                  "column": 4
+                },
+                "end": {
+                  "line": 98,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "addInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 51,
+                  "column": 4
+                },
+                "end": {
+                  "line": 53,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "removeInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 55,
+                  "column": 4
+                },
+                "end": {
+                  "line": 57,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "extendObj",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 110,
+                  "column": 4
+                },
+                "end": {
+                  "line": 116,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "obj"
+                },
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "addProperties",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 118,
+                  "column": 4
+                },
+                "end": {
+                  "line": 124,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "bindEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 126,
+                  "column": 4
+                },
+                "end": {
+                  "line": 141,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evts"
+                },
+                {
+                  "name": "target"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "unbindAllEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 143,
+                  "column": 4
+                },
+                "end": {
+                  "line": 155,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "boundEvts"
+                },
+                {
+                  "name": "boundEvtEls"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "isShadyScoped",
+              "description": "If this component is being drawn in Shady DOM, returns true. Used to\nensure the shady DOM scope classes are applied when we make DOM\ntransactions that can't be reviewed by the scopeSubtree observer\nin the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 165,
+                  "column": 4
+                },
+                "end": {
+                  "line": 167,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "Boolean"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "getShadyScope",
+              "description": "Returns the stringified shady DOM scope classes. Useful for ensuring they're\napplied during DOM transactions that can't be reviewed by the scopeSubtree\nobserver in the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 176,
+                  "column": 4
+                },
+                "end": {
+                  "line": 178,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "String",
+                "desc": "A list of CSS classes separated by spaces"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "canAddInst",
+              "description": "Some element instances may require a minimum number of defined options\nto be able to attach to their parent. If those options are defined via.\nattributes, they may not be deserialized or even set before the `willAddInst`\nmethod is called.\n\nElements that need to defer until some options are set should override\nthe `canAddInst` method and return `false` if the method\n\nElements that may need to defer until some options are ready should\noverride `instReady` and set it to `false` by default.\n\nLater, when the `updateInst` function is called, the element should check\nif all required options are set and call the method `this.notifyInstReady(true)`\nto trigger an event the parent will catch and use to attach this element.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 75,
+                  "column": 4
+                },
+                "end": {
+                  "line": 77,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 15,
+              "column": 2
+            },
+            "end": {
+              "line": 78,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxMapBehavior.Layer",
+          "attributes": [],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-map-behavior-layer.es6.js",
+          "properties": [],
+          "methods": [
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 97,
+                  "column": 4
+                },
+                "end": {
+                  "line": 100,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "detached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 102,
+                  "column": 4
+                },
+                "end": {
+                  "line": 104,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_tryToAddAllChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 108,
+                  "column": 4
+                },
+                "end": {
+                  "line": 116,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_tryToAddOneChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 118,
+                  "column": 4
+                },
+                "end": {
+                  "line": 130,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_attachLayerChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 132,
+                  "column": 4
+                },
+                "end": {
+                  "line": 139,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_attachLayerChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 141,
+                  "column": 4
+                },
+                "end": {
+                  "line": 146,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "childEl"
+                }
+              ]
+            },
+            {
+              "name": "_detachLayerChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 150,
+                  "column": 4
+                },
+                "end": {
+                  "line": 157,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_detachLayerChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 159,
+                  "column": 4
+                },
+                "end": {
+                  "line": 164,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "childEl"
+                }
+              ]
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 91,
+              "column": 2
+            },
+            "end": {
+              "line": 165,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxMapBehavior.ParentLayer",
+          "attributes": [],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-map-behavior-root.es6.js",
+          "properties": [
+            {
+              "name": "fitToMarkers",
+              "type": "Object",
+              "description": "Updates the visible bounds of the map to fit all markers as they are\nadded. Markers are continuously monitored for changes, and any new\nmarkers added late in the map's lifecycle (e.g. markers created\ndynamically long after the map is loaded) will trigger an additional\nresize of the map if they are not within its current visible bounds.\n\nThis attribute is dynamic. To stop map resizes after some amount of time,\ndisable this attribute.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 29,
+                  "column": 6
+                },
+                "end": {
+                  "line": 33,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"_fitMapToMarkersIfSet\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "fitToMarkersPadding",
+              "type": "number",
+              "description": "Optional setting that only works if `fitToMarkers` is enabled. Adds a\npadding between the edges of the map and the visible markers shown.\nSet to a percentage value (e.g. `0.25` for 25%). Defaults to 15%, setting\nto a lower value will lead to some large markers potentially not fitting\non the map.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 44,
+                  "column": 6
+                },
+                "end": {
+                  "line": 47,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "0.15"
+            },
+            {
+              "name": "fitToMarkersZoom",
+              "type": "string",
+              "description": "Optional setting that only works if `fitToMarkers` is enabled. Determines\nhow the map will calculate its zoom level when fitting markers.\nChoose from the following options (default is 'max'):\n\n   * 'max' - the map will zoom to the lowest level that fits all markers (but not past the map's `maxZoom`)\n   * 'min' - the map will zoom to the highest level that fits all markers (but not past the map's `minZoom`)",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 59,
+                  "column": 6
+                },
+                "end": {
+                  "line": 62,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "\"max\""
+            }
+          ],
+          "methods": [
+            {
+              "name": "addInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 65,
+                  "column": 4
+                },
+                "end": {
+                  "line": 72,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "removeInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 74,
+                  "column": 4
+                },
+                "end": {
+                  "line": 84,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "parent"
+                }
+              ]
+            },
+            {
+              "name": "_handleMarkerAdded",
+              "description": "When an individual marker is added, record its location in the known markers\nmap and ask the map to fit it later.\n\nBind listeners on remove to keep the known markers map updated.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 92,
+                  "column": 4
+                },
+                "end": {
+                  "line": 102,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_handleMarkerRemoved",
+              "description": "When an individual marker is removed, delete it from the known markers\nmap and stop. Don't ask the map to refit its bounds.\n\nUnbind listeners so the element can be cleaned up.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 110,
+                  "column": 4
+                },
+                "end": {
+                  "line": 120,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_handleMarkerGroupUpdated",
+              "description": "When marker groups are updated, set their new bounds in the known markers\nmap. We don't need to worry about whether we've seen them before.\n\nBind listeners on remove to keep the known markers map updated.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 128,
+                  "column": 4
+                },
+                "end": {
+                  "line": 142,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_handleMarkerGroupRemoved",
+              "description": "When marker groups are removed, delete their bounds from the known markers\nmap and stop. Don't ask the map to refit its bounds.\n\nUnbind listeners so the element can be cleaned up.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 150,
+                  "column": 4
+                },
+                "end": {
+                  "line": 160,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_fitMapToMarkers",
+              "description": "Debounced function that iterates over the known markers map and fits the\nvisible bounds of the map.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 166,
+                  "column": 4
+                },
+                "end": {
+                  "line": 178,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_markersToBoundsWithPadding",
+              "description": "Takes a Map of known markers with values representing the marker's geometry\nas a `L.LatLng` or `L.LatLngBounds` instance and creates a bounds object\nthat encompasses all the markers. Optionally pads the bounds by a percentage\nwith the `padding` param.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 190,
+                  "column": 4
+                },
+                "end": {
+                  "line": 205,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "markersMap",
+                  "type": "Map"
+                },
+                {
+                  "name": "padding"
+                }
+              ]
+            },
+            {
+              "name": "_getZoomLevelForFit",
+              "description": "Takes a bounds, fit setting, zoom level, and map instance, and returns a\nnew zoom level for the map.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 216,
+                  "column": 4
+                },
+                "end": {
+                  "line": 225,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "bounds",
+                  "type": "L.LatLngBounds"
+                },
+                {
+                  "name": "fitSetting",
+                  "type": "String",
+                  "description": "see `fitToMarkersZoom` property for more details"
+                },
+                {
+                  "name": "map",
+                  "type": "L.Map"
+                }
+              ],
+              "return": {
+                "type": "Number"
+              }
+            },
+            {
+              "name": "_fitMapToMarkersIfSet",
+              "description": "Called when the `fitToMarkers` attribute is updated. If it is set to true\nand a map is set, call the internal `_fitMapToMarkers` method.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 231,
+                  "column": 4
+                },
+                "end": {
+                  "line": 234,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "fitMapToMarkers",
+              "description": "Sets the map's visible bounds (latitude, longitude, and zoom) to fit all\nattached markers in a single view.\n\nEnable the `fit-to-markers` attribute to automatically fit all markers as\nthey are added to the map.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 245,
+                  "column": 4
+                },
+                "end": {
+                  "line": 252,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "Boolean",
+                "desc": "`true` if there were markers to fit, `false` if there were no markers to fit"
+              }
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 14,
+              "column": 2
+            },
+            "end": {
+              "line": 253,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxMapBehavior.TrackMarkers",
+          "attributes": [
+            {
+              "name": "fit-to-markers",
+              "description": "Updates the visible bounds of the map to fit all markers as they are\nadded. Markers are continuously monitored for changes, and any new\nmarkers added late in the map's lifecycle (e.g. markers created\ndynamically long after the map is loaded) will trigger an additional\nresize of the map if they are not within its current visible bounds.\n\nThis attribute is dynamic. To stop map resizes after some amount of time,\ndisable this attribute.",
+              "sourceRange": {
+                "start": {
+                  "line": 29,
+                  "column": 6
+                },
+                "end": {
+                  "line": 33,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            },
+            {
+              "name": "fit-to-markers-padding",
+              "description": "Optional setting that only works if `fitToMarkers` is enabled. Adds a\npadding between the edges of the map and the visible markers shown.\nSet to a percentage value (e.g. `0.25` for 25%). Defaults to 15%, setting\nto a lower value will lead to some large markers potentially not fitting\non the map.",
+              "sourceRange": {
+                "start": {
+                  "line": 44,
+                  "column": 6
+                },
+                "end": {
+                  "line": 47,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "fit-to-markers-zoom",
+              "description": "Optional setting that only works if `fitToMarkers` is enabled. Determines\nhow the map will calculate its zoom level when fitting markers.\nChoose from the following options (default is 'max'):\n\n   * 'max' - the map will zoom to the lowest level that fits all markers (but not past the map's `maxZoom`)\n   * 'min' - the map will zoom to the highest level that fits all markers (but not past the map's `minZoom`)",
+              "sourceRange": {
+                "start": {
+                  "line": 59,
+                  "column": 6
+                },
+                "end": {
+                  "line": 62,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "string"
+            }
+          ],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-map-behavior-root.es6.js",
+          "properties": [
+            {
+              "name": "crs",
+              "type": "L.CRS",
+              "description": "The coordinate reference system to use when projecting geographic points\ninto pixel coordinates. Can only be set once before the map is first\ninitialized. If you don't know what this is, do not set it and the map\nwill revert to the most common web mapping projection (EPSG3857).",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 269,
+                  "column": 6
+                },
+                "end": {
+                  "line": 271,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            },
+            {
+              "name": "lat",
+              "type": "number",
+              "description": "The latitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 280,
+                  "column": 6
+                },
+                "end": {
+                  "line": 285,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "37.7672375"
+            },
+            {
+              "name": "lng",
+              "type": "number",
+              "description": "The longitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 294,
+                  "column": 6
+                },
+                "end": {
+                  "line": 299,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "-121.9584131"
+            },
+            {
+              "name": "zoom",
+              "type": "number",
+              "description": "The zoom level of the active map. Can be used to set or update\nthe zoom level of the map, or read from after the user changes the\nmap zoom level to an updated value.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 308,
+                  "column": 6
+                },
+                "end": {
+                  "line": 313,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "10"
+            },
+            {
+              "name": "maxZoom",
+              "type": "number",
+              "description": "The maximum zoom level for the active map (the furthest the user can\nzoom in). Setting it at the map level will take precedence over the\nmax zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmax zoom directly on your tile layer.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 324,
+                  "column": 6
+                },
+                "end": {
+                  "line": 327,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              }
+            },
+            {
+              "name": "minZoom",
+              "type": "number",
+              "description": "The minimum zoom level for the active map (the furthest the user can\nzoom out). Setting it at the map level will take precedence over the\nmin zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmin zoom directly on your tile layer.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 338,
+                  "column": 6
+                },
+                "end": {
+                  "line": 341,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              }
+            },
+            {
+              "name": "maxBounds",
+              "type": "Array",
+              "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 358,
+                  "column": 6
+                },
+                "end": {
+                  "line": 361,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              }
+            },
+            {
+              "name": "disableDragging",
+              "type": "boolean",
+              "description": "Set to disable dragging of the map with the mouse or by touch. Use to\nrestrict changing the map's visible area (e.g. for a static map) or\nto set up a map for being updated programmatically (e.g. through regular\nresponses from an API).",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 371,
+                  "column": 6
+                },
+                "end": {
+                  "line": 375,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "disableScrollZoom",
+              "type": "boolean",
+              "description": "Set to disable zooming with the scroll wheel. Useful if you have a map\nthat takes up the full width of a page and want to allow the user to\nscroll/swipe past without getting stuck in a zoom-in-zoom-out loop.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 384,
+                  "column": 6
+                },
+                "end": {
+                  "line": 388,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "disableTouchZoom",
+              "type": "boolean",
+              "description": "Set to disable the two-finger zoom gesture on touch devices.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 395,
+                  "column": 6
+                },
+                "end": {
+                  "line": 399,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "disableDoubleClickZoom",
+              "type": "boolean",
+              "description": "Set to disable zooming on double-click.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 406,
+                  "column": 6
+                },
+                "end": {
+                  "line": 410,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "disableAttribution",
+              "type": "boolean",
+              "description": "Set to disable the attribution control, which can be used to show the\nsource of tile layers or other data overlays.\n\nThis property is not dynamic and can only be set once when the map is\nfirst initialized.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 421,
+                  "column": 6
+                },
+                "end": {
+                  "line": 424,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "attributionPrefix",
+              "type": "string",
+              "description": "Stringified HTML that will be used as the first item in your attribution\nlist. Pass an <a> tag with a link to more information about your\nattribution source. Example: '<a href=\"https://example.com\">Example</a>'\n\nDefaults to a link to the Leaflet.js library. If an empty string is\npassed (\"\") the prefix will be hidden.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 436,
+                  "column": 6
+                },
+                "end": {
+                  "line": 440,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\""
+                }
+              },
+              "defaultValue": "\"<a href=\\\"http://leafletjs.com\\\" title=\\\"A JS library for interactive maps\\\">Leaflet</a>\""
+            },
+            {
+              "name": "flexToSize",
+              "type": "boolean",
+              "description": "Uses flexbox to set the size of the map. Set the parent container\nto use `display: flex;` in your CSS and the map will automatically\nfill the container's available height and width.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 449,
+                  "column": 6
+                },
+                "end": {
+                  "line": 453,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "false"
+            }
+          ],
+          "methods": [
+            {
+              "name": "beforeRegister",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 15,
+                  "column": 4
+                },
+                "end": {
+                  "line": 26,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "attached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 456,
+                  "column": 4
+                },
+                "end": {
+                  "line": 461,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "detached",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 463,
+                  "column": 4
+                },
+                "end": {
+                  "line": 467,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "notifyInstReady",
+              "description": "If this element's instance is ready to create and add to its parent,\nfires an event the parent will catch.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 43,
+                  "column": 4
+                },
+                "end": {
+                  "line": 47,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "isReady",
+                  "type": "Boolean",
+                  "defaultValue": "true",
+                  "description": "If `true` instance parent will be notified"
+                }
+              ],
+              "return": {
+                "type": "Boolean",
+                "desc": "If `true` the parent was notified"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "shouldAddInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 469,
+                  "column": 4
+                },
+                "end": {
+                  "line": 474,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "shouldRemoveInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 61,
+                  "column": 4
+                },
+                "end": {
+                  "line": 65,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "shouldUpdateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 70,
+                  "column": 4
+                },
+                "end": {
+                  "line": 84,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "createInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 482,
+                  "column": 4
+                },
+                "end": {
+                  "line": 492,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "options"
+                }
+              ]
+            },
+            {
+              "name": "updateInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 546,
+                  "column": 4
+                },
+                "end": {
+                  "line": 595,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "lastOptions"
+                },
+                {
+                  "name": "nextOptions"
+                }
+              ]
+            },
+            {
+              "name": "getInstOptions",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 522,
+                  "column": 4
+                },
+                "end": {
+                  "line": 544,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "addInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 494,
+                  "column": 4
+                },
+                "end": {
+                  "line": 513,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "removeInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 515,
+                  "column": 4
+                },
+                "end": {
+                  "line": 520,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "extendObj",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 110,
+                  "column": 4
+                },
+                "end": {
+                  "line": 116,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "obj"
+                },
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "addProperties",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 118,
+                  "column": 4
+                },
+                "end": {
+                  "line": 124,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "properties",
+                  "rest": true
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "bindEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 126,
+                  "column": 4
+                },
+                "end": {
+                  "line": 141,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evts"
+                },
+                {
+                  "name": "target"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "unbindAllEvents",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 143,
+                  "column": 4
+                },
+                "end": {
+                  "line": 155,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "boundEvts"
+                },
+                {
+                  "name": "boundEvtEls"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "isShadyScoped",
+              "description": "If this component is being drawn in Shady DOM, returns true. Used to\nensure the shady DOM scope classes are applied when we make DOM\ntransactions that can't be reviewed by the scopeSubtree observer\nin the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 165,
+                  "column": 4
+                },
+                "end": {
+                  "line": 167,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "Boolean"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "getShadyScope",
+              "description": "Returns the stringified shady DOM scope classes. Useful for ensuring they're\napplied during DOM transactions that can't be reviewed by the scopeSubtree\nobserver in the root `px-map` component that is the parent of all elements.",
+              "privacy": "public",
+              "sourceRange": {
+                "file": "px-map-behavior-element.es6.js",
+                "start": {
+                  "line": 176,
+                  "column": 4
+                },
+                "end": {
+                  "line": 178,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "String",
+                "desc": "A list of CSS classes separated by spaces"
+              },
+              "inheritedFrom": "PxMapBehavior.Element"
+            },
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 97,
+                  "column": 4
+                },
+                "end": {
+                  "line": 100,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_tryToAddAllChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 108,
+                  "column": 4
+                },
+                "end": {
+                  "line": 116,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_tryToAddOneChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 118,
+                  "column": 4
+                },
+                "end": {
+                  "line": 130,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_attachLayerChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 132,
+                  "column": 4
+                },
+                "end": {
+                  "line": 139,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_attachLayerChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 141,
+                  "column": 4
+                },
+                "end": {
+                  "line": 146,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "childEl"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_detachLayerChildren",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 150,
+                  "column": 4
+                },
+                "end": {
+                  "line": 157,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "_detachLayerChild",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "file": "px-map-behavior-layer.es6.js",
+                "start": {
+                  "line": 159,
+                  "column": 4
+                },
+                "end": {
+                  "line": 164,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "childEl"
+                }
+              ],
+              "inheritedFrom": "PxMapBehavior.ParentLayer"
+            },
+            {
+              "name": "canAddInst",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 476,
+                  "column": 4
+                },
+                "end": {
+                  "line": 480,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "invalidateSize",
+              "description": "Checks if the map container has changed size or visibility, and - if so -\nupdates the map accordingly by refreshing the tile layer.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 601,
+                  "column": 4
+                },
+                "end": {
+                  "line": 605,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_updateMapView",
+              "description": "Called when the `lat`, `lng`, or `zoom` properties are set or updated.\nSets the map view to the new values.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 611,
+                  "column": 4
+                },
+                "end": {
+                  "line": 622,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_canBeNum",
+              "description": "Returns true if val can be used as a number in L.LatLng or zoom",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 630,
+                  "column": 4
+                },
+                "end": {
+                  "line": 632,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "val",
+                  "type": "*"
+                }
+              ],
+              "return": {
+                "type": "Boolean"
+              }
+            },
+            {
+              "name": "latLngIsValid",
+              "description": "Returns true if lat and lng are valid values that can be used to set a\nmap's position. Prints an error if values are invalid (unless `hideError`\nis set to true).",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 644,
+                  "column": 4
+                },
+                "end": {
+                  "line": 652,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "lat",
+                  "type": "Number"
+                },
+                {
+                  "name": "lng",
+                  "type": "Number"
+                },
+                {
+                  "name": "hideError",
+                  "type": "Boolean"
+                }
+              ],
+              "return": {
+                "type": "Boolean"
+              }
+            },
+            {
+              "name": "_handleMapMove",
+              "description": "Called when the map itself is moved (either by user interaction or by\nsome other method programmatically setting geometry properties).\n\nSyncs the new lat, lng, and zoom to the map's properties and notifies\nout the result.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 661,
+                  "column": 4
+                },
+                "end": {
+                  "line": 687,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_handleZoomStart",
+              "description": "Sets an internal boolean that allows us to wait before handling any map\nmovements until the zoom animation is over.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 705,
+                  "column": 4
+                },
+                "end": {
+                  "line": 707,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_handleZoomEnd",
+              "description": "Sets an internal boolean that allows us to wait before handling any map\nmovements until the zoom animation is over.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 713,
+                  "column": 4
+                },
+                "end": {
+                  "line": 719,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "getVisibleMarkers",
+              "description": "Iterates over all markers attached to the map and returns an array of markers\nthat are within the visible bounds. Use to discover which markers the\nuser can currently see and change/filter the state of your app.\n\nThis is an expensive operation, particularly for maps with many markers\n(e.g. in a marker group). Only call it when necessary.\n\nTo get continuous updates on which markers are visible, attach a\n`px-map-moved` event listener to this element and call this method\nafter each moved event.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 735,
+                  "column": 4
+                },
+                "end": {
+                  "line": 763,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [],
+              "return": {
+                "type": "Array"
+              }
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 259,
+              "column": 2
+            },
+            "end": {
+              "line": 764,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxMapBehavior.LeafletRoot",
+          "attributes": [
+            {
+              "name": "crs",
+              "description": "The coordinate reference system to use when projecting geographic points\ninto pixel coordinates. Can only be set once before the map is first\ninitialized. If you don't know what this is, do not set it and the map\nwill revert to the most common web mapping projection (EPSG3857).",
+              "sourceRange": {
+                "start": {
+                  "line": 269,
+                  "column": 6
+                },
+                "end": {
+                  "line": 271,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "L.CRS"
+            },
+            {
+              "name": "lat",
+              "description": "The latitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+              "sourceRange": {
+                "start": {
+                  "line": 280,
+                  "column": 6
+                },
+                "end": {
+                  "line": 285,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "lng",
+              "description": "The longitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
+              "sourceRange": {
+                "start": {
+                  "line": 294,
+                  "column": 6
+                },
+                "end": {
+                  "line": 299,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "zoom",
+              "description": "The zoom level of the active map. Can be used to set or update\nthe zoom level of the map, or read from after the user changes the\nmap zoom level to an updated value.",
+              "sourceRange": {
+                "start": {
+                  "line": 308,
+                  "column": 6
+                },
+                "end": {
+                  "line": 313,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "max-zoom",
+              "description": "The maximum zoom level for the active map (the furthest the user can\nzoom in). Setting it at the map level will take precedence over the\nmax zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmax zoom directly on your tile layer.",
+              "sourceRange": {
+                "start": {
+                  "line": 324,
+                  "column": 6
+                },
+                "end": {
+                  "line": 327,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "min-zoom",
+              "description": "The minimum zoom level for the active map (the furthest the user can\nzoom out). Setting it at the map level will take precedence over the\nmin zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmin zoom directly on your tile layer.",
+              "sourceRange": {
+                "start": {
+                  "line": 338,
+                  "column": 6
+                },
+                "end": {
+                  "line": 341,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "number"
+            },
+            {
+              "name": "max-bounds",
+              "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
+              "sourceRange": {
+                "start": {
+                  "line": 358,
+                  "column": 6
+                },
+                "end": {
+                  "line": 361,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "Array"
+            },
+            {
+              "name": "disable-dragging",
+              "description": "Set to disable dragging of the map with the mouse or by touch. Use to\nrestrict changing the map's visible area (e.g. for a static map) or\nto set up a map for being updated programmatically (e.g. through regular\nresponses from an API).",
+              "sourceRange": {
+                "start": {
+                  "line": 371,
+                  "column": 6
+                },
+                "end": {
+                  "line": 375,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "disable-scroll-zoom",
+              "description": "Set to disable zooming with the scroll wheel. Useful if you have a map\nthat takes up the full width of a page and want to allow the user to\nscroll/swipe past without getting stuck in a zoom-in-zoom-out loop.",
+              "sourceRange": {
+                "start": {
+                  "line": 384,
+                  "column": 6
+                },
+                "end": {
+                  "line": 388,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "disable-touch-zoom",
+              "description": "Set to disable the two-finger zoom gesture on touch devices.",
+              "sourceRange": {
+                "start": {
+                  "line": 395,
+                  "column": 6
+                },
+                "end": {
+                  "line": 399,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "disable-double-click-zoom",
+              "description": "Set to disable zooming on double-click.",
+              "sourceRange": {
+                "start": {
+                  "line": 406,
+                  "column": 6
+                },
+                "end": {
+                  "line": 410,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "disable-attribution",
+              "description": "Set to disable the attribution control, which can be used to show the\nsource of tile layers or other data overlays.\n\nThis property is not dynamic and can only be set once when the map is\nfirst initialized.",
+              "sourceRange": {
+                "start": {
+                  "line": 421,
+                  "column": 6
+                },
+                "end": {
+                  "line": 424,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            },
+            {
+              "name": "attribution-prefix",
+              "description": "Stringified HTML that will be used as the first item in your attribution\nlist. Pass an <a> tag with a link to more information about your\nattribution source. Example: '<a href=\"https://example.com\">Example</a>'\n\nDefaults to a link to the Leaflet.js library. If an empty string is\npassed (\"\") the prefix will be hidden.",
+              "sourceRange": {
+                "start": {
+                  "line": 436,
+                  "column": 6
+                },
+                "end": {
+                  "line": 440,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "string"
+            },
+            {
+              "name": "flex-to-size",
+              "description": "Uses flexbox to set the size of the map. Set the parent container\nto use `display: flex;` in your CSS and the map will automatically\nfill the container's available height and width.",
+              "sourceRange": {
+                "start": {
+                  "line": 449,
+                  "column": 6
+                },
+                "end": {
+                  "line": 453,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "boolean"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "px-map-moved",
+              "description": "px-map-moved",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "lat-changed",
+              "description": "Fired when the `lat` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "lng-changed",
+              "description": "Fired when the `lng` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "zoom-changed",
+              "description": "Fired when the `zoom` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        }
+      ]
+    }
+  }
+}

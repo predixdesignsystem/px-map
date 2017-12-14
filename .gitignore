@@ -1,6 +1,8 @@
-node_modules/
-bower_components/
+node_modules
 .DS_Store
-.yo-rc.json
-development.html
-build/
+temp
+bower_components
+.idea
+reports
+bower_components-*/
+bower-*.json
