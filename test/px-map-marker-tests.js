@@ -1,6 +1,5 @@
 describe('PxMapBehavior.Marker base', function() {
   var markerEl;
-  var logFn;
 
   before(function() {
     // Create a stub for the Marker base behavior
@@ -15,17 +14,12 @@ describe('PxMapBehavior.Marker base', function() {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(function(done) {
     markerEl = fixture('MarkerBehaviorFixture');
-    sandbox = sinon.sandbox.create();
-    logFn = sandbox.stub(window.console, "log");
+    flush(done);
   });
 
-  afterEach(function () {
-    sandbox.restore();
-  });
-
-  it('validates whether a given input is a number', function () {
+  it('validates whether a given input is a number', function() {
     expect(markerEl._canBeNum(5)).to.be.true;
     expect(markerEl._canBeNum(0)).to.be.true;
     expect(markerEl._canBeNum("5")).to.be.true;
@@ -34,21 +28,12 @@ describe('PxMapBehavior.Marker base', function() {
     expect(markerEl._canBeNum("")).to.be.false;
   });
 
-  it('validates whether given lat and lng values are valid', function () {
+  it('validates whether given lat and lng values are valid', function() {
     expect(markerEl.latLngIsValid(10,20)).to.be.true;
     expect(markerEl.latLngIsValid("10","20")).to.be.true;
     expect(markerEl.latLngIsValid("abc10","20")).to.be.false;
     expect(markerEl.latLngIsValid(10,"")).to.be.false;
     expect(markerEl.latLngIsValid("","")).to.be.false;
-  });
-
-  it('outputs a console log statement if the lat or lng is invalid', function() {
-    var invalidLatLng = markerEl.latLngIsValid("abc", 123);
-    var stripAllWhitespace = str => str.replace(/\s/g, '');
-
-    expect(logFn).to.have.been.calledOnce;
-    var [logFnMsg] = logFn.getCall(0).args;
-    expect(stripAllWhitespace(logFnMsg)).to.equal(stripAllWhitespace(`PX-MAP CONFIGURATION ERROR: You entered an invalid \`lat\` or \`lng\` attribute for ${markerEl.is}. You must pass a valid number.`));
   });
 
   it('does not draw a marker if either the lat or lng value is invalid', function() {
@@ -85,24 +70,17 @@ describe('PxMapBehavior.Marker base', function() {
       done();
     }, 800);
   });
-
 });
 
-describe('px-map-marker-locate', function () {
+describe('px-map-marker-locate', function() {
   var locateMarkerFixture;
   var markerEl;
   var markerOptions;
-  var sandbox;
 
-  beforeEach(function () {
+  beforeEach(function() {
     locateMarkerFixture = fixture('LocateMarkerWithNameFixture');
     markerEl = locateMarkerFixture.querySelector('px-map-marker-locate');
     markerOptions = markerEl.getInstOptions();
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
   });
 
   it('returns title property as configured through the `name` attribute (from `getInstOptions`)', function() {
@@ -141,25 +119,18 @@ describe('px-map-marker-locate', function () {
       done();
     }, 3);
   });
-
 });
 
-describe('px-map-marker-static with custom type', function () {
+describe('px-map-marker-static with custom type', function() {
   var customMarkerFixture;
   var markerEl;
   var markerOptions;
   var markerClasses;
-  var sandbox;
 
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     customMarkerFixture = fixture('StaticMarkerCustomTypeFixture');
     markerEl = customMarkerFixture.querySelector('px-map-marker-static');
-    sandbox = sinon.sandbox.create();
     flush(done);
-  });
-
-  afterEach(function () {
-    sandbox.restore();
   });
 
   it('adds custom styles to icon html', function() {
@@ -193,24 +164,18 @@ describe('px-map-marker-static with custom type', function () {
           <i class="map-icon-static__badge"></i>
         </div>`).replace(/\s+/g, ''));
   });
-
 });
 
-describe('px-map-marker-symbol with custom type', function () {
+describe('px-map-marker-symbol with custom type', function() {
   var customMarkerFixture;
   var markerEl;
   var markerOptions;
   var markerClasses;
-  var sandbox;
 
-  beforeEach(function () {
+  beforeEach(function(done) {
     customMarkerFixture = fixture('SymbolMarkerCustomTypeFixture');
     markerEl = customMarkerFixture.querySelector('px-map-marker-symbol');
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
+    flush(done);
   });
 
   it('adds custom styles to icon html', function() {
@@ -256,5 +221,4 @@ describe('px-map-marker-symbol with custom type', function () {
         <i class="map-icon-symbol__badge"></i>
       </div>`).replace(/\s+/g, ''));
   });
-
 });

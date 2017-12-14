@@ -1,6 +1,4 @@
 describe('px-map-marker-group colors', function () {
-  var sandbox;
-
   before(function () {
     Polymer({ is: 'px-map-marker-cluster-default-colors' });
     Polymer({ is: 'px-map-marker-cluster-css-vars' });
@@ -11,14 +9,6 @@ describe('px-map-marker-group colors', function () {
     Polymer({ is: 'px-map-style-test-colors-by-type' });
     Polymer({ is: 'px-map-style-test-colors-by-type-and-css-vars' });
     Polymer({ is: 'px-map-style-test-css-vars-updated' });
-  });
-
-  beforeEach(function () {
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
   });
 
   it('correctly colors the marker cluster with default colors if not set elsewhere', function(done) {
@@ -255,11 +245,12 @@ describe('px-map-marker-group colors', function () {
 
     flushAndRender(() => {
       var markerGroup = Polymer.dom(fx.root).querySelector('px-map').querySelector('px-map-marker-group');
-      var redrawSpy = sandbox.spy(markerGroup, 'redraw');
+      var redrawSpy = sinon.spy(markerGroup, 'redraw');
       markerGroup.colorsByType = {
         'info' : 'hotpink'
       };
       expect(redrawSpy.callCount === 1).to.be.true;
+      redrawSpy.restore();
       done();
     }, 3);
   });

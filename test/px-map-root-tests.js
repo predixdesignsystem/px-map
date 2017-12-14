@@ -228,7 +228,6 @@ describe('px-map with fit-to-markers enabled', function() {
   /* begin listen for marker events */
   describe('listens for marker events and', function() {
     var mapEl;
-    var sandbox;
 
     var fakeMarkerEl;
     var fakeMarkerEvt;
@@ -236,7 +235,6 @@ describe('px-map with fit-to-markers enabled', function() {
 
     beforeEach(function(done) {
       mapEl = fixture('FitMarkersMapFixture');
-      sandbox = sinon.sandbox.create();
 
       fakeMarkerEl = {
         elementInst: { id: 1 }
@@ -253,10 +251,6 @@ describe('px-map with fit-to-markers enabled', function() {
       };
 
       flushAndRender(done, 3);
-    });
-
-    afterEach(function () {
-      sandbox.restore();
     });
 
     it('handles marker additions', function() {
@@ -321,17 +315,10 @@ describe('px-map with fit-to-markers enabled', function() {
     var markerGroup1;
     var markerGroup1geom;
 
-    var sandbox;
-
     beforeEach(function(done) {
       mapEl = fixture('FitMarkersMapFixture');
       knownMarkers = new Map();
-      sandbox = sinon.sandbox.create();
       flushAndRender(done, 3);
-    });
-
-    afterEach(function () {
-      sandbox.restore();
     });
 
     it('does nothing if there are no known markers', function(done) {

@@ -1,14 +1,8 @@
 describe('PxMap.LocateControl class', function () {
   var locateInst;
-  var sandbox;
 
   beforeEach(function() {
     locateInst = new PxMap.LocateControl();
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
   });
 
   it('constructor creates a new `L.Control` instance', function() {
@@ -51,5 +45,8 @@ describe('PxMap.LocateControl class', function () {
     expect(locateFn).to.have.been.calledOnce;
     expect(locateFn).to.have.been.calledWithMatch({maxZoom: 10});
     expect(setLocatingStateFn).to.have.been.calledOnce;
+
+    // Restore stub to original method
+    setLocatingStateFn.restore();
   });
 });

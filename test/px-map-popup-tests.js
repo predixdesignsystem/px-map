@@ -180,7 +180,6 @@ describe('PxMap.DataPopup class', function () {
 describe('PxMapBehavior.Popup base', function () {
   var popupEl;
   var parentMock;
-  var sandbox;
 
   before(function() {
     // Create a stub for the Popup base behavior
@@ -190,19 +189,15 @@ describe('PxMapBehavior.Popup base', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(function (done) {
     popupEl = fixture('PopupBehaviorFixture');
-    sandbox = sinon.sandbox.create();
     parentMock = {
       bindPopup: sinon.stub(),
       unbindPopup: sinon.stub(),
       closePopup: sinon.stub(),
       _mapToAdd: sinon.stub()
     };
-  });
-
-  afterEach(function () {
-    sandbox.restore();
+    flush(done);
   });
 
   it('attaches itself to its parent and binds events (in `addInst`)', function() {
@@ -240,18 +235,13 @@ describe('px-map-popup-info', function () {
   var popupEl;
   var popupOptions;
   var popupContent;
-  var sandbox;
 
-  beforeEach(function () {
+  beforeEach(function (done) {
     popupEl = fixture('InfoPopupAttributesFixture');
     popupOptions = popupEl.getInstOptions();
     popupInstance = popupEl.createInst(popupOptions);
     popupContent = popupInstance.getContent();
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
+    flush(done);
   });
 
   it('returns correct properties configured through attributes (from `getInstOptions`)', function() {
@@ -299,18 +289,13 @@ describe('px-map-popup-data', function () {
   var popupEl;
   var popupOptions;
   var popupContent;
-  var sandbox;
 
-  beforeEach(function () {
+  beforeEach(function (done) {
     popupEl = fixture('DataPopupAttributesFixture');
     popupOptions = popupEl.getInstOptions();
     popupInstance = popupEl.createInst(popupOptions);
     popupContent = popupInstance.getContent();
-    sandbox = sinon.sandbox.create();
-  });
-
-  afterEach(function () {
-    sandbox.restore();
+    flush(done);
   });
 
   it('returns correct properties configured through attributes (from `getInstOptions`)', function() {
