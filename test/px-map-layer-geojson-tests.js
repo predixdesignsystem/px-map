@@ -5,6 +5,11 @@ describe('px-map-layer-geojson', function () {
   var justDataFixture;
   var featureStylesFixture;
 
+  before((done) => {
+    // Give IE11 some time to finish doing things...
+    setTimeout(done, 5000);
+  });
+
   beforeEach(function (done) {
     geoJSONLayerFixture = fixture('GeoJSONLayerFixture');
     geoJSONLayerFixturePoint = fixture('GeoJSONLayerFixturePoint');
