@@ -3,27 +3,27 @@
 <head>
   <title>Map Demo -- Map With Layer Group</title>
 
-  <script src="../webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="../polymer/polymer-mini.html" />
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html" />
-  <link rel="import" href="../px-map-tile-layer.html" />
-  <link rel="import" href="../px-map-control-zoom.html" />
-  <link rel="import" href="../px-map-layer-group.html" />
-  <link rel="import" href="../px-map-marker-static.html" />
-  <link rel="import" href="../px-map-popup-info.html" />
-</head>
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-control-zoom.html"/>
+  <link rel="import" href="../px-map-layer-group.html"/>
+  <link rel="import" href="../px-map-marker-static.html"/>
+  <link rel="import" href="../px-map-popup-info.html"/>
 
-<style>
-  body {
-    margin: 0;
-  }
-  .wrap {
-    display: flex;
-    height: 100vh;
-  }
-</style>
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
 <body>
   <section class="wrap">
     <px-map zoom="12" fit-to-markers flex-to-size>

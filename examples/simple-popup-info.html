@@ -3,30 +3,28 @@
 <head>
   <title>Map Demo -- Simple Popup Info</title>
 
-  <script src="../webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="../polymer/polymer-mini.html" />
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html" />
-  <link rel="import" href="../px-map-tile-layer.html" />
-  <link rel="import" href="../px-map-marker-static.html" />
-  <link rel="import" href="../px-map-popup-info.html" />
-</head>
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-marker-static.html"/>
+  <link rel="import" href="../px-map-popup-info.html"/>
 
-<style>
-  body {
-    margin: 0;
-  }
-  .wrap {
-    display: flex;
-    width: 90vw;
-    height: 90vh;
-    margin: 5vh 5vw;
-  }
-</style>
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
 <body>
   <section class="wrap">
-    <px-map zoom="14" flex-to-size >
+    <px-map zoom="14" flex-to-size>
       <!-- Uses the Open Street Map (OSM) tiles for base layer -->
       <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
       <!-- Places a marker on the map -->

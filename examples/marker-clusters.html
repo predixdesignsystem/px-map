@@ -3,56 +3,61 @@
 <head>
   <title>Map Demo -- Marker Clusters</title>
 
-  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="../../polymer/polymer-mini.html" />
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html" />
-  <link rel="import" href="../px-map-tile-layer.html" />
-  <link rel="import" href="../px-map-control-zoom.html" />
-  <link rel="import" href="../px-map-marker-group.html" />
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-control-zoom.html"/>
+  <link rel="import" href="../px-map-marker-group.html"/>
 
   <!-- Importing for the demo only... -->
   <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
 </head>
-
-<style>
-  body {
-    margin: 0;
-  }
-  .wrap {
-    display: flex;
-    width: 90vw;
-    height: 90vh;
-    margin: 5vh 5vw;
-  }
-</style>
-<style is="custom-style">
-  :root {
-    --px-map-icon-unknown-color: lime;
-    --px-map-icon-info-color: slateblue;
-    --px-map-icon-warning-color: orange;
-    --px-map-icon-important-color: hotpink;
-    --px-map-marker-group-cluster-border-size: 5px;
-  }
-</style>
 <body>
+  <custom-style>
+    <style is="custom-style">
+      html {
+        --px-map-icon-unknown-color: lime;
+        --px-map-icon-info-color: slateblue;
+        --px-map-icon-warning-color: orange;
+        --px-map-icon-important-color: hotpink;
+        --px-map-marker-group-cluster-border-size: 5px;
+      }
+    </style>
+  </custom-style>
+
   <section class="wrap">
-    <template is="dom-bind">
-      <!-- Load geojson for markers with iron-ajax -->
-      <iron-ajax url="marker-clusters-geojson-transit.json" last-response="{{geoJSON}}" auto></iron-ajax>
+    <dom-bind>
+      <template is="dom-bind">
+        <!-- Load geojson for markers with iron-ajax -->
+        <iron-ajax url="marker-clusters-geojson-transit.json" last-response="{{geoJSON}}" auto></iron-ajax>
 
-      <px-map fit-to-markers flex-to-size on-px-map-moved="mapMove">
-        <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
-        <px-map-control-zoom position="bottomright"></px-map-control-zoom>
+        <px-map fit-to-markers flex-to-size on-px-map-moved="mapMove">
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+          <px-map-control-zoom position="bottomright"></px-map-control-zoom>
 
-        <!-- Data-bind the output of the iron-ajax call `geoJSON` to the marker group's `data` attribute -->
-        <px-map-marker-group name="Plaques" data="{{geoJSON}}"></px-map-marker-group>
-      </px-map>
-    </template>
+          <!-- Data-bind the output of the iron-ajax call `geoJSON` to the marker group's `data` attribute -->
+          <px-map-marker-group name="Plaques" data="{{geoJSON}}"></px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-bind>
   </section>
   <script>
-    var tmpl = document.querySelector('template[is=dom-bind]');
+    var tmplQuery = Polymer.Element ? 'dom-bind' : 'template[is=dom-bind]';
+    var tmpl = document.querySelector(tmplQuery);
+
     tmpl.mapMove = function(evt) {
       var markers = Polymer.dom(evt).rootTarget.getVisibleMarkers();
       console.log('There are ' + markers.length + ' markers visible on the map.');

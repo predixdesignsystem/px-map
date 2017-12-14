@@ -3,26 +3,25 @@
 <head>
   <title>Map Demo -- Simple Map</title>
 
-  <script src="../webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="../polymer/polymer-mini.html" />
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html" />
-  <link rel="import" href="../px-map-tile-layer.html" />
-  <link rel="import" href="../px-map-control-zoom.html" />
-  <link rel="import" href="../px-map-control-scale.html" />
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-control-zoom.html"/>
+  <link rel="import" href="../px-map-control-scale.html"/>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    px-map {
+      width: 500px;
+      height: 300px;
+    }
+  </style>
 </head>
-
-<style is="custom-style">
-  body {
-    margin: 0;
-  }
-
-  px-map {
-    width: 500px;
-    height: 300px;
-  }
-</style>
 <body>
   <px-map zoom="10" lat="37.7749" lng="-122.4312">
     <!-- Uses the Open Street Map (OSM) tiles for base layer -->
