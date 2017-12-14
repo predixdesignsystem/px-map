@@ -30,11 +30,11 @@ shown, hidden, or manipulated together.
 -->
 
 <dom-module id="px-map-layer-group">
-  <style>
-    :host { display: none }
-  </style>
   <template>
-    <content select="*"></content>
+    <style>
+      :host { display: none }
+    </style>
+    <slot></slot>
   </template>
 </dom-module>
 <script>
