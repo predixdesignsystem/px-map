@@ -456,6 +456,20 @@
 
     attached() {
       this.listen(this, 'px-map-element-ready-to-add', 'shouldAddInst');
+
+      if (Polymer.Element) {
+        this._afterFirstRender = false;
+        Polymer.RenderStatus.afterNextRender(this, () => {
+          this._afterFirstRender = true;
+          if (this.canAddInst()) {
+            this.fire('px-map-element-ready-to-add');
+          }
+        });
+      }
+      else {
+        this._afterFirstRender = true;
+      }
+
       if (this.canAddInst()) {
         this.fire('px-map-element-ready-to-add');
       }
@@ -475,7 +489,7 @@
     },
 
     canAddInst() {
-      if (typeof this.zoom !== 'undefined' && this._canBeNum(this.zoom)) {
+      if (typeof this.zoom !== 'undefined' && this._canBeNum(this.zoom) && this._afterFirstRender) {
         return this.latLngIsValid(this.lat, this.lng, true);
       }
     },
