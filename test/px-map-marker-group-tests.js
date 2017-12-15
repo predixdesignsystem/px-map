@@ -222,21 +222,24 @@ describe('px-map-marker-group colors', function () {
         '--px-map-icon-info-color' : 'honeydew'
       });
       markerGroup.updateStyles();
-      var layers = markerGroup.elementInst.getLayers();
-      var colorsWeExpect = {
-        'custom-0' : 'rgb(255, 99, 71)', /* tomato */
-        'custom-1' : 'rgb(255, 105, 180)', /* hotpink */
-        'custom-2' : 'rgb(218, 112, 214)', /* orchid */
-        'info' : 'rgb(240, 255, 240)' /* honeydew */
-      };
-      layers.forEach(function(layer) {
-        // e.g. 'info', 'custom-N', etc.
-        var layerType = layer.featureProperties['marker-icon']['icon-type'];
-        var expectedColor = colorsWeExpect[layerType];
-        var actualColor = window.getComputedStyle(layer._icon.querySelector('.map-icon-static__body')).backgroundColor;
-        expect(expectedColor.replace(/\s+/g, '') === actualColor.replace(/\s+/g, '')).to.be.true;
+
+      flushAndRender(() => {
+        var layers = markerGroup.elementInst.getLayers();
+        var colorsWeExpect = {
+          'custom-0' : 'rgb(255, 99, 71)', /* tomato */
+          'custom-1' : 'rgb(255, 105, 180)', /* hotpink */
+          'custom-2' : 'rgb(218, 112, 214)', /* orchid */
+          'info' : 'rgb(240, 255, 240)' /* honeydew */
+        };
+        layers.forEach(function(layer) {
+          // e.g. 'info', 'custom-N', etc.
+          var layerType = layer.featureProperties['marker-icon']['icon-type'];
+          var expectedColor = colorsWeExpect[layerType];
+          var actualColor = window.getComputedStyle(layer._icon.querySelector('.map-icon-static__body')).backgroundColor;
+          expect(expectedColor.replace(/\s+/g, '') === actualColor.replace(/\s+/g, '')).to.be.true;
+        });
+        done();
       });
-      done();
     }, 3);
   });
 
