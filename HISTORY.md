@@ -1,3 +1,7 @@
+v3.1.0
+===================
+* Add Polymer 1.x/2.x hybrid element support
+
 v3.0.2
 ===================
 * Remove broken import from demo page.
