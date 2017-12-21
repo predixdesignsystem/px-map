@@ -1,3 +1,7 @@
+v3.1.2
+===================
+* fix relative path for geojson demo
+
 v3.1.1
 ===================
 * replace html w markdown in docs

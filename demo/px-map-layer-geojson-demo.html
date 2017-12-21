@@ -42,7 +42,7 @@
     <px-demo-code-editor slot="px-demo-code-editor" props="{{props}}" config="[[chosenConfig]]"></px-demo-code-editor>
 
     <!-- Load GeoJSON from file -->
-    <iron-ajax url="px-map-layer-geojson-data.json" last-response="{{props.data.value}}" auto></iron-ajax>
+    <iron-ajax url$="[[importPath]]px-map-layer-geojson-data.json" last-response="{{props.data.value}}" auto></iron-ajax>
 
     <!-- Component ---------------------------------------------------------->
     <px-demo-component slot="px-demo-component">
