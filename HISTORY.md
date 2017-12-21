@@ -1,3 +1,7 @@
+v3.1.1
+===================
+* replace html w markdown in docs
+
 v3.1.0
 ===================
 * Add Polymer 1.x/2.x hybrid element support

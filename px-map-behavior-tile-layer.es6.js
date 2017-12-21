@@ -18,7 +18,7 @@
        * A template string that will be converted into a URL used to call the tile
        * service. Should be in the following format:
        *
-       *    'http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png'
+       *    `http://{s}.somedomain.com/blabla/{z}/{x}/{y}.png`
        *
        * The following values will be substituted for letters in `{}` brackets:
        *
