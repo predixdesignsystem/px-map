@@ -1,3 +1,9 @@
+v3.1.3
+===================
+* Pin leaflet.markercluster to ~1.2.0 until leaflet bug is resolved
+* Update .travis.yml
+* Update tests
+
 v3.1.2
 ===================
 * fix relative path for geojson demo
