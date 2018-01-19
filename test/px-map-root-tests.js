@@ -36,8 +36,8 @@ describe('Basic px-map without options', function () {
     var latLng = mapEl.elementInst.getCenter();
     var zoom = mapEl.elementInst.getZoom();
 
-    expect(latLng.lat).to.equal(37.7672375);
-    expect(latLng.lng).to.equal(-121.9584131);
+    expect(latLng.lat).to.be.closeTo(37.7672375, 0.1);
+    expect(latLng.lng).to.be.closeTo(-121.9584131, 0.1);
     expect(zoom).to.equal(10);
   });
 
