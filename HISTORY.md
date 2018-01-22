@@ -1,3 +1,7 @@
+v3.1.4
+===================
+* Unpin leaflet.markercluster version
+
 v3.1.3
 ===================
 * Pin leaflet.markercluster to ~1.2.0 until leaflet bug is resolved
