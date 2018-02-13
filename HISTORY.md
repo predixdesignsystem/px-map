@@ -1,3 +1,7 @@
+v3.1.5
+===================
+* fixing demo pages for IE11
+
 v3.1.4
 ===================
 * Unpin leaflet.markercluster version
