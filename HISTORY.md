@@ -1,3 +1,7 @@
+v3.1.6
+===================
+* fix documentation typos
+
 v3.1.5
 ===================
 * fixing demo pages for IE11
