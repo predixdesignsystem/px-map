@@ -15,7 +15,7 @@
   PxMapBehavior.GeoJSONLayerImpl = {
     properties: {
       /**
-       * An object formatted as a GeoJSON FeatureCollection with one or many Features.
+       * An object formatted as a GeoJSON FeatureCollection with one or more Features.
        * Each feature can be formatted as any valid GeoJSON geometry type: Point,
        * LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon,
        * or GeometryCollection. See the [GeoJSON spec](http://geojson.org/geojson-spec.html)

@@ -263,7 +263,7 @@
        * The coordinate reference system to use when projecting geographic points
        * into pixel coordinates. Can only be set once before the map is first
        * initialized. If you don't know what this is, do not set it and the map
-       * will revert to the most common web mapping projection (EPSG3857).
+       * will default to the most common web mapping projection (EPSG3857).
        *
        * @type {L.CRS}
        */
