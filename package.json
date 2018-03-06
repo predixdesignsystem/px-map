@@ -9,7 +9,7 @@
         "type": "git",
         "url": "https://github.com/PredixDev/px-map.git"
     },
-    "homepage": "http://predix.io/",
+    "homepage": "https://www.predix-ui.com/",
     "devDependencies": {
         "bower": "^1.8.0",
         "browser-sync": "^2.13.0",
