@@ -1,3 +1,9 @@
+v3.1.7
+===================
+## Bug fixes
+* Fixes a bug where markers (or other layers) that are imperatively detached
+  from the DOM and then re-attached were not re-attached to the map
+
 v3.1.6
 ===================
 * fix documentation typos
