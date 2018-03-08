@@ -222,3 +222,36 @@ describe('px-map-marker-symbol with custom type', function() {
       </div>`).replace(/\s+/g, ''));
   });
 });
+
+
+describe('px-map-marker-* lifecycle', function() {
+  var map;
+  var marker;
+
+  beforeEach(function(done) {
+    map = fixture('ImperativeAddRemoveFixture');
+
+    Polymer.RenderStatus.afterNextRender(map, () => {
+      flush(() => {
+        marker = map.querySelector('px-map-marker-static');
+        done();
+      });
+    });
+  });
+
+  it('re-attaches a marker marker that is imperatively removed and re-added to the DOM', function(done) {
+    expect(map._attachedChildren.has(marker)).to.be.true;
+    map.removeChild(marker);
+
+    flush(() => {
+      expect(map._attachedChildren.has(marker)).to.be.false;
+      expect(marker.elementInst._map).to.not.exist;
+      map.appendChild(marker);
+      flush(() => {
+        expect(map._attachedChildren.has(marker)).to.be.true;
+        expect(marker.elementInst._map).to.exist;
+        done();
+      });
+    });
+  });
+});

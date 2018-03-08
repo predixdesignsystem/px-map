@@ -31,11 +31,12 @@
     // Extends the `Element` behavior lifecycle methods to include adding the
     // instance to its parent
 
-    shouldAddInst(parent) {
-      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parent);
+    shouldAddInst(parentInst, parentEl) {
+      PxMapBehavior.ElementImpl.shouldAddInst.call(this, parentInst);
 
-      if (this.elementInst && parent) {
-        this.addInst(parent);
+      if (this.elementInst && parentInst) {
+        this.__parentEl = parentEl;
+        this.addInst(parentInst);
       };
     },
 
@@ -43,8 +44,12 @@
       PxMapBehavior.ElementImpl.shouldRemoveInst.call(this, parent);
 
       if (this.elementInst) {
-        this.removeInst(parent ? parent : undefined);
+        this.removeInst(parent);
       };
+      if (this.__parentEl && this.__parentEl._dereferenceChild) {
+        this.__parentEl._dereferenceChild.call(this.__parentEl, this);
+      }
+      this.__parentEl = null;
     },
 
     // Methods to bind to/unbind from parent
@@ -143,7 +148,7 @@
       if (this._attachedChildren.has(childEl) || !childEl.shouldAddInst || !childEl.canAddInst || !childEl.canAddInst()) return;
       this._attachedChildren.set(childEl, true);
 
-      this.async(() => { childEl.shouldAddInst(this.elementInst); });
+      this.async(() => { childEl.shouldAddInst(this.elementInst, this); });
     },
 
     // Handles detaching children throughout this element's lifecycle
@@ -161,7 +166,14 @@
       if (!this._attachedChildren.has(childEl) || !childEl.shouldRemoveInst) return;
       this._attachedChildren.delete(childEl);
 
-      this.async(() => { childEl.shouldRemoveInst(this.elementInst); });
+      this.async(() => { childEl.shouldRemoveInst(this.elementInst, this); });
+    },
+
+    _dereferenceChild(childEl) {
+      // If no attached children map or if this item is not in the map, halt
+      if (!this._attachedChildren || !this._attachedChildren.has(childEl)) return;
+
+      this._attachedChildren.delete(childEl);
     }
   };
   /* Bind ParentLayer behavior */
