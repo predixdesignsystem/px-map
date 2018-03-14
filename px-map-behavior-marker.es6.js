@@ -102,10 +102,14 @@
       const addedFn = this._handleMarkerAdded.bind(this);
       const removedFn = this._handleMarkerRemoved.bind(this);
       const tapFn = this._handleMarkerTapped.bind(this);
+      const mouseOverFn = this._handleMarkerMouseOver.bind(this);
+      const mouseOutFn = this._handleMarkerMouseOut.bind(this);
       this.bindEvents({
         'add' : addedFn,
         'remove' : removedFn,
-        'click' : tapFn
+        'click' : tapFn,
+        'mouseover' : mouseOverFn,
+        'mouseout' : mouseOutFn
       }, this.marker);
 
       // Now call layer's add
@@ -254,7 +258,7 @@
         detail.lng = latLng.lng;
       }
       this.fire('px-map-marker-tapped', detail);
-    }
+    },
     /**
      * Fired when the marker is clicked or tapped by the user.
      *
@@ -264,6 +268,48 @@
      *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
      *
      * @event px-map-marker-tapped
+     */
+
+    _handleMarkerMouseOver() {
+      const latLng = this.getLatLng();
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
+      this.fire('px-map-marker-mouse-over', detail);
+    },
+    /**
+     * Fired when the mouse is hovered over the marker.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-mouse-over
+     */
+
+    _handleMarkerMouseOut() {
+      const latLng = this.getLatLng();
+      const detail = {};
+      if (latLng) {
+        detail.latLng = latLng;
+        detail.lat = latLng.lat;
+        detail.lng = latLng.lng;
+      }
+      this.fire('px-map-marker-mouse-out', detail);
+    }
+    /**
+     * Fired when the mouse pointer no longer is over the pointer.
+     *
+     *   * {Object} detail - Contains the event details
+     *   * {Number|undefined} detail.lat - Latitude of the marker
+     *   * {Number|undefined} detail.lng - Longitude of the marker
+     *   * {L.LatLng|undefined} detail.latLng - Custom Leaflet object containing the lat and lng
+     *
+     * @event px-map-marker-mouse-out
      */
   };
   /* Bind Marker behavior */
