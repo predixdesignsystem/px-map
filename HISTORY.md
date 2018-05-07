@@ -1,3 +1,7 @@
+v3.3.0
+===================
+* Update deps
+
 v3.2.0
 ===================
 * Add custom mouseover & mouseout events to px-map-marker-static elements

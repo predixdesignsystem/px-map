@@ -1,6 +1,6 @@
 {
   "name": "px-map",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "A lightweight framework for building interactive maps with web components",
   "main": [
     "px-map.html"
@@ -29,7 +29,7 @@
   "dependencies": {
     "app-localize-behavior": "^2.0.0",
     "polymer": "#1.9 - 2",
-    "px-d3-imports": "^2.0.0",
+    "px-d3-imports": "^3.0.0",
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.3.0",
     "leaflet-bing-tiles": "^1.0.0",
