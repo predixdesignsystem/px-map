@@ -1,3 +1,10 @@
+v3.4.0
+===================
+## New features:
+* Add the `opened` property to px-map-popup-info and px-map-popup-data. Use this
+  property to programmatically open or close a popup without user interaction
+  on the popup's parent. See `examples/popup-open-close-api.html` for a demo.
+
 v3.3.0
 ===================
 * Update deps
