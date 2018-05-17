@@ -39,6 +39,17 @@
       closeOnControlInteract: {
         type: Boolean,
         value: false
+      },
+
+      /**
+       * Programatically opens and closes the popup. Is updated when the popup
+       * is opened by the user through DOM interaction.
+       */
+      opened: {
+        type: Boolean,
+        value: false,
+        observer: 'shouldUpdateInst',
+        notify: true
       }
     },
 
@@ -46,18 +57,49 @@
       if (parent && parent.getPopup && (parent.getPopup() !== this.elementInst)) {
         parent.bindPopup(this.elementInst);
 
-        // Bind custom events for this cluster. Events will be unbound automatically.
+        if (this.opened) {
+          parent.openPopup();
+        }
+
+        // Bind custom events for this popup. Events will be unbound automatically.
         const controlClickFn = this._handleControlClick.bind(this, parent);
         this.bindEvents({
           'controlclick' : controlClickFn
         }, parent._mapToAdd);
+
+        const popupOpenFn = this._handlePopupOpenChange.bind(this, true);
+        const popupCloseFn = this._handlePopupOpenChange.bind(this, false);
+        this.bindEvents({
+          'popupopen' : popupOpenFn,
+          'popupclose' : popupCloseFn
+        }, parent);
       }
+    },
+
+    _handlePopupOpenChange(opened) {
+      this.opened = opened;
     },
 
     removeInst(parent) {
       if (parent && parent.getPopup && (parent.getPopup() === this.elementInst)) {
         parent.unbindPopup(this.elementInst);
       }
+    },
+
+    updateInst(lastOptions, nextOptions) {
+      if (lastOptions.opened !== nextOptions.opened) {
+        if (nextOptions.opened && !this.elementInst.isOpen()) {
+          this.elementInst._source.openPopup();
+        } else if (!nextOptions.opened && this.elementInst.isOpen()) {
+          this.elementInst._source.closePopup();
+        }
+      }
+    },
+
+    getInstOptions() {
+      return {
+        opened: this.opened
+      };
     },
 
     _handleControlClick(parent) {
@@ -126,6 +168,7 @@
     },
 
     updateInst(lastOptions, nextOptions) {
+      PxMapBehavior.PopupImpl.updateInst.call(this, lastOptions, nextOptions);
       let updates = {};
 
       if (lastOptions.title !== nextOptions.title) {
@@ -144,12 +187,13 @@
     },
 
     getInstOptions() {
-      return {
+      const opts = PxMapBehavior.PopupImpl.getInstOptions.call(this);
+      return Object.assign({}, opts, {
         title: this.title,
         description: this.description,
         imgSrc: this.imgSrc,
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
-      };
+      });
     }
   };
   /* Bind InfoPopup behavior */
@@ -201,6 +245,7 @@
     },
 
     updateInst(lastOptions, nextOptions) {
+      PxMapBehavior.PopupImpl.updateInst.call(this, lastOptions, nextOptions);
       let updates = {};
 
       if (lastOptions.title !== nextOptions.title) {
@@ -216,13 +261,14 @@
     },
 
     getInstOptions() {
+      const opts = PxMapBehavior.PopupImpl.getInstOptions.call(this);
       let data = this._getValidData();
-      return {
+      return Object.assign({}, opts, {
         title: this.title,
         data: data,
         dataHash: JSON.stringify(data),
         styleScope: this.isShadyScoped() ? this.getShadyScope() : undefined
-      };
+      });
     },
 
     _getValidData() {

@@ -227,7 +227,7 @@ describe('PxMapBehavior.Popup base', function () {
     expect(parentMock.getPopup).to.have.been.calledOnce;
     expect(parentMock.bindPopup).to.have.been.calledOnce;
     expect(parentMock.bindPopup).to.have.been.calledWith(instance);
-    expect(bindFn).to.have.been.calledOnce;
+    expect(bindFn).to.have.been.calledTwice;
   });
 
   it('removes itself from its parent (in `removeInst`)', function() {
@@ -245,6 +245,27 @@ describe('PxMapBehavior.Popup base', function () {
     popupEl._handleControlClick(parentMock);
 
     expect(parentMock.closePopup).to.have.been.calledOnce;
+  });
+
+  it('opens itself on its parent when the `opened` property changes', function() {
+    var parentOpenSpy = sinon.stub();
+    var instance = popupEl.elementInst = {
+      _source: {
+        openPopup: parentOpenSpy
+      },
+      isOpen: function() {
+        return !popupEl.opened;
+      }
+    };
+    popupEl.getInstOptions = function() {
+      return {
+        opened: popupEl.opened || false
+      };
+    };
+    popupEl.__initialOptions = popupEl.getInstOptions();
+    popupEl.opened = true;
+
+    expect(parentOpenSpy).to.have.been.calledOnce;
   });
 });
 

@@ -1,0 +1,77 @@
+<!--
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Popup Open/Close by API</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-marker-static.html"/>
+  <link rel="import" href="../px-map-popup-info.html"/>
+
+  <style>
+    body {
+      margin: 0;
+      position: relative;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+    .buttons {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: block;
+      background-color: white;
+      padding: 1rem;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <section class="wrap">
+    <px-map zoom="14" flex-to-size>
+      <!-- Uses the Open Street Map (OSM) tiles for base layer -->
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <!-- Places a marker on the map -->
+      <px-map-marker-static lat="37.7673626" lng="-121.9595048" type="info">
+        <!-- Places an info popup on the marker -->
+        <px-map-popup-info id="popup" title="GE Digital" description="We have great maps. Our maps are the best maps."></px-map-popup-info>
+      </px-map-marker-static>
+    </px-map>
+  </section>
+  <section class="buttons">
+    <button id="openPopup">OPEN popup with `opened` property</button>
+    <button id="closePopup">CLOSE popup with `opened` property</button>
+  </section>
+  <script>
+    var popup = document.getElementById('popup');
+    document.getElementById('openPopup').addEventListener('click', function() {
+      popup.opened = true;
+    });
+    document.getElementById('closePopup').addEventListener('click', function() {
+      popup.opened = false;
+    });
+  </script>
+</body>
+</html>
