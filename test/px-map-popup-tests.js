@@ -282,6 +282,10 @@ describe('px-map-popup-info', function () {
     flush(done);
   });
 
+  it('has maxWidth set', function() {
+    expect(popupEl.maxWidth).to.equal(500);
+  });
+
   it('returns correct properties configured through attributes (from `getInstOptions`)', function() {
     expect(popupOptions).to.be.an('object');
     expect(popupOptions).to.have.property('title').that.equals('Testy Test Title');
