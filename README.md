@@ -1,4 +1,4 @@
-# px-map
+# px-map [![Build Status](https://travis-ci.org/predixdesignsystem/px-map.svg?branch=master)](https://travis-ci.org/predixdesignsystem/px-map)
 
 See demos and API documentation on the [Predix UI](https://www.predix-ui.com/#/components/px-map/) website.
 
