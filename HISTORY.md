@@ -1,3 +1,8 @@
+v3.5.1
+===================
+## Bug fixes
+* Fixed regression in popup width when defined in the properties of a `px-map-marker-group` component
+
 v3.5.0
 ===================
 ## New features:
