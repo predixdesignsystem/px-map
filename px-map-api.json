@@ -14,11 +14,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 286,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 288,
+              "line": 293,
               "column": 7
             }
           },
@@ -37,11 +37,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 297,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 302,
+              "line": 307,
               "column": 7
             }
           },
@@ -63,11 +63,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 311,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 7
             }
           },
@@ -89,11 +89,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 325,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 330,
+              "line": 335,
               "column": 7
             }
           },
@@ -115,11 +115,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 341,
+              "line": 346,
               "column": 6
             },
             "end": {
-              "line": 344,
+              "line": 349,
               "column": 7
             }
           },
@@ -139,17 +139,88 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 355,
+              "line": 360,
               "column": 6
             },
             "end": {
-              "line": 358,
+              "line": 363,
               "column": 7
             }
           },
           "metadata": {
             "polymer": {
               "observer": "\"shouldUpdateInst\"",
+              "attributeType": "Number"
+            }
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "unclampZoomToLayers",
+          "type": "Boolean",
+          "description": "If set, respects the configured minimum and maximum zoom levels even if they fall outside\nthe supported bounds of any children layers.",
+          "privacy": "public",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 371,
+              "column": 6
+            },
+            "end": {
+              "line": 375,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"shouldUpdateInst\"",
+              "attributeType": "Boolean"
+            }
+          },
+          "defaultValue": "false",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_clampedMinZoom",
+          "type": "Number",
+          "description": "Tracks the highest minimum zoom level supported by all children layers.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 382,
+              "column": 6
+            },
+            "end": {
+              "line": 385,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "attributeType": "Number"
+            }
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_clampedMaxZoom",
+          "type": "Number",
+          "description": "Tracks the lowest maximum zoom level supported by all children layers.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 392,
+              "column": 6
+            },
+            "end": {
+              "line": 395,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
               "attributeType": "Number"
             }
           },
@@ -163,11 +234,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 375,
+              "line": 412,
               "column": 6
             },
             "end": {
-              "line": 378,
+              "line": 415,
               "column": 7
             }
           },
@@ -187,11 +258,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 388,
+              "line": 425,
               "column": 6
             },
             "end": {
-              "line": 392,
+              "line": 429,
               "column": 7
             }
           },
@@ -212,11 +283,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 401,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 405,
+              "line": 442,
               "column": 7
             }
           },
@@ -237,11 +308,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 412,
+              "line": 449,
               "column": 6
             },
             "end": {
-              "line": 416,
+              "line": 453,
               "column": 7
             }
           },
@@ -262,11 +333,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 423,
+              "line": 460,
               "column": 6
             },
             "end": {
-              "line": 427,
+              "line": 464,
               "column": 7
             }
           },
@@ -287,11 +358,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 438,
+              "line": 475,
               "column": 6
             },
             "end": {
-              "line": 441,
+              "line": 478,
               "column": 7
             }
           },
@@ -311,11 +382,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 453,
+              "line": 490,
               "column": 6
             },
             "end": {
-              "line": 457,
+              "line": 494,
               "column": 7
             }
           },
@@ -336,11 +407,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 466,
+              "line": 503,
               "column": 6
             },
             "end": {
-              "line": 470,
+              "line": 507,
               "column": 7
             }
           },
@@ -383,11 +454,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 473,
+              "line": 510,
               "column": 4
             },
             "end": {
-              "line": 492,
+              "line": 529,
               "column": 5
             }
           },
@@ -405,11 +476,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 494,
+              "line": 531,
               "column": 4
             },
             "end": {
-              "line": 498,
+              "line": 535,
               "column": 5
             }
           },
@@ -457,11 +528,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 500,
+              "line": 537,
               "column": 4
             },
             "end": {
-              "line": 505,
+              "line": 542,
               "column": 5
             }
           },
@@ -527,11 +598,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 513,
+              "line": 550,
               "column": 4
             },
             "end": {
-              "line": 523,
+              "line": 560,
               "column": 5
             }
           },
@@ -550,11 +621,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 577,
+              "line": 620,
               "column": 4
             },
             "end": {
-              "line": 626,
+              "line": 686,
               "column": 5
             }
           },
@@ -579,11 +650,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 553,
+              "line": 595,
               "column": 4
             },
             "end": {
-              "line": 575,
+              "line": 618,
               "column": 5
             }
           },
@@ -598,11 +669,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 525,
+              "line": 562,
               "column": 4
             },
             "end": {
-              "line": 544,
+              "line": 586,
               "column": 5
             }
           },
@@ -620,11 +691,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 546,
+              "line": 588,
               "column": 4
             },
             "end": {
-              "line": 551,
+              "line": 593,
               "column": 5
             }
           },
@@ -992,11 +1063,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 507,
+              "line": 544,
               "column": 4
             },
             "end": {
-              "line": 511,
+              "line": 548,
               "column": 5
             }
           },
@@ -1011,16 +1082,45 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 632,
+              "line": 692,
               "column": 4
             },
             "end": {
-              "line": 636,
+              "line": 696,
               "column": 5
             }
           },
           "metadata": {},
           "params": [],
+          "return": {
+            "type": "void"
+          },
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
+          "name": "_clampZoomForLayer",
+          "description": "Overrides the configured min/max zoom levels if they fall outside\nthe supported bounds for a layer.",
+          "privacy": "protected",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 702,
+              "column": 4
+            },
+            "end": {
+              "line": 714,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "minZoom"
+            },
+            {
+              "name": "maxZoom"
+            }
+          ],
           "return": {
             "type": "void"
           },
@@ -1033,11 +1133,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 642,
+              "line": 720,
               "column": 4
             },
             "end": {
-              "line": 653,
+              "line": 731,
               "column": 5
             }
           },
@@ -1055,11 +1155,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 661,
+              "line": 739,
               "column": 4
             },
             "end": {
-              "line": 663,
+              "line": 741,
               "column": 5
             }
           },
@@ -1082,11 +1182,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 675,
+              "line": 753,
               "column": 4
             },
             "end": {
-              "line": 683,
+              "line": 761,
               "column": 5
             }
           },
@@ -1117,11 +1217,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 692,
+              "line": 770,
               "column": 4
             },
             "end": {
-              "line": 718,
+              "line": 796,
               "column": 5
             }
           },
@@ -1139,11 +1239,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 736,
+              "line": 814,
               "column": 4
             },
             "end": {
-              "line": 738,
+              "line": 816,
               "column": 5
             }
           },
@@ -1161,11 +1261,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 744,
+              "line": 822,
               "column": 4
             },
             "end": {
-              "line": 750,
+              "line": 828,
               "column": 5
             }
           },
@@ -1183,11 +1283,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 766,
+              "line": 844,
               "column": 4
             },
             "end": {
-              "line": 794,
+              "line": 872,
               "column": 5
             }
           },
@@ -1226,11 +1326,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 286,
+              "line": 291,
               "column": 6
             },
             "end": {
-              "line": 288,
+              "line": 293,
               "column": 7
             }
           },
@@ -1244,11 +1344,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 297,
+              "line": 302,
               "column": 6
             },
             "end": {
-              "line": 302,
+              "line": 307,
               "column": 7
             }
           },
@@ -1262,11 +1362,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 311,
+              "line": 316,
               "column": 6
             },
             "end": {
-              "line": 316,
+              "line": 321,
               "column": 7
             }
           },
@@ -1280,11 +1380,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 325,
+              "line": 330,
               "column": 6
             },
             "end": {
-              "line": 330,
+              "line": 335,
               "column": 7
             }
           },
@@ -1298,11 +1398,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 341,
+              "line": 346,
               "column": 6
             },
             "end": {
-              "line": 344,
+              "line": 349,
               "column": 7
             }
           },
@@ -1316,11 +1416,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 355,
+              "line": 360,
               "column": 6
             },
             "end": {
-              "line": 358,
+              "line": 363,
               "column": 7
             }
           },
@@ -1329,16 +1429,34 @@
           "inheritedFrom": "PxMapBehavior.LeafletRoot"
         },
         {
+          "name": "unclamp-zoom-to-layers",
+          "description": "If set, respects the configured minimum and maximum zoom levels even if they fall outside\nthe supported bounds of any children layers.",
+          "sourceRange": {
+            "file": "px-map-behavior-root.es6.js",
+            "start": {
+              "line": 371,
+              "column": 6
+            },
+            "end": {
+              "line": 375,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "Boolean",
+          "inheritedFrom": "PxMapBehavior.LeafletRoot"
+        },
+        {
           "name": "max-bounds",
           "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 375,
+              "line": 412,
               "column": 6
             },
             "end": {
-              "line": 378,
+              "line": 415,
               "column": 7
             }
           },
@@ -1352,11 +1470,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 388,
+              "line": 425,
               "column": 6
             },
             "end": {
-              "line": 392,
+              "line": 429,
               "column": 7
             }
           },
@@ -1370,11 +1488,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 401,
+              "line": 438,
               "column": 6
             },
             "end": {
-              "line": 405,
+              "line": 442,
               "column": 7
             }
           },
@@ -1388,11 +1506,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 412,
+              "line": 449,
               "column": 6
             },
             "end": {
-              "line": 416,
+              "line": 453,
               "column": 7
             }
           },
@@ -1406,11 +1524,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 423,
+              "line": 460,
               "column": 6
             },
             "end": {
-              "line": 427,
+              "line": 464,
               "column": 7
             }
           },
@@ -1424,11 +1542,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 438,
+              "line": 475,
               "column": 6
             },
             "end": {
-              "line": 441,
+              "line": 478,
               "column": 7
             }
           },
@@ -1442,11 +1560,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 453,
+              "line": 490,
               "column": 6
             },
             "end": {
-              "line": 457,
+              "line": 494,
               "column": 7
             }
           },
@@ -1460,11 +1578,11 @@
           "sourceRange": {
             "file": "px-map-behavior-root.es6.js",
             "start": {
-              "line": 466,
+              "line": 503,
               "column": 6
             },
             "end": {
-              "line": 470,
+              "line": 507,
               "column": 7
             }
           },
@@ -2671,11 +2789,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 46,
+                  "line": 53,
                   "column": 6
                 },
                 "end": {
-                  "line": 50,
+                  "line": 57,
                   "column": 7
                 }
               },
@@ -2694,11 +2812,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 61,
+                  "line": 68,
                   "column": 6
                 },
                 "end": {
-                  "line": 64,
+                  "line": 71,
                   "column": 7
                 }
               },
@@ -2716,11 +2834,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 76,
+                  "line": 83,
                   "column": 6
                 },
                 "end": {
-                  "line": 79,
+                  "line": 86,
                   "column": 7
                 }
               },
@@ -2739,11 +2857,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 82,
+                  "line": 89,
                   "column": 4
                 },
                 "end": {
-                  "line": 89,
+                  "line": 96,
                   "column": 5
                 }
               },
@@ -2763,11 +2881,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 91,
+                  "line": 98,
                   "column": 4
                 },
                 "end": {
-                  "line": 101,
+                  "line": 108,
                   "column": 5
                 }
               },
@@ -2787,11 +2905,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 109,
+                  "line": 116,
                   "column": 4
                 },
                 "end": {
-                  "line": 119,
+                  "line": 126,
                   "column": 5
                 }
               },
@@ -2811,11 +2929,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 127,
+                  "line": 134,
                   "column": 4
                 },
                 "end": {
-                  "line": 137,
+                  "line": 144,
                   "column": 5
                 }
               },
@@ -2835,11 +2953,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 145,
+                  "line": 152,
                   "column": 4
                 },
                 "end": {
-                  "line": 159,
+                  "line": 166,
                   "column": 5
                 }
               },
@@ -2859,11 +2977,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 167,
+                  "line": 174,
                   "column": 4
                 },
                 "end": {
-                  "line": 177,
+                  "line": 184,
                   "column": 5
                 }
               },
@@ -2883,11 +3001,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 183,
+                  "line": 190,
                   "column": 4
                 },
                 "end": {
-                  "line": 195,
+                  "line": 202,
                   "column": 5
                 }
               },
@@ -2903,11 +3021,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 207,
+                  "line": 214,
                   "column": 4
                 },
                 "end": {
-                  "line": 222,
+                  "line": 229,
                   "column": 5
                 }
               },
@@ -2928,11 +3046,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 233,
+                  "line": 240,
                   "column": 4
                 },
                 "end": {
-                  "line": 242,
+                  "line": 247,
                   "column": 5
                 }
               },
@@ -2962,11 +3080,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 248,
+                  "line": 253,
                   "column": 4
                 },
                 "end": {
-                  "line": 251,
+                  "line": 256,
                   "column": 5
                 }
               },
@@ -2982,11 +3100,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 262,
+                  "line": 267,
                   "column": 4
                 },
                 "end": {
-                  "line": 269,
+                  "line": 274,
                   "column": 5
                 }
               },
@@ -3003,11 +3121,11 @@
           "metadata": {},
           "sourceRange": {
             "start": {
-              "line": 31,
+              "line": 38,
               "column": 2
             },
             "end": {
-              "line": 270,
+              "line": 275,
               "column": 4
             }
           },
@@ -3019,11 +3137,11 @@
               "description": "Updates the visible bounds of the map to fit all markers as they are\nadded. Markers are continuously monitored for changes, and any new\nmarkers added late in the map's lifecycle (e.g. markers created\ndynamically long after the map is loaded) will trigger an additional\nresize of the map if they are not within its current visible bounds.\n\nThis attribute is dynamic. To stop map resizes after some amount of time,\ndisable this attribute.",
               "sourceRange": {
                 "start": {
-                  "line": 46,
+                  "line": 53,
                   "column": 6
                 },
                 "end": {
-                  "line": 50,
+                  "line": 57,
                   "column": 7
                 }
               },
@@ -3035,11 +3153,11 @@
               "description": "Optional setting that only works if `fitToMarkers` is enabled. Adds a\npadding between the edges of the map and the visible markers shown.\nSet to a percentage value (e.g. `0.25` for 25%). Defaults to 15%, setting\nto a lower value will lead to some large markers potentially not fitting\non the map.",
               "sourceRange": {
                 "start": {
-                  "line": 61,
+                  "line": 68,
                   "column": 6
                 },
                 "end": {
-                  "line": 64,
+                  "line": 71,
                   "column": 7
                 }
               },
@@ -3051,11 +3169,11 @@
               "description": "Optional setting that only works if `fitToMarkers` is enabled. Determines\nhow the map will calculate its zoom level when fitting markers.\nChoose from the following options (default is 'max'):\n\n   * 'max' - the map will zoom to the lowest level that fits all markers (but not past the map's `maxZoom`)\n   * 'min' - the map will zoom to the highest level that fits all markers (but not past the map's `minZoom`)",
               "sourceRange": {
                 "start": {
-                  "line": 76,
+                  "line": 83,
                   "column": 6
                 },
                 "end": {
-                  "line": 79,
+                  "line": 86,
                   "column": 7
                 }
               },
@@ -3082,11 +3200,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 286,
+                  "line": 291,
                   "column": 6
                 },
                 "end": {
-                  "line": 288,
+                  "line": 293,
                   "column": 7
                 }
               },
@@ -3103,11 +3221,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 297,
+                  "line": 302,
                   "column": 6
                 },
                 "end": {
-                  "line": 302,
+                  "line": 307,
                   "column": 7
                 }
               },
@@ -3127,11 +3245,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 311,
+                  "line": 316,
                   "column": 6
                 },
                 "end": {
-                  "line": 316,
+                  "line": 321,
                   "column": 7
                 }
               },
@@ -3151,11 +3269,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 325,
+                  "line": 330,
                   "column": 6
                 },
                 "end": {
-                  "line": 330,
+                  "line": 335,
                   "column": 7
                 }
               },
@@ -3175,11 +3293,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 341,
+                  "line": 346,
                   "column": 6
                 },
                 "end": {
-                  "line": 344,
+                  "line": 349,
                   "column": 7
                 }
               },
@@ -3197,11 +3315,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 355,
+                  "line": 360,
                   "column": 6
                 },
                 "end": {
-                  "line": 358,
+                  "line": 363,
                   "column": 7
                 }
               },
@@ -3213,17 +3331,82 @@
               }
             },
             {
+              "name": "unclampZoomToLayers",
+              "type": "Boolean",
+              "description": "If set, respects the configured minimum and maximum zoom levels even if they fall outside\nthe supported bounds of any children layers.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 371,
+                  "column": 6
+                },
+                "end": {
+                  "line": 375,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "observer": "\"shouldUpdateInst\"",
+                  "attributeType": "Boolean"
+                }
+              },
+              "defaultValue": "false"
+            },
+            {
+              "name": "_clampedMinZoom",
+              "type": "Number",
+              "description": "Tracks the highest minimum zoom level supported by all children layers.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 382,
+                  "column": 6
+                },
+                "end": {
+                  "line": 385,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "attributeType": "Number"
+                }
+              }
+            },
+            {
+              "name": "_clampedMaxZoom",
+              "type": "Number",
+              "description": "Tracks the lowest maximum zoom level supported by all children layers.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 392,
+                  "column": 6
+                },
+                "end": {
+                  "line": 395,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "attributeType": "Number"
+                }
+              }
+            },
+            {
               "name": "maxBounds",
               "type": "Array",
               "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 375,
+                  "line": 412,
                   "column": 6
                 },
                 "end": {
-                  "line": 378,
+                  "line": 415,
                   "column": 7
                 }
               },
@@ -3241,11 +3424,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 388,
+                  "line": 425,
                   "column": 6
                 },
                 "end": {
-                  "line": 392,
+                  "line": 429,
                   "column": 7
                 }
               },
@@ -3264,11 +3447,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 401,
+                  "line": 438,
                   "column": 6
                 },
                 "end": {
-                  "line": 405,
+                  "line": 442,
                   "column": 7
                 }
               },
@@ -3287,11 +3470,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 412,
+                  "line": 449,
                   "column": 6
                 },
                 "end": {
-                  "line": 416,
+                  "line": 453,
                   "column": 7
                 }
               },
@@ -3310,11 +3493,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 423,
+                  "line": 460,
                   "column": 6
                 },
                 "end": {
-                  "line": 427,
+                  "line": 464,
                   "column": 7
                 }
               },
@@ -3333,11 +3516,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 438,
+                  "line": 475,
                   "column": 6
                 },
                 "end": {
-                  "line": 441,
+                  "line": 478,
                   "column": 7
                 }
               },
@@ -3355,11 +3538,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 453,
+                  "line": 490,
                   "column": 6
                 },
                 "end": {
-                  "line": 457,
+                  "line": 494,
                   "column": 7
                 }
               },
@@ -3378,11 +3561,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 466,
+                  "line": 503,
                   "column": 6
                 },
                 "end": {
-                  "line": 470,
+                  "line": 507,
                   "column": 7
                 }
               },
@@ -3423,11 +3606,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 473,
+                  "line": 510,
                   "column": 4
                 },
                 "end": {
-                  "line": 492,
+                  "line": 529,
                   "column": 5
                 }
               },
@@ -3443,11 +3626,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 494,
+                  "line": 531,
                   "column": 4
                 },
                 "end": {
-                  "line": 498,
+                  "line": 535,
                   "column": 5
                 }
               },
@@ -3493,11 +3676,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 500,
+                  "line": 537,
                   "column": 4
                 },
                 "end": {
-                  "line": 505,
+                  "line": 542,
                   "column": 5
                 }
               },
@@ -3561,11 +3744,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 513,
+                  "line": 550,
                   "column": 4
                 },
                 "end": {
-                  "line": 523,
+                  "line": 560,
                   "column": 5
                 }
               },
@@ -3582,11 +3765,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 577,
+                  "line": 620,
                   "column": 4
                 },
                 "end": {
-                  "line": 626,
+                  "line": 686,
                   "column": 5
                 }
               },
@@ -3609,11 +3792,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 553,
+                  "line": 595,
                   "column": 4
                 },
                 "end": {
-                  "line": 575,
+                  "line": 618,
                   "column": 5
                 }
               },
@@ -3626,11 +3809,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 525,
+                  "line": 562,
                   "column": 4
                 },
                 "end": {
-                  "line": 544,
+                  "line": 586,
                   "column": 5
                 }
               },
@@ -3646,11 +3829,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 546,
+                  "line": 588,
                   "column": 4
                 },
                 "end": {
-                  "line": 551,
+                  "line": 593,
                   "column": 5
                 }
               },
@@ -4016,11 +4199,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 507,
+                  "line": 544,
                   "column": 4
                 },
                 "end": {
-                  "line": 511,
+                  "line": 548,
                   "column": 5
                 }
               },
@@ -4033,11 +4216,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 632,
+                  "line": 692,
                   "column": 4
                 },
                 "end": {
-                  "line": 636,
+                  "line": 696,
                   "column": 5
                 }
               },
@@ -4048,16 +4231,43 @@
               }
             },
             {
+              "name": "_clampZoomForLayer",
+              "description": "Overrides the configured min/max zoom levels if they fall outside\nthe supported bounds for a layer.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 702,
+                  "column": 4
+                },
+                "end": {
+                  "line": 714,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "minZoom"
+                },
+                {
+                  "name": "maxZoom"
+                }
+              ],
+              "return": {
+                "type": "void"
+              }
+            },
+            {
               "name": "_updateMapView",
               "description": "Called when the `lat`, `lng`, or `zoom` properties are set or updated.\nSets the map view to the new values.",
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 642,
+                  "line": 720,
                   "column": 4
                 },
                 "end": {
-                  "line": 653,
+                  "line": 731,
                   "column": 5
                 }
               },
@@ -4073,11 +4283,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 661,
+                  "line": 739,
                   "column": 4
                 },
                 "end": {
-                  "line": 663,
+                  "line": 741,
                   "column": 5
                 }
               },
@@ -4098,11 +4308,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 675,
+                  "line": 753,
                   "column": 4
                 },
                 "end": {
-                  "line": 683,
+                  "line": 761,
                   "column": 5
                 }
               },
@@ -4131,11 +4341,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 692,
+                  "line": 770,
                   "column": 4
                 },
                 "end": {
-                  "line": 718,
+                  "line": 796,
                   "column": 5
                 }
               },
@@ -4151,11 +4361,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 736,
+                  "line": 814,
                   "column": 4
                 },
                 "end": {
-                  "line": 738,
+                  "line": 816,
                   "column": 5
                 }
               },
@@ -4171,11 +4381,11 @@
               "privacy": "protected",
               "sourceRange": {
                 "start": {
-                  "line": 744,
+                  "line": 822,
                   "column": 4
                 },
                 "end": {
-                  "line": 750,
+                  "line": 828,
                   "column": 5
                 }
               },
@@ -4191,11 +4401,11 @@
               "privacy": "public",
               "sourceRange": {
                 "start": {
-                  "line": 766,
+                  "line": 844,
                   "column": 4
                 },
                 "end": {
-                  "line": 794,
+                  "line": 872,
                   "column": 5
                 }
               },
@@ -4211,11 +4421,11 @@
           "metadata": {},
           "sourceRange": {
             "start": {
-              "line": 276,
+              "line": 281,
               "column": 2
             },
             "end": {
-              "line": 795,
+              "line": 873,
               "column": 4
             }
           },
@@ -4227,11 +4437,11 @@
               "description": "The coordinate reference system to use when projecting geographic points\ninto pixel coordinates. Can only be set once before the map is first\ninitialized. If you don't know what this is, do not set it and the map\nwill default to the most common web mapping projection (EPSG3857).",
               "sourceRange": {
                 "start": {
-                  "line": 286,
+                  "line": 291,
                   "column": 6
                 },
                 "end": {
-                  "line": 288,
+                  "line": 293,
                   "column": 7
                 }
               },
@@ -4243,11 +4453,11 @@
               "description": "The latitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
               "sourceRange": {
                 "start": {
-                  "line": 297,
+                  "line": 302,
                   "column": 6
                 },
                 "end": {
-                  "line": 302,
+                  "line": 307,
                   "column": 7
                 }
               },
@@ -4259,11 +4469,11 @@
               "description": "The longitude of the active map center. Can be used to set or update\nthe center of the map, or read from after the user moves the map to\nget updated coordinates.",
               "sourceRange": {
                 "start": {
-                  "line": 311,
+                  "line": 316,
                   "column": 6
                 },
                 "end": {
-                  "line": 316,
+                  "line": 321,
                   "column": 7
                 }
               },
@@ -4275,11 +4485,11 @@
               "description": "The zoom level of the active map. Can be used to set or update\nthe zoom level of the map, or read from after the user changes the\nmap zoom level to an updated value.",
               "sourceRange": {
                 "start": {
-                  "line": 325,
+                  "line": 330,
                   "column": 6
                 },
                 "end": {
-                  "line": 330,
+                  "line": 335,
                   "column": 7
                 }
               },
@@ -4291,11 +4501,11 @@
               "description": "The maximum zoom level for the active map (the furthest the user can\nzoom in). Setting it at the map level will take precedence over the\nmax zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmax zoom directly on your tile layer.",
               "sourceRange": {
                 "start": {
-                  "line": 341,
+                  "line": 346,
                   "column": 6
                 },
                 "end": {
-                  "line": 344,
+                  "line": 349,
                   "column": 7
                 }
               },
@@ -4307,11 +4517,11 @@
               "description": "The minimum zoom level for the active map (the furthest the user can\nzoom out). Setting it at the map level will take precedence over the\nmin zoom of all other layers, including tile layers. If you need to\nset different zoom bounds based on the visible tile layer, set the\nmin zoom directly on your tile layer.",
               "sourceRange": {
                 "start": {
-                  "line": 355,
+                  "line": 360,
                   "column": 6
                 },
                 "end": {
-                  "line": 358,
+                  "line": 363,
                   "column": 7
                 }
               },
@@ -4319,15 +4529,31 @@
               "type": "Number"
             },
             {
+              "name": "unclamp-zoom-to-layers",
+              "description": "If set, respects the configured minimum and maximum zoom levels even if they fall outside\nthe supported bounds of any children layers.",
+              "sourceRange": {
+                "start": {
+                  "line": 371,
+                  "column": 6
+                },
+                "end": {
+                  "line": 375,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "Boolean"
+            },
+            {
               "name": "max-bounds",
               "description": "Restricts the user from moving the map outside of a specific geographic\nboundary. The user will be bounced back if they attempt to pan outside the view.\nDisabled by default, letting the user pan to any point on the map.\n\nPass an array of [lat,lng] values like the following:\n\n       [[40.712, -74.227], [40.774, -74.125]]\n\nThe first pair should represent the southwest extend of the boundary,\nand the second  pair should represent the northeast extend of the\nboundary.",
               "sourceRange": {
                 "start": {
-                  "line": 375,
+                  "line": 412,
                   "column": 6
                 },
                 "end": {
-                  "line": 378,
+                  "line": 415,
                   "column": 7
                 }
               },
@@ -4339,11 +4565,11 @@
               "description": "Set to disable dragging of the map with the mouse or by touch. Use to\nrestrict changing the map's visible area (e.g. for a static map) or\nto set up a map for being updated programmatically (e.g. through regular\nresponses from an API).",
               "sourceRange": {
                 "start": {
-                  "line": 388,
+                  "line": 425,
                   "column": 6
                 },
                 "end": {
-                  "line": 392,
+                  "line": 429,
                   "column": 7
                 }
               },
@@ -4355,11 +4581,11 @@
               "description": "Set to disable zooming with the scroll wheel. Useful if you have a map\nthat takes up the full width of a page and want to allow the user to\nscroll/swipe past without getting stuck in a zoom-in-zoom-out loop.",
               "sourceRange": {
                 "start": {
-                  "line": 401,
+                  "line": 438,
                   "column": 6
                 },
                 "end": {
-                  "line": 405,
+                  "line": 442,
                   "column": 7
                 }
               },
@@ -4371,11 +4597,11 @@
               "description": "Set to disable the two-finger zoom gesture on touch devices.",
               "sourceRange": {
                 "start": {
-                  "line": 412,
+                  "line": 449,
                   "column": 6
                 },
                 "end": {
-                  "line": 416,
+                  "line": 453,
                   "column": 7
                 }
               },
@@ -4387,11 +4613,11 @@
               "description": "Set to disable zooming on double-click.",
               "sourceRange": {
                 "start": {
-                  "line": 423,
+                  "line": 460,
                   "column": 6
                 },
                 "end": {
-                  "line": 427,
+                  "line": 464,
                   "column": 7
                 }
               },
@@ -4403,11 +4629,11 @@
               "description": "Set to disable the attribution control, which can be used to show the\nsource of tile layers or other data overlays.\n\nThis property is not dynamic and can only be set once when the map is\nfirst initialized.",
               "sourceRange": {
                 "start": {
-                  "line": 438,
+                  "line": 475,
                   "column": 6
                 },
                 "end": {
-                  "line": 441,
+                  "line": 478,
                   "column": 7
                 }
               },
@@ -4419,11 +4645,11 @@
               "description": "Stringified HTML that will be used as the first item in your attribution\nlist. Pass an <a> tag with a link to more information about your\nattribution source. Example: '<a href=\"https://example.com\">Example</a>'\n\nDefaults to a link to the Leaflet.js library. If an empty string is\npassed (\"\") the prefix will be hidden.",
               "sourceRange": {
                 "start": {
-                  "line": 453,
+                  "line": 490,
                   "column": 6
                 },
                 "end": {
-                  "line": 457,
+                  "line": 494,
                   "column": 7
                 }
               },
@@ -4435,11 +4661,11 @@
               "description": "Uses flexbox to set the size of the map. Set the parent container\nto use `display: flex;` in your CSS and the map will automatically\nfill the container's available height and width.",
               "sourceRange": {
                 "start": {
-                  "line": 466,
+                  "line": 503,
                   "column": 6
                 },
                 "end": {
-                  "line": 470,
+                  "line": 507,
                   "column": 7
                 }
               },

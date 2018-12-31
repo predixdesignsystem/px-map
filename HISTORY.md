@@ -1,3 +1,12 @@
+v3.6.0
+===================
+## New features:
+* Map will now clamp internal `minZoom` and `maxZoom` values based on the supported bounds of all children layers. This new behaviour can be suppressed by setting the `unclamp-zoom-to-layers` property on the px-map component
+
+## Bug fixes
+* Fixed regression in feature properties popup width from `px-map-layer-geojson` component
+* Fixed `fit-to-markers` prop not applying the correct zoom level when there's greater than 1 marker in map viewport
+
 v3.5.1
 ===================
 ## Bug fixes
