@@ -1,3 +1,9 @@
+v3.6.1
+===================
+## Bug fixes
+* Fixed `px-map-marker-group` not updating when its data prop is updated with an empty features collection
+* Tweaked `px-map-control-scale` font-size so that it always fits within the scale element. Font-size can be configured with `--px-map-scale-font-size` CSS variable.
+
 v3.6.0
 ===================
 ## New features:
