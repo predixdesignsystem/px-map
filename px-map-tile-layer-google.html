@@ -119,6 +119,16 @@ If you do not provide an API key, the map will not load any tiles.
         type: Array,
         value: function() {return [];},
         observer: 'shouldUpdateInst'
+      },
+
+      /**
+       * Opacity of the layer. Particularly useful for reducing the intensity
+       * of color from satellite imagery. Accepts values between 0.0 and 1.0.
+       */
+      opacity: {
+        type: Number,
+        value: 1.0,
+        observer: 'shouldUpdateInst'
       }
     },
 
@@ -146,6 +156,9 @@ If you do not provide an API key, the map will not load any tiles.
       if (lastOptions.mapStyleHash !== nextOptions.mapStyleHash) {
         this.elementInst.setMapStyle(nextOptions.mapStyle);
       }
+      if (lastOptions.opacity !== nextOptions.opacity) {
+        this.elementInst.setOpacity(nextOptions.opacity);
+      }
     },
 
     getInstOptions: function() {
@@ -155,7 +168,8 @@ If you do not provide an API key, the map will not load any tiles.
         language: this.language,
         region: this.region,
         mapStyle: this.mapStyle,
-        mapStyleHash: JSON.stringify(this.mapStyle || [])
+        mapStyleHash: JSON.stringify(this.mapStyle || []),
+        opacity: this.opacity
       };
     }
   });
