@@ -1,3 +1,8 @@
+v3.7.0
+===================
+## New features:
+* Tile layer components now support an opacity property.
+
 v3.6.1
 ===================
 ## Bug fixes
