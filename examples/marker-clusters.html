@@ -19,17 +19,17 @@ limitations under the License.
 <head>
   <title>Map Demo -- Marker Clusters</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../polymer/polymer.html"/>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html"/>
-  <link rel="import" href="../px-map-tile-layer.html"/>
-  <link rel="import" href="../px-map-control-zoom.html"/>
-  <link rel="import" href="../px-map-marker-group.html"/>
+  <script type="module" src="../px-map.js"></script>
+  <script type="module" src="../px-map-tile-layer.js"></script>
+  <script type="module" src="../px-map-control-zoom.js"></script>
+  <script type="module" src="../px-map-marker-group.js"></script>
 
   <!-- Importing for the demo only... -->
-  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+  <script type="module" src="../../@polymer/iron-ajax/iron-ajax.js"></script>
 
   <style>
     body {
@@ -70,14 +70,20 @@ limitations under the License.
       </template>
     </dom-bind>
   </section>
-  <script>
-    var tmplQuery = Polymer.Element ? 'dom-bind' : 'template[is=dom-bind]';
-    var tmpl = document.querySelector(tmplQuery);
+  <script type="module">
+import '@polymer/polymer/polymer-legacy.js';
+import '../px-map.js';
+import '../px-map-tile-layer.js';
+import '../px-map-control-zoom.js';
+import '../px-map-marker-group.js';
+import '@polymer/iron-ajax/iron-ajax.js';
+var tmplQuery = Polymer.Element ? 'dom-bind' : 'template[is=dom-bind]';
+var tmpl = document.querySelector(tmplQuery);
 
-    tmpl.mapMove = function(evt) {
-      var markers = Polymer.dom(evt).rootTarget.getVisibleMarkers();
-      console.log('There are ' + markers.length + ' markers visible on the map.');
-    }
-  </script>
+tmpl.mapMove = function(evt) {
+  var markers = Polymer.dom(evt).rootTarget.getVisibleMarkers();
+  console.log('There are ' + markers.length + ' markers visible on the map.');
+}
+</script>
 </body>
 </html>

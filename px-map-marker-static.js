@@ -1,0 +1,97 @@
+/*
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/*
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+*/
+/* Load required PxMapBehaviors */
+/**
+This subcomponent creates a static marker that can be attached to the map.
+
+The marker can be used to show a point-of-interest or represent a physical asset.
+It can be configured to show an asset's state (through color) and updated
+when the asset's state changes.
+
+Place a popup inside the `px-map-marker-static` to show data about the point
+to the user when they tap, hover over, or interact with the marker.
+
+Interactions with the marker will trigger events (documented on the component's
+API page). Attach a listener to the marker or its parent component(s) to trigger
+view changes that show additional data about the point elsewhere in your app.
+
+### Usage
+
+Use this component inside of a `px-map` element, or inside of a `px-map-layer-group`
+element to group it with other geospatial visualizations.
+
+Enable the `fit-to-markers` attribute on the parent `px-map` element to automatically
+fit this marker and any other markers drawn within the visual boundaries of the
+map when it is first loaded.
+
+For example, the following map will show a single marker within a layer group
+and automatically fit the marker in the view when the map is loaded:
+
+    <px-map fit-to-markers>
+      <px-map-layer-group name="Landmarks">
+        <px-map-marker-static lat="35.6654861" lng="139.7706668" type="info"></px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
+
+You can place multiple markers on a px-map or within a px-map-layer-group:
+
+    <px-map fit-to-markers>
+      <px-map-marker-static lat="37.7654861" lng="-122.8706668" type="warning"></px-map-marker-static>
+      <px-map-marker-static lat="37.6654861" lng="-122.7706668" type="unknown"></px-map-marker-static>
+      <px-map-marker-static lat="37.9654861" lng="-122.9706668" type="info"></px-map-marker-static>
+    </px-map>
+
+### Styling
+The following custom properties are available for styling:
+
+Custom property | Description
+:----------------|:-------------
+`--px-map-icon-border-color` | Border color for map markers
+`--px-map-icon-unknown-color` | Marker color for 'unknown' type markers
+`--px-map-icon-info-color` | Marker color for 'info' type markers
+`--px-map-icon-warning-color` | Marker color for 'warning' type markers
+`--px-map-icon-important-color` | Marker color for 'important' type markers
+`--px-map-color-custom-0` | These are the colors used to represent 'custom-n' type markers. Custom colors MUST start at 0 and cannot contain gaps between numbers. You may define custom type markers up to `custom-100`.
+`--px-map-color-custom-1` |
+`--px-map-color-custom-2` |
+`--px-map-color-custom-n` |
+
+@element px-map-marker-static
+@blurb Creates a static marker that can be attached to the map.
+@homepage index.html
+@demo index.html
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
+
+import './px-map-behavior-marker.js';
+Polymer({
+  _template: Polymer.html`
+    <slot></slot>
+`,
+
+  is: 'px-map-marker-static',
+  behaviors: [PxMapBehavior.StaticMarker]
+});

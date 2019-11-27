@@ -23,67 +23,114 @@ limitations under the License.
 
     <!-- BOILERPLATE -->
     <!-- load webcomponents.js polyfill for browsers that don't support native web components -->
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <!-- load web-component-tester test runner script -->
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
     <!-- load and apply default theme, required to run tests -->
-    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
 
     <!-- UNIQUE TO THIS COMPONENT -->
     <!-- import web components to test -->
-    <link rel="import" href="../px-map.html" />
+    <script type="module" src="../px-map.js"></script>
     <!-- load test helpers -->
-    <script src="map-test-helpers.js"></script>
+    <script src="./map-test-helpers.js"></script>
   </head>
 
   <body>
-    <custom-style>
-      <style include="px-theme-styles" is="custom-style"></style>
-    </custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
 
-    <test-fixture id="BasicMapFixture">
+$_documentContainer.innerHTML = `<custom-style>
+      <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="BasicMapFixture">
       <template>
         <px-map style="width:100px; height:100px;"></px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="DisableZoomMapFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="DisableZoomMapFixture">
       <template>
-        <px-map style="width:100px; height:100px;"
-                disable-scroll-zoom
-                disable-touch-zoom
-                disable-double-click-zoom>
+        <px-map style="width:100px; height:100px;" disable-scroll-zoom="" disable-touch-zoom="" disable-double-click-zoom="">
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="FitMarkersMapFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="FitMarkersMapFixture">
       <template>
-        <px-map style="width:300px; height:500px;" fit-to-markers>
+        <px-map style="width:300px; height:500px;" fit-to-markers="">
           <px-magic-stub-el></px-magic-stub-el>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="InvalidLatLngMapFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="InvalidLatLngMapFixture">
       <template>
         <px-map style="width:100px; height:100px;" lat="abc" lng="123"></px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="ValidLatLngMapFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="ValidLatLngMapFixture">
       <template>
         <px-map style="width:100px; height:100px;" lat="34" lng="123"></px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="DisableZoomClamps">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="DisableZoomClamps">
       <template>
-        <px-map style="width:100px; height:100px;" unclamp-zoom-to-layers></px-map>
+        <px-map style="width:100px; height:100px;" unclamp-zoom-to-layers=""></px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- load test script -->
-    <script src="px-map-root-tests.js"></script>
+    <script src="./px-map-root-tests.js"></script>
   </body>
 </html>

@@ -23,99 +23,148 @@ limitations under the License.
 
     <!-- BOILERPLATE -->
     <!-- load webcomponents.js polyfill for browsers that don't support native web components -->
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <!-- load web-component-tester test runner script -->
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
     <!-- load and apply default theme, required to run tests -->
-    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
 
     <!-- UNIQUE TO THIS COMPONENT -->
     <!-- import web components to test -->
-    <link rel="import" href="../px-map.html"/>
-    <link rel="import" href="../px-map-layer-geojson.html"/>
+    <script type="module" src="../px-map.js"></script>
+    <script type="module" src="../px-map-layer-geojson.js"></script>
     <!-- load test helpers -->
-    <script src="map-test-helpers.js"></script>
+    <script src="./map-test-helpers.js"></script>
   </head>
 
   <body>
-    <custom-style>
-      <style include="px-theme-styles" is="custom-style"></style>
-    </custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
 
-    <test-fixture id="GeoJSONLayerFixture">
+$_documentContainer.innerHTML = `<custom-style>
+      <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixture">
       <template>
         <px-map style="width:200px; height:200px;">
-          <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'
-              feature-style='{"color": "green"}'
-              show-feature-properties>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [{&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}]}" feature-style="{&quot;color&quot;: &quot;green&quot;}" show-feature-properties="">
           </px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixtureNoAttributes">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixtureNoAttributes">
       <template>
         <px-map style="width:200px; height:200px;">
           <px-map-layer-geojson></px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixtureOnlyData">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixtureOnlyData">
       <template>
         <px-map style="width:200px; height:200px;" lat="52.23526420307733" lng="0.11278152465820314" zoom="2">
-          <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'></px-map-layer-geojson>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [{&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}]}"></px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixtureFeatureStyles">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixtureFeatureStyles">
       <template>
         <px-map style="width:200px; height:200px;">
-          <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {"style": {"color": "#ff0000"}},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'></px-map-layer-geojson>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [{&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {&quot;style&quot;: {&quot;color&quot;: &quot;#ff0000&quot;}},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}]}"></px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixtureWithPopup">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixtureWithPopup">
       <template>
         <px-map style="width:200px; height:200px;">
-          <px-map-layer-geojson
-              data='{"type": "FeatureCollection", "features": [
-                {"type": "Feature","properties": {"location":"highway"},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}},
-                {"type": "Feature","properties": {"style":{"color":"red"}},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}
-              ]}'
-              feature-style='{"color": "green"}'
-              show-feature-properties>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [
+                {&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {&quot;location&quot;:&quot;highway&quot;},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}},
+                {&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {&quot;style&quot;:{&quot;color&quot;:&quot;red&quot;}},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}
+              ]}" feature-style="{&quot;color&quot;: &quot;green&quot;}" show-feature-properties="">
           </px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixtureWithPopupSetLate">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixtureWithPopupSetLate">
       <template>
         <px-map style="width:200px; height:200px;">
-          <px-map-layer-geojson
-              data='{"type": "FeatureCollection", "features": [
-                {"type": "Feature","properties": {"location":"highway"},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}},
-                {"type": "Feature","properties": {"style":{"color":"red"}},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}
-              ]}'
-              feature-style='{"color": "green"}'>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [
+                {&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {&quot;location&quot;:&quot;highway&quot;},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}},
+                {&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {&quot;style&quot;:{&quot;color&quot;:&quot;red&quot;}},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}
+              ]}" feature-style="{&quot;color&quot;: &quot;green&quot;}">
           </px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="GeoJSONLayerFixturePoint">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="GeoJSONLayerFixturePoint">
       <template>
         <px-map style="width:200px; height:200px;">
-          <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'>
+          <px-map-layer-geojson data="{&quot;type&quot;: &quot;FeatureCollection&quot;, &quot;features&quot;: [{&quot;type&quot;: &quot;Feature&quot;,&quot;properties&quot;: {},&quot;geometry&quot;: {&quot;type&quot;: &quot;Point&quot;,&quot;coordinates&quot;: [0.11278152465820314,52.23526420307733]}}]}">
         </px-map-layer-geojson>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- load test script -->
-    <script src="px-map-layer-geojson-tests.js"></script>
+    <script src="./px-map-layer-geojson-tests.js"></script>
   </body>
 </html>

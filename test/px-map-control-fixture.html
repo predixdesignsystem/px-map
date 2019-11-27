@@ -23,27 +23,41 @@ limitations under the License.
 
     <!-- BOILERPLATE -->
     <!-- load webcomponents.js polyfill for browsers that don't support native web components -->
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <!-- load web-component-tester test runner script -->
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
     <!-- load and apply default theme, required to run tests -->
-    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
 
     <!-- UNIQUE TO THIS COMPONENT -->
     <!-- import web components to test -->
-    <link rel="import" href="../px-map.html"/>
-    <link rel="import" href="../px-map-behavior-control.html"/>
-    <link rel="import" href="../px-map-control-locate.html"/>
+    <script type="module" src="../px-map.js"></script>
+    <script type="module" src="../px-map-behavior-control.js"></script>
+    <script type="module" src="../px-map-control-locate.js"></script>
     <!-- load test helpers -->
-    <script src="map-test-helpers.js"></script>
+    <script src="./map-test-helpers.js"></script>
   </head>
 
   <body>
-    <custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style include="px-theme-styles" is="custom-style"></style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- load test script -->
-    <script src="px-map-control-tests.js"></script>
+    <script src="./px-map-control-tests.js"></script>
   </body>
 </html>

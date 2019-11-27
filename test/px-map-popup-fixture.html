@@ -23,48 +23,83 @@ limitations under the License.
 
     <!-- BOILERPLATE -->
     <!-- load webcomponents.js polyfill for browsers that don't support native web components -->
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <!-- load web-component-tester test runner script -->
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
     <!-- load and apply default theme, required to run tests -->
-    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
 
     <!-- UNIQUE TO THIS COMPONENT -->
     <!-- import web components to test -->
-    <link rel="import" href="../px-map.html"/>
-    <link rel="import" href="../px-map-behavior-popup.html"/>
-    <link rel="import" href="../px-map-popup-info.html"/>
-    <link rel="import" href="../px-map-popup-data.html"/>
+    <script type="module" src="../px-map.js"></script>
+    <script type="module" src="../px-map-behavior-popup.js"></script>
+    <script type="module" src="../px-map-popup-info.js"></script>
+    <script type="module" src="../px-map-popup-data.js"></script>
     <!-- load test helpers -->
-    <script src="map-test-helpers.js"></script>
+    <script src="./map-test-helpers.js"></script>
   </head>
 
   <body>
-    <custom-style>
-      <style include="px-theme-styles" is="custom-style"></style>
-    </custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
 
-    <test-fixture id="PopupBehaviorFixture">
+$_documentContainer.innerHTML = `<custom-style>
+      <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="PopupBehaviorFixture">
       <template>
         <px-map-popup-behavior-stub></px-map-popup-behavior-stub>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- Additional fixtures for map components -->
 
-    <test-fixture id="InfoPopupAttributesFixture">
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="InfoPopupAttributesFixture">
       <template>
         <px-map-popup-info max-width="500" title="Testy Test Title" description="This is a description for this test. It's so great!" img-src="/img/example.png"></px-map-popup-info>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="DataPopupAttributesFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="DataPopupAttributesFixture">
       <template>
-        <px-map-popup-data title="Testy Test Title" data='{ "Key1" : "Value1", "Key2" : "Value2" }'></px-map-popup-info>
-      </template>
-    </test-fixture>
+        <px-map-popup-data title="Testy Test Title" data="{ &quot;Key1&quot; : &quot;Value1&quot;, &quot;Key2&quot; : &quot;Value2&quot; }">
+      </px-map-popup-data></template>
+    </test-fixture>`;
 
-    <test-fixture id="OpenedPropertyPopupFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="OpenedPropertyPopupFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
           <px-map-marker-static>
@@ -72,9 +107,12 @@ limitations under the License.
           </px-map-marker-static>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- load test script -->
-    <script src="px-map-popup-tests.js"></script>
+    <script src="./px-map-popup-tests.js"></script>
   </body>
 </html>

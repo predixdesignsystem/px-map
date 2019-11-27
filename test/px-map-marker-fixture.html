@@ -23,92 +23,154 @@ limitations under the License.
 
     <!-- BOILERPLATE -->
     <!-- load webcomponents.js polyfill for browsers that don't support native web components -->
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <!-- load web-component-tester test runner script -->
-    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
     <!-- load and apply default theme, required to run tests -->
-    <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+    <script type="module" src="../../px-theme/px-theme-styles.js"></script>
 
     <!-- UNIQUE TO THIS COMPONENT -->
     <!-- import web components to test -->
-    <link rel="import" href="../px-map.html"/>
-    <link rel="import" href="../px-map-marker-static.html"/>
-    <link rel="import" href="../px-map-marker-symbol.html"/>
-    <link rel="import" href="../px-map-marker-locate.html"/>
+    <script type="module" src="../px-map.js"></script>
+    <script type="module" src="../px-map-marker-static.js"></script>
+    <script type="module" src="../px-map-marker-symbol.js"></script>
+    <script type="module" src="../px-map-marker-locate.js"></script>
     <!-- load test helpers -->
-    <script src="map-test-helpers.js"></script>
+    <script src="./map-test-helpers.js"></script>
   </head>
 
   <body>
-    <custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style include="px-theme-styles" is="custom-style"></style>
-    </custom-style>
-    <custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style">
         px-map-marker-static, px-map-marker-symbol {
           --px-map-color-custom-0 : salmon;
           --px-map-color-custom-1 : hotpink;
         }
       </style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- [Test fixtures go here] -->
 
-    <test-fixture id="MarkerBehaviorFixture">
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="MarkerBehaviorFixture">
       <template>
         <px-map-marker-behavior-stub></px-map-marker-behavior-stub>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="InvalidLatLngMarkerFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="InvalidLatLngMarkerFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
-          <px-map-marker-behavior-stub lat="abc" lng=123></px-map-marker-behavior-stub>
+          <px-map-marker-behavior-stub lat="abc" lng="123"></px-map-marker-behavior-stub>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="ValidLatLngMarkerFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="ValidLatLngMarkerFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
-          <px-map-marker-behavior-stub lat="34" lng=123></px-map-marker-behavior-stub>
+          <px-map-marker-behavior-stub lat="34" lng="123"></px-map-marker-behavior-stub>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="LocateMarkerWithNameFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="LocateMarkerWithNameFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
           <px-map-marker-locate name="i am a locate marker" lat="37" lng="122"></px-map-marker-locate>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="StaticMarkerCustomTypeFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="StaticMarkerCustomTypeFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
           <px-map-marker-static lat="37" lng="122" type="custom-0"></px-map-marker-static>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="SymbolMarkerCustomTypeFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="SymbolMarkerCustomTypeFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
           <px-map-marker-symbol lat="37" lng="122" type="custom-0"></px-map-marker-symbol>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
 
-    <test-fixture id="ImperativeAddRemoveFixture">
+document.body.appendChild($_documentContainer.content);
+</script>
+
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<test-fixture id="ImperativeAddRemoveFixture">
       <template>
         <px-map style="height: 400px; width: 400px;">
           <px-map-marker-static lat="37" lng="122" type="custom-0"></px-map-marker-static>
         </px-map>
       </template>
-    </test-fixture>
+    </test-fixture>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 
     <!-- load test script -->
-    <script src="px-map-marker-tests.js"></script>
+    <script src="./px-map-marker-tests.js"></script>
   </body>
 </html>

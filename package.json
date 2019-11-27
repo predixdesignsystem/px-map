@@ -1,15 +1,14 @@
 {
-  "name": "px-map",
-  "author": "General Electric",
   "description": "A lightweight framework for building interactive maps with web components",
-  "version": "3.7.0",
-  "private": false,
-  "extName": null,
   "repository": {
     "type": "git",
     "url": "https://github.com/PredixDev/px-map.git"
   },
   "homepage": "https://www.predix-ui.com/",
+  "name": "px-map",
+  "author": "General Electric",
+  "version": "3.7.0",
+  "extName": null,
   "devDependencies": {
     "bower": "^1.8.0",
     "browser-sync": "^2.13.0",
@@ -30,15 +29,28 @@
     "polymer-cli": "^1.5.7",
     "stream-combiner2": "^1.1.1",
     "web-component-tester": "^6.7.1",
-    "yargs": "^6.0.0"
+    "yargs": "^6.0.0",
+    "@polymer/iron-ajax": "^3.0.0",
+    "@polymer/promise-polyfill": "^3.0.0-pre.18",
+    "@polymer/iron-icons": "^3.0.0",
+    "wct-browser-legacy": "^1.0.1"
   },
   "resolutions": {
-    "natives": "1.1.6"
+    "natives": "1.1.6",
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0"
   },
   "scripts": {
     "start": "gulp serve",
     "test": "wct",
     "build": "./scripts/build.sh"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "main": "px-map.js",
+  "dependencies": {
+    "@polymer/app-localize-behavior": "^3.0.0",
+    "@polymer/polymer": "^3.0.0"
+  }
 }

@@ -19,14 +19,14 @@ limitations under the License.
 <head>
   <title>Map Demo -- Popup Open/Close by API</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../polymer/polymer.html"/>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
 
   <!-- Importing px-map subcomponents... -->
-  <link rel="import" href="../px-map.html"/>
-  <link rel="import" href="../px-map-tile-layer.html"/>
-  <link rel="import" href="../px-map-marker-static.html"/>
-  <link rel="import" href="../px-map-popup-info.html"/>
+  <script type="module" src="../px-map.js"></script>
+  <script type="module" src="../px-map-tile-layer.js"></script>
+  <script type="module" src="../px-map-marker-static.js"></script>
+  <script type="module" src="../px-map-popup-info.js"></script>
 
   <style>
     body {
@@ -64,14 +64,19 @@ limitations under the License.
     <button id="openPopup">OPEN popup with `opened` property</button>
     <button id="closePopup">CLOSE popup with `opened` property</button>
   </section>
-  <script>
-    var popup = document.getElementById('popup');
-    document.getElementById('openPopup').addEventListener('click', function() {
-      popup.opened = true;
-    });
-    document.getElementById('closePopup').addEventListener('click', function() {
-      popup.opened = false;
-    });
-  </script>
+  <script type="module">
+import '@polymer/polymer/polymer-legacy.js';
+import '../px-map.js';
+import '../px-map-tile-layer.js';
+import '../px-map-marker-static.js';
+import '../px-map-popup-info.js';
+var popup = document.getElementById('popup');
+document.getElementById('openPopup').addEventListener('click', function() {
+  popup.opened = true;
+});
+document.getElementById('closePopup').addEventListener('click', function() {
+  popup.opened = false;
+});
+</script>
 </body>
 </html>

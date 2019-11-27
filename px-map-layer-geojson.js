@@ -1,0 +1,73 @@
+/*
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/*
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+*/
+/* Load required PxMapBehaviors */
+/**
+This subcomponent draws GeoJSON features as vectors on the map. Use it to draw
+common shapes like points, lines, polygons, circles, and rectangles (see the
+`data` attribute documentation for more info on what can be drawn).
+The layer only accepts valid GeoJSON formatted data — sending in invalid data
+that does not conform to the [GeoJSON spec](http://geojson.org/geojson-spec.html)
+will cause the layer to fail and not draw.
+
+### Usage
+
+    <px-map>
+      <px-map-layer-geojson data='{"type": "FeatureCollection", "features": [{"type": "Feature","properties": {},"geometry": {"type": "Point","coordinates": [0.11278152465820314,52.23526420307733]}}]}'>
+    </px-map-layer-geojson>
+    </px-map>
+
+#### Styling features
+
+There are two ways to style the features that the layer draws. To style all the
+features for the entire layer, use the `featureStyle` attribute. To style each
+feature individually, add a `style` object to the feature's `properties`.
+See the API documentation below for instructions on what style options are
+available.
+
+#### Displaying feature properties
+
+Enable the `showFeatureProperties` attribute to show a popup with feature properties
+when the user taps on a feature. This is a useful way to show relevant information
+about each feature.
+
+@element px-map-layer-geojson
+@blurb Draws GeoJSON features as vectors on a map
+@homepage index.html
+@demo index.html
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
+
+import './px-map-behavior-layer-geojson.js';
+Polymer({
+  _template: Polymer.html`
+    <style>
+      :host { display: none }
+    </style>
+`,
+
+  is: 'px-map-layer-geojson',
+  behaviors: [PxMapBehavior.GeoJSONLayer]
+});

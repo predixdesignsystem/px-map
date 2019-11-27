@@ -15,21 +15,21 @@ limitations under the License.
 -->
 
 <!-- Common imports -->
-<link rel="import" href="../../polymer/polymer.html" />
+<script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
 
 <!-- Common demo imports -->
-<link rel="import" href="../../px-demo/px-demo-header.html" />
-<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
-<link rel="import" href="../../px-demo/px-demo-footer.html" />
-<link rel="import" href="../../px-demo/px-demo-configs.html" />
-<link rel="import" href="../../px-demo/px-demo-props.html" />
-<link rel="import" href="../../px-demo/px-demo-interactive.html" />
-<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+<script type="module" src="../../px-demo/px-demo-header.js"></script>
+<script type="module" src="../../px-demo/px-demo-api-viewer.js"></script>
+<script type="module" src="../../px-demo/px-demo-footer.js"></script>
+<script type="module" src="../../px-demo/px-demo-configs.js"></script>
+<script type="module" src="../../px-demo/px-demo-props.js"></script>
+<script type="module" src="../../px-demo/px-demo-interactive.js"></script>
+<script type="module" src="../../px-demo/px-demo-component-snippet.js"></script>
 
 
 <!-- Imports for this component -->
-<link rel="import" href="../px-map.html" />
-<link rel="import" href="../px-map-tile-layer.html" />
+<script type="module" src="../px-map.js"></script>
+<script type="module" src="../px-map-tile-layer.js"></script>
 <!-- <link rel="import" href="../px-map-marker-direction.html" /> -->
 
 <!-- Demo DOM module -->
@@ -86,110 +86,120 @@ limitations under the License.
 </template>
 </dom-module>
 
-  <script>
-    Polymer({
-      is: 'px-map-marker-direction-demo',
+  <script type="module">
+import '@polymer/polymer/polymer-legacy.js';
+import 'px-demo/px-demo-header.js';
+import 'px-demo/px-demo-api-viewer.js';
+import 'px-demo/px-demo-footer.js';
+import 'px-demo/px-demo-configs.js';
+import 'px-demo/px-demo-props.js';
+import 'px-demo/px-demo-interactive.js';
+import 'px-demo/px-demo-component-snippet.js';
+import '../px-map.js';
+import '../px-map-tile-layer.js';
+Polymer({
+  is: 'px-map-marker-direction-demo',
 
-      properties: {
+  properties: {
 
-        /**
-         * Note: The actual data/values for `props` are placed in `this.demoProps`
-         * to create a static reference that Polymer shouldn't overwrite.
-         *
-         * @property props
-         * @type {Object}
-         */
-        props: {
-          type: Object,
-          value: function(){ return this.demoProps; }
-        },
+    /**
+     * Note: The actual data/values for `props` are placed in `this.demoProps`
+     * to create a static reference that Polymer shouldn't overwrite.
+     *
+     * @property props
+     * @type {Object}
+     */
+    props: {
+      type: Object,
+      value: function(){ return this.demoProps; }
+    },
 
-        /**
-         * An array of pre-configured `props` that can be used to provide the user
-         * with a set of common examples. These configs will be made available
-         * as a set of tabs the user can click that will automatically change
-         * the `props` to specific values.
-         *
-         * @property configs
-         * @type {Array}
-         */
-        configs: {
-          type: Array,
-          value: function(){
-            return [
-              { configName: "Default",
-                configReset: true }
-            ]
-          }
-        },
-
-        apiMarkPrivate: {
-          type: Array,
-          value: function() {
-            return [
-              "notifyInstReady",
-              "notifyInstReady",
-              "canAddInst",
-              "shouldAddInst",
-              "addInst",
-              "shouldRemoveInst",
-              "removeInst",
-              "shouldUpdateInst",
-              "updateInst",
-              "createInst",
-              "getInstOptions",
-              "bindEvents",
-              "unbindAllEvents",
-              "addProperties",
-              "extendObj",
-              "getShadyScope",
-              "isShadyScoped"
-            ]
-          }
-        }
-      },
-
-      /**
-       * A reference for `this.props`. Read the documentation there.
-       *
-       * @property demoProps
-       * @type {Object}
-       */
-      demoProps: {
-        lat: {
-          inputLabel: 'Latitude',
-          type: Number,
-          defaultValue: 37.7673626,
-          inputType: 'text'
-        },
-
-        lng: {
-          inputLabel: 'Longitude',
-          type: Number,
-          defaultValue: -121.9595048,
-          inputType: 'text'
-        },
-
-        type: {
-          inputLabel: 'Marker Type',
-          type: String,
-          defaultValue: 'info',
-          inputType: 'dropdown',
-          inputChoices: ['important', 'warning', 'info', 'unknown']
-        },
-
-        lightDomContent: {
-          type: String,
-          defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
-        },
-
-        parentComponent: {
-          value: ["<px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
-        },
-
-        siblingElement: {
-          value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
-        }
+    /**
+     * An array of pre-configured `props` that can be used to provide the user
+     * with a set of common examples. These configs will be made available
+     * as a set of tabs the user can click that will automatically change
+     * the `props` to specific values.
+     *
+     * @property configs
+     * @type {Array}
+     */
+    configs: {
+      type: Array,
+      value: function(){
+        return [
+          { configName: "Default",
+            configReset: true }
+        ]
       }
-    });
-  </script>
+    },
+
+    apiMarkPrivate: {
+      type: Array,
+      value: function() {
+        return [
+          "notifyInstReady",
+          "notifyInstReady",
+          "canAddInst",
+          "shouldAddInst",
+          "addInst",
+          "shouldRemoveInst",
+          "removeInst",
+          "shouldUpdateInst",
+          "updateInst",
+          "createInst",
+          "getInstOptions",
+          "bindEvents",
+          "unbindAllEvents",
+          "addProperties",
+          "extendObj",
+          "getShadyScope",
+          "isShadyScoped"
+        ]
+      }
+    }
+  },
+
+  /**
+   * A reference for `this.props`. Read the documentation there.
+   *
+   * @property demoProps
+   * @type {Object}
+   */
+  demoProps: {
+    lat: {
+      inputLabel: 'Latitude',
+      type: Number,
+      defaultValue: 37.7673626,
+      inputType: 'text'
+    },
+
+    lng: {
+      inputLabel: 'Longitude',
+      type: Number,
+      defaultValue: -121.9595048,
+      inputType: 'text'
+    },
+
+    type: {
+      inputLabel: 'Marker Type',
+      type: String,
+      defaultValue: 'info',
+      inputType: 'dropdown',
+      inputChoices: ['important', 'warning', 'info', 'unknown']
+    },
+
+    lightDomContent: {
+      type: String,
+      defaultValue: "<px-map-tile-layer url=\"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png\"></px-map-tile-layer><px-map-control-scale position=\"bottomleft\" imperial-units></px-map-control-scale><px-map-control-zoom position=\"bottomright\"></px-map-control-zoom>"
+    },
+
+    parentComponent: {
+      value: ["<px-map flex-to-size fit-to-markers disable-scroll-zoom disable-touch-zoom>", "</px-map>"]
+    },
+
+    siblingElement: {
+      value: "<px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'></px-map-tile-layer>"
+    }
+  }
+});
+</script>
